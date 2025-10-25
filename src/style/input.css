@@ -30,10 +30,18 @@
     animation: rotateAnimation;
     animation-timeline: view();
 }
+.my-circleInfinite {
+    animation: rotateAnimation 45s infinite linear;
+}
 .my-fadeInText {
     animation: fadeIn both;
     animation-timeline: view();
-    animation-range: 0% cover 20%;
+    animation-range: 5% cover 25%;
+}
+.my-fadeInFooter {
+    animation: fadeIn both;
+    animation-timeline: view();
+    animation-range: 0% cover 15%;
 }
 .my-fadeOutText {
     animation: fadeOut both;
