@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui" {
+    themes: light --default;
+}
+
+@layer base {
+    @font-face {
+        font-family: "giaza";
+        src: url(../font/Giaza.otf) format("opentype");
+    }
+}
+
+@theme {
+    --font-giaza: "giaza", sans-serif;
+    --font-poppins: "Poppins", sans-serif;
+    --font-sans: var(--font-poppins);
+}
+
+@layer utilities {
+    .font-giaza {
+        font-family: var(--font-giaza);
+    }
+}
+
+.my-circle {
+    animation: rotateAnimation;
+    animation-timeline: view();
+}
+.my-fadeInText {
+    animation: fadeIn both;
+    animation-timeline: view();
+    animation-range: 0% cover 20%;
+}
+.my-fadeOutText {
+    animation: fadeOut both;
+    animation-timeline: view();
+    animation-range: 60% cover 70%;
+}
+.my-fadeInCard {
+    animation: fadeIn both;
+    animation-timeline: view();
+    animation-range: 10% cover 25%;
+
+    &:nth-child(1),
+    &:nth-child(3) {
+        animation-range: 13% cover 28%;
+    }
+}
+.my-moveIn {
+    animation: moveIn both;
+    animation-timeline: view();
+    animation-range: 0% cover 300%;
+}
+.my-popUp {
+    animation: popUp both;
+    animation-timeline: view();
+    animation-range: 0% cover 20%;
+}
+@keyframes rotateAnimation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes moveIn {
+    from {
+        transform: translateX(-1000px);
+    }
+    to {
+        transform: translateX(500px);
+    }
+}
+@keyframes popUp {
+    from {
+        transform: scale(0.2);
+    }
+    to {
+        transform: scale(1);
+    }
+}
