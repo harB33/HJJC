@@ -27,14 +27,14 @@
                         fill="none"
                         stroke="currentColor"
                         >
-                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
+                        <circle cx="12" cy="8" r="5" />
+                        <path d="M20 21a8 8 0 0 0-16 0" />
                         </g>
                     </svg>
                     <input
                         type="text"
                         required
-                        placeholder="USERNAME"
+                        placeholder="Username"
                         pattern="[A-Za-z][A-Za-z0-9\-]*"
                         minlength="3"
                         maxlength="30"
@@ -88,7 +88,7 @@
                     </svg>
                     <input type="email" placeholder="mail@site.com" required />
                     </label>
-                    <div class="validator-hint hidden">Enter valid email address</div>
+                    <!-- <div class="validator-hint hidden">Enter valid email address</div> -->
                     <!-- <p class="validator-hint hidden">
                     Must be more than 8 characters, including
                     <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
