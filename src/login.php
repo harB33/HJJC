@@ -16,8 +16,8 @@
             <div class="size-30 rounded-full shadow grid place-items-center">
                 <img src="./image/logo.png" alt="logo">
             </div>
-            <h1 class="font-black text-5xl mb-8">CREATE YOUR ACCOUNT</h1>
-            <form action="./register.php" method="post" class="flex flex-col gap-4 w-3/4 justify-center items-center">
+            <h1 class="font-black text-5xl mb-8">WELCOME BACK!</h1>
+            <form action="./register.php" method="post" class="flex flex-col gap-4 justify-center items-center w-3/4">
                 <label class="input validator input-lg rounded-full w-3/4">
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
@@ -73,7 +73,7 @@
                     />
                     </label>
                 
-                <label class="input validator input-lg rounded-full w-3/4">
+                <!-- <label class="input validator input-lg rounded-full w-3/4">
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                         stroke-linejoin="round"
@@ -87,7 +87,7 @@
                         </g>
                     </svg>
                     <input type="email" placeholder="mail@site.com" required />
-                    </label>
+                    </label> -->
                     <div class="validator-hint hidden">Enter valid email address</div>
                     <!-- <p class="validator-hint hidden">
                     Must be more than 8 characters, including
@@ -95,9 +95,9 @@
                     </p> -->
                 <!-- <input type="text" class="input rounded-full w-3/4  input-lg text-[20px]" name="user" placeholder="USERNAME" required> -->
                 <!-- <input type="password" class="input rounded-full w-3/4  input-lg text-[20px]" name="pass" placeholder="PASSWORD" required> -->
-                <input type="submit" class="btn rounded-full w-3/4 btn-lg  border text-[20px]" name="register" value="REGISTER">
+                <input type="submit" class="btn rounded-full w-3/4 btn-lg  border text-[20px]" name="register" value="LOGIN">
             </form>
-            <a href="./login.php" class="hover:underline">Already Have an Account? Login</a>
+            <a href="./register.php" class="hover:underline">Don't Have an Account? Register</a>
         </div>
         <div></div>
     </div>
