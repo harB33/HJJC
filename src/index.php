@@ -78,6 +78,7 @@
                 <a href="#" class=" h-73 w-150  rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-2">
                     <div class="border rounded-2xl h-73 w-150 bg-[url(../image/laptop.png)] bg-contain my-fadeInCard "></div>
                 </a>
+                <a href="./home.php" class=" col-span-2"><button class="btn btn-xl rounded-full">Shop Now</button></a>
                 <img src="./image/circle.png" alt="circle" class="size-300 absolute -bottom-170 -right-150 my-circleInfinite z-1 "/>
                 <img src="./image/circle-shop.png" alt="circle" class="size-150 absolute -bottom-100 -right-80 my-circleInfinite z-1 "/>
             </div>

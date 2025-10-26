@@ -1,3 +1,30 @@
+<?php
+session_start();
+include("./db/db.php");
+
+if (isset($_POST["login"])) {
+    $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
+    $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $sql = "SELECT * FROM users WHERE username='$user' LIMIT 1";
+    $res = mysqli_query($conn, $sql);
+
+    if ($res && $res->num_rows > 0) {
+        $row = mysqli_fetch_assoc($res);
+
+        // Simple plain-text password comparison
+        if ($pass === $row['password']) {
+            $_SESSION['username'] = $user;
+            header("Location: ./index.php");
+            exit;
+        }
+    } else {
+        echo "<script>alert('Username not found!'); window.location.href='./login.php';</script>";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
@@ -17,18 +44,17 @@
                 <img src="./image/logo.png" alt="logo">
             </div>
             <h1 class="font-black text-5xl mb-8">WELCOME BACK!</h1>
-            <form action="./register.php" method="post" class="flex flex-col gap-4 justify-center items-center w-3/4">
+
+            <?php if (isset($_GET['error']) && $_GET['error'] == 'invalid'): ?>
+                <p class="text-red-500 font-semibold">Invalid username or password!</p>
+            <?php endif; ?>
+
+            <form action="./login.php" method="post" class="flex flex-col gap-4 justify-center items-center w-3/4">
                 <label class="input validator input-lg rounded-full w-3/4">
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g
-                        stroke-linejoin="round"
-                        stroke-linecap="round"
-                        stroke-width="2.5"
-                        fill="none"
-                        stroke="currentColor"
-                        >
-                        <circle cx="12" cy="8" r="5" />
-                        <path d="M20 21a8 8 0 0 0-16 0" />
+                        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="8" r="5" />
+                            <path d="M20 21a8 8 0 0 0-16 0" />
                         </g>
                     </svg>
                     <input
@@ -41,25 +67,13 @@
                         title="Only letters, numbers or dash"
                         name="user"
                     />
-                    </label>
-                    <!-- <p class="validator-hint">
-                    Must be 3 to 30 characters
-                    <br />containing only letters, numbers or dash
-                    </p> -->
+                </label>
 
                 <label class="input validator input-lg rounded-full w-3/4">
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g
-                        stroke-linejoin="round"
-                        stroke-linecap="round"
-                        stroke-width="2.5"
-                        fill="none"
-                        stroke="currentColor"
-                        >
-                        <path
-                            d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"
-                        ></path>
-                        <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
+                            <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
+                            <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
                         </g>
                     </svg>
                     <input
@@ -67,39 +81,18 @@
                         required
                         placeholder="Password"
                         minlength="8"
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                        title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                         name="pass"
                     />
-                    </label>
+                </label>
+
                 <label class="flex items-center gap-2 w-3/4">
                     <input type="checkbox" checked="checked" class="checkbox" />
                     <h1>Remember Me</h1>
                 </label>
-                <!-- <label class="input validator input-lg rounded-full w-3/4">
-                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g
-                        stroke-linejoin="round"
-                        stroke-linecap="round"
-                        stroke-width="2.5"
-                        fill="none"
-                        stroke="currentColor"
-                        >
-                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                        </g>
-                    </svg>
-                    <input type="email" placeholder="mail@site.com" required />
-                    </label> -->
-                    <!-- <div class="validator-hint hidden">Enter valid email address</div> -->
-                    <!-- <p class="validator-hint hidden">
-                    Must be more than 8 characters, including
-                    <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
-                    </p> -->
-                <!-- <input type="text" class="input rounded-full w-3/4  input-lg text-[20px]" name="user" placeholder="USERNAME" required> -->
-                <!-- <input type="password" class="input rounded-full w-3/4  input-lg text-[20px]" name="pass" placeholder="PASSWORD" required> -->
-                <input type="submit" class="btn rounded-full w-3/4 btn-lg  border text-[20px]" name="register" value="LOGIN">
+
+                <input type="submit" class="btn rounded-full w-3/4 btn-lg border text-[20px]" name="login" value="LOGIN">
             </form>
+
             <a href="./register.php" class="hover:underline">Don't Have an Account? Register</a>
         </div>
         <div></div>
@@ -107,30 +100,3 @@
 </body>
 
 </html>
-
-
-<?php
-include("./db/db.php");
-
-if (isset($_POST["register"])) {
-    // Sanitize input
-    $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
-    $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
-
-    // Example INSERT query (if this is registration — not login)
-    $date = date("Y-m-d H:m:s");
-    $email = "example@email.com"; // replace with actual user input
-    date_default_timezone_set('Asia/Manila');
-    $sql = "INSERT INTO users (username, password, email, created_at)
-            VALUES ('$user', '$pass', '$email', '$date')";
-
-    // if (mysqli_query($conn, $sql)) {
-    //     echo "User added successfully!";
-    // } else {
-    //     echo "Error: " . mysqli_error($conn);
-    // }
-
-    // echo "USER: {$user} <br>";
-    // echo "PASS: {$pass}";
-}
-?>
