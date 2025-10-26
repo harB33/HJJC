@@ -12,7 +12,6 @@ if (isset($_POST["login"])) {
     if ($res && $res->num_rows > 0) {
         $row = mysqli_fetch_assoc($res);
 
-        // Simple plain-text password comparison
         if ($pass === $row['password']) {
             $_SESSION['username'] = $user;
             header("Location: ./index.php");
