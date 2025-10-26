@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./image/logo.ico" type="image/x-icon">
-    <title>Document</title>
+    <title>HJJC. STORE|Home</title>
 </head>
 <body class="w-screen overflow-x-hidden">
     <div class="sticky top-0 z-50 ">
