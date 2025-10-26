@@ -86,7 +86,7 @@
                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                         </g>
                     </svg>
-                    <input type="email" placeholder="mail@site.com" required />
+                    <input type="email" name="email" placeholder="mail@site.com" required />
                     </label>
                     <!-- <div class="validator-hint hidden">Enter valid email address</div> -->
                     <!-- <p class="validator-hint hidden">
@@ -110,24 +110,27 @@
 include("./db/db.php");
 
 if (isset($_POST["register"])) {
-    // Sanitize input
     $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
     $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
-
-    // Example INSERT query (if this is registration — not login)
-    $date = date("Y-m-d H:m:s");
-    $email = "example@email.com"; // replace with actual user input
+    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
+    
     date_default_timezone_set('Asia/Manila');
-    $sql = "INSERT INTO users (username, password, email, created_at)
-            VALUES ('$user', '$pass', '$email', '$date')";
+    $date = date("Y-m-d H:i:s");
 
-    // if (mysqli_query($conn, $sql)) {
-    //     echo "User added successfully!";
-    // } else {
-    //     echo "Error: " . mysqli_error($conn);
-    // }
+    $sql = "SELECT * FROM users WHERE username='$user' AND email='$email'";
+    $res = $conn->query($sql);
 
-    // echo "USER: {$user} <br>";
-    // echo "PASS: {$pass}";
+    if ($res->num_rows > 0) {
+        die("Username or Email already exists.");
+    }else{
+        $sql = "INSERT INTO users (username, password, email, created_at)
+                VALUES ('$user', '$pass', '$email', '$date')";
+    
+        if($conn->query($sql)){
+            die("Account created successfully.");
+        }else {
+            die("Error: " . $conn->error);
+        }
+    }
 }
 ?>
