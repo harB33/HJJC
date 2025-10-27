@@ -2,25 +2,49 @@
 session_start();
 include("./db/db.php");
 
-if (isset($_POST["login"])) {
-    $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
-    $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
+$alert_html_output = userAndPassCorrect();
 
-    $sql = "SELECT * FROM users WHERE username='$user' LIMIT 1";
-    $res = mysqli_query($conn, $sql);
+function userAndPassCorrect(){
+    include("./db/db.php");
+    $alertMsg = '';
 
-    if ($res && $res->num_rows > 0) {
-        $row = mysqli_fetch_assoc($res);
-
-        if ($pass === $row['password']) {
-            $_SESSION['username'] = $user;
-            header("Location: ./index.php");
-            exit;
+    if (isset($_POST["login"])) {
+        $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
+        $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
+    
+        $sql = "SELECT * FROM users WHERE username='$user' LIMIT 1";
+        $res = mysqli_query($conn, $sql);
+    
+        if ($res && $res->num_rows > 0) {
+            $row = mysqli_fetch_assoc($res);
+    
+            if ($pass === $row['password']) {
+                $_SESSION['username'] = $user;
+                header("Location: ./index.php");
+                exit;
+            } else {
+                $alertMsg .= '
+                    <div role="alert" class="alert alert-warning">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>Warning: Invalid Password!</span>
+                    </div>';
+            }
+        } else {
+            $alertMsg .= '
+                <div role="alert" class="alert alert-warning">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <span>Warning: Invalid Username!</span>
+                </div>';
         }
-    } else {
-        echo "<script>alert('Username not found!'); window.location.href='./login.php';</script>";
     }
+    return $alertMsg;
 }
+
+
 ?>
 
 
@@ -44,11 +68,6 @@ if (isset($_POST["login"])) {
                 <img src="./image/logo.png" alt="logo">
             </div>
             <h1 class="font-black text-5xl mb-8">WELCOME BACK!</h1>
-
-            <?php if (isset($_GET['error']) && $_GET['error'] == 'invalid'): ?>
-                <p class="text-red-500 font-semibold">Invalid username or password!</p>
-            <?php endif; ?>
-
             <form action="./login.php" method="post" class="flex flex-col gap-4 justify-center items-center w-3/4">
                 <label class="input validator input-lg rounded-full w-3/4">
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -68,7 +87,6 @@ if (isset($_POST["login"])) {
                         name="user"
                     />
                 </label>
-
                 <label class="input validator input-lg rounded-full w-3/4">
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
@@ -84,18 +102,22 @@ if (isset($_POST["login"])) {
                         name="pass"
                     />
                 </label>
-
                 <label class="flex items-center gap-2 w-3/4">
                     <input type="checkbox" checked="checked" class="checkbox" />
                     <h1>Remember Me</h1>
                 </label>
-
                 <input type="submit" class="btn rounded-full w-3/4 btn-lg border text-[20px]" name="login" value="LOGIN">
             </form>
-
             <a href="./register.php" class="hover:underline">Don't Have an Account? Register</a>
+            <div class=" w-fit gap-2 flex-col flex min-h-30">
+                    <?php
+                        echo $alert_html_output;
+                    ?>
+            </div>
         </div>
-        <div></div>
+        <div>
+
+        </div>
     </div>
 </body>
 
