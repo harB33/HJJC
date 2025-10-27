@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./image/logo.ico" type="image/x-icon">
+    <link rel="icon" href="./image/logo.ico" type="image/x-icon">
     <title>HJJC. STORE|About Us</title>
     <link
         href="https://cdn.jsdelivr.net/npm/daisyui@5"
@@ -26,7 +26,7 @@
         <section class="flex flex-col h-screen w-screen justify-center items-center">
             <h1 class=" text-5xl font-bold my-fadeInText m-6 uppercase">Why Shop With Us?</h1>
             <div class="flex gap-8  justify-center items-center">
-                <div class="card bg-base-100 w-96 shadow-sm my-fadeInCard">
+                <div class="card bg-base-100 w-96 shadow-sm my-fadeInMoveUpCard">
                     <figure>
                         <img
                         src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
@@ -36,7 +36,7 @@
                         <h2 class="card-title">Shop Smart. Shop Authentic.</h2>
                     </div>
                 </div>
-                <div class="card bg-base-100 w-96 shadow-sm my-fadeInCard">
+                <div class="card bg-base-100 w-96 shadow-sm my-fadeInMoveUpCard">
                     <figure>
                         <img
                         src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
@@ -46,7 +46,7 @@
                         <h2 class="card-title">Trusted by Thousands, Chosen by You.</h2>
                     </div>
                 </div>
-                <div class="card bg-base-100 w-96 shadow-sm my-fadeInCard">
+                <div class="card bg-base-100 w-96 shadow-sm my-fadeInMoveUpCard">
                     <figure>
                         <img
                         src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
@@ -71,13 +71,13 @@
             <h1 class="text-4xl font-bold m-6 uppercase my-fadeInText my-popUp z-5">Find it all here. Explore our wide range of products built for you.</h1>
             <div class="grid grid-cols-[auto_auto] grid-rows-2 gap-4 place-content-center z-1">
                 <a href="#" class="h-152 w-85 row-span-2 rounded-2xl hover:shadow-2xl transition-shadow duration-300">
-                    <div class="border rounded-2xl h-152 w-85 bg-[url(../image/gpu.png)] bg-cover my-fadeInCard z-2"></div>
+                    <div class="border rounded-2xl h-152 w-85 bg-[url(../image/gpu.png)] bg-cover my-fadeInMoveUpCard z-2"></div>
                 </a>
                 <a href="#" class=" h-73 w-150  rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-2">
-                    <div class="border rounded-2xl h-73 w-150 bg-[url(../image/shoes.png)] bg-contain my-fadeInCard "></div>
+                    <div class="border rounded-2xl h-73 w-150 bg-[url(../image/shoes.png)] bg-contain my-fadeInMoveUpCard "></div>
                 </a>
                 <a href="#" class=" h-73 w-150  rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-2">
-                    <div class="border rounded-2xl h-73 w-150 bg-[url(../image/laptop.png)] bg-contain my-fadeInCard "></div>
+                    <div class="border rounded-2xl h-73 w-150 bg-[url(../image/laptop.png)] bg-contain my-fadeInMoveUpCard "></div>
                 </a>
                 <a href="./home.php" class=" col-span-2"><button class="btn btn-xl rounded-full">Shop Now</button></a>
                 <img src="./image/circle.png" alt="circle" class="size-300 absolute -bottom-170 -right-150 my-circleInfinite z-1 "/>

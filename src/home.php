@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./image/logo.ico" type="image/x-icon">
+    <link rel="icon" href="./image/logo.ico" type="image/x-icon">
+    <link
+        href="https://cdn.jsdelivr.net/npm/daisyui@5"
+        rel="stylesheet"
+        type="text/css"
+    />
     <title>HJJC. STORE|Home</title>
 </head>
 <body class="w-screen overflow-x-hidden">
@@ -72,24 +77,24 @@
         <section class="flex flex-col justify-center items-center w-3/4 mb-24">
             <h1 class=" text-3xl font-black m-4 my-fadeInText">Just For You</h1>
             <div class="grid grid-cols-6 place-items-center w-fit gap-4">
-                <a href="#" class="size-50 border my-fadeInText">Electronics & Gadgets</a>
-                <a href="#" class="size-50 border my-fadeInText">Fashion & Apparel</a>
-                <a href="#" class="size-50 border my-fadeInText">Home & Living</a>
-                <a href="#" class="size-50 border my-fadeInText">Beauty & Personal Care</a>
-                <a href="#" class="size-50 border my-fadeInText">Health & Wellness</a>
-                <a href="#" class="size-50 border my-fadeInText">Baby & Kids</a>
-                <a href="#" class="size-50 border my-fadeInText">Pet Supplies</a>
-                <a href="#" class="size-50 border my-fadeInText">Sports & Outdoors</a>
-                <a href="#" class="size-50 border my-fadeInText">Automotive & Tools</a>
-                <a href="#" class="size-50 border my-fadeInText">Art & Stationery</a>
-                <a href="#" class="size-50 border my-fadeInText">Books & Education</a>
-                <a href="#" class="size-50 border my-fadeInText">Food & Beverages</a>
-                <a href="#" class="size-50 border my-fadeInText">Pet Supplies</a>
-                <a href="#" class="size-50 border my-fadeInText">Sports & Outdoors</a>
-                <a href="#" class="size-50 border my-fadeInText">Automotive & Tools</a>
-                <a href="#" class="size-50 border my-fadeInText">Art & Stationery</a>
-                <a href="#" class="size-50 border my-fadeInText">Books & Education</a>
-                <a href="#" class="size-50 border my-fadeInText">Food & Beverages</a>
+                <a href="#" class="size-50 border my-fadeInCard">Electronics & Gadgets</a>
+                <a href="#" class="size-50 border my-fadeInCard">Fashion & Apparel</a>
+                <a href="#" class="size-50 border my-fadeInCard">Home & Living</a>
+                <a href="#" class="size-50 border my-fadeInCard">Beauty & Personal Care</a>
+                <a href="#" class="size-50 border my-fadeInCard">Health & Wellness</a>
+                <a href="#" class="size-50 border my-fadeInCard">Baby & Kids</a>
+                <a href="#" class="size-50 border my-fadeInCard">Pet Supplies</a>
+                <a href="#" class="size-50 border my-fadeInCard">Sports & Outdoors</a>
+                <a href="#" class="size-50 border my-fadeInCard">Automotive & Tools</a>
+                <a href="#" class="size-50 border my-fadeInCard">Art & Stationery</a>
+                <a href="#" class="size-50 border my-fadeInCard">Books & Education</a>
+                <a href="#" class="size-50 border my-fadeInCard">Food & Beverages</a>
+                <a href="#" class="size-50 border my-fadeInCard">Pet Supplies</a>
+                <a href="#" class="size-50 border my-fadeInCard">Sports & Outdoors</a>
+                <a href="#" class="size-50 border my-fadeInCard">Automotive & Tools</a>
+                <a href="#" class="size-50 border my-fadeInCard">Art & Stationery</a>
+                <a href="#" class="size-50 border my-fadeInCard">Books & Education</a>
+                <a href="#" class="size-50 border my-fadeInCard">Food & Beverages</a>
             </div>
         </section>
     </section>

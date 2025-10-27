@@ -34,7 +34,7 @@
     animation: rotateAnimation 45s infinite linear;
 }
 .my-fadeInText {
-    animation: fadeIn both;
+    animation: fadeInMoveUp both;
     animation-timeline: view();
     animation-range: 5% cover 25%;
 }
@@ -48,15 +48,19 @@
     animation-timeline: view();
     animation-range: 60% cover 70%;
 }
-.my-fadeInCard {
-    animation: fadeIn both;
+.my-fadeInMoveUpCard {
+    animation: fadeInMoveUp both;
     animation-timeline: view();
     animation-range: 10% cover 25%;
 
-    &:nth-child(1),
-    &:nth-child(3) {
+    &:nth-child(odd) {
         animation-range: 13% cover 28%;
     }
+}
+.my-fadeInCard {
+    animation: fadeIn both;
+    animation-timeline: view();
+    animation-range: 0% cover 25%;
 }
 .my-moveIn {
     animation: moveIn both;
@@ -85,6 +89,14 @@
     }
 }
 @keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fadeInMoveUp {
     from {
         opacity: 0;
         transform: translateY(100px);
