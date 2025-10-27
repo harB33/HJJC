@@ -77,7 +77,7 @@
                         </g>
                     </svg>
                     <input type="email" name="email" placeholder="mail@site.com" required />
-                    </label>
+                </label>
                 <input type="submit" class="btn rounded-full w-3/4 btn-lg  border text-[20px]" name="register" value="REGISTER">
             </form>
             <a href="./login.php" class="hover:underline">Already Have an Account? Login</a>
@@ -99,22 +99,32 @@ if (isset($_POST["register"])) {
     $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
     $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
-    
+
+    $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
+
     date_default_timezone_set('Asia/Manila');
     $date = date("Y-m-d H:i:s");
 
-    $sql = "SELECT * FROM users WHERE username='$user' AND email='$email'";
+    $sql = "SELECT * FROM users WHERE username='$user' OR email='$email'";
     $res = $conn->query($sql);
 
     if ($res->num_rows > 0) {
-        die("Username or Email already exists.");
-    }else{
+        $row = $res->fetch_assoc();
+
+        if ($row['username'] === $user) {
+            die("Username already exists.");
+        }
+        if ($row['email'] === $email) {
+            die("Email already exists.");
+        }
+    } else {
         $sql = "INSERT INTO users (username, password, email, created_at)
                 VALUES ('$user', '$pass', '$email', '$date')";
-    
-        if($conn->query($sql)){
-            die("Account created successfully.");
-        }else {
+
+        if ($conn->query($sql)) {
+            header("Location: ./login.php");
+            exit();
+        } else {
             die("Error: " . $conn->error);
         }
     }
