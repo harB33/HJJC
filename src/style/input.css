@@ -76,6 +76,7 @@
     animation: loginImgAnimation infinite 45s linear alternate;
 
     &:nth-child(odd) {
+        animation: loginImgAnimation infinite 45s linear alternate;
         animation-direction: reverse;
     }
 }

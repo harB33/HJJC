@@ -66,10 +66,10 @@ function userAndPassCorrect(){
 </head>
 
 <body>
-    <div class="grid grid-cols-2 place-items-center">
+    <div class="grid grid-cols-[45%_55%] place-items-center">
         <div class="flex flex-col gap-4 justify-center items-center h-screen w-full">
-            <div class="size-30 rounded-full shadow grid place-items-center">
-                <img src="./image/logo.png" alt="logo">
+            <div class="size-30 rounded-full shadow-[0px_0px_1px_2px] grid place-items-center p-2">
+                <img src="./image/logo/logo-trans.png" alt="logo">
             </div>
             <h1 class="font-black text-5xl mb-8">WELCOME BACK!</h1>
             <form action="./login.php" method="post" class="flex flex-col gap-4 justify-center items-center w-3/4">
