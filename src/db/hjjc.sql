@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2025 at 02:38 PM
+-- Generation Time: Oct 28, 2025 at 03:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,68 +24,170 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `address_id` int(11) UNSIGNED NOT NULL,
+  `customer_id` int(11) UNSIGNED DEFAULT NULL,
+  `address_name` varchar(150) DEFAULT NULL,
+  `address_line1` varchar(250) DEFAULT NULL,
+  `address_line2` varchar(250) DEFAULT NULL,
+  `address_city` varchar(150) DEFAULT NULL,
+  `address_region` varchar(50) DEFAULT NULL,
+  `address_brgy` varchar(20) DEFAULT NULL,
+  `address_postal` varchar(15) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `category_id` int(5) UNSIGNED NOT NULL,
+  `category_name` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) UNSIGNED NOT NULL,
+  `customer_id` int(11) UNSIGNED DEFAULT NULL,
+  `address_id` int(11) UNSIGNED DEFAULT NULL,
+  `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `order_status` enum('pending','paid','shipped','completed','cancelled') NOT NULL DEFAULT 'pending',
+  `order_total` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `price` float DEFAULT NULL,
+  `product_img` varchar(255) DEFAULT NULL,
+  `product_desc` text DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `stock` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(25) NOT NULL,
-  `password` varchar(25) NOT NULL,
-  `email` varchar(55) NOT NULL,
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `customer_firstname` varchar(50) NOT NULL,
+  `customer_lastname` varchar(50) NOT NULL,
+  `customer_email` varchar(100) DEFAULT NULL,
+  `customer_phone` varchar(15) NOT NULL,
+  `customer_pass` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `created_at`) VALUES
-(3, 'HARVY123', '090619Harvy', 'example@email.com', '0000-00-00 00:00:00'),
-(4, 'harvy', 'harvy', 'example@email.com', '2025-10-25 00:10:56'),
-(5, 'harvy', 'harvy', 'example@email.com', '2025-10-25 02:10:17'),
-(6, '1231231', '1231231', 'example@email.com', '2025-10-25 02:10:22'),
-(7, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:14'),
-(8, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:52'),
-(9, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:54'),
-(10, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:57'),
-(11, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:01'),
-(12, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:25'),
-(13, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:38'),
-(14, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:55'),
-(15, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:59'),
-(16, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:14'),
-(17, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:26'),
-(18, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:38'),
-(19, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:47'),
-(20, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:06'),
-(21, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:07'),
-(22, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:10'),
-(23, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:17'),
-(24, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:29'),
-(25, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:29'),
-(26, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:54'),
-(27, 'patrick', 'qwertuiop', 'example@email.com', '2025-10-25 02:10:19'),
-(28, '1231231', '123123', 'example@email.com', '2025-10-25 02:10:06');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`address_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `address_id` (`address_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`product_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD UNIQUE KEY `id` (`id`);
+  ADD PRIMARY KEY (`customer_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `address`
+--
+ALTER TABLE `address`
+  MODIFY `address_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `category_id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `customer_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `address`
+--
+ALTER TABLE `address`
+  ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`);
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
