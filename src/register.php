@@ -44,7 +44,7 @@ function userAndEmailAlert(){
             }
         } else {
             $sql = "INSERT INTO users (username, password, email, created_at)
-                    VALUES ('$user', '$hashed_pass', '$email', '$date')";
+                    VALUES ('$user', '$pass', '$email', '$date')";
     
             if ($conn->query($sql)) {
                 $alertMsg .= '
