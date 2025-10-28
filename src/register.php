@@ -91,10 +91,10 @@ function userAndEmailAlert(){
 </head>
 
 <body>
-    <div class="grid grid-cols-2 place-items-center">
+    <div class="grid grid-cols-[45%_55%] place-items-center">
         <div class="flex flex-col gap-4 justify-center items-center h-screen w-full">
-            <div class="size-30 rounded-full shadow grid place-items-center">
-                <img src="./image/logo.png" alt="logo">
+            <div class="size-30 rounded-full p-2 shadow-[0px_0px_1px_2px] grid place-items-center">
+                <img src="./image/logo/logo-trans.png" alt="logo">
             </div>
             <h1 class="font-black text-5xl mb-8">CREATE YOUR ACCOUNT</h1>
             <form action="./register.php" method="post" class="flex flex-col gap-4 w-3/4 justify-center items-center">
@@ -187,7 +187,7 @@ function userAndEmailAlert(){
                     ?>
                 </div>
             </div>
-            <div class=" bg-base-300 overflow-clip relative w-full h-full ">
+            <div class=" bg-base-300 overflow-clip relative w-full h-full">
             <div class="flex absolute w-full h-full justify-center items-center gap-4 p-4 rotate-25">
                 <div class="flex flex-col my-loginImgAnimation">
                     <div class="mockup-phone w-50 h-85 ">
@@ -542,7 +542,7 @@ function userAndEmailAlert(){
                     </div>
                 </div>
             </div>
-        </div>=
+        </div>
     </div>
 </body>
 
