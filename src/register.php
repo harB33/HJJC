@@ -12,8 +12,10 @@ function userAndEmailAlert(){
         $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
         $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
         $confirmPass = filter_input(INPUT_POST, "confirmPass", FILTER_SANITIZE_SPECIAL_CHARS);
+        $first_name = filter_input(INPUT_POST, "first_name", FILTER_SANITIZE_SPECIAL_CHARS);
+        $last_name = filter_input(INPUT_POST, "first_name", FILTER_SANITIZE_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
-    
+        
         $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
     
         date_default_timezone_set('Asia/Manila');
@@ -51,6 +53,14 @@ function userAndEmailAlert(){
                         </svg>
                         <span>Warning: Passwords Do Not Match!</span>
                     </div>';
+            }
+            if ($row['first_name' === $first_name]) {
+                $alertMsg .= '
+                ';
+            }
+            if ($row['last_name' === $last_name]) {
+                $alertMsg .= '
+                ';
             }
         } else {
             $sql = "INSERT INTO users (username, password, email, created_at)
