@@ -119,6 +119,12 @@ function userAndPassCorrect(){
                     ?>
             </div>
         </div>
+        <div class=" bg-base-300 h-screen overflow-hidden ">
+            <div class="flex flex-wrap ">
+                <div class="mockup-phone w-50 h-85">
+                    <div class="mockup-phone-camera"></div>
+                    <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                        <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
         <div class=" bg-base-300 overflow-clip relative w-full h-full ">
             <div class="flex absolute w-full h-full justify-center items-center gap-4 p-4 rotate-25">
                 <div class="flex flex-col my-loginImgAnimation">
