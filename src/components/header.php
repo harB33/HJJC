@@ -51,7 +51,59 @@
                         d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"
                     />
                 </svg>
-                <svg
+                <?php 
+                session_start();
+                if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == True){
+                    echo '
+                        
+                        <div class="dropdown dropdown-center">
+                            <div tabindex="0" role="button" class="m-1 cursor-pointer">
+                            <svg    
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-user-round-icon lucide-user-round h-8"
+                            >
+                                <circle cx="12" cy="8" r="5" />
+                                <path d="M20 21a8 8 0 0 0-16 0" />
+                            </svg>
+                            </div>
+                            <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm flex gap-1.5 flex-col">
+                                <li><a>Account</a></li>
+                                <hr>
+                                <li><a>Orders</a></li>
+                                <hr>
+                                <li><a href="logout.php" class="btn bg-red-400">Log Out</a></li>
+                            </ul>
+                        </div>
+                        ';
+                    }
+                else{
+                    echo '
+                    <a href="./login.php" class="h-fit">
+                        <svg    
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-user-round-icon lucide-user-round h-8"
+                        >
+                            <circle cx="12" cy="8" r="5" />
+                            <path d="M20 21a8 8 0 0 0-16 0" />
+                        </svg>
+                    </a>
+                    ';
+                }
+                
+                ?>
+                <!-- <svg    
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="none"
@@ -63,7 +115,7 @@
                 >
                     <circle cx="12" cy="8" r="5" />
                     <path d="M20 21a8 8 0 0 0-16 0" />
-                </svg>
+                </svg> -->
             </div>
         </div>
     </header>

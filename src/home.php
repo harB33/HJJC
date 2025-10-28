@@ -14,7 +14,7 @@
 
 <body class="w-screen overflow-x-hidden">
     <div class="sticky top-0 z-50 ">
-        <?php include './components/header.html'; ?>
+        <?php include './components/header.php'; ?>
     </div>
 
     <section class="flex flex-col items-center w-full min-h-screen">

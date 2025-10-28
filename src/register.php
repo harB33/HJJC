@@ -232,7 +232,7 @@ function userAndEmailAlert(){
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/geforece rtx5070 prime.png" alt="" class=" h-full">
+                            <img src="./image/image-login/geforce rtx5070 prime.png" alt="" class=" h-full">
                         </div>
                     </div>
                     <div class="mockup-phone w-50 h-85 ">
@@ -282,7 +282,7 @@ function userAndEmailAlert(){
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/M75 75% Wireless.png" alt="" class=" h-full">
+                            <img src="./image/image-login/M75.png" alt="" class=" h-full">
                         </div>
                     </div>
                 </div>
@@ -474,7 +474,7 @@ function userAndEmailAlert(){
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/M75 75% Wireless.png" alt="" class=" h-full">
+                            <img src="./image/image-login/M75.png" alt="" class=" h-full">
                         </div>
                     </div>
                 </div>
@@ -514,7 +514,7 @@ function userAndEmailAlert(){
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/sandugo shorts.png" alt="" class=" h-full">
+                            <img src="./image/image-login/sandugo short.png" alt="" class=" h-full">
                         </div>
                     </div>
                     <div class="mockup-phone w-50 h-85 ">

@@ -7,7 +7,7 @@
 </head>
 <body class="w-screen overflow-x-hidden">
     <div class="sticky top-0 z-50 ">
-        <?php include './components/header.html'; ?>
+        <?php include './components/header.php'; ?>
     </div>
     <section class="flex flex-col items-center text-center w-full overflow-clip min-h-screen">
         <h1 class=" font-black text-4xl mb-4">OUR DEVELOPERS</h1>

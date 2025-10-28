@@ -15,7 +15,7 @@
 </head>
 <body class="w-screen overflow-x-hidden">
     <div class="sticky top-0 z-50 ">
-        <?php include './components/header.html'; ?>
+        <?php include './components/header.php'; ?>
     </div>
     <section class="flex flex-col items-center text-center w-full overflow-clip">
         <section id="title" class="text-3xl font-light h-[80vh] w-full uppercase flex flex-col justify-center items-center my-fadeOutText">

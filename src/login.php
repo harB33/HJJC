@@ -20,6 +20,8 @@ function userAndPassCorrect(){
     
             if ($pass === $row['password']) {
                 $_SESSION['username'] = $user;
+                $_SESSION['loggedIn'] = True;
+
                 header("Location: ./index.php");
                 exit;
             } else {
