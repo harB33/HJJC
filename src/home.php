@@ -76,7 +76,7 @@
             </div>
         </section>
         <section class="flex flex-col justify-center items-center w-3/4 mb-24">
-            <h1 class=" text-3xl font-black m-4 my-fadeInText">Just For You</h1>
+            <h1 class=" text-3xl font-black m-4 my-fadeInCard">Just For You</h1>
             <div class="grid grid-cols-6 place-items-center w-fit gap-4">
                 <a href="#" class="size-50 border my-fadeInCard">Electronics & Gadgets</a>
                 <a href="#" class="size-50 border my-fadeInCard">Fashion & Apparel</a>
