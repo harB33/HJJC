@@ -8,6 +8,7 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-gray-900: oklch(21% 0.034 264.665);
+    --color-neutral-900: oklch(20.5% 0 0);
     --color-white: #fff;
     --spacing: 0.25rem;
     --text-2xl: 1.5rem;
@@ -1435,6 +1436,30 @@
   .left-5 {
     left: calc(var(--spacing) * 5);
   }
+  .mockup-phone-camera {
+    @layer daisyui.component {
+      grid-column: 1/1;
+      grid-row: 1/1;
+      background: #000;
+      height: 3.7%;
+      width: 28%;
+      border-radius: 17px;
+      z-index: 1;
+      margin-top: 3%;
+    }
+  }
+  .mockup-phone-camera {
+    @layer daisyui.component {
+      grid-column: 1/1;
+      grid-row: 1/1;
+      background: #000;
+      height: 3.7%;
+      width: 28%;
+      border-radius: 17px;
+      z-index: 1;
+      margin-top: 3%;
+    }
+  }
   .z-0 {
     z-index: 0;
   }
@@ -1452,6 +1477,44 @@
   }
   .z-50 {
     z-index: 50;
+  }
+  .mockup-phone-display {
+    @layer daisyui.component {
+      border-radius: 54px;
+      grid-column: 1/1;
+      grid-row: 1/1;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      @supports (corner-shape: superellipse(1.87)) {
+        border-radius: 101px;
+        corner-shape: superellipse(1.87);
+      }
+      & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  .mockup-phone-display {
+    @layer daisyui.component {
+      border-radius: 54px;
+      grid-column: 1/1;
+      grid-row: 1/1;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      @supports (corner-shape: superellipse(1.87)) {
+        border-radius: 101px;
+        corner-shape: superellipse(1.87);
+      }
+      & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
   }
   .col-span-2 {
     grid-column: span 2 / span 2;
@@ -1531,6 +1594,42 @@
       display: flex;
       flex: none;
       scroll-snap-align: start;
+    }
+  }
+  .mockup-phone {
+    @layer daisyui.component {
+      display: inline-grid;
+      justify-items: center;
+      border: 5px solid #6b6b6b;
+      border-radius: 65px;
+      background-color: #000;
+      padding: 6px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 462px;
+      aspect-ratio: 462 / 978;
+      @supports (corner-shape: superellipse(1.45)) {
+        border-radius: 90px;
+        corner-shape: superellipse(1.45);
+      }
+    }
+  }
+  .mockup-phone {
+    @layer daisyui.component {
+      display: inline-grid;
+      justify-items: center;
+      border: 5px solid #6b6b6b;
+      border-radius: 65px;
+      background-color: #000;
+      padding: 6px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 462px;
+      aspect-ratio: 462 / 978;
+      @supports (corner-shape: superellipse(1.45)) {
+        border-radius: 90px;
+        corner-shape: superellipse(1.45);
+      }
     }
   }
   .footer {
@@ -1780,6 +1879,9 @@
   .h-73 {
     height: calc(var(--spacing) * 73);
   }
+  .h-85 {
+    height: calc(var(--spacing) * 85);
+  }
   .h-152 {
     height: calc(var(--spacing) * 152);
   }
@@ -1788,6 +1890,9 @@
   }
   .h-\[80vh\] {
     height: 80vh;
+  }
+  .h-full {
+    height: 100%;
   }
   .h-screen {
     height: 100vh;
@@ -1806,6 +1911,9 @@
   }
   .w-6 {
     width: calc(var(--spacing) * 6);
+  }
+  .w-50 {
+    width: calc(var(--spacing) * 50);
   }
   .w-85 {
     width: calc(var(--spacing) * 85);
@@ -1834,6 +1942,9 @@
   .-translate-y-1\/2 {
     --tw-translate-y: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .rotate-25 {
+    rotate: 25deg;
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
@@ -1899,8 +2010,14 @@
   .bg-base-100 {
     background-color: var(--color-base-100);
   }
+  .bg-base-300 {
+    background-color: var(--color-base-300);
+  }
   .bg-gray-900 {
     background-color: var(--color-gray-900);
+  }
+  .bg-neutral-900 {
+    background-color: var(--color-neutral-900);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -1928,6 +2045,9 @@
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
+  }
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
   }
   .p-16 {
     padding: calc(var(--spacing) * 16);
@@ -2007,6 +2127,9 @@
   }
   .text-neutral-content {
     color: var(--color-neutral-content);
+  }
+  .text-white {
+    color: var(--color-white);
   }
   .lowercase {
     text-transform: lowercase;
@@ -2160,6 +2283,12 @@
   animation-timeline: view();
   animation-range: 0% cover 20%;
 }
+.my-loginImgAnimation {
+  animation: loginImgAnimation infinite 45s linear alternate;
+  &:nth-child(odd) {
+    animation-direction: reverse;
+  }
+}
 @keyframes rotateAnimation {
   from {
     transform: rotate(0deg);
@@ -2208,6 +2337,14 @@
   }
   to {
     transform: scale(1);
+  }
+}
+@keyframes loginImgAnimation {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(250px);
   }
 }
 @layer base {

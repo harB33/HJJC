@@ -72,6 +72,13 @@
     animation-timeline: view();
     animation-range: 0% cover 20%;
 }
+.my-loginImgAnimation {
+    animation: loginImgAnimation infinite 45s linear alternate;
+
+    &:nth-child(odd) {
+        animation-direction: reverse;
+    }
+}
 @keyframes rotateAnimation {
     from {
         transform: rotate(0deg);
@@ -120,5 +127,13 @@
     }
     to {
         transform: scale(1);
+    }
+}
+@keyframes loginImgAnimation {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(250px);
     }
 }

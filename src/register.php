@@ -11,6 +11,7 @@ function userAndEmailAlert(){
     if (isset($_POST["register"])) {
         $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
         $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
+        $confirmPass = filter_input(INPUT_POST, "confirmPass", FILTER_SANITIZE_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
     
         $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
@@ -42,9 +43,18 @@ function userAndEmailAlert(){
                         <span>Warning: Email Already Exists!</span>
                     </div>';
             }
+            if ($pass !== $confirmPass) {
+                $alertMsg .= '
+                    <div role="alert" class="alert alert-warning">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>Warning: Passwords Do Not Match!</span>
+                    </div>';
+            }
         } else {
             $sql = "INSERT INTO users (username, password, email, created_at)
-                    VALUES ('$user', '$hashed_pass', '$email', '$date')";
+                    VALUES ('$user', '$pass', '$email', '$date')";
     
             if ($conn->query($sql)) {
                 $alertMsg .= '
@@ -140,6 +150,28 @@ function userAndEmailAlert(){
                             stroke-width="2.5"
                             fill="none"
                             stroke="currentColor">
+                            <path
+                                d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
+                            <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                        </g>
+                    </svg>
+                    <input
+                        type="password"
+                        required
+                        placeholder="Confirm Password"
+                        minlength="8"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                        name="confirmPass" />
+                </label>
+                <label class="input validator input-lg rounded-full w-3/4">
+                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <g
+                            stroke-linejoin="round"
+                            stroke-linecap="round"
+                            stroke-width="2.5"
+                            fill="none"
+                            stroke="currentColor">
                             <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                         </g>
@@ -155,7 +187,362 @@ function userAndEmailAlert(){
                     ?>
                 </div>
             </div>
-        <div></div>
+            <div class=" bg-base-300 overflow-clip relative w-full h-full ">
+            <div class="flex absolute w-full h-full justify-center items-center gap-4 p-4 rotate-25">
+                <div class="flex flex-col my-loginImgAnimation">
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col my-loginImgAnimation">
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col my-loginImgAnimation">
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col my-loginImgAnimation">
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col my-loginImgAnimation">
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col my-loginImgAnimation">
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col my-loginImgAnimation">
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col my-loginImgAnimation">
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col my-loginImgAnimation">
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col my-loginImgAnimation">
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col my-loginImgAnimation">
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                    <div class="mockup-phone w-50 h-85 ">
+                        <div class="mockup-phone-camera"></div>
+                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
+                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>=
     </div>
 </body>
 
