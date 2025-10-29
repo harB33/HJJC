@@ -4,22 +4,23 @@ include("./db/db.php");
 
 $alert_html_output = userAndPassCorrect();
 
-function userAndPassCorrect(){
+function userAndPassCorrect()
+{
     include("./db/db.php");
     $alertMsg = '';
 
     if (isset($_POST["login"])) {
         $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
         $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
-    
-        $sql = "SELECT * FROM users WHERE username='$user' LIMIT 1";
+
+        $sql = "SELECT * FROM users WHERE customer_user='$user' LIMIT 1";
         $res = mysqli_query($conn, $sql);
-    
+
         if ($res && $res->num_rows > 0) {
             $row = mysqli_fetch_assoc($res);
-    
-            if ($pass === $row['password']) {
-                $_SESSION['username'] = $user;
+
+            if ($pass === $row['customer_pass']) {
+                $_SESSION['customer_user'] = $user;
                 $_SESSION['loggedIn'] = True;
 
                 header("Location: ./index.php");
@@ -61,8 +62,7 @@ function userAndPassCorrect(){
     <link
         href="https://cdn.jsdelivr.net/npm/daisyui@5"
         rel="stylesheet"
-        type="text/css"
-    />
+        type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style/output.css" />
 </head>
@@ -90,8 +90,7 @@ function userAndPassCorrect(){
                         minlength="3"
                         maxlength="30"
                         title="Only letters, numbers or dash"
-                        name="user"
-                    />
+                        name="user" />
                 </label>
                 <label class="input validator input-lg rounded-full w-3/4">
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -105,8 +104,7 @@ function userAndPassCorrect(){
                         required
                         placeholder="Password"
                         minlength="8"
-                        name="pass"
-                    />
+                        name="pass" />
                 </label>
                 <label class="flex items-center gap-2 w-3/4">
                     <input type="checkbox" checked="checked" class="checkbox" />
@@ -116,9 +114,9 @@ function userAndPassCorrect(){
             </form>
             <a href="./register.php" class="hover:underline">Don't Have an Account? Register</a>
             <div class=" w-fit gap-2 flex-col flex min-h-30">
-                    <?php
-                        echo $alert_html_output;
-                    ?>
+                <?php
+                echo $alert_html_output;
+                ?>
             </div>
         </div>
         <div class=" bg-base-300 overflow-clip relative w-full h-full ">
@@ -507,9 +505,9 @@ function userAndPassCorrect(){
                         </div>
                     </div>
                 </div>
-                </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 
