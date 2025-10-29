@@ -10,7 +10,7 @@ if (isset($_POST["home"])) { // san ilalagay yung action/post ng home.php
     $category_id = filter_input(INPUT_POST, "category_id", FILTER_SANITIZE_NUMBER_INT);
     $stock = filter_input(INPUT_POST, "stock", FILTER_SANITIZE_NUMBER_INT);
 
-    if (empty($product_name) || empty($price) || empty($product_desc) || empty($category_id) || empty($stock)) {
+    if (empty($product_name) || empty($price) || empty($product_img)|| empty($product_desc) || empty($category_id) || empty($stock)) {
         die("Error: All fields are required.");
     }
 
