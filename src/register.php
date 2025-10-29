@@ -9,7 +9,7 @@ function userAndEmailAlert(){
     $alertMsg = '';
 
     if (isset($_POST["register"])) {
-        $user = filter_input(INPUT_POST, "customer_user", FILTER_SANITIZE_SPECIAL_CHARS);
+        $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
         $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
         $confirmPass = filter_input(INPUT_POST, "confirmPass", FILTER_SANITIZE_SPECIAL_CHARS);
         $first_name = filter_input(INPUT_POST, "first_name", FILTER_SANITIZE_SPECIAL_CHARS);
