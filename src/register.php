@@ -13,15 +13,16 @@ function userAndEmailAlert(){
         $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
         $confirmPass = filter_input(INPUT_POST, "confirmPass", FILTER_SANITIZE_SPECIAL_CHARS);
         $first_name = filter_input(INPUT_POST, "first_name", FILTER_SANITIZE_SPECIAL_CHARS);
-        $last_name = filter_input(INPUT_POST, "first_name", FILTER_SANITIZE_SPECIAL_CHARS);
+        $last_name = filter_input(INPUT_POST, "last_name", FILTER_SANITIZE_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
+        $phone = filter_input(INPUT_POST, "phone", FILTER_SANITIZE_SPECIAL_CHARS);
         
         $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
     
         date_default_timezone_set('Asia/Manila');
         $date = date("Y-m-d H:i:s");
     
-        $sql = "SELECT * FROM users WHERE username='$user' OR email='$email'";
+        $sql = "SELECT * FROM users WHERE customer_user='$user' OR customer_email='$email'";
         $res = $conn->query($sql);
     
         if ($res->num_rows > 0) {
@@ -54,17 +55,9 @@ function userAndEmailAlert(){
                         <span>Warning: Passwords Do Not Match!</span>
                     </div>';
             }
-            if ($row['first_name' === $first_name]) {
-                $alertMsg .= '
-                ';
-            }
-            if ($row['last_name' === $last_name]) {
-                $alertMsg .= '
-                ';
-            }
         } else {
-            $sql = "INSERT INTO users (username, password, email, created_at)
-                    VALUES ('$user', '$pass', '$email', '$date')";
+            $sql = "INSERT INTO users (customer_username, customer_pass, customer_firstname, customer_lastname, customer_email, customer_phone, created_at)
+                    VALUES ('$user', '$pass', '$first_name', '$last_name', '$email', '$phone', '$date')";
     
             if ($conn->query($sql)) {
                 $alertMsg .= '
