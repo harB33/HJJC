@@ -16,7 +16,8 @@ if (isset($_POST["home"])) { // san ilalagay yung action/post ng home.php
 
     $date = date("Y-m-d H:i:s");
 
-    $sql = "INSERT INTO products (product_name, price, product_img, product_desc, category_id, stock, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO products (product_name, price, product_img, product_desc, category_id, stock, created_at, updated_at) 
+    VALUES ('$product_name', '$price', '$product_img', '$product_desc', '$category_id', '$stock', '$date', '$date')";
     
 
     $conn->close();
