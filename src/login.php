@@ -4,66 +4,44 @@ include("./db/db.php");
 
 $alert_html_output = userAndPassCorrect();
 
-function userAndPassCorrect(){
-    // Use 'global $conn;' or include db.php if $conn is not accessible
-    include("./db/db.php"); 
+function userAndPassCorrect()
+{
+    include("./db/db.php");
     $alertMsg = '';
 
     if (isset($_POST["login"])) {
         $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
-        $pass = $_POST["pass"]; // Don't sanitize password, we need the raw value
+        $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
 
-        // 1. Prepare the statement
-        // You MUST select the column containing the hashed password (e.g., 'customer_pass')
-        $sql = "SELECT customer_user, customer_pass FROM users WHERE customer_user = ? LIMIT 1";
-        
-        // **This is the correct function to use with '?' placeholders**
-        $stmt = mysqli_prepare($conn, $sql); 
+        $sql = "SELECT * FROM users WHERE customer_user='$user' LIMIT 1";
+        $res = mysqli_query($conn, $sql);
 
-        if ($stmt) {
-            // 2. Bind the user variable to the placeholder (?)
-            // 's' means the variable is a string
-            mysqli_stmt_bind_param($stmt, "s", $user); 
+        if ($res && $res->num_rows > 0) {
+            $row = mysqli_fetch_assoc($res);
 
-            // 3. Execute the statement
-            mysqli_stmt_execute($stmt); 
+            if ($pass === $row['customer_pass']) {
+                $_SESSION['customer_user'] = $user;
+                $_SESSION['loggedIn'] = True;
 
-            // 4. Get the result set
-            $res = mysqli_stmt_get_result($stmt);
-
-            if ($res && mysqli_num_rows($res) > 0) {
-                $row = mysqli_fetch_assoc($res);
-                
-                // 5. Verify the password hash (assuming 'customer_pass' stores the hash)
-                // if (password_verify($pass, $row['customer_pass'])) {
-                // If you are mistakenly storing plain text (DANGEROUS):
-                if ($pass === $row['customer_pass']) { 
-
-                    $_SESSION['username'] = $user;
-                    $_SESSION['loggedIn'] = True;
-
-                    mysqli_stmt_close($stmt); // Close statement before redirect
-                    header("Location: ./index.php");
-                    exit;
-                } else {
-                    // Invalid Password
-                    $alertMsg .= '
-                        <div role="alert" class="alert alert-warning">
-                            <span>Warning: Invalid Password!</span>
-                        </div>';
-                }
+                header("Location: ./index.php");
+                exit;
             } else {
-                // User not found
                 $alertMsg .= '
                     <div role="alert" class="alert alert-warning">
-                        <span>Warning: Invalid Username!</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>Warning: Invalid Password!</span>
                     </div>';
             }
-            mysqli_stmt_close($stmt);
         } else {
-             // Error preparing the statement
-            error_log("Failed to prepare statement: " . mysqli_error($conn));
-            $alertMsg .= '<span>An internal error occurred.</span>';
+            $alertMsg .= '
+                <div role="alert" class="alert alert-warning">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <span>Warning: Invalid Username!</span>
+                </div>';
         }
     }
     return $alertMsg;
@@ -84,8 +62,7 @@ function userAndPassCorrect(){
     <link
         href="https://cdn.jsdelivr.net/npm/daisyui@5"
         rel="stylesheet"
-        type="text/css"
-    />
+        type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style/output.css" />
 </head>
@@ -114,8 +91,7 @@ function userAndPassCorrect(){
                         minlength="3"
                         maxlength="30"
                         title="Only letters, numbers or dash"
-                        name="user"
-                    />
+                        name="user" />
                 </label>
                 <label class="input validator input-lg rounded-full w-3/4 floating-label">
                     <span class="text-xl left-8">Password</span>
@@ -130,8 +106,7 @@ function userAndPassCorrect(){
                         required
                         placeholder="Password"
                         minlength="8"
-                        name="pass"
-                    />
+                        name="pass" />
                 </label>
                 <label class="flex items-center gap-2 w-3/4">
                     <input type="checkbox" checked="checked" class="checkbox" />
@@ -141,9 +116,9 @@ function userAndPassCorrect(){
             </form>
             <a href="./register.php" class="hover:underline">Don't Have an Account? Register</a>
             <div class=" w-fit gap-2 flex-col flex min-h-30">
-                    <?php
-                        echo $alert_html_output;
-                    ?>
+                <?php
+                echo $alert_html_output;
+                ?>
             </div>
         </div>
         <div class=" bg-base-300 overflow-clip relative w-full h-full ">
@@ -532,9 +507,9 @@ function userAndPassCorrect(){
                         </div>
                     </div>
                 </div>
-                </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 
