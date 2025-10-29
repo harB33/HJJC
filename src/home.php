@@ -1,3 +1,30 @@
+<?php 
+include("./db/db.php");
+date_default_timezone_set('Asia/Manila');
+
+if (isset($_POST["home"])) { // san ilalagay yung action/post ng home.php
+    $product_name = filter_input(INPUT_POST, "product_name", FILTER_SANITIZE_SPECIAL_CHARS);
+    $price = filter_input(INPUT_POST, "price", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $product_img = filter_input(INPUT_POST, "product_img", FILTER_SANITIZE_URL);
+    $product_desc = filter_input(INPUT_POST, "product_desc", FILTER_SANITIZE_SPECIAL_CHARS);
+    $category_id = filter_input(INPUT_POST, "category_id", FILTER_SANITIZE_NUMBER_INT);
+    $stock = filter_input(INPUT_POST, "stock", FILTER_SANITIZE_NUMBER_INT);
+
+    if (empty($product_name) || empty($price) || empty($product_img)|| empty($product_desc) || empty($category_id) || empty($stock)) {
+        die("Error: All fields are required.");
+    }
+
+    $date = date("Y-m-d H:i:s");
+
+    $sql = "INSERT INTO products (product_name, price, product_img, product_desc, category_id, stock, created_at, updated_at) 
+    VALUES ('$product_name', '$price', '$product_img', '$product_desc', '$category_id', '$stock', '$date', '$date')";
+    
+
+    $conn->close();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
