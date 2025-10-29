@@ -65,6 +65,7 @@ function userAndPassCorrect()
         type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style/output.css" />
+    <script src="./script/script.js" defer></script>
 </head>
 
 <body>
@@ -93,7 +94,7 @@ function userAndPassCorrect()
                         title="Only letters, numbers or dash"
                         name="user" />
                 </label>
-                <label class="input validator input-lg rounded-full w-3/4 floating-label">
+                <label class="group input validator input-lg rounded-full w-3/4 floating-label">
                     <span class="text-xl left-8">Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
@@ -102,11 +103,18 @@ function userAndPassCorrect()
                         </g>
                     </svg>
                     <input
+                        id="passwordInput"
                         type="password"
                         required
                         placeholder="Password"
                         minlength="8"
                         name="pass" />
+                        
+                    <label class="swap opacity-0 pointer-events-none transition-opacity duration-300 group-focus-within:opacity-100 group-focus-within:pointer-events-auto" id="toggleLabel">
+                        <input type="checkbox" id="toggleCheckbox" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off swap-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye swap-on"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                    </label>
                 </label>
                 <label class="flex items-center gap-2 w-3/4">
                     <input type="checkbox" checked="checked" class="checkbox" />

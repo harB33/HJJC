@@ -91,6 +91,7 @@ function userAndEmailAlert()
         type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style/output.css" />
+    <script src="./script/script.js" defer></script>
 </head>
 
 <body>
@@ -101,7 +102,8 @@ function userAndEmailAlert()
             </div>
             <h1 class="font-black text-5xl mb-8">CREATE YOUR ACCOUNT</h1>
             <form action="./register.php" method="post" class="flex flex-col gap-4 w-3/4 justify-center items-center">
-                <label class="input validator input-lg rounded-full w-3/4">
+                <label class="input validator input-lg rounded-full w-3/4 floating-label">
+                    <span class="left-8 text-xl">Username</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                             stroke-linejoin="round"
@@ -123,96 +125,111 @@ function userAndEmailAlert()
                         title="Only letters, numbers or dash"
                         name="user" />
                 </label>
-                <label class="input validator input-lg rounded-full w-3/4">
-                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g
-                            stroke-linejoin="round"
-                            stroke-linecap="round"
-                            stroke-width="2.5"
-                            fill="none"
-                            stroke="currentColor">
-                            <path
-                                d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
-                            <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
-                        </g>
-                    </svg>
-                    <input
-                        type="password"
-                        required
-                        placeholder="Password"
-                        minlength="8"
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                        title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
-                        name="pass" />
-                </label>
-                <label class="input validator input-lg rounded-full w-3/4">
-                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g
-                            stroke-linejoin="round"
-                            stroke-linecap="round"
-                            stroke-width="2.5"
-                            fill="none"
-                            stroke="currentColor">
-                            <path
-                                d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
-                            <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
-                        </g>
-                    </svg>
-                    <input
-                        type="password"
-                        required
-                        placeholder="Confirm Password"
-                        minlength="8"
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                        title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
-                        name="confirmPass" />
-                </label>
+                <div class="flex gap-2 w-3/4">
+                    <label class="group input validator input-lg rounded-full w-full floating-label">
+                        <span class="left-8 text-xl">Password</span>
+                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="currentColor">
+                                <path
+                                    d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
+                                <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                            </g>
+                        </svg>
+                        <input
+                            id="passwordInput"
+                            type="password"
+                            required
+                            placeholder="Password"
+                            minlength="8"
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                            name="pass" />
+                        <label class="swap opacity-0 pointer-events-none transition-opacity duration-300 group-focus-within:opacity-100 group-focus-within:pointer-events-auto" id="toggleLabel">
+                            <input type="checkbox" id="toggleCheckbox" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off swap-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye swap-on"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                        </label>
+                    </label>
+                    <label class="input validator input-lg rounded-full w-full floating-label">
+                        <span class="left-8 text-xl">Confirm Password</span>
+                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="currentColor">
+                                <path
+                                    d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
+                                <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                            </g>
+                        </svg>
+                        <input
+                            type="password"
+                            required
+                            placeholder="Confirm Password"
+                            minlength="8"
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                            name="confirmPass" />
+                    </label>
+                </div>
                 <!-- start here -->
-                <label class="input validator input-lg rounded-full w-3/4">
-                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g
-                            stroke-linejoin="round"
-                            stroke-linecap="round"
-                            stroke-width="2.5"
-                            fill="none"
-                            stroke="currentColor">
-                            <circle cx="12" cy="8" r="5" />
-                            <path d="M20 21a8 8 0 0 0-16 0" />
-                        </g>
-                    </svg>
-                    <input
-                        type="text"
-                        required
-                        placeholder="First Name"
-                        pattern="[A-Za-z]*"
-                        minlength="3"
-                        maxlength="30"
-                        title="Only letters"
-                        name="first_name" />
-                </label>
-                <label class="input validator input-lg rounded-full w-3/4">
-                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g
-                            stroke-linejoin="round"
-                            stroke-linecap="round"
-                            stroke-width="2.5"
-                            fill="none"
-                            stroke="currentColor">
-                            <circle cx="12" cy="8" r="5" />
-                            <path d="M20 21a8 8 0 0 0-16 0" />
-                        </g>
-                    </svg>
-                    <input
-                        type="text"
-                        required
-                        placeholder="Last Name"
-                        pattern="[A-Za-z]*"
-                        minlength="3"
-                        maxlength="30"
-                        title="Only letters"
-                        name="last_name" />
-                </label>
-                <label class="input validator input-lg rounded-full w-3/4">
+                <div class="flex gap-2 w-3/4">
+                    <label class="input validator input-lg rounded-full w-full floating-label">
+                        <span class="left-8 text-xl">First Name</span>
+                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="currentColor">
+                                <circle cx="12" cy="8" r="5" />
+                                <path d="M20 21a8 8 0 0 0-16 0" />
+                            </g>
+                        </svg>
+                        <input
+                            type="text"
+                            required
+                            placeholder="First Name"
+                            pattern="[A-Za-z]*"
+                            minlength="3"
+                            maxlength="30"
+                            title="Only letters"
+                            name="first_name" />
+                    </label>
+                    <label class="input validator input-lg rounded-full w-full floating-label">
+                        <span class="left-8 text-xl">Last Name</span>
+                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="currentColor">
+                                <circle cx="12" cy="8" r="5" />
+                                <path d="M20 21a8 8 0 0 0-16 0" />
+                            </g>
+                        </svg>
+                        <input
+                            type="text"
+                            required
+                            placeholder="Last Name"
+                            pattern="[A-Za-z]*"
+                            minlength="3"
+                            maxlength="30"
+                            title="Only letters"
+                            name="last_name" />
+                    </label>
+                </div>
+                <label class="input validator input-lg rounded-full w-3/4 floating-label">
+                    <span class="left-8 text-xl">Email</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                             stroke-linejoin="round"
@@ -226,19 +243,23 @@ function userAndEmailAlert()
                     </svg>
                     <input type="email" name="email" placeholder="mail@site.com" required />
                 </label>
-                <label class="input validator input-lg rounded-full w-3/4">
-                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g
-                            stroke-linejoin="round"
-                            stroke-linecap="round"
-                            stroke-width="2.5"
-                            fill="none"
-                            stroke="currentColor">
-                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                <label class="input validator input-lg rounded-full w-3/4 floating-label">
+                    <span class="left-8 text-xl">Phone Number</span>
+                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <g fill="none">
+                        <path
+                            d="M7.25 11.5C6.83579 11.5 6.5 11.8358 6.5 12.25C6.5 12.6642 6.83579 13 7.25 13H8.75C9.16421 13 9.5 12.6642 9.5 12.25C9.5 11.8358 9.16421 11.5 8.75 11.5H7.25Z"
+                            fill="currentColor"
+                        ></path>
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M6 1C4.61929 1 3.5 2.11929 3.5 3.5V12.5C3.5 13.8807 4.61929 15 6 15H10C11.3807 15 12.5 13.8807 12.5 12.5V3.5C12.5 2.11929 11.3807 1 10 1H6ZM10 2.5H9.5V3C9.5 3.27614 9.27614 3.5 9 3.5H7C6.72386 3.5 6.5 3.27614 6.5 3V2.5H6C5.44771 2.5 5 2.94772 5 3.5V12.5C5 13.0523 5.44772 13.5 6 13.5H10C10.5523 13.5 11 13.0523 11 12.5V3.5C11 2.94772 10.5523 2.5 10 2.5Z"
+                            fill="currentColor"
+                        ></path>
                         </g>
                     </svg>
-                    <input type="tel" name="phone" placeholder="09000000000" required />
+                    <input type="tel" name="phone" placeholder="0900-000-0000" required />
                 </label>
                 <input type="submit" class="btn rounded-full w-3/4 btn-lg  border text-[20px]" name="register" value="REGISTER">
             </form>
@@ -252,7 +273,7 @@ function userAndEmailAlert()
         <div class=" bg-base-300 overflow-clip relative w-full h-full">
             <div class=" bg-base-300 overflow-clip relative w-full h-full ">
                 <div class="flex absolute w-full h-full justify-center items-center gap-4 p-4 rotate-25">
-                    <div class="flex flex-col my-loginImgAnimation">
+                    <div class="flex flex-col my-loginImgAnimation gap-4 ">
                         <div class="mockup-phone w-50 h-85 ">
                             <div class="mockup-phone-camera"></div>
                             <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -284,7 +305,7 @@ function userAndEmailAlert()
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col my-loginImgAnimation">
+                    <div class="flex flex-col my-loginImgAnimation gap-4 ">
                         <div class="mockup-phone w-50 h-85 ">
                             <div class="mockup-phone-camera"></div>
                             <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -316,7 +337,7 @@ function userAndEmailAlert()
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col my-loginImgAnimation">
+                    <div class="flex flex-col my-loginImgAnimation gap-4 ">
                         <div class="mockup-phone w-50 h-85 ">
                             <div class="mockup-phone-camera"></div>
                             <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -348,7 +369,7 @@ function userAndEmailAlert()
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col my-loginImgAnimation">
+                    <div class="flex flex-col my-loginImgAnimation gap-4 ">
                         <div class="mockup-phone w-50 h-85 ">
                             <div class="mockup-phone-camera"></div>
                             <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -380,7 +401,7 @@ function userAndEmailAlert()
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col my-loginImgAnimation">
+                    <div class="flex flex-col my-loginImgAnimation gap-4 ">
                         <div class="mockup-phone w-50 h-85 ">
                             <div class="mockup-phone-camera"></div>
                             <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -412,7 +433,7 @@ function userAndEmailAlert()
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col my-loginImgAnimation">
+                    <div class="flex flex-col my-loginImgAnimation gap-4 ">
                         <div class="mockup-phone w-50 h-85 ">
                             <div class="mockup-phone-camera"></div>
                             <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -444,7 +465,7 @@ function userAndEmailAlert()
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col my-loginImgAnimation">
+                    <div class="flex flex-col my-loginImgAnimation gap-4 ">
                         <div class="mockup-phone w-50 h-85 ">
                             <div class="mockup-phone-camera"></div>
                             <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -476,7 +497,7 @@ function userAndEmailAlert()
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col my-loginImgAnimation">
+                    <div class="flex flex-col my-loginImgAnimation gap-4 ">
                         <div class="mockup-phone w-50 h-85 ">
                             <div class="mockup-phone-camera"></div>
                             <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -508,7 +529,7 @@ function userAndEmailAlert()
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col my-loginImgAnimation">
+                    <div class="flex flex-col my-loginImgAnimation gap-4 ">
                         <div class="mockup-phone w-50 h-85 ">
                             <div class="mockup-phone-camera"></div>
                             <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -540,7 +561,7 @@ function userAndEmailAlert()
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col my-loginImgAnimation">
+                    <div class="flex flex-col my-loginImgAnimation gap-4 ">
                         <div class="mockup-phone w-50 h-85 ">
                             <div class="mockup-phone-camera"></div>
                             <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -572,7 +593,7 @@ function userAndEmailAlert()
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col my-loginImgAnimation">
+                    <div class="flex flex-col my-loginImgAnimation gap-4 ">
                         <div class="mockup-phone w-50 h-85 ">
                             <div class="mockup-phone-camera"></div>
                             <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -604,7 +625,7 @@ function userAndEmailAlert()
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col my-loginImgAnimation">
+                    <div class="flex flex-col my-loginImgAnimation gap-4 ">
                         <div class="mockup-phone w-50 h-85 ">
                             <div class="mockup-phone-camera"></div>
                             <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
