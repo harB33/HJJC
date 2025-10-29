@@ -75,7 +75,8 @@ function userAndPassCorrect()
             </div>
             <h1 class="font-black text-5xl mb-8">WELCOME BACK!</h1>
             <form action="./login.php" method="post" class="flex flex-col gap-4 justify-center items-center w-3/4">
-                <label class="input validator input-lg rounded-full w-3/4">
+                <label class="input validator input-lg rounded-full w-3/4 floating-label">
+                    <span class="text-xl left-8">Username</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
                             <circle cx="12" cy="8" r="5" />
@@ -92,7 +93,8 @@ function userAndPassCorrect()
                         title="Only letters, numbers or dash"
                         name="user" />
                 </label>
-                <label class="input validator input-lg rounded-full w-3/4">
+                <label class="input validator input-lg rounded-full w-3/4 floating-label">
+                    <span class="text-xl left-8">Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
                             <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
@@ -121,7 +123,7 @@ function userAndPassCorrect()
         </div>
         <div class=" bg-base-300 overflow-clip relative w-full h-full ">
             <div class="flex absolute w-full h-full justify-center items-center gap-4 p-4 rotate-25">
-                <div class="flex flex-col my-loginImgAnimation">
+                <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -153,7 +155,7 @@ function userAndPassCorrect()
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col my-loginImgAnimation">
+                <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -185,7 +187,7 @@ function userAndPassCorrect()
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col my-loginImgAnimation">
+                <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -217,7 +219,7 @@ function userAndPassCorrect()
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col my-loginImgAnimation">
+                <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -249,7 +251,7 @@ function userAndPassCorrect()
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col my-loginImgAnimation">
+                <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -281,7 +283,7 @@ function userAndPassCorrect()
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col my-loginImgAnimation">
+                <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -313,7 +315,7 @@ function userAndPassCorrect()
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col my-loginImgAnimation">
+                <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -345,7 +347,7 @@ function userAndPassCorrect()
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col my-loginImgAnimation">
+                <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -377,7 +379,7 @@ function userAndPassCorrect()
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col my-loginImgAnimation">
+                <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -409,7 +411,7 @@ function userAndPassCorrect()
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col my-loginImgAnimation">
+                <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -441,7 +443,7 @@ function userAndPassCorrect()
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col my-loginImgAnimation">
+                <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
@@ -473,7 +475,7 @@ function userAndPassCorrect()
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col my-loginImgAnimation">
+                <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 ">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
