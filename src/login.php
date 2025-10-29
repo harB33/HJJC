@@ -5,42 +5,65 @@ include("./db/db.php");
 $alert_html_output = userAndPassCorrect();
 
 function userAndPassCorrect(){
-    include("./db/db.php");
+    // Use 'global $conn;' or include db.php if $conn is not accessible
+    include("./db/db.php"); 
     $alertMsg = '';
 
     if (isset($_POST["login"])) {
         $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
-        $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
-    
-        $sql = "SELECT * FROM users WHERE username='$user' LIMIT 1";
-        $res = mysqli_query($conn, $sql);
-    
-        if ($res && $res->num_rows > 0) {
-            $row = mysqli_fetch_assoc($res);
-    
-            if ($pass === $row['password']) {
-                $_SESSION['username'] = $user;
-                $_SESSION['loggedIn'] = True;
+        $pass = $_POST["pass"]; // Don't sanitize password, we need the raw value
 
-                header("Location: ./index.php");
-                exit;
+        // 1. Prepare the statement
+        // You MUST select the column containing the hashed password (e.g., 'customer_pass')
+        $sql = "SELECT customer_user, customer_pass FROM users WHERE customer_user = ? LIMIT 1";
+        
+        // **This is the correct function to use with '?' placeholders**
+        $stmt = mysqli_prepare($conn, $sql); 
+
+        if ($stmt) {
+            // 2. Bind the user variable to the placeholder (?)
+            // 's' means the variable is a string
+            mysqli_stmt_bind_param($stmt, "s", $user); 
+
+            // 3. Execute the statement
+            mysqli_stmt_execute($stmt); 
+
+            // 4. Get the result set
+            $res = mysqli_stmt_get_result($stmt);
+
+            if ($res && mysqli_num_rows($res) > 0) {
+                $row = mysqli_fetch_assoc($res);
+                
+                // 5. Verify the password hash (assuming 'customer_pass' stores the hash)
+                // if (password_verify($pass, $row['customer_pass'])) {
+                // If you are mistakenly storing plain text (DANGEROUS):
+                if ($pass === $row['customer_pass']) { 
+
+                    $_SESSION['username'] = $user;
+                    $_SESSION['loggedIn'] = True;
+
+                    mysqli_stmt_close($stmt); // Close statement before redirect
+                    header("Location: ./index.php");
+                    exit;
+                } else {
+                    // Invalid Password
+                    $alertMsg .= '
+                        <div role="alert" class="alert alert-warning">
+                            <span>Warning: Invalid Password!</span>
+                        </div>';
+                }
             } else {
+                // User not found
                 $alertMsg .= '
                     <div role="alert" class="alert alert-warning">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                        <span>Warning: Invalid Password!</span>
+                        <span>Warning: Invalid Username!</span>
                     </div>';
             }
+            mysqli_stmt_close($stmt);
         } else {
-            $alertMsg .= '
-                <div role="alert" class="alert alert-warning">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
-                    <span>Warning: Invalid Username!</span>
-                </div>';
+             // Error preparing the statement
+            error_log("Failed to prepare statement: " . mysqli_error($conn));
+            $alertMsg .= '<span>An internal error occurred.</span>';
         }
     }
     return $alertMsg;
