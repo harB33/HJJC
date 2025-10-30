@@ -26,12 +26,12 @@ function sendVerification($email, $verificationCode)
         $mail->isSMTP();
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
-        $mail->Username = "bautistaharvy@gmail.com";
-        $mail->Password = "fywv qwve wwir tdtd"; // use Gmail App Password, NOT real password
+        $mail->Username = "hjjc.store@gmail.com";
+        $mail->Password = "xxhx nkiw bwsi erwb";
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
-        $mail->setFrom("bautistaharvy@gmail.com", "HJJC STORE");
+        $mail->setFrom("hjjc.store@gmail.com", "HJJC STORE");
         $mail->addAddress($email);
 
         $mail->isHTML(false);
