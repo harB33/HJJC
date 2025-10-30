@@ -13,13 +13,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style/output.css" />
 </head>
-<body class="w-screen overflow-x-hidden">
+<body class="w-screen overflow-x-hidden ">
     <div class="sticky top-0 z-50 ">
         <?php include './components/header.php'; ?>
     </div>
-    <section class="flex flex-col items-center text-center w-full overflow-clip">
-        <section id="title" class="text-3xl font-light h-[80vh] w-full uppercase flex flex-col justify-center items-center my-fadeOutText">
-            <h1 class="font-giaza font-black text-8xl mb-4">HJJC. Store</h1>
+    <section class="flex flex-col items-center text-center w-full overflow-clip bg-[#B6CCD7]">
+        <section id="title" class="text-3xl font-light h-[80vh] w-full uppercase flex flex-col justify-center items-center my-fadeOutText text-[#0A1829]">
+            <h1 class="font-giaza font-black text-8xl mb-4 ">HJJC. Store</h1>
             <h1 class=" font-light text-4xl">Your one-stop shop for <span class="font-bold underline italic">everything</span> you need!</h1>
             <h1 class="font-extralight text-2xl">Scroll down to discover who we are and why customers love us.</h1>
         </section>

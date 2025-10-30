@@ -69,8 +69,8 @@ function userAndPassCorrect()
 </head>
 
 <body>
-    <div class="grid grid-cols-[45%_55%] place-items-center">
-        <div class="flex flex-col gap-4 justify-center items-center h-screen w-full">
+    <div class="grid grid-cols-[45%_55%] place-items-center ">
+        <div class="flex flex-col gap-4 justify-center items-center h-screen w-full border-r-2 border-[#0A1829]">
             <div class="size-30 rounded-full shadow-[0px_0px_1px_2px] grid place-items-center p-2">
                 <img src="./image/logo/logo-trans.png" alt="logo">
             </div>
@@ -129,10 +129,10 @@ function userAndPassCorrect()
                 ?>
             </div>
         </div>
-        <div class=" bg-base-300 overflow-clip relative w-full h-full ">
+        <div class="  overflow-clip relative w-full h-full bg-[#B6CCD7]">
             <div class="flex absolute w-full h-full justify-center items-center gap-4 p-4 rotate-25">
                 <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 ">
+                    <div class="mockup-phone w-50 h-85 shadow-2xl">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
                             <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
@@ -196,7 +196,7 @@ function userAndPassCorrect()
                     </div>
                 </div>
                 <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 ">
+                    <div class="mockup-phone w-50 h-85">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
                             <img src="./image/image-login/iphone 17 promax.png" alt="" class=" h-full">
@@ -388,7 +388,7 @@ function userAndPassCorrect()
                     </div>
                 </div>
                 <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 ">
+                    <div class="mockup-phone w-50 h-85">
                         <div class="mockup-phone-camera"></div>
                         <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
                             <img src="./image/image-login/iphone 17 promax.png" alt="" class=" h-full">
