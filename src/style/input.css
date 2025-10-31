@@ -46,7 +46,7 @@
 .my-fadeOutText {
     animation: fadeOut both;
     animation-timeline: view();
-    animation-range: 60% cover 70%;
+    animation-range: 90% cover 95%;
 }
 .my-fadeInMoveUpCard {
     animation: fadeInMoveUp both;

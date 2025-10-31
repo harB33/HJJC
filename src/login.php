@@ -74,7 +74,10 @@ function userAndPassCorrect()
             <div class="size-30 rounded-full shadow-[0px_0px_1px_2px] grid place-items-center p-2">
                 <img src="./image/logo/logo-trans.png" alt="logo">
             </div>
-            <h1 class="font-black text-5xl mb-8">WELCOME BACK!</h1>
+            <div class="mb-8 text-center" >
+                <h1 class="font-black text-5xl ">Hello Shopper!</h1>
+                <p class="text-2xl font-extralight">Let’s get you back to your cart.</p>
+            </div>
             <form action="./login.php" method="post" class="flex flex-col gap-4 justify-center items-center w-3/4">
                 <label class="input validator input-lg rounded-full w-3/4 floating-label">
                     <span class="text-xl left-8">Username</span>
@@ -129,7 +132,7 @@ function userAndPassCorrect()
                 ?>
             </div>
         </div>
-        <div class="  overflow-clip relative w-full h-full bg-[#B6CCD7]">
+        <div class=" overflow-clip relative w-full h-full bg-[#B6CCD7]">
             <div class="flex absolute w-full h-full justify-center items-center gap-4 p-4 rotate-25">
                 <div class="flex flex-col my-loginImgAnimation gap-4">
                     <div class="mockup-phone w-50 h-85 shadow-2xl">
