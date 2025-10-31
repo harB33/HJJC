@@ -58,7 +58,7 @@ function userAndPassCorrect()
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./image/logo.ico" type="image/x-icon">
-    <title>HJJC. STORE|Login</title>
+    <title>HJJC. STORE|Register</title>
     <link
         href="https://cdn.jsdelivr.net/npm/daisyui@5"
         rel="stylesheet"
@@ -74,7 +74,7 @@ function userAndPassCorrect()
             <div class="size-30 rounded-full shadow-[0px_0px_1px_2px] grid place-items-center p-2">
                 <img src="./image/logo/logo-trans.png" alt="logo">
             </div>
-            <div class="mb-8 text-center" >
+            <div class="mb-8 text-center">
                 <h1 class="font-black text-5xl ">Hello Shopper!</h1>
                 <p class="text-2xl font-extralight">Let’s get you back to your cart.</p>
             </div>
@@ -112,11 +112,19 @@ function userAndPassCorrect()
                         placeholder="Password"
                         minlength="8"
                         name="pass" />
-                        
+
                     <label class="swap opacity-0 pointer-events-none transition-opacity duration-300 group-focus-within:opacity-100 group-focus-within:pointer-events-auto" id="toggleLabel">
                         <input type="checkbox" id="toggleCheckbox" />
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off swap-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye swap-on"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off swap-off">
+                            <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+                            <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+                            <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+                            <path d="m2 2 20 20" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye swap-on">
+                            <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
                     </label>
                 </label>
                 <label class="flex items-center gap-2 w-3/4">
@@ -132,394 +140,7 @@ function userAndPassCorrect()
                 ?>
             </div>
         </div>
-        <div class=" overflow-clip relative w-full h-full bg-[#B6CCD7]">
-            <div class="flex absolute w-full h-full justify-center items-center gap-4 p-4 rotate-25">
-                <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 shadow-2xl">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/Adida_Trefoil.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/Asus laptop14.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/asus marshmallow.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/atk v100 semi-alum.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/dell optiplex.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/geforece rtx5070 prime.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/hawaiian short.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/hp pavilion.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/hp14.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/iphone 17 promax.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/irving 4.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/jordan 11 high.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/lenovo legion 7.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/M75 75% Wireless.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/nike air 1 low.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/PUMA SHIRT_Cat Graph.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/rrj shorts.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/samsung s26 ultra.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/sandugo short.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/vivo v50.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/iphone 17 promax.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/hp14.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/dell optiplex.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/lenovo legion 7.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/asus marshmallow.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/Adida_Trefoil.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/irving 4.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/geforce rtx5070 prime.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/samsung s26 ultra.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/Asus laptop14.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/asus marshmallow.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/atk v100 semi-alum.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/dell optiplex.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/geforce rtx5070 prime.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/hawaiian short.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/hp pavilion.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/hp14.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/iphone 17 promax.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/irving 4.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/jordan 11 high.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/lenovo legion 7.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/M75 75% Wireless.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/nike air 1 low.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/PUMA SHIRT_Cat Graph.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/PUMA SHIRT.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/rrj shorts.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/samsung s26 ultra.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/sandugo shorts.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/vivo v50.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/iphone 17 promax.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/hp14.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/dell optiplex.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col my-loginImgAnimation gap-4">
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/lenovo legion 7.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/asus marshmallow.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/Adida_Trefoil.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/irving 4.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                    <div class="mockup-phone w-50 h-85 ">
-                        <div class="mockup-phone-camera"></div>
-                        <div class="mockup-phone-display text-white grid place-content-center bg-neutral-900">
-                            <img src="./image/image-login/geforce rtx5070 prime.png" alt="" class=" h-full">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php include './components/loginAnimation.html' ?>
     </div>
     </div>
 </body>
