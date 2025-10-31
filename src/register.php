@@ -93,8 +93,11 @@ function userAndEmailAlert()
                 $sql = "INSERT INTO users (customer_user, customer_pass, customer_firstname, customer_lastname, customer_email, customer_phone, created_at)
                         VALUES ('$user', '$pass', '$first_name', '$last_name', '$email', '$phone', '$date')";
                 if ($conn->query($sql)) {
+
                     $verificationCode = generateCode();
-                    if (sendVerification($email, $verificationCode)) {
+                    $sendResult = sendVerification($email, $verificationCode, $first_name);
+
+                    if ($sendResult === true) {
                         $alertMsg .= '
                             <div role="alert" class="alert alert-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
@@ -106,6 +109,8 @@ function userAndEmailAlert()
                         $alertMsg .= '
                             <div role="alert" class="alert alert-warning">
                                 <span>Account created, but failed to send verification email.</span>
+                                <br>
+                                <strong>Debug Info: ' . htmlspecialchars($sendResult) . '</strong>
                             </div>';
                     }
                 } else {
