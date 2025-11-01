@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./style/output.css" />
 </head>
 
-<body class="w-screen overflow-x-clip min-h-screen">
+<body class="w-screen overflow-x-clip min-h-screen bg-custom-background">
     <div class="sticky top-0 z-50 w-full">
         <?php include './components/header.php'; ?>
     </div>
@@ -32,7 +32,7 @@
             <div class="bg-white/90">
                 <h1 class="text-2xl sm:text-5xl font-bold my-fadeInText m-6 uppercase ">Why Shop With Us?</h1>
                 <div class="flex gap-4 sm:gap-8  justify-center items-center max-sm:flex-col">
-                    <div class="card bg-base-100 sm:w-96 w-75 shadow-sm my-fadeInMoveUpCard">
+                    <div class="card  sm:w-96 w-75 shadow-sm my-fadeInMoveUpCard ">
                         <figure>
                             <img
                                 class="w-35 sm:w-50"

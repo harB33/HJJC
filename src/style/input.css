@@ -18,7 +18,18 @@
     --font-giaza: "giaza", sans-serif;
     --font-poppins: "Poppins", sans-serif;
     --font-sans: var(--font-poppins);
+    --color-custom-text: #040406;
+    --color-custom-background: #fcfcfd;
+    --color-custom-primary: #3139e3;
+    --color-custom-secondary: #a6a9d3;
+    --color-custom-accent: #e561b9;
 }
+
+    /* --text: #f9f9fb;
+    --background: #020203;
+    --primary: #1c25ce;
+    --secondary: #2c2f59;
+    --accent: #9e1a72; */
 
 @layer utilities {
     .font-giaza {
