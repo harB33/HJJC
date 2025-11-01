@@ -1,14 +1,23 @@
 <?php
+session_start();
 include("./db/db.php");
 include("./functions/email-verification.php");
 
 date_default_timezone_set('Asia/Manila');
+
+if (!isset($_SESSION['registration'])) {
+    $_SESSION['registration'] = true;
+}
+if (!isset($_SESSION['verificationCode'])) {
+    $_SESSION['verificationCode'] = null;
+}
 
 $alert_html_output = userAndEmailAlert();
 
 function userAndEmailAlert()
 {
     include("./db/db.php");
+    global $conn;
     $alertMsg = '';
 
     if (isset($_POST["register"])) {
@@ -90,38 +99,89 @@ function userAndEmailAlert()
                         <span>Warning: Passwords Do Not Match!</span>
                     </div>';
             } else {
-                $sql = "INSERT INTO users (customer_user, customer_pass, customer_firstname, customer_lastname, customer_email, customer_phone, created_at)
-                        VALUES ('$user', '$pass', '$first_name', '$last_name', '$email', '$phone', '$date')";
-                if ($conn->query($sql)) {
+                // $sql = "INSERT INTO users (customer_user, customer_pass, customer_firstname, customer_lastname, customer_email, customer_phone, created_at)
+                //         VALUES ('$user', '$pass', '$first_name', '$last_name', '$email', '$phone', '$date')";
+                // if ($conn->query($sql)) {
+                $_SESSION['user'] = $user;
+                $_SESSION['pass'] = $pass;
+                $_SESSION['first_name'] = $first_name;
+                $_SESSION['last_name'] = $last_name;
+                $_SESSION['email'] = $email;
+                $_SESSION['phone'] = $phone;
+                $_SESSION['date'] = $date;
 
-                    $verificationCode = generateCode();
-                    $sendResult = sendVerification($email, $verificationCode, $first_name);
 
-                    if ($sendResult === true) {
-                        $alertMsg .= '
+                $verificationCode = generateCode();
+                $sendResult = sendVerification($email, $verificationCode, $first_name);
+                $_SESSION['verificationCode'] = $verificationCode;
+
+                if ($sendResult === true) {
+                    $_SESSION['registration'] = false;
+                    $_SESSION['verification'] = true;
+
+                    $alertMsg .= '
                             <div role="alert" class="alert alert-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span>Your Account has been Created!</span>
+                                <span>Verification has been Sent to your Email!</span>
                             </div>';
-                    } else {
-                        $alertMsg .= '
+                } else {
+                    $alertMsg .= '
                             <div role="alert" class="alert alert-warning">
                                 <span>Account created, but failed to send verification email.</span>
                                 <br>
                                 <strong>Debug Info: ' . htmlspecialchars($sendResult) . '</strong>
                             </div>';
-                    }
-                } else {
-                    die("Error: " . $conn->error);
                 }
+                // } else {
+                //     die("Error: " . $conn->error);
+                // }
             }
         }
-        $conn->close();
+    } elseif (isset($_POST["verify"])) {
+
+        $code = filter_input(INPUT_POST, "code", FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+        if ($_SESSION['verificationCode'] == $code) {
+            $user = $_SESSION['user'];
+            $pass = $_SESSION['pass'];
+            $first_name = $_SESSION['first_name'];
+            $last_name = $_SESSION['last_name'];
+            $email = $_SESSION['email'];
+            $phone = $_SESSION['phone'];
+            $date = $_SESSION['date'];
+
+            $sql = "INSERT INTO users (customer_user, customer_pass, customer_firstname, customer_lastname, customer_email, customer_phone, created_at)
+            VALUES ('$user', '$pass', '$first_name', '$last_name', '$email', '$phone', '$date')";
+
+            if (!$conn->query($sql)) {
+                die("Insert error: " . $conn->error);
+            }
+
+            $alertMsg .= '
+                    <div role="alert" class="alert alert-success">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Successfullly Created an Account</span>
+                    </div>';
+            session_destroy();
+        } else {
+            $alertMsg .= '
+                            <div role="alert" class="alert alert-success">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>Invalid Verification Code</span>
+                            </div>';
+        }
+        return $alertMsg;
     }
     return $alertMsg;
 }
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -149,6 +209,9 @@ function userAndEmailAlert()
             </div>
             <h1 class="font-black text-5xl mb-8">CREATE YOUR ACCOUNT</h1>
             <form action="./register.php" method="post" class="flex flex-col gap-4 w-3/4 justify-center items-center">
+                <?php
+                if ($_SESSION['registration'] == true) {
+                    echo '
                 <label class="input validator input-lg rounded-full w-3/4 floating-label">
                     <span class="left-8 text-xl">Username</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -315,6 +378,36 @@ function userAndEmailAlert()
                     <input type="tel" name="phone" placeholder="0900-000-0000" required />
                 </label>
                 <input type="submit" class="btn rounded-full w-3/4 btn-lg  border text-[20px]" name="register" value="REGISTER">
+                ';
+                } else {
+                    echo '
+                    <label class="input validator input-lg rounded-full w-3/4 floating-label">
+                    <span class="left-8 text-xl">Verification Code</span>
+                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <g
+                            stroke-linejoin="round"
+                            stroke-linecap="round"
+                            stroke-width="2.5"
+                            fill="none"
+                            stroke="currentColor">
+                            <circle cx="12" cy="8" r="5" />
+                            <path d="M20 21a8 8 0 0 0-16 0" />
+                        </g>
+                    </svg>
+                    <input
+                        type="text"
+                        required
+                        placeholder="Verification Code"
+                        pattern="[0-9]*"
+                        minlength="3"
+                        maxlength="30"
+                        title="Only letters, numbers or dash"
+                        name="code" />
+                </label>
+                <input type="submit" class="btn rounded-full w-3/4 btn-lg  border text-[20px]" name="verify" value="VERIFY">
+                    ';
+                }
+                ?>
             </form>
             <a href="./login.php" class="hover:underline">Already Have an Account? Login</a>
             <div class=" w-fit gap-2 flex-col flex min-h-30">
