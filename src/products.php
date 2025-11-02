@@ -7,12 +7,31 @@ $alertMsg = '';
 if (isset($_POST["finish"])) {
     $product_name = $_POST['product_name'] ?? null;
     $price = $_POST['price'] ?? null;
-    $product_img = $_POST['product_img'] ?? null; 
     $product_desc = $_POST['product_desc'] ?? null;
-    $category_id = $_POST['category'] ?? null; 
+    $category_id = $_POST['category_id'] ?? null; 
     $stock = $_POST['stock'] ?? null;
     $date = date("Y-m-d H:i:s");
 
+    function uploadFile($fileInputName) {
+        if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === 0) {
+            $img_name = $_FILES[$fileInputName]['name'];
+            $tmp_name = $_FILES[$fileInputName]['tmp_name'];
+            $target_dir = "image/products/";
+            $target_file = $target_dir . basename($img_name);
+            
+            if (move_uploaded_file($tmp_name, $target_file)) {
+                return $img_name;
+            } else {
+                echo "Error uploading $fileInputName.";
+                exit;
+            }
+        } else {
+            echo "No file selected for $fileInputName.";
+            exit;
+        }
+    }
+    $product_img = uploadFile('product_img'); 
+    
     $sql = "INSERT INTO products 
             (product_name, price, product_img, product_desc, category_id, stock, created_at, updated_at) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -72,7 +91,7 @@ if (isset($_POST["finish"])) {
         <?php include './components/header.php'; ?>
     </div>
     <section class="flex flex-col items-center gap-8 w-screen h-screen" >
-        <div class="flex flex-col items-center gap-4 h-">
+        <div class="flex flex-col items-center gap-4 h-a">
             <h1 class="font-giaza font-black text-5xl">PRODUCT INPUT</h1>
         </div>
         <div class="flex items-center flex-col gap-8 justify-center h-fit w-full">
@@ -100,15 +119,12 @@ if (isset($_POST["finish"])) {
                         class="input input-lg rounded w-full"
                         />
                 </label>
-                <label class="floating-label">
-                    <span class="text-2xl">Product Image</span>
-                    <input type="text" 
+                    <input type="file" 
                         required
                         placeholder="Image URL or Path"
                         name="product_img" 
-                        class="input input-lg rounded w-full"
+                        class="input-lg rounded w-full file-input text-xs"
                         />
-                </label>
                 <label class="floating-label">
                     <span class="text-2xl">Product Description</span>
                     <textarea
@@ -117,15 +133,6 @@ if (isset($_POST["finish"])) {
                         class="input input-lg rounded min-h-[5lh] text-wrap min-w-full"
                         name="product_desc"></textarea>
                 </label>
-                <!-- <label class="floating-label">
-                    <span>Product Category ID</span>
-                    <input type="number"
-                        min="1"
-                        required
-                        placeholder="Category ID"
-                        title="Only Numbers (Foreign Key)"
-                        name="category" />
-                </label> -->
                 <fieldset class="fieldset w-full">
                     <select class="select w-full" name="category_id" required>
                         <option disabled selected value="">Category ID</option>
