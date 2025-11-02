@@ -50,6 +50,7 @@ date_default_timezone_set('Asia/Manila');
         rel="stylesheet"
         type="text/css" />
     <title>HJJC. STORE|Home</title>
+    <link rel="stylesheet" href="./style/output.css" />
 </head>
 
 <body class="w-screen overflow-x-hidden">
@@ -119,30 +120,33 @@ date_default_timezone_set('Asia/Manila');
             <h1 class=" text-3xl font-black m-4 my-fadeInCard">Just For You</h1>
             <section class="grid grid-cols-5 h-full gap-4 place-contents-center content-center w-fit">
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                    <div class="group flex flex-col p-4 h-fit hover:bg-linear-to-br from-custom-primary/20 to-custom-secondary/40 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                        <a href="">
-                            <div class="overflow-hidden">
-                                <img src="image/products/<?= $row['product_img'];?>" class="w-full object-cover rounded-lg shadow-lg group-hover:scale-110 transition-transform duration-1500 ease-in-out"/>
-                            </div>
-                            <div class=" min-h-[4lh] mt-2">
-                                <h3 class="max-h-[2lh] group-hover:max-h-[3lh] duration-300 text-black/75 overflow-clip" ><?= htmlspecialchars($row['product_name']); ?></h3>
-                                <p class=" float-right font-bold text-black/85">₱<?= $row['price']; ?></p>
-                            </div>
-                        </a>
-                        <div class="flex w-full gap-2">
-                            <button class="btn btn-md rounded-2xl w-3/4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag-icon lucide-shopping-bag"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>    
-                                Add to Cart
-                            </button>
-                            <button class="btn btn-md rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
-                            </button>
+                    <div class="group flex flex-col p-4 h-fit hover:bg-linear-to-br from-custom-primary/10 to-color-custom-secondary/30 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <a href="./productPage.php?id=<?= $row['product_id']; ?>">
+                        <div class="overflow-hidden rounded-lg">
+                            <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full object-cover rounded-lg shadow-lg group-hover:scale-110 transition-transform duration-700 ease-in-out"/>
                         </div>
+                        <div class="min-h-[4lh] mt-2 duration-300">
+                            <h3 class="max-h-[2lh] group-hover:max-h-[3lh] text-black/75 overflow-clip group-hover:text-custom-primary duration-300"><?= htmlspecialchars($row['product_name']); ?></h3>
+                            <p class="float-right font-bold text-black/85 duration-300">₱<?= number_format($row['price'], 2); ?></p>
+                        </div>
+                    </a>
+                    <div class="flex w-full gap-2 mt-2">
+                        <button class="btn btn-md rounded-2xl w-3/4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 bg-custom-primary text-white hover:bg-custom-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag">
+                                <path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/>
+                            </svg>
+                            Add to Cart
+                        </button>
+                        <button class="btn btn-md rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-white hover:bg-custom-secondary/40">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart text-color-custom-primary">
+                                <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/>
+                            </svg>
+                        </button>
                     </div>
+                </div>
                 <?php endwhile; ?>
         </section>
     </section>
-
     <section class="my-fadeInFooter z-10">
         <?php include './components/footer.html'; ?>
     </section>
