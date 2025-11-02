@@ -12,24 +12,64 @@ if (isset($_POST["finish"])) {
     $stock = $_POST['stock'] ?? null;
     $date = date("Y-m-d H:i:s");
 
-    function uploadFile($fileInputName) {
-        if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === 0) {
-            $img_name = $_FILES[$fileInputName]['name'];
-            $tmp_name = $_FILES[$fileInputName]['tmp_name'];
-            $target_dir = "image/products/";
-            $target_file = $target_dir . basename($img_name);
+    // function uploadFile($fileInputName) {
+    //     if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === 0) {
+    //         $img_name = $_FILES[$fileInputName]['name'];
+    //         $tmp_name = $_FILES[$fileInputName]['tmp_name'];
+    //         $target_dir = "image/products/";
+    //         $target_file = $target_dir . basename($img_name);
             
+    //         if (move_uploaded_file($tmp_name, $target_file)) {
+    //             return $img_name;
+    //         } else {
+    //             echo "Error uploading $fileInputName.";
+    //             exit;
+    //         }
+    //     } else {
+    //         echo "No file selected for $fileInputName.";
+    //         exit;
+    //     }
+    // }
+
+    function uploadFile($fileInputName) {
+        if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === UPLOAD_ERR_OK) {
+    
+            $target_dir = "image/products/";
+    
+            // Create folder if it doesn't exist
+            if (!is_dir($target_dir)) {
+                mkdir($target_dir, 0755, true);
+            }
+    
+            $img_name = basename($_FILES[$fileInputName]['name']);
+            $tmp_name = $_FILES[$fileInputName]['tmp_name'];
+    
+            // Get file extension and validate type
+            $file_ext = strtolower(pathinfo($img_name, PATHINFO_EXTENSION));
+            $allowed_ext = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+    
+            if (!in_array($file_ext, $allowed_ext)) {
+                echo "❌ Invalid file type. Only JPG, PNG, GIF, and WEBP are allowed.";
+                exit;
+            }
+    
+            // Rename file (avoid overwriting existing files)
+            $newFileName = uniqid("product_", true) . "." . $file_ext;
+            $target_file = $target_dir . $newFileName;
+    
+            // Move uploaded file
             if (move_uploaded_file($tmp_name, $target_file)) {
-                return $img_name;
+                return $newFileName; // Return new filename (to save in DB)
             } else {
-                echo "Error uploading $fileInputName.";
+                echo "❌ Error uploading file.";
                 exit;
             }
         } else {
-            echo "No file selected for $fileInputName.";
+            echo "⚠️ No file uploaded or upload error.";
             exit;
         }
     }
+
     $product_img = uploadFile('product_img'); 
     
     $sql = "INSERT INTO products 
@@ -96,7 +136,7 @@ if (isset($_POST["finish"])) {
         </div>
         <div class="flex items-center flex-col gap-8 justify-center h-fit w-full">
             <?php echo $alertMsg; ?>
-            <form action="./products.php" method="post" enctype="multipart/form-data" class="flex flex-col gap-4 w-[30%]">
+            <form action="./productInput.php" method="post" enctype="multipart/form-data" class="flex flex-col gap-4 w-[30%]">
                 <label class="floating-label">
                     <span class="text-2xl" >Product Name</span>
                     <input type="text"
