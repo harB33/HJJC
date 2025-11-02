@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2025 at 09:29 AM
+-- Generation Time: Nov 02, 2025 at 02:40 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -52,6 +52,24 @@ CREATE TABLE `category` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `category_name`, `created_at`) VALUES
+(1, 'Electronics & Gadgets', '2025-11-02 01:31:50'),
+(2, 'Fashion & Apparel', '2025-11-02 01:31:50'),
+(3, 'Home & Living', '2025-11-02 01:31:50'),
+(4, 'Beauty & Personal', '2025-11-02 01:31:50'),
+(5, 'Health & Wellness', '2025-11-02 01:31:50'),
+(6, 'Baby & Kids', '2025-11-02 01:31:50'),
+(7, 'Pets Supplies', '2025-11-02 01:31:50'),
+(8, 'Sports & Outdoors', '2025-11-02 01:31:50'),
+(9, 'Automotive & Tools', '2025-11-02 01:35:19'),
+(10, 'Arts & Stationery', '2025-11-02 01:35:19'),
+(11, 'Books & Education', '2025-11-02 01:35:19'),
+(12, 'Food & Beverages', '2025-11-02 01:35:19');
+
 -- --------------------------------------------------------
 
 --
@@ -76,7 +94,7 @@ CREATE TABLE `orders` (
 CREATE TABLE `products` (
   `product_id` int(11) UNSIGNED NOT NULL,
   `product_name` varchar(50) NOT NULL,
-  `price` float DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
   `product_img` varchar(255) DEFAULT NULL,
   `product_desc` text DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
@@ -121,7 +139,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`customer_id`, `customer_user`, `customer_firstname`, `customer_lastname`, `customer_email`, `customer_phone`, `customer_pass`, `created_at`) VALUES
-(1, 'jomarivillanueva', 'Jomari', 'Wamil', 'Villanueva@gmail.com', '09927300876', 'JomariCrushsiVillanueva1', '2025-10-29 02:01:47');
+(1, 'jomarivillanueva', 'Jomari', 'Wamil', 'Villanueva@gmail.com', '09927300876', 'JomariCrushsiVillanueva1', '2025-10-29 02:01:47'),
+(2, 'harvy12345', 'harvs', 'bautista', 'jwamcoc01@gmail.com', '09927300876', 'Harvy12345', '2025-10-31 13:40:41');
 
 --
 -- Indexes for dumped tables
@@ -182,7 +201,7 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -206,7 +225,7 @@ ALTER TABLE `product_reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `customer_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customer_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

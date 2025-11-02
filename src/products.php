@@ -1,5 +1,20 @@
 <?php 
+include("./db/db.php");
+date_default_timezone_set("Asia/Manila");
 
+if (isset($_POST["finish"])){
+    $product_name = $_POST['product_name'] ?? null;
+    $price = $_POST['price'] ?? null;
+    $product_img = $_POST['product_img'] ?? null;
+    $product_desc = $_POST['product_desc'] ?? null;
+    $category_id = $_POST['category_id'] ?? null;
+    $stock = $_POST['stock'] ?? null;
+    $date = date("Y-m-d H:i:s");
+
+    $sql = "INSERT INTO products (product_name, price, product_img, product_desc, category_id, stock, created_at, updated_at) values
+    ('$product_name', '$price', '$product_img', '$product_desc', '$category', '$stock', '$date', '$date',)";
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +45,13 @@
             name="price" />
         </label>
         <label>
+            <span>Product Image</span>
+            <input type="image" 
+            required 
+            placeholder="Product Image" 
+            name="product_img" />
+        </label>
+        <label>
             <span>Product Description</span>
             <input type="text"
             required
@@ -37,8 +59,8 @@
             name="product_desc" />
         </label>
         <label>
-            <span>Product Category (1,2,3,4,5)</span>
-            <input type="number"
+            <span>Product Category</span>
+            <input type="text"
             min="1"
             required
             placeholder="Category"
