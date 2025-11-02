@@ -121,9 +121,11 @@ date_default_timezone_set('Asia/Manila');
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                     <div class="group flex flex-col p-4 h-fit hover:bg-linear-to-br from-custom-primary/20 to-custom-secondary/40 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                         <a href="">
-                            <img src="image/products/<?= $row['product_img'];?>" class="w-full object-cover rounded-lg shadow-lg "/>
-                            <div class="">
-                                <h3 class="max-h-[3lh] text-black/75 overflow-clip" ><?= htmlspecialchars($row['product_name']); ?></h3>
+                            <div class="overflow-hidden">
+                                <img src="image/products/<?= $row['product_img'];?>" class="w-full object-cover rounded-lg shadow-lg group-hover:scale-110 transition-transform duration-1500 ease-in-out"/>
+                            </div>
+                            <div class=" min-h-[4lh] mt-2">
+                                <h3 class="max-h-[2lh] group-hover:max-h-[3lh] duration-300 text-black/75 overflow-clip" ><?= htmlspecialchars($row['product_name']); ?></h3>
                                 <p class=" float-right font-bold text-black/85">₱<?= $row['price']; ?></p>
                             </div>
                         </a>
