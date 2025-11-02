@@ -12,96 +12,120 @@
         type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style/output.css" />
+    <script src="./script/accountLogo.js" defer></script>
 </head>
 
 <body class="w-screen overflow-x-clip min-h-screen bg-custom-background">
-    <div class="sticky top-0 z-50 w-full">
+    <div class="sticky top-0 z-50 w-full backdrop-blur-sm ">
         <?php include './components/header.php'; ?>
     </div>
     <section class="flex flex-col items-center text-center w-full overflow-clip ">
-        <section id="title" class="text-3xl font-light h-[80vh] w-full uppercase flex flex-col justify-center items-center relative">
-            <div class=" w-fit bg-white/90 z-10 ">
-                <h1 class="font-giaza font-black text-6xl sm:text-8xl mb-4 z-1 my-fadeOutText">HJJC. Store</h1>
-                <h1 class=" font-light text-3xl sm:text-4xl my-fadeOutText z-1">Your one-stop shop for <span class="font-bold underline italic">everything</span> you need!</h1>
-                <h1 class="font-extralight text-xl sm:text-2xl my-fadeOutText z-1">Scroll down to discover who we are and why customers love us.</h1>
+        <section id="title" class=" font-light h-[80vh] w-full uppercase flex flex-col p-8 overflow-clip justify-center items-center relative bg-linear-to-br from-custom-primary/40 to-custom-secondary/50 z-20">
+            <div class=" w-full flex flex-col items-center justify-center max-sm:bg-custom-background/90 z-10 mb-8 grow">
+                <h1 class="font-giaza font-black text-6xl sm:text-8xl  z-1 my-fadeOutText ">HJJC. Store</h1>
+                <h1 class=" font-light text-3xl sm:text-4xl my-fadeOutText z-1 ">Your one-stop shop for <span class="font-bold underline italic opacity-85 text-shadow-xs text-5xl font-giaza">everything</span> you need!</h1>
+                <a href="./home.php" class="btn btn-primary btn-lg rounded-2xl bg-custom-primary/80 text-custom-background m-4 my-fadeOutText">Shop Now!</a>
             </div>
-            <img src="./image/circle.png" alt="circle" class="sm:size-150 absolute -left-50 -bottom-40 z-0 my-circle size-100" />
-            <img src="./image/circle.png" alt="circle" class="sm:size-250 sm:-right-95 sm:-top-95 size-110 absolute -top-45 -right-50 my-circle z-0 " />
+            <div>
+                <div class="flex justify-center flex-col items-center">
+                    <h1 class="font-extralight text-xs sm:text-xl my-fadeOutText z-1">Scroll down to discover who we are and why customers love us.</h1>
+                    <span class="arrow mt-">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-icon lucide-arrow-down"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+                    </span>
+                </div>
+            </div>
+            <img src="./image/circle.png" alt="circle" class="sm:size-150 absolute -left-50 sm:-left-65 -bottom-70 z-0 my-circle size-100" />
+            <img src="./image/circle.png" alt="circle" class="sm:size-250 sm:-right-95 sm:-top-130 size-110 absolute -top-45 -right-50 my-circle z-0 " />
         </section>
-        <section class="flex flex-col min-h-screen w-full justify-center items-center  z-10">
-            <div class="bg-white/90">
-                <h1 class="text-2xl sm:text-5xl font-bold my-fadeInText m-6 uppercase ">Why Shop With Us?</h1>
-                <div class="flex gap-4 sm:gap-8  justify-center items-center max-sm:flex-col">
-                    <div class="card  sm:w-96 w-75 shadow-sm my-fadeInMoveUpCard ">
-                        <figure>
-                            <img
-                                class="w-35 sm:w-50"
-                                src="./image/delivery-truck.gif"
-                                alt="Shoes" />
-                        </figure>
-                        <div class="card-body max-sm:p-2">
-                            <h2 class="card-title ">Shop Smart. Shop Authentic.</h2>
+        <section class="flex flex-col h-[80vh] w-full justify-center bg-custom-secondary/20 items-center  z-10">
+            <div class="flex flex-col h-full items-center py-20">
+                <h1 class="text-2xl sm:text-6xl font-bold my-fadeInText m-6 uppercase font-giaza">Why shop with Us?</h1>
+                <div class="grid grid-cols-3 h-full gap-8 place-content-center w-[80%] max-sm:grid-cols-1 max-sm:gap-4 my-fadeInText">
+                    <div class="flex flex-col items-center gap-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck-icon lucide-truck"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+                        <div class="min-h-[100px]">
+                            <h1 class="text-2xl font-bold">Fast Delivery</h1>
+                            <p>Get your products delivered at your doorstep in record time.</p>
                         </div>
                     </div>
-                    <div class="card bg-base-100 sm:w-96 w-75 shadow-sm my-fadeInMoveUpCard">
-                        <figure>
-                            <img
-                                class="w-35 sm:w-50"
-                                src="./image/trust.gif"
-                                alt="Shoes" />
-                        </figure>
-                        <div class="card-body max-sm:p-2">
-                            <h2 class="card-title">Trusted by Thousands, Chosen by You.</h2>
+                    <div class="flex flex-col items-center gap-4">
+                        <svg xmlns="http://www.w3.org/2000/svg"width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                        <div class="min-h-[100px]">
+                            <h1 class="text-2xl font-bold">Trusted by Thousands</h1>
+                            <p>We are proud to be trusted by a growing community of happy customers.</p>
                         </div>
                     </div>
-                    <div class="card bg-base-100 sm:w-96 w-75 shadow-sm my-fadeInMoveUpCard">
-                        <figure>
-                            <img
-                                class="w-35 sm:w-50"
-                                src="./image/certificate.gif"
-                                alt="Shoes" />
-                        </figure>
-                        <div class="card-body max-sm:p-2">
-                            <h2 class="card-title">Real Products. Real Value. Real Trust.</h2>
+                    <div class="flex flex-col items-center gap-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="10  0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big-icon lucide-circle-check-big"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>
+                        <div class="min-h-[100px]">
+                            <h1 class="text-2xl font-bold">Real Product Real Value</h1>
+                            <p>100% authentic, high quality items, guaranteed.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="relative w-full overflow-clip flex ">
-            <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
-            <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
-            <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
-            <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
-            <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
-            <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
-            <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
-        </section>
-        <section class="my-50 relative max-sm:hidden">
-            <h1 class="text-2xl sm:text-4xl font-bold m-6 uppercase my-fadeInText my-popUp z-5">Find it all here.<br>Explore our wide range of products built for you.</h1>
-            <div class="grid grid-cols-[auto_auto] grid-rows-2 gap-4 place-content-center z-1 max-sm:hidden max-sm:grid-cols-[auto] max-sm:grid-rows-auto">
-                <a href="#" class="h-152 w-85 row-span-2 rounded-2xl hover:shadow-2xl transition-shadow duration-300">
-                    <div class="border rounded-2xl h-152 w-85 bg-[url(../image/gpu.png)] bg-cover my-fadeInMoveUpCard z-2"></div>
+        <!-- <section class=" w-full overflow-clip flex  bg-red-800 z-30">
+            <div class="absolute flex top-[163%]">
+                <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
+                <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
+                <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
+                <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
+                <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
+                <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
+                <img src="./image/shop-now.png" alt="circle" class="w-1/2 max-sm:w-full my-moveIn" />
+            </div>
+        </section> -->
+        <section class=" relative max-sm:hidden flex flex-col h-[90vh] w-full justify-center">
+            <div class="flex flex-col h-full  items-center py-20">
+                <h1 class="text-2xl sm:text-5xl font-bold m-6 uppercase my-fadeInText my-popUp z-5 font-giaza">Explore our Featured Products</h1>
+                <div class="grid grid-cols-3 h-full gap-8 place-contents-center content-center w-fit">
+                    <div class="flex flex-col gap-6">
+                        <img src="./image/gemini-gpu.png" alt="" class="size-80 rounded-2xl border hover:scale-105 transition-transform duration-300">
+                        <div class="flex flex-col items-start">
+                            <h1 class="text-2xl font-bold ">PC Components</h1>
+                            <a href="" class="hover:underline opacity-70">Shop Now -></a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-6">
+                    <img src="./image/gemini-apparel.png" alt=""  class="size-80 rounded-2xl border hover:scale-105 transition-transform duration-300">
+                        <div class="flex flex-col items-start">
+                            <h1 class="text-2xl font-bold ">Apparel & Shoes</h1>
+                            <a href="" class="hover:underline opacity-70">Shop Now -></a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-6">
+                    <img src="./image/gemini-tech.png" alt="" class="size-80 rounded-2xl border hover:scale-105 transition-transform duration-300">
+                        <div class="flex flex-col items-start">
+                            <h1 class="text-2xl font-bold ">Laptop & Tech</h1>
+                            <a href="" class="hover:underline opacity-70">Shop Now -></a>
+                        </div>
+                    </div>
+                </div>
+                <a href="./home.php" class="hover:underline text-xl">Shop All Products</a>
+            </div>
+                
+            <!-- <div class="grid grid-cols-[auto_auto] grid-rows-2 gap-4 place-content-center z-1 max-sm:hidden max-sm:grid-cols-[auto] max-sm:grid-rows-auto">
+                <a href="#" class="h-152 w-85 row-span-2 rounded-2xl hover:shadow-2xl transition-shadow duration-300 hover:outline-2 hover:outline-custom-primary">
+                    <div class=" shadow-2xs border-2 hover:border-white rounded-2xl h-152 w-85 bg-[url(../image/gpu.png)] bg-cover my-fadeInMoveUpCard z-2"></div>
                 </a>
-                <a href="#" class=" h-73 w-150 rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-2">
-                    <div class="border rounded-2xl h-73 w-150 bg-[url(../image/shoes.png)] bg-contain my-fadeInMoveUpCard "></div>
+                <a href="#" class=" h-73 w-150 rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-2 hover:outline-2 hover:outline-custom-primary">
+                    <div class=" shadow-2xs border-2 hover:border-white rounded-2xl h-73 w-150 bg-[url(../image/shoes.png)] bg-contain my-fadeInMoveUpCard "></div>
                 </a>
-                <a href="#" class=" h-73 w-150 rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-2">
-                    <div class="border rounded-2xl h-73 w-150 bg-[url(../image/laptop.png)] bg-contain my-fadeInMoveUpCard "></div>
+                <a href="#" class=" h-73 w-150 rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-2 hover:outline-2 hover:outline-custom-primary">
+                    <div class=" shadow-2xs border-2 hover:border-white rounded-2xl h-73 w-150 bg-[url(../image/laptop.png)] bg-contain my-fadeInMoveUpCard "></div>
                 </a>
                 <a href="./home.php" class=" col-span-2">
-                    <button class="btn btn-xl rounded-full">Shop Now</button>
+                    <button class="btn btn-xl rounded-full bg-custom-primary text-custom-background">Shop Now</button>
                 </a>
                 <img src="./image/circle.png" alt="circle" class="size-300 absolute -bottom-170 -right-200 my-circleInfinite z-1 object-cover" />
                 <img src="./image/circle-shop.png" alt="circle" class="size-200 absolute -bottom-130 -right-180 my-circleInfinite z-1 object-cover" />
-            </div>
+            </div> -->
         </section>
-        <section class="my-50 relative sm:hidden">
-            <h1 class="text-2xl sm:text-4xl font-bold m-6 uppercase my-fadeInText my-popUp z-5 max-sm:hidden">Find it all here. Explore our wide range of products built for you.</h1>
-            <h1 class="text-2xl sm:text-4xl font-bold m-6 uppercase my-fadeInText my-popUp z-5 sm:hidden">Explore our wide range of products built for you.</h1>
+        <!-- <section class="my-50 relative sm:hidden">
+            <h1 class="text-2xl sm:text-4xl font-bold m-6 uppercase my-fadeInText my-popUp z-5">E</h1>
             <div class=" grid grid-cols-1 gap-4 place-content-center z-0 overflow-clip">
-                <!-- Product Cards -->
-                <a href="#" class="size-auto rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-10 flex items-center justify-center">
+                <a href="#" class="size-auto rounded-2xl hover:shadow-2xl transition-shadow  duration-300 z-10 flex items-center justify-center">
                     <div class="border rounded-2xl h-48 w-96 bg-[url(../image/gpu.png)] bg-contain my-fadeInMoveUpCard"></div>
                 </a>
                 <a href="#" class="size-auto rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-10 flex items-center justify-center">
@@ -111,12 +135,12 @@
                     <div class="border rounded-2xl h-48 w-96 bg-[url(../image/laptop.png)] bg-contain my-fadeInMoveUpCard"></div>
                 </a>
                 <a href="./home.php" class=" z-10">
-                    <button class="btn btn-xl rounded-full">Shop Now</button>
+                    <button class="btn btn-xl rounded-full ">Shop Now</button>
                 </a>
                 <img src="./image/circle.png" alt="circle" class="size-130 absolute -bottom-100 -right-30 my-circleInfinite z-1 object-cover" />
                 <img src="./image/circle-shop.png" alt="circle" class="size-80 absolute -bottom-80 -right-20 my-circleInfinite z-1 object-cover" />
             </div>
-        </section>
+        </section> -->
         <section class="my-fadeInFooter z-10">
             <?php include './components/footer.html'; ?>
         </section>

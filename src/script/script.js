@@ -1,16 +1,25 @@
-const passwordInput = document.getElementById('passwordInput');
-    const toggleCheckbox = document.getElementById('toggleCheckbox');
+const passwordSets = [
+    {
+        input: document.getElementById("passwordInput"),
+        checkbox: document.getElementById("toggleCheckbox"),
+        label: document.getElementById("toggleLabel"),
+    },
+    {
+        input: document.getElementById("confirmPasswordInput"),
+        checkbox: document.getElementById("confirmToggleCheckbox"),
+        label: document.getElementById("confirmToggleLabel"),
+    },
+];
 
-    toggleCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-            passwordInput.type = 'text';
-        } else {
-            passwordInput.type = 'password';
-        }
+passwordSets.forEach(({ input, checkbox, label }) => {
+    if (!input || !checkbox || !label) return; // safety check
+
+    checkbox.addEventListener("change", function () {
+        input.type = this.checked ? "text" : "password";
     });
 
-    const toggleLabel = document.getElementById('toggleLabel');
-    toggleLabel.addEventListener('mousedown', (e) => {
-        e.preventDefault(); 
-        passwordInput.focus();
+    label.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        input.focus();
     });
+});

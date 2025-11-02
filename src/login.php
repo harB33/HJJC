@@ -76,7 +76,7 @@ function userAndPassCorrect()
             </div>
             <div class="mb-8 text-center">
                 <h1 class="font-black text-5xl ">Hello Shopper!</h1>
-                <p class="text-2xl font-extralight">Let’s get you back to your cart.</p>
+                <p class="text-2xl font-extralight">Let's get you back to your cart.</p>
             </div>
             <form action="./login.php" method="post" class="flex flex-col gap-4 justify-center items-center w-3/4">
                 <label class="input validator input-lg rounded-full w-3/4 floating-label">

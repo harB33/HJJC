@@ -5,16 +5,17 @@
         type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style/output.css" />
+    <script src="./script/script.js" defer></script>
 </head>
 
 <body data-theme="light">
     <header
-        class="shadow sticky top-0 bg-white w-screen p-2 flex justify-center items-center">
+        class="shadow sticky top-0 bg-white w-screen p-2 flex justify-center items-center opacity-90 ">
         <div class="flex items-center justify-between w-[90%]">
             <a href="./index.php">
                 <img src="./image/logo.png" alt="logo" class="h-14" />
             </a>
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 ">
                 <label class="input rounded-full">
                     <svg
                         class="h-[1em] opacity-50"
@@ -51,9 +52,9 @@
                 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == True) {
                     echo '
                         
-                        <div class="dropdown dropdown-center">
+                        <div class="dropdown dropdown-center" >
                             <div tabindex="0" role="button" class="m-1 cursor-pointer">
-                            <svg    
+                            <svg   
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                                 fill="none"
@@ -87,16 +88,17 @@
                 } else {
                     echo '
                     <div class="dropdown dropdown-center">
-                        <div tabindex="0" role="button" class=" m-1">
+                        <div tabindex="0" role="button" class=" m-1" id="accountIcon">
                             <svg    
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
-                                fill="none"
+                                // fill="none"
                                 stroke="currentColor"
                                 stroke-width="2"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 class="lucide lucide-user-round-icon lucide-user-round h-8"
+                                id="accountSvg"
                             >
                                 <circle cx="12" cy="8" r="5" />
                                 <path d="M20 21a8 8 0 0 0-16 0" />
@@ -113,7 +115,6 @@
                     </div>
                     ';
                 }
-
                 ?>
             </div>
         </div>
