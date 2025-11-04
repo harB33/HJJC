@@ -1,11 +1,12 @@
 <?php
+include("./db/sessionStart.php");
 include("./db/db.php");
 
 $alert_html_output = userAndPassCorrect();
 
 function userAndPassCorrect()
 {
-    GLOBAL $conn;
+    global $conn;
     $alertMsg = '';
 
     if (isset($_POST["login"])) {

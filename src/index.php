@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light" class=" overflow-x-clip">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
     <link rel="stylesheet" href="./style/output.css" />
     <script src="./script/accountLogo.js" defer></script>
 </head>
-
 <body class="w-screen overflow-x-clip min-h-screen bg-custom-background">
     <div class="sticky top-0 z-50 w-full backdrop-blur-sm ">
         <?php include './components/header.php'; ?>
@@ -108,43 +106,7 @@
                 </div>
                 <a href="./home.php" class="hover:underline text-xl">Shop All Products</a>
             </div>
-                
-            <!-- <div class="grid grid-cols-[auto_auto] grid-rows-2 gap-4 place-content-center z-1 max-sm:hidden max-sm:grid-cols-[auto] max-sm:grid-rows-auto">
-                <a href="#" class="h-152 w-85 row-span-2 rounded-2xl hover:shadow-2xl transition-shadow duration-300 hover:outline-2 hover:outline-custom-primary">
-                    <div class=" shadow-2xs border-2 hover:border-white rounded-2xl h-152 w-85 bg-[url(../image/gpu.png)] bg-cover my-fadeInMoveUpCard z-2"></div>
-                </a>
-                <a href="#" class=" h-73 w-150 rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-2 hover:outline-2 hover:outline-custom-primary">
-                    <div class=" shadow-2xs border-2 hover:border-white rounded-2xl h-73 w-150 bg-[url(../image/shoes.png)] bg-contain my-fadeInMoveUpCard "></div>
-                </a>
-                <a href="#" class=" h-73 w-150 rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-2 hover:outline-2 hover:outline-custom-primary">
-                    <div class=" shadow-2xs border-2 hover:border-white rounded-2xl h-73 w-150 bg-[url(../image/laptop.png)] bg-contain my-fadeInMoveUpCard "></div>
-                </a>
-                <a href="./home.php" class=" col-span-2">
-                    <button class="btn btn-xl rounded-full bg-custom-primary text-custom-background">Shop Now</button>
-                </a>
-                <img src="./image/circle.png" alt="circle" class="size-300 absolute -bottom-170 -right-200 my-circleInfinite z-1 object-cover" />
-                <img src="./image/circle-shop.png" alt="circle" class="size-200 absolute -bottom-130 -right-180 my-circleInfinite z-1 object-cover" />
-            </div> -->
         </section>
-        <!-- <section class="my-50 relative sm:hidden">
-            <h1 class="text-2xl sm:text-4xl font-bold m-6 uppercase my-fadeInText my-popUp z-5">E</h1>
-            <div class=" grid grid-cols-1 gap-4 place-content-center z-0 overflow-clip">
-                <a href="#" class="size-auto rounded-2xl hover:shadow-2xl transition-shadow  duration-300 z-10 flex items-center justify-center">
-                    <div class="border rounded-2xl h-48 w-96 bg-[url(../image/gpu.png)] bg-contain my-fadeInMoveUpCard"></div>
-                </a>
-                <a href="#" class="size-auto rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-10 flex items-center justify-center">
-                    <div class="border rounded-2xl h-48 w-96 bg-[url(../image/shoes.png)] bg-contain my-fadeInMoveUpCard"></div>
-                </a>
-                <a href="#" class="size-auto rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-10 flex items-center justify-center">
-                    <div class="border rounded-2xl h-48 w-96 bg-[url(../image/laptop.png)] bg-contain my-fadeInMoveUpCard"></div>
-                </a>
-                <a href="./home.php" class=" z-10">
-                    <button class="btn btn-xl rounded-full ">Shop Now</button>
-                </a>
-                <img src="./image/circle.png" alt="circle" class="size-130 absolute -bottom-100 -right-30 my-circleInfinite z-1 object-cover" />
-                <img src="./image/circle-shop.png" alt="circle" class="size-80 absolute -bottom-80 -right-20 my-circleInfinite z-1 object-cover" />
-            </div>
-        </section> -->
         <section class="my-fadeInFooter z-10">
             <?php include './components/footer.html'; ?>
         </section>

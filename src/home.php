@@ -1,4 +1,5 @@
-<?php 
+<?php
+include("./db/sessionStart.php");
 include("./db/db.php");
 date_default_timezone_set('Asia/Manila');
 
@@ -18,25 +19,22 @@ date_default_timezone_set('Asia/Manila');
 
 //     $sql = "INSERT INTO products (product_name, price, product_img, product_desc, category_id, stock, created_at, updated_at) 
 //     VALUES ('$product_name', '$price', '$product_img', '$product_desc', '$category_id', '$stock', '$date', '$date')";
-    
+
 
 //     $conn->close();
 // }
 
-    $sql = "SELECT p.*, c.category_name 
+$sql = "SELECT p.*, c.category_name 
         FROM products p
         JOIN category c ON p.category_id = c.category_id";
 
-    // if (isset($_GET['sort']) && $_GET['sort'] == 'high') {
-    //     $sql = "SELECT * FROM products ORDER BY price DESC";
-    // } else {
-    //     $sql = "SELECT * FROM products";
-    // }
-
-    $result = mysqli_query($conn, $sql);
-
+// if (isset($_GET['sort']) && $_GET['sort'] == 'high') {
+//     $sql = "SELECT * FROM products ORDER BY price DESC";
+// } else {
+//     $sql = "SELECT * FROM products";
+// }
+$result = mysqli_query($conn, $sql);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
@@ -115,15 +113,30 @@ date_default_timezone_set('Asia/Manila');
                 <a href="#" class="size-45 border">Food & Beverages</a>
             </div>
         </section>
-        <section class=" w-full flex flex-col justify-center items-center bg-custom-secondary/20">
+        <section class=" w-full min-h-screen flex flex-col  items-center bg-custom-secondary/20">
             <section class="flex flex-col justify-center items-center w-3/4 m-24">
                 <h1 class=" text-4xl font-black m-4 my-fadeInCard">Just For You</h1>
+                <form class="flex flex-wrap gap-2 p-4">
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Electronics & Gadgets" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Fashion & Apparel" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Home & Living" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Beauty & Personal Care" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Health & Wellness" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Baby & Kids" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Pet Supplies" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Sports & Outdoors" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Automotive & Tools" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Art & Stationery" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Books & Education" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Food & Beverages" />
+                    <input class="btn checked:bg-custom-primary/90 btn-square" type="reset" value="×" />
+                </form>
                 <section class="grid grid-cols-5 h-full gap-4 place-contents-center content-center w-fit">
                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <div class="group flex flex-col p-4 h-fit hover:bg-linear-to-br from-custom-primary/15 to-color-custom-secondary/35 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                             <a href="./productPage.php?id=<?= $row['product_id']; ?>">
                                 <div class="overflow-hidden rounded-lg">
-                                    <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full object-cover rounded-lg shadow-lg group-hover:scale-110 transition-transform duration-700 ease-in-out"/>
+                                    <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full object-cover rounded-lg shadow-lg group-hover:scale-110 transition-transform duration-700 ease-in-out" />
                                 </div>
                                 <div class="min-h-[4lh] mt-2 duration-300">
                                     <h3 class="max-h-[2lh] group-hover:max-h-[3lh] text-black/75 overflow-clip group-hover:text-custom-primary duration-300"><?= htmlspecialchars($row['product_name']); ?></h3>
@@ -131,26 +144,49 @@ date_default_timezone_set('Asia/Manila');
                                 </div>
                             </a>
                             <div class="flex w-full gap-2 mt-2">
-                                <button class="btn btn-md rounded-2xl w-3/4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 bg-custom-primary text-white hover:bg-custom-secondary">
+                                <form method="POST" action="./functions/addtocart.php" class=" flex w-full">
+                                    <input type="hidden" name="product_id" value="<?= $row['product_id']; ?>">
+                                    <button type="submit" class="btn btn-md rounded-2xl w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 bg-custom-primary text-white hover:bg-custom-secondary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag">
+                                            <path d="M16 10a4 4 0 0 1-8 0" />
+                                            <path d="M3.103 6.034h17.794" />
+                                            <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
+                                        </svg>
+                                        Add to Cart</button>
+                                </form>
+                                <!-- <button class="btn btn-md rounded-2xl w-3/4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 bg-custom-primary text-white hover:bg-custom-secondary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag">
-                                        <path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/>
+                                        <path d="M16 10a4 4 0 0 1-8 0" />
+                                        <path d="M3.103 6.034h17.794" />
+                                        <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
                                     </svg>
                                     Add to Cart
-                                </button>
+                                </button> -->
                                 <button class="btn btn-md rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-white hover:bg-custom-secondary/40">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart text-color-custom-primary">
-                                        <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/>
+                                        <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
                                     </svg>
                                 </button>
                             </div>
                         </div>
                     <?php endwhile; ?>
+                </section>
+                <div class="join">
+                    <input
+                        class="join-item btn btn-square checked:bg-custom-primary/90"
+                        type="radio"
+                        name="options"
+                        aria-label="1"
+                        checked="checked" />
+                    <input class="join-item btn btn-square checked:bg-custom-primary/90" type="radio" name="options" aria-label="2" />
+                    <input class="join-item btn btn-square checked:bg-custom-primary/90" type="radio" name="options" aria-label="3" />
+                    <input class="join-item btn btn-square checked:bg-custom-primary/90" type="radio" name="options" aria-label="4" />
+                </div>
             </section>
         </section>
-    </section>
-    <section class="my-fadeInFooter z-10">
-        <?php include './components/footer.html'; ?>
-    </section>
+        <section class="my-fadeInFooter z-10">
+            <?php include './components/footer.html'; ?>
+        </section>
 </body>
 
 </html>

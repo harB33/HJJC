@@ -1,4 +1,5 @@
 <?php
+include("./db/sessionStart.php");
 include("./db/db.php");
 include("./functions/email-verification.php");
 
@@ -99,7 +100,7 @@ function userAndEmailAlert()
                         <span>Warning: Passwords Do Not Match!</span>
                     </div>';
             } else {
-                
+
                 $_SESSION['user'] = $user;
                 $_SESSION['pass'] = $pass;
                 $_SESSION['first_name'] = $first_name;

@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="./style/output.css" />
     <script src="./script/script.js" defer></script>
 </head>
-
 <body data-theme="light">
     <header
         class="shadow sticky top-0 bg-white w-screen p-2 flex justify-center items-center opacity-90 ">
@@ -48,9 +47,9 @@
                         d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
                 </svg>
                 <?php
+                include './db/db.php';
                 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == True) {
                     echo '
-                        
                         <div class="dropdown dropdown-center" >
                             <div tabindex="0" role="button" class="m-1 cursor-pointer">
                             <svg   

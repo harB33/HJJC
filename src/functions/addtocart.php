@@ -3,6 +3,7 @@
 // session_start();
 
 // 2. Database Connection
+include("../db/sessionStart.php");
 include("../db/db.php"); // Ensure this path is correct
 
 // 3. Check if the user is logged in
@@ -52,8 +53,8 @@ if (empty($customer_id)) {
 
 $quantity = 1; // Default quantity to add
 
-$insert_sql = "INSERT INTO cart (customer_id, product_id) 
-               VALUES (?, ?)";
+$insert_sql = " INSERT INTO cart (customer_id, product_id) 
+                VALUES (?, ?)";
 
 $insert_stmt = $conn->prepare($insert_sql);
 $insert_stmt->bind_param("ii", $customer_id, $product_id);
@@ -61,7 +62,7 @@ $insert_stmt->bind_param("ii", $customer_id, $product_id);
 // Execute the query
 if ($insert_stmt->execute()) {
     // Success! Redirect back to the cart page.
-    header("Location: ../cart.php"); 
+    header("Location: ../cart.php");
     exit();
 } else {
     // This will catch the original foreign key error if $product_id doesn't exist in the 'products' table
@@ -70,5 +71,3 @@ if ($insert_stmt->execute()) {
 
 $insert_stmt->close();
 $conn->close();
-
-?>
