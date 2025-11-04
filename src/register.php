@@ -25,6 +25,7 @@ function userAndEmailAlert()
         $confirmPass = filter_input(INPUT_POST, "confirmPass", FILTER_SANITIZE_SPECIAL_CHARS);
         $first_name = filter_input(INPUT_POST, "first_name", FILTER_SANITIZE_SPECIAL_CHARS);
         $last_name = filter_input(INPUT_POST, "last_name", FILTER_SANITIZE_SPECIAL_CHARS);
+        $middle_name = filter_input(INPUT_POST, "middle_name", FILTER_SANITIZE_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
         $phone = filter_input(INPUT_POST, "phone", FILTER_SANITIZE_SPECIAL_CHARS);
         // $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
@@ -98,12 +99,11 @@ function userAndEmailAlert()
                         <span>Warning: Passwords Do Not Match!</span>
                     </div>';
             } else {
-                // $sql = "INSERT INTO users (customer_user, customer_pass, customer_firstname, customer_lastname, customer_email, customer_phone, created_at)
-                //         VALUES ('$user', '$pass', '$first_name', '$last_name', '$email', '$phone', '$date')";
-                // if ($conn->query($sql)) {
+                
                 $_SESSION['user'] = $user;
                 $_SESSION['pass'] = $pass;
                 $_SESSION['first_name'] = $first_name;
+                $_SESSION['middle_name'] = $middle_name;
                 $_SESSION['last_name'] = $last_name;
                 $_SESSION['email'] = $email;
                 $_SESSION['phone'] = $phone;
@@ -147,13 +147,14 @@ function userAndEmailAlert()
             $user = $_SESSION['user'];
             $pass = $_SESSION['pass'];
             $first_name = $_SESSION['first_name'];
+            $middle_name = $_SESSION['middle_name'];
             $last_name = $_SESSION['last_name'];
             $email = $_SESSION['email'];
             $phone = $_SESSION['phone'];
             $date = $_SESSION['date'];
 
-            $sql = "INSERT INTO users (customer_user, customer_pass, customer_firstname, customer_lastname, customer_email, customer_phone, created_at)
-            VALUES ('$user', '$pass', '$first_name', '$last_name', '$email', '$phone', '$date')";
+            $sql = "INSERT INTO users (customer_user, customer_pass, customer_firstname, customer_middlename, customer_lastname, customer_email, customer_phone, created_at)
+            VALUES ('$user', '$pass', '$first_name', '$middle_name', '$last_name', '$email', '$phone', '$date')";
 
             if (!$conn->query($sql)) {
                 die("Insert error: " . $conn->error);
@@ -350,6 +351,30 @@ $conn->close();
                             maxlength="30"
                             title="Only letters"
                             name="last_name" />
+                    </label>
+                </div>
+                // MIDDLE NAME HERE
+                <label class="input validator input-lg rounded-full w-full floating-label">
+                        <span class="left-8 text-xl">Last Name</span>
+                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="currentColor">
+                                <circle cx="12" cy="8" r="5" />
+                                <path d="M20 21a8 8 0 0 0-16 0" />
+                            </g>
+                        </svg>
+                        <input
+                            type="text"
+                            placeholder="Middle Name"
+                            pattern="[A-Za-z]*"
+                            minlength="3"
+                            maxlength="30"
+                            title="Only letters"
+                            name="middle_name" />
                     </label>
                 </div>
                 <label class="input validator input-lg rounded-full w-3/4 floating-label">

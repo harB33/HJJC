@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2025 at 10:46 AM
+-- Generation Time: Nov 04, 2025 at 01:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -99,11 +99,12 @@ INSERT INTO `category` (`category_id`, `category_name`, `created_at`) VALUES
 
 CREATE TABLE `orders` (
   `order_id` int(11) UNSIGNED NOT NULL,
-  `customer_id` int(11) UNSIGNED DEFAULT NULL,
-  `address_id` int(11) UNSIGNED DEFAULT NULL,
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `address_id` int(11) UNSIGNED NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `order_status` enum('pending','paid','shipped','completed','cancelled') NOT NULL DEFAULT 'pending',
-  `order_total` decimal(10,2) DEFAULT NULL
+  `order_total` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -115,11 +116,11 @@ CREATE TABLE `orders` (
 CREATE TABLE `products` (
   `product_id` int(11) UNSIGNED NOT NULL,
   `product_name` varchar(50) NOT NULL,
-  `price` decimal(10,2) DEFAULT NULL,
-  `product_img` varchar(255) DEFAULT NULL,
-  `product_desc` text DEFAULT NULL,
-  `category_id` int(11) UNSIGNED DEFAULT NULL,
-  `stock` int(11) DEFAULT 0,
+  `price` decimal(10,2) NOT NULL,
+  `product_img` varchar(255) NOT NULL,
+  `product_desc` text NOT NULL,
+  `category_id` int(11) UNSIGNED NOT NULL,
+  `stock` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -141,8 +142,8 @@ INSERT INTO `products` (`product_id`, `product_name`, `price`, `product_img`, `p
 
 CREATE TABLE `product_reviews` (
   `review_id` int(11) UNSIGNED NOT NULL,
-  `customer_id` int(11) UNSIGNED DEFAULT NULL,
-  `product_id` int(11) UNSIGNED DEFAULT NULL,
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
   `review_comment` text DEFAULT NULL,
   `review_rating` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -157,8 +158,9 @@ CREATE TABLE `users` (
   `customer_id` int(11) UNSIGNED NOT NULL,
   `customer_user` varchar(100) NOT NULL,
   `customer_firstname` varchar(50) NOT NULL,
+  `customer_middlename` varchar(50) DEFAULT NULL,
   `customer_lastname` varchar(50) NOT NULL,
-  `customer_email` varchar(100) DEFAULT NULL,
+  `customer_email` varchar(100) NOT NULL,
   `customer_phone` varchar(15) NOT NULL,
   `customer_pass` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -168,9 +170,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`customer_id`, `customer_user`, `customer_firstname`, `customer_lastname`, `customer_email`, `customer_phone`, `customer_pass`, `created_at`) VALUES
-(1, 'jomarivillanueva', 'Jomari', 'Wamil', 'Villanueva@gmail.com', '09927300876', 'JomariCrushsiVillanueva1', '2025-10-29 02:01:47'),
-(2, 'harvy12345', 'harvs', 'bautista', 'jwamcoc01@gmail.com', '09927300876', 'Harvy12345', '2025-10-31 13:40:41');
+INSERT INTO `users` (`customer_id`, `customer_user`, `customer_firstname`, `customer_middlename`, `customer_lastname`, `customer_email`, `customer_phone`, `customer_pass`, `created_at`) VALUES
+(1, 'jomarivillanueva', 'Jomari', NULL, 'Wamil', 'Villanueva@gmail.com', '09927300876', 'JomariCrushsiVillanueva1', '2025-10-29 02:01:47'),
+(2, 'harvy12345', 'harvs', NULL, 'bautista', 'jwamcoc01@gmail.com', '09927300876', 'Harvy12345', '2025-10-31 13:40:41');
 
 --
 -- Indexes for dumped tables
@@ -203,7 +205,8 @@ ALTER TABLE `category`
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `address_id` (`address_id`);
+  ADD KEY `address_id` (`address_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `products`
@@ -294,7 +297,8 @@ ALTER TABLE `addtocart`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`);
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`),
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
 --
 -- Constraints for table `products`
