@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2025 at 01:55 AM
+-- Generation Time: Nov 04, 2025 at 01:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -160,7 +160,7 @@ CREATE TABLE `users` (
   `customer_firstname` varchar(50) NOT NULL,
   `customer_middlename` varchar(50) DEFAULT NULL,
   `customer_lastname` varchar(50) NOT NULL,
-  `customer_email` varchar(100) DEFAULT NULL,
+  `customer_email` varchar(100) NOT NULL,
   `customer_phone` varchar(15) NOT NULL,
   `customer_pass` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
