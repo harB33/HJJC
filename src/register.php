@@ -353,7 +353,7 @@ $conn->close();
                             name="last_name" />
                     </label>
                 </div>
-                // MIDDLE NAME HERE
+                <!--Middle Name Here-->
                 <label class="input validator input-lg rounded-full w-full floating-label">
                         <span class="left-8 text-xl">Last Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
