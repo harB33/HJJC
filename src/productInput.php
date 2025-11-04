@@ -1,4 +1,5 @@
 <?php 
+include("./db/sessionStart.php");
 include("./db/db.php");
 date_default_timezone_set("Asia/Manila");
 

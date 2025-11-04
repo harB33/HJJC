@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light" class=" overflow-x-clip">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
     <link rel="stylesheet" href="./style/output.css" />
     <script src="./script/accountLogo.js" defer></script>
 </head>
-
 <body class="w-screen overflow-x-clip min-h-screen bg-custom-background">
     <div class="sticky top-0 z-50 w-full backdrop-blur-sm ">
         <?php include './components/header.php'; ?>
@@ -23,8 +21,12 @@
         <section id="title" class=" font-light h-[80vh] w-full uppercase flex flex-col p-8 overflow-clip justify-center items-center relative bg-linear-to-br from-custom-primary/40 to-custom-secondary/50 z-20">
             <div class=" w-full flex flex-col items-center justify-center max-sm:bg-custom-background/90 z-10 mb-8 grow">
                 <h1 class="font-giaza font-black text-6xl sm:text-8xl  z-1 my-fadeOutText ">HJJC. Store</h1>
-                <h1 class=" font-light text-3xl sm:text-4xl my-fadeOutText z-1 ">Your one-stop shop for <span class="font-bold underline italic opacity-85 text-shadow-xs text-5xl font-giaza">everything</span> you need!</h1>
-                <a href="./home.php" class="btn btn-primary btn-lg rounded-2xl bg-custom-primary/80 text-custom-background m-4 my-fadeOutText">Shop Now!</a>
+                <h1 class=" font-light text-3xl sm:text-4xl my-fadeOutText z-1 ">Your one-stop shop for <span class="font-bold underline italic opacity-85 text-shadow-xs text-5xl font-giaza text-custom-primary">everything</span> you need!</h1>
+                <h1 class=" font-extralight text-xl sm:text-xl  z-1 my-fadeOutText w-[60%]">At HJJC Store, we make shopping easy and convenient. From gadgets to everyday essentials, find everything you need in one place — quality, value, and variety all under one roof.</h1>
+                <div class=" translate-y-14">
+                    <a href="./home.php" class="btn btn-primary btn-lg rounded-2xl bg-custom-primary/80 text-custom-background  my-fadeOutText">Shop Now!</a>
+                    <a href="./home.php" class="btn btn-primary btn-lg rounded-2xl bg-custom-background text-custom-primary/85  my-fadeOutText">Know More</a>
+                </div>
             </div>
             <div>
                 <div class="flex justify-center flex-col items-center">
@@ -104,43 +106,7 @@
                 </div>
                 <a href="./home.php" class="hover:underline text-xl">Shop All Products</a>
             </div>
-                
-            <!-- <div class="grid grid-cols-[auto_auto] grid-rows-2 gap-4 place-content-center z-1 max-sm:hidden max-sm:grid-cols-[auto] max-sm:grid-rows-auto">
-                <a href="#" class="h-152 w-85 row-span-2 rounded-2xl hover:shadow-2xl transition-shadow duration-300 hover:outline-2 hover:outline-custom-primary">
-                    <div class=" shadow-2xs border-2 hover:border-white rounded-2xl h-152 w-85 bg-[url(../image/gpu.png)] bg-cover my-fadeInMoveUpCard z-2"></div>
-                </a>
-                <a href="#" class=" h-73 w-150 rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-2 hover:outline-2 hover:outline-custom-primary">
-                    <div class=" shadow-2xs border-2 hover:border-white rounded-2xl h-73 w-150 bg-[url(../image/shoes.png)] bg-contain my-fadeInMoveUpCard "></div>
-                </a>
-                <a href="#" class=" h-73 w-150 rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-2 hover:outline-2 hover:outline-custom-primary">
-                    <div class=" shadow-2xs border-2 hover:border-white rounded-2xl h-73 w-150 bg-[url(../image/laptop.png)] bg-contain my-fadeInMoveUpCard "></div>
-                </a>
-                <a href="./home.php" class=" col-span-2">
-                    <button class="btn btn-xl rounded-full bg-custom-primary text-custom-background">Shop Now</button>
-                </a>
-                <img src="./image/circle.png" alt="circle" class="size-300 absolute -bottom-170 -right-200 my-circleInfinite z-1 object-cover" />
-                <img src="./image/circle-shop.png" alt="circle" class="size-200 absolute -bottom-130 -right-180 my-circleInfinite z-1 object-cover" />
-            </div> -->
         </section>
-        <!-- <section class="my-50 relative sm:hidden">
-            <h1 class="text-2xl sm:text-4xl font-bold m-6 uppercase my-fadeInText my-popUp z-5">E</h1>
-            <div class=" grid grid-cols-1 gap-4 place-content-center z-0 overflow-clip">
-                <a href="#" class="size-auto rounded-2xl hover:shadow-2xl transition-shadow  duration-300 z-10 flex items-center justify-center">
-                    <div class="border rounded-2xl h-48 w-96 bg-[url(../image/gpu.png)] bg-contain my-fadeInMoveUpCard"></div>
-                </a>
-                <a href="#" class="size-auto rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-10 flex items-center justify-center">
-                    <div class="border rounded-2xl h-48 w-96 bg-[url(../image/shoes.png)] bg-contain my-fadeInMoveUpCard"></div>
-                </a>
-                <a href="#" class="size-auto rounded-2xl hover:shadow-2xl transition-shadow duration-300 z-10 flex items-center justify-center">
-                    <div class="border rounded-2xl h-48 w-96 bg-[url(../image/laptop.png)] bg-contain my-fadeInMoveUpCard"></div>
-                </a>
-                <a href="./home.php" class=" z-10">
-                    <button class="btn btn-xl rounded-full ">Shop Now</button>
-                </a>
-                <img src="./image/circle.png" alt="circle" class="size-130 absolute -bottom-100 -right-30 my-circleInfinite z-1 object-cover" />
-                <img src="./image/circle-shop.png" alt="circle" class="size-80 absolute -bottom-80 -right-20 my-circleInfinite z-1 object-cover" />
-            </div>
-        </section> -->
         <section class="my-fadeInFooter z-10">
             <?php include './components/footer.html'; ?>
         </section>

@@ -1,10 +1,9 @@
 <?php
+include("./db/sessionStart.php");
 include './db/db.php';
 $id = $_GET['id'];
 $result = $conn->query("SELECT * FROM products WHERE product_id='$id'");
 $product = $result->fetch_assoc();
-
-
 
 ?>
 
@@ -41,7 +40,10 @@ $product = $result->fetch_assoc();
                     <h1 class="text-4xl font-bold mb-3 text-black/80"><?= htmlspecialchars($product['product_name']); ?></h1>
                     <p class="text-lg mb-6 font-bold">₱<?= number_format($product['price'], 2); ?></p>
                     <p class="text-black/80 mb-6"><?= nl2br(htmlspecialchars($product['product_desc'])); ?></p>
-                    <button class="btn px-6 py-3 float-right rounded-full bg-custom-primary text-white hover:bg-custom-secondary transition">Add to Cart</button>
+                        <form method="POST" action="./functions/addtocart.php" class="float-right">
+                            <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
+                            <button type="submit" class="btn btn-lg rounded-2xl bg-custom-primary/80 text-custom-background btn-primary">Add to Cart</button>
+                        </form>
                 </div>
             </div>
         </div>

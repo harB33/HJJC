@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,13 +13,16 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style/output.css" />
 </head>
+
 <body class="w-screen overflow-x-hidden">
     <div class="sticky top-0 z-50 ">
-        <?php include './components/header.php'; ?>
+        <?php
+        include("./db/sessionStart.php");
+        include './components/header.php'; ?>
     </div>
     <section class="flex flex-col items-center text-center w-full overflow-clip min-h-screen bg-[#B6CCD7]">
         <h1 class=" font-black text-4xl mb-4">OUR DEVELOPERS</h1>
-        <section class="flex flex-col" >
+        <section class="flex flex-col">
             <div>
                 <h1 class=" font-bold text-2xl mb-4">CTO: <span class="font-black text-3xl">BAUTISTA, HARVY S.</span></h1>
             </div>
@@ -38,4 +42,5 @@
         <?php include './components/footer.html'; ?>
     </section>
 </body>
+
 </html>
