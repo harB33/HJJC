@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("./db/db.php");
 
 $alert_html_output = userAndPassCorrect();
