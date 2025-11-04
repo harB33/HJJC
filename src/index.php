@@ -23,8 +23,12 @@
         <section id="title" class=" font-light h-[80vh] w-full uppercase flex flex-col p-8 overflow-clip justify-center items-center relative bg-linear-to-br from-custom-primary/40 to-custom-secondary/50 z-20">
             <div class=" w-full flex flex-col items-center justify-center max-sm:bg-custom-background/90 z-10 mb-8 grow">
                 <h1 class="font-giaza font-black text-6xl sm:text-8xl  z-1 my-fadeOutText ">HJJC. Store</h1>
-                <h1 class=" font-light text-3xl sm:text-4xl my-fadeOutText z-1 ">Your one-stop shop for <span class="font-bold underline italic opacity-85 text-shadow-xs text-5xl font-giaza">everything</span> you need!</h1>
-                <a href="./home.php" class="btn btn-primary btn-lg rounded-2xl bg-custom-primary/80 text-custom-background m-4 my-fadeOutText">Shop Now!</a>
+                <h1 class=" font-light text-3xl sm:text-4xl my-fadeOutText z-1 ">Your one-stop shop for <span class="font-bold underline italic opacity-85 text-shadow-xs text-5xl font-giaza text-custom-primary">everything</span> you need!</h1>
+                <h1 class=" font-extralight text-xl sm:text-xl  z-1 my-fadeOutText w-[60%]">At HJJC Store, we make shopping easy and convenient. From gadgets to everyday essentials, find everything you need in one place — quality, value, and variety all under one roof.</h1>
+                <div class=" translate-y-14">
+                    <a href="./home.php" class="btn btn-primary btn-lg rounded-2xl bg-custom-primary/80 text-custom-background  my-fadeOutText">Shop Now!</a>
+                    <a href="./home.php" class="btn btn-primary btn-lg rounded-2xl bg-custom-background text-custom-primary/85  my-fadeOutText">Know More</a>
+                </div>
             </div>
             <div>
                 <div class="flex justify-center flex-col items-center">
