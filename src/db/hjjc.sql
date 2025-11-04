@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2025 at 10:46 AM
+-- Generation Time: Nov 02, 2025 at 02:40 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,27 +39,6 @@ CREATE TABLE `address` (
   `address_postal` varchar(15) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `addtocart`
---
-
-CREATE TABLE `addtocart` (
-  `cart_id` int(11) UNSIGNED NOT NULL,
-  `customer_id` int(11) UNSIGNED NOT NULL,
-  `product_id` int(11) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `addtocart`
---
-
-INSERT INTO `addtocart` (`cart_id`, `customer_id`, `product_id`, `created_at`) VALUES
-(1, 1, 3, '2025-11-03 04:32:13'),
-(2, 1, 3, '2025-11-03 04:33:29');
 
 -- --------------------------------------------------------
 
@@ -118,20 +97,11 @@ CREATE TABLE `products` (
   `price` decimal(10,2) DEFAULT NULL,
   `product_img` varchar(255) DEFAULT NULL,
   `product_desc` text DEFAULT NULL,
-  `category_id` int(11) UNSIGNED DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
   `stock` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`product_id`, `product_name`, `price`, `product_img`, `product_desc`, `category_id`, `stock`, `created_at`, `updated_at`) VALUES
-(1, 'Basketball', 700.00, 'https://www.sport-thieme.be/Ballen/Basketballen/art=3058927', 'bola bago droga', 8, 99, '2025-11-02 04:06:59', '2025-11-02 04:06:59'),
-(2, 'Basketball', 700.00, 'https://www.sport-thieme.be/Ballen/Basketballen/art=3058927', 'bola bago droga', 8, 99, '2025-11-02 06:59:19', '2025-11-02 06:59:19'),
-(3, 'Intel® Core™ Ultra 9 285K Desktop Processor', 38600.00, 'product_69081dedd70cb7.48696548.webp', 'INTEL CORE ULTRA 9 285K (UP TO 5.70GHZ)40MB/24CORES/24THREADS/2GHZ INTELGRAPHICS/3NM/ARROWLAKE/15TH GEN/LGA1851 PROCESSOR', 1, 10, '2025-11-03 03:13:49', '2025-11-03 03:13:49');
 
 -- --------------------------------------------------------
 
@@ -184,14 +154,6 @@ ALTER TABLE `address`
   ADD KEY `customer_id` (`customer_id`);
 
 --
--- Indexes for table `addtocart`
---
-ALTER TABLE `addtocart`
-  ADD PRIMARY KEY (`cart_id`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
@@ -209,8 +171,7 @@ ALTER TABLE `orders`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`product_id`),
-  ADD KEY `category_id` (`category_id`);
+  ADD PRIMARY KEY (`product_id`);
 
 --
 -- Indexes for table `product_reviews`
@@ -237,12 +198,6 @@ ALTER TABLE `address`
   MODIFY `address_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `addtocart`
---
-ALTER TABLE `addtocart`
-  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
@@ -258,7 +213,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product_reviews`
@@ -283,24 +238,11 @@ ALTER TABLE `address`
   ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`);
 
 --
--- Constraints for table `addtocart`
---
-ALTER TABLE `addtocart`
-  ADD CONSTRAINT `addtocart_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`),
-  ADD CONSTRAINT `addtocart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
-
---
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`),
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`);
-
---
--- Constraints for table `products`
---
-ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product_reviews`
