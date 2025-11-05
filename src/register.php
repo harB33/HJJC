@@ -104,8 +104,8 @@ function userAndEmailAlert()
                 $_SESSION['user'] = $user;
                 $_SESSION['pass'] = $pass;
                 $_SESSION['first_name'] = $first_name;
-                $_SESSION['middle_name'] = $middle_name;
                 $_SESSION['last_name'] = $last_name;
+                $_SESSION['middle_name'] = $middle_name;
                 $_SESSION['email'] = $email;
                 $_SESSION['phone'] = $phone;
                 $_SESSION['date'] = $date;
@@ -354,7 +354,6 @@ $conn->close();
                             name="last_name" />
                     </label>
                 </div>
-                // MIDDLE NAME HERE
                 <label class="input validator input-lg rounded-full w-full floating-label">
                         <span class="left-8 text-xl">Last Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
