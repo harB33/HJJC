@@ -1,31 +1,36 @@
 <?php
 include("./db/sessionStart.php");
-include './db/db.php';
+include("./db/db.php");
 
 $user = $_SESSION['customer_user'];
-$id = "SELECT customer_id FROM users WHERE customer_user = '$user'";
-$res = $conn->query($id);
+// $id = "SELECT customer_id FROM users WHERE customer_user = '$user'";
+// $res = $conn->query($id);
+$sql_user = "SELECT customer_id FROM users WHERE customer_user = ?";
+$stmt_user = $conn->prepare($sql_user);
+$stmt_user->bind_param("s", $user);
+$stmt_user->execute();
+$res = $stmt_user->get_result();
 
+if ($res->num_rows === 0) {
+    die("Error: Could not find user.");
+}
 $row = $res->fetch_assoc();
 $customer_id = $row['customer_id'];
+$_SESSION['customer_id'] = $customer_id;
 
-$sql =" SELECT
-    c.product_id,
-    c.customer_id,
-    p.*
-FROM
-    cart c
-JOIN
-    products p ON c.product_id = p.product_id
-WHERE
-    c.customer_id = '$customer_id'";
+$sql_cart =" SELECT c.product_id, c.customer_id, p.*
+FROM cart c
+JOIN products p ON c.product_id = p.product_id
+WHERE c.customer_id = ?";
 
-$result = mysqli_query($conn, $sql);
+$stmt_cart = $conn->prepare($sql_cart);
+$stmt_cart->bind_param("i", $customer_id);
+$stmt_cart->execute();
+$result = $stmt_cart->get_result();
 
 if ($result === false) {
     die("❌ **CART QUERY FAILED!** Check your SQL syntax or column names: " . mysqli_error($conn));
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
@@ -60,7 +65,9 @@ if ($result === false) {
                             </div>
                             <div class="flex flex-col justify-evenly">
                                 <p class="font-extrabold text-xl" >₱<?= number_format($row['price'], 2); ?></p>
-                                <button class="">Remove</button>
+                                <form action="./functions/remove_item.php" method="post">
+                                    <button type="submit" name="remove" value="<?= $product['product_id']; ?>">Remove</button>
+                                </form>
                             </div>
                         </div>
                     </div>

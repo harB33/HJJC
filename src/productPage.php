@@ -1,5 +1,5 @@
 <?php
-include("./db/sessionStart.php");
+// include("./db/sessionStart.php");
 include './db/db.php';
 $id = $_GET['id'];
 $result = $conn->query("SELECT * FROM products WHERE product_id='$id'");
