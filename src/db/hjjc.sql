@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2025 at 01:56 AM
+-- Generation Time: Nov 06, 2025 at 11:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,37 +29,47 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `address` (
   `address_id` int(11) UNSIGNED NOT NULL,
-  `customer_id` int(11) UNSIGNED DEFAULT NULL,
-  `address_name` varchar(150) DEFAULT NULL,
-  `address_line1` varchar(250) DEFAULT NULL,
-  `address_line2` varchar(250) DEFAULT NULL,
-  `address_city` varchar(150) DEFAULT NULL,
-  `address_region` varchar(50) DEFAULT NULL,
-  `address_brgy` varchar(20) DEFAULT NULL,
-  `address_postal` varchar(15) DEFAULT NULL,
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `address_name` varchar(150) NOT NULL,
+  `address_city` varchar(150) NOT NULL,
+  `address_region` varchar(50) NOT NULL,
+  `address_brgy` varchar(20) NOT NULL,
+  `address_postal` varchar(15) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `addtocart`
+-- Table structure for table `cart`
 --
 
-CREATE TABLE `addtocart` (
+CREATE TABLE `cart` (
   `cart_id` int(11) UNSIGNED NOT NULL,
   `customer_id` int(11) UNSIGNED NOT NULL,
   `product_id` int(11) UNSIGNED NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `addtocart`
+-- Dumping data for table `cart`
 --
 
-INSERT INTO `addtocart` (`cart_id`, `customer_id`, `product_id`, `created_at`) VALUES
-(1, 1, 3, '2025-11-03 04:32:13'),
-(2, 1, 3, '2025-11-03 04:33:29');
+INSERT INTO `cart` (`cart_id`, `customer_id`, `product_id`, `quantity`, `created_at`) VALUES
+(1, 1, 3, 0, '2025-11-03 04:32:13'),
+(2, 1, 3, 0, '2025-11-03 04:33:29'),
+(3, 3, 3, 0, '2025-11-06 01:46:27'),
+(4, 3, 3, 0, '2025-11-06 01:47:15'),
+(5, 3, 3, 0, '2025-11-06 01:47:30'),
+(6, 3, 3, 0, '2025-11-06 01:55:16'),
+(7, 1, 3, 0, '2025-11-06 10:19:58'),
+(8, 1, 3, 0, '2025-11-06 10:31:07'),
+(9, 1, 3, 0, '2025-11-06 11:16:55'),
+(10, 1, 3, 0, '2025-11-06 11:19:53'),
+(11, 1, 3, 0, '2025-11-06 12:31:40'),
+(12, 1, 3, 0, '2025-11-06 13:51:07'),
+(13, 1, 3, 1, '2025-11-06 21:45:03');
 
 -- --------------------------------------------------------
 
@@ -78,18 +88,9 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`category_id`, `category_name`, `created_at`) VALUES
-(1, 'Electronics & Gadgets', '2025-11-02 01:31:50'),
-(2, 'Fashion & Apparel', '2025-11-02 01:31:50'),
-(3, 'Home & Living', '2025-11-02 01:31:50'),
-(4, 'Beauty & Personal', '2025-11-02 01:31:50'),
-(5, 'Health & Wellness', '2025-11-02 01:31:50'),
-(6, 'Baby & Kids', '2025-11-02 01:31:50'),
-(7, 'Pets Supplies', '2025-11-02 01:31:50'),
-(8, 'Sports & Outdoors', '2025-11-02 01:31:50'),
-(9, 'Automotive & Tools', '2025-11-02 01:35:19'),
-(10, 'Arts & Stationery', '2025-11-02 01:35:19'),
-(11, 'Books & Education', '2025-11-02 01:35:19'),
-(12, 'Food & Beverages', '2025-11-02 01:35:19');
+(1, 'Coffee', '2025-11-06 22:24:07'),
+(2, 'Milk Tea', '2025-11-06 22:25:22'),
+(3, 'Frappe', '2025-11-06 22:25:22');
 
 -- --------------------------------------------------------
 
@@ -130,8 +131,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `price`, `product_img`, `product_desc`, `category_id`, `stock`, `created_at`, `updated_at`) VALUES
-(1, 'Basketball', 700.00, 'https://www.sport-thieme.be/Ballen/Basketballen/art=3058927', 'bola bago droga', 8, 99, '2025-11-02 04:06:59', '2025-11-02 04:06:59'),
-(2, 'Basketball', 700.00, 'https://www.sport-thieme.be/Ballen/Basketballen/art=3058927', 'bola bago droga', 8, 99, '2025-11-02 06:59:19', '2025-11-02 06:59:19'),
+(1, 'Basketball', 700.00, 'https://www.sport-thieme.be/Ballen/Basketballen/art=3058927', 'bola bago droga', 0, 99, '2025-11-02 04:06:59', '2025-11-02 04:06:59'),
+(2, 'Basketball', 700.00, 'https://www.sport-thieme.be/Ballen/Basketballen/art=3058927', 'bola bago droga', 0, 99, '2025-11-02 06:59:19', '2025-11-02 06:59:19'),
 (3, 'Intel® Core™ Ultra 9 285K Desktop Processor', 38600.00, 'product_69081dedd70cb7.48696548.webp', 'INTEL CORE ULTRA 9 285K (UP TO 5.70GHZ)40MB/24CORES/24THREADS/2GHZ INTELGRAPHICS/3NM/ARROWLAKE/15TH GEN/LGA1851 PROCESSOR', 1, 10, '2025-11-03 03:13:49', '2025-11-03 03:13:49');
 
 -- --------------------------------------------------------
@@ -172,7 +173,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`customer_id`, `customer_user`, `customer_firstname`, `customer_middlename`, `customer_lastname`, `customer_email`, `customer_phone`, `customer_pass`, `created_at`) VALUES
 (1, 'jomarivillanueva', 'Jomari', NULL, 'Wamil', 'Villanueva@gmail.com', '09927300876', 'JomariCrushsiVillanueva1', '2025-10-29 02:01:47'),
-(2, 'harvy12345', 'harvs', NULL, 'bautista', 'jwamcoc01@gmail.com', '09927300876', 'Harvy12345', '2025-10-31 13:40:41');
+(2, 'harvy12345', 'harvs', NULL, 'bautista', 'jwamcoc01@gmail.com', '09927300876', 'Harvy12345', '2025-10-31 13:40:41'),
+(3, 'Jomari12345', 'Jomari', '', 'Wamil', 'bautistaharvy13@gmail.com', '09927300876', 'Jomari12345', '2025-11-06 00:45:43');
 
 --
 -- Indexes for dumped tables
@@ -186,9 +188,9 @@ ALTER TABLE `address`
   ADD KEY `customer_id` (`customer_id`);
 
 --
--- Indexes for table `addtocart`
+-- Indexes for table `cart`
 --
-ALTER TABLE `addtocart`
+ALTER TABLE `cart`
   ADD PRIMARY KEY (`cart_id`),
   ADD KEY `customer_id` (`customer_id`),
   ADD KEY `product_id` (`product_id`);
@@ -240,16 +242,16 @@ ALTER TABLE `address`
   MODIFY `address_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `addtocart`
+-- AUTO_INCREMENT for table `cart`
 --
-ALTER TABLE `addtocart`
-  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `category_id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -273,7 +275,7 @@ ALTER TABLE `product_reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `customer_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `customer_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -286,11 +288,11 @@ ALTER TABLE `address`
   ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`);
 
 --
--- Constraints for table `addtocart`
+-- Constraints for table `cart`
 --
-ALTER TABLE `addtocart`
-  ADD CONSTRAINT `addtocart_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`),
-  ADD CONSTRAINT `addtocart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`),
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
 --
 -- Constraints for table `orders`

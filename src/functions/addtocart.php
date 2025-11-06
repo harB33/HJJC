@@ -36,8 +36,9 @@ $sql_get_id = "SELECT customer_id FROM users WHERE customer_user = ?"; // Replac
 $stmt_get_id = $conn->prepare($sql_get_id);
 $stmt_get_id->bind_param("s", $user_identifier);
 $stmt_get_id->execute();
-$stmt_get_id->bind_result($customer_id);
-$stmt_get_id->fetch();
+$result_id = $stmt_get_id->get_result();
+$row = $result_id->fetch_assoc();
+$customer_id = $row['customer_id'];
 $stmt_get_id->close();
 
 // Check if a customer ID was found
@@ -51,13 +52,22 @@ if (empty($customer_id)) {
 // If you don't have one, run this in your database:
 // ALTER TABLE cart ADD UNIQUE KEY `customer_product` (`customer_id`, `product_id`);
 
-$quantity = 1; // Default quantity to add
+if (!isset($_POST['quantity']) || empty($_POST['quantity'])) {
+    $quantity = 1; // Default to 1 if the form didn't send a quantity
+} else {
+    // Sanitize and ensure it's a safe integer
+    $quantity = (int)$_POST['quantity'];
+    // Basic check: Ensure quantity is at least 1
+    if ($quantity <= 0) {
+        $quantity = 1;
+    }
+} // Default quantity to add
 
-$insert_sql = " INSERT INTO cart (customer_id, product_id) 
-                VALUES (?, ?)";
+$insert_sql = " INSERT INTO cart (customer_id, product_id, quantity) 
+                VALUES (?, ?, ?)";
 
 $insert_stmt = $conn->prepare($insert_sql);
-$insert_stmt->bind_param("ii", $customer_id, $product_id);
+$insert_stmt->bind_param("iii", $customer_id, $product_id, $quantity);
 
 // Execute the query
 if ($insert_stmt->execute()) {
