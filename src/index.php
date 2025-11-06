@@ -14,12 +14,14 @@
     <script src="./script/accountLogo.js" defer></script>
 </head>
 <body class="w-screen overflow-x-clip min-h-screen bg-custom-background">
-    <div class="fixed top-0 z-50 w-full backdrop-blur-2xl ">
+    <div class="fixed top-0 z-50 bg-white/90 w-full backdrop-blur-sm">
         <?php include './components/header.php'; ?>
     </div>
     <section class="flex flex-col items-center text-center w-full overflow-clip ">
         <div class="h-screen w-full ">
-            <img src="./image/Untitled design.gif" class=" w-full h-full object-cover brightness-25">
+        <video class="w-full h-full object-cover brightness-25" autoplay loop muted>
+            <source src="./image/1107.mp4">
+        </video>
         </div>
         <section id="title" class=" font-light h-screen w-full flex flex-col p-8 overflow-clip justify-center items-center absolute z-20">
             <div class=" w-full flex flex-col items-center justify-center z-10 mb-8 grow">
@@ -28,7 +30,7 @@
             </div>
             <div>
                 <div class="flex justify-center flex-col items-center">
-                    <h1 class="font-extralight text-xs sm:text-xl my-fadeOutText z-1">Scroll down to discover who we are and why customers love us.</h1>
+                    <h1 class="font-extralight text-xs sm:text-xl my-fadeOutText z-1"></h1>
                     <span class="arrow mt-">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-icon lucide-arrow-down stroke-white"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
                     </span>

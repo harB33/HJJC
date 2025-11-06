@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="./style/output.css" />
     <script src="./script/script.js" defer></script>
 </head>
-<body data-theme="light">
-    <header class="shadow fixed top-0 bg-white w-screen p-2 flex justify-center items-center opacity-90 px-6 backdrop-blur-2xl">
+<body data-theme="light" class="backdrop-blur-lg bg-white/90">
+    <header class="shadow fixed top-0 w-screen p-2 flex justify-center items-center px-6 backdrop-blur-lg bg-white/90  z-50">
         <div class="flex justify-between w-full">
             <a href="./index.php" class="" >
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="h-12 object-contain" />
