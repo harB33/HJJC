@@ -134,9 +134,6 @@ function userAndEmailAlert()
                                 <strong>Debug Info: ' . htmlspecialchars($sendResult) . '</strong>
                             </div>';
                 }
-                // } else {
-                //     die("Error: " . $conn->error);
-                // }
             }
         }
     } elseif (isset($_POST["verify"])) {
@@ -169,14 +166,15 @@ function userAndEmailAlert()
                     <span>Successfullly Created an Account</span>
                     </div>';
             session_destroy();
+            header('Location: ./index.php');
         } else {
             $alertMsg .= '
-                            <div role="alert" class="alert alert-success">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span>Invalid Verification Code</span>
-                            </div>';
+                    <div role="alert" class="alert alert-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Invalid Verification Code</span>
+                    </div>';
         }
         return $alertMsg;
     }
@@ -203,13 +201,13 @@ $conn->close();
 </head>
 
 <body>
-    <div class="grid grid-cols-[45%_55%] place-items-center">
+    <div class="place-items-center">
         <div class="flex flex-col gap-4 justify-center items-center h-screen w-full border-r-2 border-[#0A1829]">
             <div class="size-30 rounded-full p-2 shadow-[0px_0px_1px_2px] grid place-items-center">
                 <img src="./image/logo/logo-trans.png" alt="logo">
             </div>
             <h1 class="font-black text-5xl mb-8">CREATE YOUR ACCOUNT</h1>
-            <form action="./register.php" method="post" class="flex flex-col gap-4 w-3/4 justify-center items-center">
+            <form action="./register.php" method="post" class="flex flex-col gap-4 w-1/2 justify-center items-center">
                 <?php
                 if ($_SESSION['registration'] == true) {
                     echo '
@@ -236,8 +234,7 @@ $conn->close();
                         title="Only letters, numbers or dash"
                         name="user" />
                 </label>
-                <div class="flex gap-2 w-3/4">
-                <!-- Password Field -->
+                <div class="flex gap-4 w-3/4">
                 <label class="group input validator input-lg rounded-full w-full floating-label">
                     <span class="left-8 text-xl">Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -270,8 +267,6 @@ $conn->close();
                     </svg>
                     </label>
                 </label>
-                
-                <!-- Confirm Password Field -->
                 <label class="group input validator input-lg rounded-full w-full floating-label">
                     <span class="left-8 text-xl">Confirm Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -305,9 +300,7 @@ $conn->close();
                     </label>
                 </label>
                 </div>
-                <!-- start here -->
-                <div class="flex gap-2 w-3/4">
-                    <label class="input validator input-lg rounded-full w-full floating-label">
+                    <label class="input validator input-lg rounded-full w-3/4 floating-label">
                         <span class="left-8 text-xl">First Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
@@ -330,7 +323,7 @@ $conn->close();
                             title="Only letters and single spaces between words"
                             name="first_name" />
                     </label>
-                    <label class="input validator input-lg rounded-full w-full floating-label">
+                    <label class="input validator input-lg rounded-full w-3/4 floating-label">
                         <span class="left-8 text-xl">Last Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
@@ -353,10 +346,8 @@ $conn->close();
                             title="Only letters"
                             name="last_name" />
                     </label>
-                </div>
-                <!--Middle Name Here-->
-                <label class="input validator input-lg rounded-full w-full floating-label">
-                        <span class="left-8 text-xl">Last Name</span>
+                    <label class="input validator input-lg rounded-full w-3/4 floating-label">
+                        <span class="left-8 text-xl">Middle Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
                                 stroke-linejoin="round"
@@ -377,7 +368,6 @@ $conn->close();
                             title="Only letters"
                             name="middle_name" />
                     </label>
-                </div>
                 <label class="input validator input-lg rounded-full w-3/4 floating-label">
                     <span class="left-8 text-xl">Email</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -448,7 +438,6 @@ $conn->close();
                 ?>
             </div>
         </div>
-        <?php include './components/loginAnimation.html' ?>
     </div>
     </div>
 </body>

@@ -1,11 +1,11 @@
 <?php
 
+//require '../vendor/autoload.php';
 require '../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-// 1. We USE the Mpdf library
 use Mpdf\Mpdf;
 
 function generateCode($len = 6)
@@ -19,13 +19,9 @@ function generateCode($len = 6)
     return $code;
 }
 
-/**
- * 2. This is the MPDF version of the function
- */
 function createWelcomePDF($firstName)
 {
     try {
-        // 3. We CREATE a new MPDF object
         $mpdf = new \Mpdf\Mpdf([
             'mode' => 'utf-8',
             'format' => 'A4',
@@ -35,13 +31,11 @@ function createWelcomePDF($firstName)
             'margin_bottom' => 0,
         ]);
 
-        // 4. We get the logo and Base64-encode it (most reliable method)
         $logoPath = __DIR__ . '/../image/logo/logo.png';
         $logoData = file_get_contents($logoPath);
         $logoBase64 = 'data:image/png;base64,' . base64_encode($logoData);
         $year = date("Y");
 
-        // 5. This is the MODERN HTML that mpdf can render
         $html = '
         <html>
         <head>
@@ -168,25 +162,19 @@ function createWelcomePDF($firstName)
         </html>
         ';
 
-        // 6. WRITE THE HTML AND RETURN AS A STRING
         $mpdf->WriteHTML($html);
         return $mpdf->Output('welcome.pdf', 'S'); // 'S' returns as a string
 
     } catch (\Exception $e) {
-        // Return an error string if PDF generation fails
         return "PDF Error: " . $e->getMessage();
     }
 }
 
-/**
- * 7. This is the sendVerification function
- */
 function sendVerification($email, $verificationCode, $firstName)
 {
     $mail = new PHPMailer(true);
 
     try {
-        // --- SMTP Settings (Port 465) ---
         $mail->SMTPDebug = SMTP::DEBUG_OFF;
         $mail->isSMTP();
         $mail->Host = "smtp.gmail.com";
@@ -196,32 +184,23 @@ function sendVerification($email, $verificationCode, $firstName)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
 
-        // --- Recipients ---
         $mail->setFrom("hjjc.store@gmail.com", "HJJC STORE");
         $mail->addAddress($email);
 
-        // --- Content ---
         $mail->isHTML(true);
         $mail->Subject = "Your HJJC Store Verification Code";
 
-        // --- Attachments & Embedded Images ---
-
-        // 1. Embed logo for the EMAIL
         $imagePath = __DIR__ . '/../image/logo/logo.png';
         $mail->addEmbeddedImage($imagePath, 'logo-hjjc');
 
-        // 2. Generate and attach the dynamic PDF
         $pdfData = createWelcomePDF($firstName); // This uses mpdf
 
-        // 3. Check if PDF generation failed
         if (strpos($pdfData, 'PDF Error:') === 0) {
             return $pdfData;
         }
 
-        // 4. Attach the PDF
         $mail->addStringAttachment($pdfData, "Welcome_to_HJJC_Store.pdf");
 
-        // 5. SET THE NEW EMAIL BODY
         $mail->Body = '
         <!DOCTYPE html>
         <html lang="en">
@@ -311,7 +290,6 @@ function sendVerification($email, $verificationCode, $firstName)
         </html>
         ';
 
-        // 6. Set the Plain Text Fallback
         $mail->AltBody = "Your verification code is: $verificationCode. We've also attached a welcome guide.";
 
         $mail->send();
