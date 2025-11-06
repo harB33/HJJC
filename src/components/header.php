@@ -8,16 +8,15 @@
     <script src="./script/script.js" defer></script>
 </head>
 <body data-theme="light">
-    <header
-        class="shadow sticky top-0 bg-white w-screen p-2 flex justify-center items-center opacity-90 ">
-        <div class="flex items-center justify-between w-[90%]">
-            <a href="./index.php">
-                <img src="./image/logo.png" alt="logo" class="h-14" />
+    <header class="shadow fixed top-0 bg-white w-screen p-2 flex justify-center items-center opacity-90 px-6 backdrop-blur-2xl">
+        <div class="flex justify-between w-full">
+            <a href="./index.php" class="" >
+                <img src="./image/logo/Coffee_Logo.png" alt="logo" class="h-12 object-contain" />
             </a>
-            <div class="flex items-center gap-4 ">
-                <label class="input rounded-full">
+            <div class="flex items-center gap-4 w-full  justify-end">
+                <label class="input rounded-full w-[50%]">
                     <svg
-                        class="h-[1em] opacity-50"
+                        class="h-[1em] opacity-50 "
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24">
                         <g
@@ -30,28 +29,47 @@
                             <path d="m21 21-4.3-4.3"></path>
                         </g>
                     </svg>
-                    <input type="search" required placeholder="Search" />
+                    <input type="search" required placeholder="Explore" />
                 </label>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
+                    stroke-width="1"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="lucide lucide-shopping-bag-icon lucide-shopping-bag h-10">
+                    class="lucide lucide-shopping-bag-icon lucide-shopping-bag  h-10 max-sm:hidden">
                     <path d="M16 10a4 4 0 0 1-8 0" />
                     <path d="M3.103 6.034h17.794" />
                     <path
                         d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
                 </svg>
+                <div class="drawer drawer-end w-fit ">
+                    <input id="my-drawer-5" type="checkbox" class="drawer-toggle" />
+                    <div class="drawer-content">
+                        <label for="my-drawer-5" class="drawer-button "><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu size-7"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></label>
+                    </div>
+                    <div class="drawer-side backdrop-blur-2xl">
+                        <label for="my-drawer-5" aria-label="close sidebar" class="drawer-overlay"></label>
+                        <ul class="menu bg-base-200 rounded-box w-56  min-h-screen backdrop-blur-2xl">
+                            <li>
+                                <h2 class="menu-title">HJJC</h2>
+                                <ul>
+                                <li><a>ORDER NOW</a></li>
+                                <li><a href="./about.php">ABOUT US</a></li>
+                                <li><a>CONTACT US</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <?php
-                include './db/sessionStart.php';
+                // include './db/sessionStart.php';
                 include './db/db.php';
                 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == True) {
                     echo '
-                        <div class="dropdown dropdown-center" >
+                        <div class="dropdown dropdown-center hidden" >
                             <div tabindex="0" role="button" class="m-1 cursor-pointer">
                             <svg   
                                 xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +104,7 @@
                         ';
                 } else {
                     echo '
-                    <div class="dropdown dropdown-center">
+                    <div class="dropdown dropdown-center hidden">
                         <div tabindex="0" role="button" class=" m-1" id="accountIcon">
                             <svg    
                                 xmlns="http://www.w3.org/2000/svg"

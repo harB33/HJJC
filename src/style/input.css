@@ -18,11 +18,11 @@
     --font-giaza: "giaza", sans-serif;
     --font-poppins: "Poppins", sans-serif;
     --font-sans: var(--font-poppins);
-    --color-custom-text: #040406;
-    --color-custom-background: #fcfcfd;
-    --color-custom-primary: #3139e3;
-    --color-custom-secondary: #a6a9d3;
-    --color-custom-accent: #e561b9;
+    --color-custom-text: #0f0c09;
+    --color-custom-background: #f9f6f3;
+    --color-custom-primary: #bf8343;
+    --color-custom-secondary: #e6bf95;
+    --color-custom-accent: #e69c4d;
 }
 
 /* --text: #f9f9fb;
