@@ -2,12 +2,10 @@
 include("../db/sessionStart.php");
 include("../db/db.php");
 
-$_SESSION['customer_id'] = $customer_id;
-
 if (isset($_POST['remove']) && isset($_SESSION['customer_id'])) {
 
     $product_id = $_POST['remove'];
-    $user_id = $_SESSION['customer_id'];
+    $customer_id = $_SESSION['customer_id'];
 
     $sql = "DELETE FROM cart WHERE product_id = ? AND customer_id = ?";
 
@@ -16,7 +14,7 @@ if (isset($_POST['remove']) && isset($_SESSION['customer_id'])) {
     if ($stmt === false) {
         die("Prepare failed: " . $conn->error);
     }
-    $stmt->bind_param("ii", $product_id, $user_id);
+    $stmt->bind_param("ii", $product_id, $customer_id);
 
     if ($stmt->execute()) {
         if ($stmt->affected_rows > 0) {

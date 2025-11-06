@@ -2,9 +2,9 @@
 include("./db/sessionStart.php");
 include("./db/db.php");
 
+$sql = "INSERT INTO ";
+
 $user = $_SESSION['customer_user'];
-// $id = "SELECT customer_id FROM users WHERE customer_user = '$user'";
-// $res = $conn->query($id);
 $sql_user = "SELECT customer_id FROM users WHERE customer_user = ?";
 $stmt_user = $conn->prepare($sql_user);
 $stmt_user->bind_param("s", $user);
@@ -66,7 +66,8 @@ if ($result === false) {
                             <div class="flex flex-col justify-evenly">
                                 <p class="font-extrabold text-xl" >₱<?= number_format($row['price'], 2); ?></p>
                                 <form action="./functions/remove_item.php" method="post">
-                                    <button type="submit" name="remove" value="<?= $product['product_id']; ?>">Remove</button>
+                                    <input type="hidden" name="remove" value="<?= $product['product_id']; ?>">
+                                    <button type="submit">Remove</button>
                                 </form>
                             </div>
                         </div>
