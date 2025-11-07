@@ -12,12 +12,10 @@ if (!isset($_SESSION['customer_user'])) {
 }
 
 // 4. VALIDATION AND VARIABLE RETRIEVAL
-
-// --- THIS IS THE FIX ---
-// Changed from $_GET to $_POST to match your form
 if (!isset($_POST['product_id']) || empty($_POST['product_id'])) {
     die("Error: Product ID is missing. Cannot add to cart.");
 }
+
 // We cast to (int) to sanitize it as a number
 $product_id = (int)$_POST['product_id'];
 // --- END OF FIX ---
@@ -27,7 +25,14 @@ if ($product_id <= 0) {
     die("Error: Invalid Product ID.");
 }
 
-// --- RETRIEVE CUSTOMER ID ---
+$sql_check_product = "SELECT product_id FROM products WHERE product_id = ?";
+$stmt_check = $conn->prepare($sql_check_product);
+$stmt_check->bind_param("i", $product_id);
+$stmt_check->execute();
+if ($stmt_check->get_result()->num_rows === 0) {
+    die("Error: Product does not exist.");
+}
+$stmt_check->close();
 
 $user_identifier = $_SESSION['customer_user'];
 
@@ -48,36 +53,37 @@ if (empty($customer_id)) {
 
 // --- ADD TO CART LOGIC ---
 
-// REQUIREMENT: This requires a UNIQUE constraint on the (customer_id, product_id) columns.
-// If you don't have one, run this in your database:
-// ALTER TABLE cart ADD UNIQUE KEY `customer_product` (`customer_id`, `product_id`);
+$quantity = isset($_POST['quantity']) && !empty($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
+if ($quantity <= 0) $quantity = 1;
 
-if (!isset($_POST['quantity']) || empty($_POST['quantity'])) {
-    $quantity = 1; // Default to 1 if the form didn't send a quantity
+$check_sql = "SELECT cart_id, quantity FROM cart WHERE customer_id = ? AND product_id = ?";
+$check_stmt = $conn->prepare($check_sql);
+$check_stmt->bind_param("ii", $customer_id, $product_id);
+$check_stmt->execute();
+$result = $check_stmt->get_result();
+
+if ($result->num_rows > 0) {
+    // Item exists: Update quantity
+    $row = $result->fetch_assoc();
+    $new_quantity = $row['quantity'] + $quantity;
+    $update_sql = "UPDATE cart SET quantity = ? WHERE cart_id = ?";
+    $update_stmt = $conn->prepare($update_sql);
+    $update_stmt->bind_param("ii", $new_quantity, $row['cart_id']);
+    $update_stmt->execute();
+    $update_stmt->close();
 } else {
-    // Sanitize and ensure it's a safe integer
-    $quantity = (int)$_POST['quantity'];
-    // Basic check: Ensure quantity is at least 1
-    if ($quantity <= 0) {
-        $quantity = 1;
-    }
-} // Default quantity to add
-
-$insert_sql = " INSERT INTO cart (customer_id, product_id, quantity) 
-                VALUES (?, ?, ?)";
-
-$insert_stmt = $conn->prepare($insert_sql);
-$insert_stmt->bind_param("iii", $customer_id, $product_id, $quantity);
-
-// Execute the query
-if ($insert_stmt->execute()) {
-    // Success! Redirect back to the cart page.
-    header("Location: ../cart.php");
-    exit();
-} else {
-    // This will catch the original foreign key error if $product_id doesn't exist in the 'products' table
-    die("Error adding to cart: " . $insert_stmt->error);
+    // Item doesn't exist: Insert new row
+    $insert_sql = "INSERT INTO cart (customer_id, product_id, quantity) VALUES (?, ?, ?)";
+    $insert_stmt = $conn->prepare($insert_sql);
+    $insert_stmt->bind_param("iii", $customer_id, $product_id, $quantity);
+    $insert_stmt->execute();
+    $insert_stmt->close();
 }
 
-$insert_stmt->close();
+$check_stmt->close();
+
+// Execute the query
+header("Location: ../cart.php?status=added");
+exit();
+
 $conn->close();

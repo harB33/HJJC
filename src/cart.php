@@ -2,8 +2,6 @@
 include("./db/sessionStart.php");
 include("./db/db.php");
 
-$sql = "INSERT INTO ";
-
 $user = $_SESSION['customer_user'];
 $sql_user = "SELECT customer_id FROM users WHERE customer_user = ?";
 $stmt_user = $conn->prepare($sql_user);
@@ -18,7 +16,7 @@ $row = $res->fetch_assoc();
 $customer_id = $row['customer_id'];
 $_SESSION['customer_id'] = $customer_id;
 
-$sql_cart =" SELECT c.product_id, c.customer_id, p.*
+$sql_cart =" SELECT c.cart_id, c.product_id, c.customer_id, p.*
 FROM cart c
 JOIN products p ON c.product_id = p.product_id
 WHERE c.customer_id = ?";
@@ -31,6 +29,13 @@ $result = $stmt_cart->get_result();
 if ($result === false) {
     die("❌ **CART QUERY FAILED!** Check your SQL syntax or column names: " . mysqli_error($conn));
 }
+
+// $total = 0;
+// $cart_items = [];
+// while ($row = $result->fetch_assoc()) {
+//     $cart_items[] = $row;
+//     $total += $row['price'] * $row['quantity'];
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
@@ -66,8 +71,8 @@ if ($result === false) {
                             <div class="flex flex-col justify-evenly">
                                 <p class="font-extrabold text-xl" >₱<?= number_format($row['price'], 2); ?></p>
                                 <form action="./functions/remove_item.php" method="post">
-                                    <input type="hidden" name="remove" value="<?= $product['product_id']; ?>">
-                                    <button type="submit">Remove</button>
+                                    <input type="hidden" name="remove" value="<?= $row['cart_id']; ?>">
+                                    <button type="submit" class="btn btn-sm btn-error">Remove</button>
                                 </form>
                             </div>
                         </div>
