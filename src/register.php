@@ -201,18 +201,18 @@ $conn->close();
 </head>
 
 <body>
-    <div class="place-items-center">
-        <div class="flex flex-col gap-4 justify-center items-center h-screen w-full border-r-2 border-[#0A1829]">
-            <div class="size-30 rounded-full p-2 shadow-[0px_0px_1px_2px] grid place-items-center">
-                <img src="./image/logo/logo-trans.png" alt="logo">
+    <div class="grid place-items-center">
+        <div class="flex flex-col gap-2 justify-center items-center h-screen w-full border-r-2 border-[#0A1829]">
+            <div class="size-35 rounded-full  grid place-items-center ">
+                <img src="./image/logo/Coffee_Logo.png" alt="logo">
             </div>
-            <h1 class="font-black text-5xl mb-8">CREATE YOUR ACCOUNT</h1>
-            <form action="./register.php" method="post" class="flex flex-col gap-4 w-1/2 justify-center items-center">
+            <h1 class="font-black text-3xl mb-8">CREATE YOUR ACCOUNT</h1>
+            <form action="./register.php" method="post" class="flex flex-col gap-2 w-3/4 justify-center items-center">
                 <?php
                 if ($_SESSION['registration'] == true) {
                     echo '
-                <label class="input validator input-lg rounded-full w-3/4 floating-label">
-                    <span class="left-8 text-xl">Username</span>
+                <label class="input validator input-lg rounded-full w-full floating-label">
+                    <span class="left-8 text-lg">Username</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                             stroke-linejoin="round"
@@ -225,6 +225,7 @@ $conn->close();
                         </g>
                     </svg>
                     <input
+                        class=" text-sm"
                         type="text"
                         required
                         placeholder="Username"
@@ -234,9 +235,9 @@ $conn->close();
                         title="Only letters, numbers or dash"
                         name="user" />
                 </label>
-                <div class="flex gap-4 w-3/4">
+                <div class="flex max-sm:flex-col gap-2 w-full">
                 <label class="group input validator input-lg rounded-full w-full floating-label">
-                    <span class="left-8 text-xl">Password</span>
+                    <span class="left-8 text-lg">Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
                         <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
@@ -244,6 +245,7 @@ $conn->close();
                     </g>
                     </svg>
                     <input
+                    class=" text-sm"
                     id="passwordInput"
                     type="password"
                     required
@@ -252,7 +254,6 @@ $conn->close();
                     pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                     name="pass" />
-                
                 <label class="swap opacity-0 pointer-events-none transition-opacity duration-300 group-focus-within:opacity-100 group-focus-within:pointer-events-auto" id="toggleLabel">
                     <input type="checkbox" id="toggleCheckbox"  tabindex="-1"/>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off swap-off">
@@ -268,7 +269,7 @@ $conn->close();
                     </label>
                 </label>
                 <label class="group input validator input-lg rounded-full w-full floating-label">
-                    <span class="left-8 text-xl">Confirm Password</span>
+                    <span class="left-8 text-lg">Confirm Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
                         <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
@@ -276,6 +277,7 @@ $conn->close();
                     </g>
                     </svg>
                     <input
+                    class=" text-sm"
                     id="confirmPasswordInput"
                     type="password"
                     required
@@ -300,8 +302,8 @@ $conn->close();
                     </label>
                 </label>
                 </div>
-                    <label class="input validator input-lg rounded-full w-3/4 floating-label">
-                        <span class="left-8 text-xl">First Name</span>
+                    <label class="input validator input-lg rounded-full w-full floating-label">
+                        <span class="left-8 text-lg">First Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
                                 stroke-linejoin="round"
@@ -314,6 +316,7 @@ $conn->close();
                             </g>
                         </svg>
                         <input
+                            class=" text-sm"
                             type="text"
                             required
                             placeholder="First Name"
@@ -323,8 +326,8 @@ $conn->close();
                             title="Only letters and single spaces between words"
                             name="first_name" />
                     </label>
-                    <label class="input validator input-lg rounded-full w-3/4 floating-label">
-                        <span class="left-8 text-xl">Last Name</span>
+                    <label class="input validator input-lg rounded-full w-full floating-label">
+                        <span class="left-8 text-lg">Last Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
                                 stroke-linejoin="round"
@@ -337,6 +340,7 @@ $conn->close();
                             </g>
                         </svg>
                         <input
+                            class=" text-sm"
                             type="text"
                             required
                             placeholder="Last Name"
@@ -346,8 +350,8 @@ $conn->close();
                             title="Only letters"
                             name="last_name" />
                     </label>
-                    <label class="input validator input-lg rounded-full w-3/4 floating-label">
-                        <span class="left-8 text-xl">Middle Name</span>
+                    <label class="input validator input-lg rounded-full w-full floating-label">
+                        <span class="left-8 text-lg">Middle Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
                                 stroke-linejoin="round"
@@ -360,6 +364,7 @@ $conn->close();
                             </g>
                         </svg>
                         <input
+                            class=" text-sm"
                             type="text"
                             placeholder="Middle Name"
                             pattern="[A-Za-z]*"
@@ -368,8 +373,8 @@ $conn->close();
                             title="Only letters"
                             name="middle_name" />
                     </label>
-                <label class="input validator input-lg rounded-full w-3/4 floating-label">
-                    <span class="left-8 text-xl">Email</span>
+                <label class="input validator input-lg rounded-full w-full floating-label">
+                    <span class="left-8 text-lg">Email</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                             stroke-linejoin="round"
@@ -381,10 +386,10 @@ $conn->close();
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                         </g>
                     </svg>
-                    <input type="email" name="email" placeholder="mail@site.com" required />
+                    <input type="email" class=" text-sm" name="email" placeholder="mail@site.com" required />
                 </label>
-                <label class="input validator input-lg rounded-full w-3/4 floating-label">
-                    <span class="left-8 text-xl">Phone Number</span>
+                <label class="input validator input-lg rounded-full w-full floating-label">
+                    <span class="left-8 text-lg">Phone Number</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                         <g fill="none">
                             <path
@@ -397,14 +402,14 @@ $conn->close();
                                 fill="currentColor"></path>
                         </g>
                     </svg>
-                    <input type="tel" name="phone" placeholder="0900-000-0000" required />
+                    <input type="tel" name="phone" class=" text-sm" placeholder="0900-000-0000" required />
                 </label>
-                <input type="submit" class="btn rounded-full w-3/4 btn-lg  border text-[20px]" name="register" value="REGISTER">
+                <input type="submit" class="btn rounded-full w-full btn-lg  border text-[20px]" name="register" value="REGISTER">
                 ';
                 } else {
                     echo '
                     <label class="input validator input-lg rounded-full w-3/4 floating-label">
-                    <span class="left-8 text-xl">Verification Code</span>
+                    <span class="left-8 text-lg">Verification Code</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                             stroke-linejoin="round"
@@ -431,7 +436,7 @@ $conn->close();
                 }
                 ?>
             </form>
-            <a href="./login.php" class="hover:underline">Already Have an Account? Login</a>
+            <a href="./login.php" class="hover:underline text-sm">Already Have an Account? Login</a>
             <div class=" w-fit gap-2 flex-col flex min-h-30">
                 <?php
                 echo $alert_html_output;

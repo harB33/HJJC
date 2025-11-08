@@ -69,17 +69,17 @@ function userAndPassCorrect()
 </head>
 
 <body>
-    <div class="grid grid-cols-[45%_55%] place-items-center ">
+    <div class="grid sm:grid-cols-[45%_55%] place-items-center ">
         <div class="flex flex-col gap-4 justify-center items-center h-screen w-full border-r-2 border-[#0A1829]">
-            <div class="size-30 rounded-full shadow-[0px_0px_1px_2px] grid place-items-center p-2">
-                <img src="./image/logo/logo-trans.png" alt="logo">
+            <div class="size-35 rounded-full  grid place-items-center ">
+                <img src="./image/logo/Coffee_Logo.png" alt="logo">
             </div>
             <div class="mb-8 text-center">
-                <h1 class="font-black text-5xl ">Hello Shopper!</h1>
-                <p class="text-2xl font-extralight">Let's get you back to your cart.</p>
+                <h1 class="font-black text-4xl ">Hello Shopper!</h1>
+                <p class="text-xl font-extralight">Let's get you back to your cart.</p>
             </div>
-            <form action="./login.php" method="post" class="flex flex-col gap-4 justify-center items-center w-3/4">
-                <label class="input validator input-lg rounded-full w-3/4 floating-label">
+            <form action="./login.php" method="post" class="flex flex-col gap-2 justify-center items-center w-3/4">
+                <label class="input validator input-lg rounded-full w-full floating-label">
                     <span class="text-xl left-8">Username</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
@@ -88,6 +88,7 @@ function userAndPassCorrect()
                         </g>
                     </svg>
                     <input
+                        class=" text-sm"
                         type="text"
                         required
                         placeholder="Username"
@@ -97,7 +98,7 @@ function userAndPassCorrect()
                         title="Only letters, numbers or dash"
                         name="user" />
                 </label>
-                <label class="group input validator input-lg rounded-full w-3/4 floating-label">
+                <label class="group input validator input-lg rounded-full w-full floating-label">
                     <span class="text-xl left-8">Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
@@ -105,7 +106,8 @@ function userAndPassCorrect()
                             <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
                         </g>
                     </svg>
-                    <input
+                    <input  
+                        class=" text-sm"
                         id="passwordInput"
                         type="password"
                         required
@@ -126,20 +128,20 @@ function userAndPassCorrect()
                         </svg>
                     </label>
                 </label>
-                <label class="flex items-center gap-2 w-3/4">
+                <label class="flex items-center gap-2 w-full">
                     <input type="checkbox" checked="checked" class="checkbox" />
-                    <h1 class="">Remember Me</h1>
+                    <h1 class="text-sm">Remember Me</h1>
                 </label>
-                <input type="submit" class="btn rounded-full w-3/4 btn-lg border text-[20px]" name="login" value="LOGIN">
+                <input type="submit" class="btn rounded-full w-full btn-lg border text-[20px]" name="login" value="LOGIN">
             </form>
-            <a href="./register.php" class="hover:underline">Don't Have an Account? Register</a>
+            <a href="./register.php" class="hover:underline text-sm">Don't Have an Account? Register</a>
             <div class=" w-fit gap-2 flex-col flex min-h-30">
                 <?php
                 echo $alert_html_output;
                 ?>
             </div>
         </div>
-        <?php include './components/loginAnimation.html' ?>
+        <!-- <?php include './components/loginAnimation.html' ?> -->
     </div>
     </div>
 </body>

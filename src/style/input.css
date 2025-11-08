@@ -81,7 +81,7 @@
 .my-popUp {
     animation: popUp both;
     animation-timeline: view();
-    animation-range: 60% cover 70%;
+    animation-range: 25% cover 30%;
 }
 .my-loginImgAnimation {
     animation: loginImgAnimation infinite 45s linear alternate;
@@ -145,7 +145,7 @@
 }
 @keyframes moveDown {
     from {
-        transform: translateY(400px);
+        transform: translateY(800px);
         scale: 0;
     }
     to {
@@ -163,9 +163,6 @@
 }
 @keyframes popUp {
     0% {
-        transform: scale(0);
-    }
-    75% {
         transform: scale(0);
     }
     100% {
