@@ -1,3 +1,8 @@
+<?php
+include './db/sessionStart.php';
+
+?>
+
 <head>
     <link
         href="https://cdn.jsdelivr.net/npm/daisyui@5"
@@ -14,7 +19,7 @@
             <a href="./index.php" class="">
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="h-12 object-contain" />
             </a>
-            <div class="flex items-center gap-4 w-full  justify-end ">
+            <div class="flex items-center gap-2 w-full  justify-end ">
                 <label class="input rounded-full h-[70%] w-[50%] outline-0 bg-custom-secondary/75">
                     <svg
                         class="h-[1em] opacity-50 "
@@ -57,7 +62,7 @@
                     </div>
                     <div class="drawer-side backdrop-blur-2xl">
                         <label for="my-drawer-5" aria-label="close sidebar" class="drawer-overlay backdrop-blur-2xl"></label>
-                        <ul class="menu bg-custom-secondary rounded-box w-56  min-h-screen backdrop-">
+                        <ul class="menu bg-custom-secondary rounded-box w-56 sm:w-100  min-h-screen backdrop-">
                             <li>
                                 <h2 class="menu-title">
                                     <?php
@@ -79,7 +84,12 @@
                             // include './db/db.php';
                             if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == True) {
                                 echo '
-                                    <li><a>LOGOUT</a></li>
+                                    <li class="p-2">
+                                        <a href="./functions/logout.php" class=" shadow-custom-primary outline-none border-none flex items-center w-full p-2 bg-custom-accent">
+                                            <div class="opacity-65"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in-icon lucide-log-in"><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></div>
+                                            <div class="font-bold text-lg opacity-65">LOGOUT</div>
+                                        </a>
+                                    </li>
                                 ';
                             } else {
                                 echo '

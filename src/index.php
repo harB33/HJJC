@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light" class=" overflow-x-clip">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,13 +14,14 @@
     <link rel="stylesheet" href="./style/output.css" />
     <script src="./script/accountLogo.js" defer></script>
 </head>
+
 <body class="w-screen overflow-x-clip min-h-screen">
-        <?php include './components/header.php'; ?>
+    <?php include './components/header.php'; ?>
     <section class="flex flex-col items-center text-center w-full overflow-clip ">
         <div class="h-screen w-full ">
-        <video class="w-full h-full object-cover brightness-25" autoplay loop muted>
-            <source src="../image/1107.mp4">
-        </video>
+            <video class="w-full h-full object-cover brightness-25" autoplay loop muted>
+                <source src="./image/1107.mp4">
+            </video>
         </div>
         <section id="title" class=" font-light h-screen w-full flex flex-col p-8 overflow-clip justify-center items-center absolute z-20">
             <div class=" w-full flex flex-col items-center justify-center z-10 mb-8 grow ">
@@ -30,7 +32,10 @@
                 <div class="flex justify-center flex-col items-center">
                     <h1 class="font-extralight text-xs sm:text-xl my-fadeOutText z-1"></h1>
                     <span class="arrow mt-">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-icon lucide-arrow-down stroke-white"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-icon lucide-arrow-down stroke-white">
+                            <path d="M12 5v14" />
+                            <path d="m19 12-7 7-7-7" />
+                        </svg>
                     </span>
                 </div>
             </div>
@@ -52,20 +57,7 @@
                     <h1 class="font-giaza font-black text-2xl mb-6">A Brew to Define Your Day.</h1>
                     <p class=" font-light text-md">Fuel your pursuit of perfection. From robust classics to nuanced single-origins, our menu offers an exquisite beverage to satisfy your distinct taste.</p>
                 </div>
-                <div class=" flex flex-col h-3/5 w-full justify-center items-center ">
-                    <img src="./image/design.png" alt="" class="size-60 object-contain translate-y-15">
-                    <div class="bg-custom-secondary rounded-2xl h-3/5 flex flex-col items-center justify-center w-[80%] ">
-                        <div class="flex items-end h-1/2 w-full justify-center">
-                            <h1 class=" font-black text-2xl text-custom-primary">Caramel Machiato</h1>
-                        </div>
-                        <div class="flex justify-evenly w-full p-10 h-1/2">
-                            <h1>Coffee</h1>
-                            <h1>Ice</h1>
-                        </div>
-                    </div>
-                </div>                
-                <a href="">Discover the Pinnacle.</a>
-            </div>
+
         </section>
         <section class="my-fadeInFooter z-10">
             <?php include './components/footer.html'; ?>
