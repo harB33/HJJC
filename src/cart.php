@@ -16,7 +16,7 @@ $row = $res->fetch_assoc();
 $customer_id = $row['customer_id'];
 $_SESSION['customer_id'] = $customer_id;
 
-$sql_cart =" SELECT c.cart_id, c.product_id, c.customer_id, p.*
+$sql_cart =" SELECT c.cart_id, c.product_id, c.customer_id, c.quantity, p.*
 FROM cart c
 JOIN products p ON c.product_id = p.product_id
 WHERE c.customer_id = ?";
@@ -30,12 +30,12 @@ if ($result === false) {
     die("❌ **CART QUERY FAILED!** Check your SQL syntax or column names: " . mysqli_error($conn));
 }
 
-// $total = 0;
-// $cart_items = [];
-// while ($row = $result->fetch_assoc()) {
-//     $cart_items[] = $row;
-//     $total += $row['price'] * $row['quantity'];
-// }
+$total = 0;
+$cart_items = [];
+while ($row = $result->fetch_assoc()) {
+    $cart_items[] = $row;
+    $total += $row['price'] * $row['quantity'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
