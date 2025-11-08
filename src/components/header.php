@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="./style/output.css" />
     <script src="./script/script.js" defer></script>
 </head>
-<body data-theme="light" class="backdrop-blur-lg bg-white/90">
-    <header class="shadow fixed top-0 w-screen p-2 flex justify-center items-center px-6 backdrop-blur-lg bg-white/90  z-50">
+<body data-theme="light" class="backdrop-blur-lg">
+    <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center px-6 bg-custom-primary/50 backdrop-blur-sm">
         <div class="flex justify-between w-full">
             <a href="./index.php" class="" >
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="h-12 object-contain" />
             </a>
-            <div class="flex items-center gap-4 w-full  justify-end">
-                <label class="input rounded-full w-[50%]">
+            <div class="flex items-center gap-4 w-full  justify-end ">
+                <label class="input rounded-full w-[50%] outline-0 bg-custom-primary/50">
                     <svg
                         class="h-[1em] opacity-50 "
                         xmlns="http://www.w3.org/2000/svg"

@@ -81,7 +81,7 @@
 .my-popUp {
     animation: popUp both;
     animation-timeline: view();
-    animation-range: 0% cover 20%;
+    animation-range: 60% cover 70%;
 }
 .my-loginImgAnimation {
     animation: loginImgAnimation infinite 45s linear alternate;
@@ -90,6 +90,16 @@
         animation: loginImgAnimation infinite 45s linear alternate;
         animation-direction: reverse;
     }
+}
+.my-moveTop {
+    animation: moveTop both;
+    animation-timeline: view();
+    animation-range: 1% cover 25%;
+}
+.my-moveDown {
+    animation: moveDown both;
+    animation-timeline: view();
+    animation-range: 35% cover 45%;
 }
 @keyframes rotateAnimation {
     from {
@@ -125,6 +135,24 @@
         transform: translateY(0px);
     }
 }
+@keyframes moveTop {
+    from {
+        transform: translateY(-300px);
+    }
+    to {
+        transform: translateY(0px);
+    }
+}
+@keyframes moveDown {
+    from {
+        transform: translateY(400px);
+        scale: 0;
+    }
+    to {
+        transform: translateY(0px);
+        scale: 1;
+    }
+}
 @keyframes moveIn {
     from {
         transform: translateX(-1000px);
@@ -134,10 +162,13 @@
     }
 }
 @keyframes popUp {
-    from {
-        transform: scale(0.2);
+    0% {
+        transform: scale(0);
     }
-    to {
+    75% {
+        transform: scale(0);
+    }
+    100% {
         transform: scale(1);
     }
 }

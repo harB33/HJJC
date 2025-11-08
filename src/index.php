@@ -13,18 +13,16 @@
     <link rel="stylesheet" href="./style/output.css" />
     <script src="./script/accountLogo.js" defer></script>
 </head>
-<body class="w-screen overflow-x-clip min-h-screen bg-custom-background">
-    <div class="fixed top-0 z-50 bg-white/90 w-full backdrop-blur-sm">
+<body class="w-screen overflow-x-clip min-h-screen">
         <?php include './components/header.php'; ?>
-    </div>
     <section class="flex flex-col items-center text-center w-full overflow-clip ">
         <div class="h-screen w-full ">
         <video class="w-full h-full object-cover brightness-25" autoplay loop muted>
-            <source src="./image/1107.mp4">
+            <source src="../image/1107.mp4">
         </video>
         </div>
         <section id="title" class=" font-light h-screen w-full flex flex-col p-8 overflow-clip justify-center items-center absolute z-20">
-            <div class=" w-full flex flex-col items-center justify-center z-10 mb-8 grow">
+            <div class=" w-full flex flex-col items-center justify-center z-10 mb-8 grow ">
                 <h1 class="font-giaza font-black text-2xl z-1 text-custom-primary">Define Your Standard.</h1>
                 <h1 class=" font-light text-md text-custom-background/75">Relentless perfection. We transform the world's finest ingredients into exquisite beverages that redefine your standard.</h1>
             </div>
@@ -37,17 +35,33 @@
                 </div>
             </div>
         </section>
-        <section class="flex flex-col h-[80vh] px-6 w-full justify-center bg-custom-secondary/10 items-center  z-10">
-            <div class="flex flex-col items-center ">
+        <section class="flex flex-col h-[90dvh] px-6 w-full pt-20 bg-custom-secondary/10 items-center  z-10">
+            <div class="flex flex-col items-center my-moveDown">
                 <h1 class="font-giaza font-black text-2xl mb-6">The Standard Has Arrived.</h1>
                 <p class=" font-light text-md mb-2">HJJC is proud to introduce an unparalleled coffee experience to the Philippines. We are defined by a relentless pursuit of perfection. Our baristas transform the world's finest ingredients into exquisite beverages that stimulate the senses and redefine your expectations.</p>
                 <p class=" font-light text-md">Discover the new pinnacle of taste.</p>
             </div>
+            <div class="my-popUp z-20">
+                <div class="animate-bounce text-orange-400 -rotate-10 translate-y-40 -translate-x-20 text-xl font-black  bg-black/80 p-1.5 rounded-2xl">Caramel Machiato!</div>
+            </div>
+            <img src="./image/design.png" alt="" class=" my-moveTop">
         </section>
         <section class="flex flex-col h-[80vh] px-6 w-full justify-center bg-custom-secondary/20 items-center  z-10">
-            <div class="flex flex-col items-center ">
+            <div class="flex flex-col w-full justify-center h-full items-center ">
                 <h1 class="font-giaza font-black text-2xl mb-6">A Brew to Define Your Day.</h1>
                 <p class=" font-light text-md">Fuel your pursuit of perfection. From robust classics to nuanced single-origins, our menu offers an exquisite beverage to satisfy your distinct taste.</p>
+                <div class=" flex flex-col h-3/5 w-full justify-center items-center ">
+                    <img src="./image/design.png" alt="" class="size-60 object-contain translate-y-15">
+                    <div class="bg-custom-primary/60 rounded-2xl h-3/5 flex flex-col items-center justify-center w-[80%] ">
+                        <div class="flex items-end h-1/2 w-full justify-center">
+                            <h1 class=" font-black text-2xl">Caramel Machiato</h1>
+                        </div>
+                        <div class="flex justify-between w-full p-10 h-1/2">
+                            <h1>Coffee</h1>
+                            <h1>Ice</h1>
+                        </div>
+                    </div>
+                </div>                
             </div>
         </section>
         <section class="my-fadeInFooter z-10">
