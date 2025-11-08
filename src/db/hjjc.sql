@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2025 at 11:38 PM
+-- Generation Time: Nov 07, 2025 at 02:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -51,25 +51,6 @@ CREATE TABLE `cart` (
   `quantity` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cart_id`, `customer_id`, `product_id`, `quantity`, `created_at`) VALUES
-(1, 1, 3, 0, '2025-11-03 04:32:13'),
-(2, 1, 3, 0, '2025-11-03 04:33:29'),
-(3, 3, 3, 0, '2025-11-06 01:46:27'),
-(4, 3, 3, 0, '2025-11-06 01:47:15'),
-(5, 3, 3, 0, '2025-11-06 01:47:30'),
-(6, 3, 3, 0, '2025-11-06 01:55:16'),
-(7, 1, 3, 0, '2025-11-06 10:19:58'),
-(8, 1, 3, 0, '2025-11-06 10:31:07'),
-(9, 1, 3, 0, '2025-11-06 11:16:55'),
-(10, 1, 3, 0, '2025-11-06 11:19:53'),
-(11, 1, 3, 0, '2025-11-06 12:31:40'),
-(12, 1, 3, 0, '2025-11-06 13:51:07'),
-(13, 1, 3, 1, '2025-11-06 21:45:03');
 
 -- --------------------------------------------------------
 
@@ -192,7 +173,7 @@ ALTER TABLE `address`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`cart_id`),
-  ADD KEY `customer_id` (`customer_id`),
+  ADD UNIQUE KEY `customer_product` (`customer_id`,`product_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
@@ -245,7 +226,7 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `category`
