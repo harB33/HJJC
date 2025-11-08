@@ -56,17 +56,34 @@
                             <li>
                                 <h2 class="menu-title">HJJC</h2>
                                 <ul>
-                                <li><a>ORDER NOW</a></li>
-                                <li><a href="./about.php">ABOUT US</a></li>
-                                <li><a>CONTACT US</a></li>
+                                    <li><a>ORDER NOW</a></li>
+                                    <li><a href="./about.php">ABOUT US</a></li>
+                                    <li><a>CONTACT US</a></li>
+                                    
                                 </ul>
                             </li>
+                            <?php
+                                    include './db/db.php';
+                                    if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == True) {
+                                    echo '
+                                        <li><a>LOGOUT</a></li>
+                                    ';
+                                    }else {
+                                    echo '
+                                        <li class="">
+                                            <a href="./login.php" class="btn flex justify-between w-full p-2">
+                                                <div class="shrink"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in-icon lucide-log-in"><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></div>
+                                                <div class="grow bg-custom-accent">Log In</div>
+                                            </a>
+                                        </li>
+                                    ';
+                                    }
+                                    ?>
                         </ul>
                     </div>
                 </div>
                 <?php
                 // include './db/sessionStart.php';
-                include './db/db.php';
                 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == True) {
                     echo '
                         <div class="dropdown dropdown-center hidden" >
