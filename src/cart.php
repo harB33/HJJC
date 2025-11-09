@@ -55,7 +55,7 @@ while ($row = $result->fetch_assoc()) {
     </div>
     <section class="grid grid-cols-[70%_30%] justify-items-center">
         <div class="flex flex-col gap-4 w-full justify-center items-center">
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+            <?php foreach ($cart_items as $row): ?>
                 <div class=" w-[60%]">
                     <div class="flex p-4 bg-red-400 w-fit rounded-2xl gap-4">
                         <div class="size-[35%]">
@@ -89,7 +89,7 @@ while ($row = $result->fetch_assoc()) {
                         </div>
                     </a>
                 </div> -->
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </div>
         <div class="bg-red-400 h-3/5">
                 asd
