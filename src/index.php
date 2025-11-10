@@ -19,14 +19,14 @@
     <?php include './components/header.php'; ?>
     <section class="flex flex-col items-center text-center w-full overflow-clip ">
         <div class="h-screen w-full ">
-            <video class="w-full h-full object-cover brightness-25" autoplay loop muted>
+            <video class="w-full h-full object-cover brightness-50" autoplay loop muted>
                 <source src="./image/1107.mp4">
             </video>
         </div>
         <section id="title" class=" font-light h-screen w-full flex flex-col p-8 overflow-clip justify-center items-center absolute z-20">
             <div class=" w-full flex flex-col items-center justify-center z-10 mb-8 grow ">
                 <h1 class="font-giaza font-black text-2xl z-1 text-custom-accent">Define Your Standard.</h1>
-                <h1 class=" font-light text-md text-custom-background/75">Relentless perfection. We transform the world's finest ingredients into exquisite beverages that redefine your standard.</h1>
+                <h1 class=" font-light text-md text-custom-background/90">Relentless perfection. We transform the world's finest ingredients into exquisite beverages that redefine your standard.</h1>
             </div>
             <div>
                 <div class="flex justify-center flex-col items-center">

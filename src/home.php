@@ -35,11 +35,11 @@ $result = mysqli_query($conn, $sql);
     </div>
     <section class="flex flex-col items-center w-full">
         <section class="">
-            <div class="carousel w-full">
+            <div class="carousel w-full ">
                 <div id="slide1" class="carousel-item relative w-full">
                     <img
                         src="./image/banner.png"
-                        class="w-full" />
+                        class="w-full " />
                     <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                         <a href="#slide4" class="btn btn-circle">❮</a>
                         <a href="#slide2" class="btn btn-circle">❯</a>
@@ -76,40 +76,22 @@ $result = mysqli_query($conn, $sql);
         </section>
         <section class="flex flex-col justify-center items-center gap-12 w-3/4 m-24">
             <h1 class=" text-4xl font-black ">CATEGORIES</h1>
-            <div class="grid grid-cols-6 place-items-center w-fit gap-4">
-                <a href="#" class="size-45 border">Electronics & Gadgets</a>
-                <a href="#" class="size-45 border">Fashion & Apparel</a>
-                <a href="#" class="size-45 border">Home & Living</a>
-                <a href="#" class="size-45 border">Beauty & Personal Care</a>
-                <a href="#" class="size-45 border">Health & Wellness</a>
-                <a href="#" class="size-45 border">Baby & Kids</a>
-                <a href="#" class="size-45 border">Pet Supplies</a>
-                <a href="#" class="size-45 border">Sports & Outdoors</a>
-                <a href="#" class="size-45 border">Automotive & Tools</a>
-                <a href="#" class="size-45 border">Art & Stationery</a>
-                <a href="#" class="size-45 border">Books & Education</a>
-                <a href="#" class="size-45 border">Food & Beverages</a>
+            <div class="grid grid-cols-3 place-items-center w-fit gap-2">
+                <a href="#" class="size-25 sm:size-45 border">Coffee</a>
+                <a href="#" class="size-25 sm:size-45 border">Tea</a>
+                <a href="#" class="size-25 sm:size-45 border">Milk Tea</a>
             </div>
         </section>
         <section class=" w-full min-h-screen flex flex-col  items-center bg-custom-secondary/20">
             <section class="flex flex-col justify-center items-center w-3/4 m-24">
                 <h1 class=" text-4xl font-black m-4 my-fadeInCard">Just For You</h1>
                 <form class="flex flex-wrap gap-2 p-4">
-                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Electronics & Gadgets" />
-                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Fashion & Apparel" />
-                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Home & Living" />
-                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Beauty & Personal Care" />
-                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Health & Wellness" />
-                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Baby & Kids" />
-                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Pet Supplies" />
-                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Sports & Outdoors" />
-                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Automotive & Tools" />
-                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Art & Stationery" />
-                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Books & Education" />
-                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Food & Beverages" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Coffee" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Tea" />
+                    <input class="btn checked:bg-custom-primary/90 grow min-w-[15%] basis-[100px] " type="checkbox" name="frameworks" aria-label="Milk Tea" />
                     <input class="btn checked:bg-custom-primary/90 btn-square" type="reset" value="×" />
                 </form>
-                <section class="grid grid-cols-5 h-full gap-4 place-contents-center content-center w-fit">
+                <section class="grid grid-cols-2 h-full gap-4 place-contents-center content-center w-fit">
                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <div class="group flex flex-col p-4 h-fit hover:bg-linear-to-br from-custom-primary/15 to-color-custom-secondary/35 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                             <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">

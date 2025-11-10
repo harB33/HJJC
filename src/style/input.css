@@ -206,3 +206,9 @@
         transform: translateY(-7px);
     }
 }
+
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

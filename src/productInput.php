@@ -13,25 +13,6 @@ if (isset($_POST["finish"])) {
     $stock = $_POST['stock'] ?? null;
     $date = date("Y-m-d H:i:s");
 
-    // function uploadFile($fileInputName) {
-    //     if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === 0) {
-    //         $img_name = $_FILES[$fileInputName]['name'];
-    //         $tmp_name = $_FILES[$fileInputName]['tmp_name'];
-    //         $target_dir = "image/products/";
-    //         $target_file = $target_dir . basename($img_name);
-            
-    //         if (move_uploaded_file($tmp_name, $target_file)) {
-    //             return $img_name;
-    //         } else {
-    //             echo "Error uploading $fileInputName.";
-    //             exit;
-    //         }
-    //     } else {
-    //         echo "No file selected for $fileInputName.";
-    //         exit;
-    //     }
-    // }
-
     function uploadFile($fileInputName) {
         if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === UPLOAD_ERR_OK) {
     
@@ -177,18 +158,9 @@ if (isset($_POST["finish"])) {
                 <fieldset class="fieldset w-full">
                     <select class="select w-full" name="category_id" required>
                         <option disabled selected value="">Category ID</option>
-                        <option value="1">1 Electronics & Gadgets</option>
-                        <option value="2">2 Fashion & Apparel</option>
-                        <option value="3">3 Home & Living</option>
-                        <option value="4">4 Beauty & Personal</option>
-                        <option value="5">5 Health & Wellness</option>
-                        <option value="6">6 Baby & Kids</option>
-                        <option value="7">7 Pets Supplies</option>
-                        <option value="8">8 Sports & Outdoors</option>
-                        <option value="9">9 Automotive & Tools</option>
-                        <option value="10">10 Arts & Stationery</option>
-                        <option value="11">11 Books & Education</option>
-                        <option value="12">12 Food & Beverages</option>
+                        <option value="1">1 Coffee</option>
+                        <option value="2">2 Milk Tea</option>
+                        <option value="3">3 Frappe</option>
                     </select>
                 </fieldset>
                 <label class="floating-label ">

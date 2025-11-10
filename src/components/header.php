@@ -14,15 +14,15 @@ include './db/sessionStart.php';
 </head>
 
 <body data-theme="light" class="backdrop-blur-lg">
-    <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center px-6 bg-custom-accent/75 backdrop-blur-sm">
+    <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center px-6 bg-custom-background backdrop-blur-sm">
         <div class="flex justify-between w-full">
             <a href="./index.php" class="">
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="h-12 object-contain" />
             </a>
             <div class="flex items-center gap-2 w-full  justify-end ">
-                <label class="input rounded-full h-[70%] w-[50%] outline-0 bg-custom-secondary/75">
+                <label class="input rounded-full h-[70%] w-[50%] outline-0 bg-custom-background">
                     <svg
-                        class="h-[1em] opacity-50 "
+                        class="h-[1em]  stroke-custom-accent"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24">
                         <g
@@ -30,7 +30,7 @@ include './db/sessionStart.php';
                             stroke-linecap="round"
                             stroke-width="2.5"
                             fill="none"
-                            stroke="currentColor">
+                            stroke="">
                             <circle cx="11" cy="11" r="8"></circle>
                             <path d="m21 21-4.3-4.3"></path>
                         </g>
