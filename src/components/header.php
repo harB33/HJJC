@@ -14,7 +14,7 @@ include './db/sessionStart.php';
 </head>
 
 <body data-theme="light" class="backdrop-blur-lg">
-    <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center px-6 bg-custom-background backdrop-blur-sm">
+    <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center px-2.5 bg-custom-background backdrop-blur-sm">
         <div class="flex justify-between w-full">
             <a href="./index.php" class="">
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="h-12 object-contain" />
