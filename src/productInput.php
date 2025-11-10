@@ -55,15 +55,15 @@ if (isset($_POST["finish"])) {
     $product_img = uploadFile('product_img'); 
     
     $sql = "INSERT INTO products 
-            (product_name, price, product_img, product_desc, category_id, stock, created_at, updated_at) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            (product_name, price, product_img, product_desc, category_id, stock, created_at) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
 
         $stmt->bind_param(
-            "sdssiiss", 
+            "sdssiis", 
             $product_name,
             $price,
             $product_img,
@@ -71,7 +71,6 @@ if (isset($_POST["finish"])) {
             $category_id,
             $stock,
             $date,
-            $date
         );
 
         if ($stmt->execute()) {
