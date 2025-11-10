@@ -1,17 +1,149 @@
+<!-- <?php
+        include("./db/sessionStart.php");
+        include './db/db.php';
+
+        // Check for database connection failure immediately
+        if (!$conn || $conn->connect_error) {
+            die("Database connection failed: " . ($conn ? $conn->connect_error : 'Unknown error'));
+        }
+
+        // Get product ID from URL
+        $id = (int)$_GET['id'];
+        if ($id <= 0) {
+            die("Invalid Product ID.");
+        }
+
+        // Fetch product details
+        $result = $conn->query("SELECT * FROM products WHERE product_id=$id");
+        $product = $result->fetch_assoc();
+
+        // --- START: UNIFIED CUSTOMER ID LOGIC ---
+        $customer_id = 0; // Default for guests
+
+        if (isset($_SESSION['customer_user'])) {
+            $user_identifier = $_SESSION['customer_user'];
+
+            // Get customer ID from username
+            $stmt_get_id = $conn->prepare("SELECT customer_id FROM users WHERE customer_user = ?");
+            $stmt_get_id->bind_param("s", $user_identifier);
+            $stmt_get_id->execute();
+            $result_id = $stmt_get_id->get_result();
+
+            if ($row = $result_id->fetch_assoc()) {
+                $customer_id = (int)$row['customer_id'];
+            }
+            $stmt_get_id->close();
+        }
+        // --- END: UNIFIED CUSTOMER ID LOGIC ---
+
+        // --- HANDLE POST SUBMISSION (UPDATE/INSERT for +/- buttons) ---
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'], $_POST['action'])) {
+
+            // Only logged-in users can modify the cart
+            if ($customer_id > 0) {
+                $product_id = (int)$_POST['product_id'];
+                $action = $_POST['action'];
+
+                // Fetch current quantity from DB
+                $stmt = $conn->prepare("SELECT cart_id, quantity FROM cart WHERE customer_id = ? AND product_id = ?");
+                $stmt->bind_param("ii", $customer_id, $product_id);
+                $stmt->execute();
+                $res = $stmt->get_result();
+                $item = $res->fetch_assoc();
+                $stmt->close();
+
+                // Determine current quantity
+                $current_qty = $item ? (int)$item['quantity'] : 1;
+                $cart_id = $item ? $item['cart_id'] : null;
+
+                // Adjust quantity
+                if ($action === 'increase') {
+                    $current_qty++;
+                }
+                if ($action === 'decrease') {
+                    $current_qty = max(1, $current_qty - 1);
+                }
+
+                // Update or insert into cart
+                if ($cart_id) {
+                    $stmt = $conn->prepare("UPDATE cart SET quantity = ? WHERE cart_id = ?");
+                    $stmt->bind_param("ii", $current_qty, $cart_id);
+                } else {
+                    $stmt = $conn->prepare("INSERT INTO cart (customer_id, product_id, quantity) VALUES (?, ?, ?)");
+                    $stmt->bind_param("iii", $customer_id, $product_id, $current_qty);
+                }
+                $stmt->execute();
+                $stmt->close();
+            }
+
+            // Redirect to prevent form resubmission
+            header("Location: productPage.php?id=$id&cache_bust=" . time());
+            exit;
+        }
+
+        // --- FETCH CURRENT QUANTITY FOR PAGE DISPLAY ---
+        if ($customer_id == 0) {
+            $current_quantity = 1;
+        } else {
+            $stmt_qty = $conn->prepare("SELECT quantity FROM cart WHERE customer_id = ? AND product_id = ?");
+            $stmt_qty->bind_param("ii", $customer_id, $id);
+            $stmt_qty->execute();
+            $res_qty = $stmt_qty->get_result();
+
+            if ($row_qty = $res_qty->fetch_assoc()) {
+                $current_quantity = $row_qty['quantity'];
+            } else {
+                $current_quantity = 1;
+            }
+            $stmt_qty->close();
+        }
+        ?> -->
+
 <?php
 include("./db/sessionStart.php");
 include './db/db.php';
 
-$id = $_GET['id'];
-$result = $conn->query("SELECT * FROM products WHERE product_id='$id'");
+// Check for database connection failure immediately
+if (!$conn || $conn->connect_error) {
+    die("Database connection failed: " . ($conn ? $conn->connect_error : 'Unknown error'));
+}
+
+// Get product ID from URL
+$id = (int)$_GET['id'];
+if ($id <= 0) {
+    die("Invalid Product ID.");
+}
+
+// Fetch product details
+$result = $conn->query("SELECT * FROM products WHERE product_id=$id");
 $product = $result->fetch_assoc();
 
-if (!isset($_SESSION['customer_id']) || $_SESSION['customer_id'] == 0) {
-    $current_quantity = 0; // guest, cannot persist
-} else {
-    $customer_id = $_SESSION['customer_id'];
+// --- START: UNIFIED CUSTOMER ID LOGIC ---
+$customer_id = 0; // Default for guests
 
-    // fetch current quantity from DB
+if (isset($_SESSION['customer_user'])) {
+    $user_identifier = $_SESSION['customer_user'];
+
+    // Get customer ID from username
+    $stmt_get_id = $conn->prepare("SELECT customer_id FROM users WHERE customer_user = ?");
+    $stmt_get_id->bind_param("s", $user_identifier);
+    $stmt_get_id->execute();
+    $result_id = $stmt_get_id->get_result();
+
+    if ($row = $result_id->fetch_assoc()) {
+        $customer_id = (int)$row['customer_id'];
+    }
+    $stmt_get_id->close();
+}
+// --- END: UNIFIED CUSTOMER ID LOGIC ---
+
+// --- FETCH CURRENT QUANTITY FOR PAGE DISPLAY ---
+// THIS IS THE BLOCK WE RE-INTRODUCE
+if ($customer_id == 0) {
+    // Guest users always start at 1
+    $current_quantity = 1;
+} else {
+    // Logged-in users show the current quantity already in their cart
     $stmt_qty = $conn->prepare("SELECT quantity FROM cart WHERE customer_id = ? AND product_id = ?");
     $stmt_qty->bind_param("ii", $customer_id, $id);
     $stmt_qty->execute();
@@ -20,54 +152,15 @@ if (!isset($_SESSION['customer_id']) || $_SESSION['customer_id'] == 0) {
     if ($row_qty = $res_qty->fetch_assoc()) {
         $current_quantity = $row_qty['quantity'];
     } else {
-        // FIX APPLIED: If not in the cart, default to 1 for display only.
-        // DO NOT automatically insert the item into the DB here.
+        // If not in cart, default to 1
         $current_quantity = 1;
     }
-
     $stmt_qty->close();
 }
-
-// --- HANDLE POST SUBMISSION (UPDATE/INSERT for +/- buttons) ---
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'], $_POST['action'])) {
-    $product_id = (int)$_POST['product_id'];
-    $action = $_POST['action'];
-
-    // Fetch current quantity from DB
-    $stmt = $conn->prepare("SELECT cart_id, quantity FROM cart WHERE customer_id = ? AND product_id = ?");
-    $stmt->bind_param("ii", $customer_id, $product_id);
-    $stmt->execute();
-    $res = $stmt->get_result();
-    $item = $res->fetch_assoc();
-    $stmt->close();
-
-    $current_qty = $item ? (int)$item['quantity'] : 1;
-    $cart_id = $item ? $item['cart_id'] : null;
-
-    // Update quantity
-    if ($action === 'increase') $current_qty++;
-    if ($action === 'decrease') $current_qty = max(1, $current_qty - 1);
-
-    // Insert or update DB
-    if ($cart_id) {
-        $stmt = $conn->prepare("UPDATE cart SET quantity = ? WHERE cart_id = ?");
-        $stmt->bind_param("ii", $current_qty, $cart_id);
-        $stmt->execute();
-        $stmt->close();
-    } else {
-        // Correctly inserts the new quantity when using the +/- buttons
-        $stmt = $conn->prepare("INSERT INTO cart (customer_id, product_id, quantity) VALUES (?, ?, ?)");
-        $stmt->bind_param("iii", $customer_id, $product_id, $current_qty);
-        $stmt->execute();
-        $stmt->close();
-    }
-
-    // Use a cache-buster for reliable redirection
-    header("Location: productPage.php?id=$product_id&cache_bust=" . time());
-    exit;
-}
+// --- END FETCH CURRENT QUANTITY ---
 
 ?>
+
 
 
 <!DOCTYPE html>
@@ -160,21 +253,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'], $_POST[
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                     <input type="hidden" name="current_quantity" class="current-quantity-value" value="<?= $current_quantity; ?>">
                     <div class="quantity-selector flex">
-                        <button type="submit"
-                            name="action"
-                            value="decrease"
-                            class="btn btn-circle border-custom-accent disabled:bg-custom-background disabled:border-custom-accent bg-custom-accent minus-btn"
-                            <?= ($current_quantity <= 1) ? 'disabled' : ''; ?>> -
-                        </button>
-                        <input type="number"
-                            class="input quantity-input border-none font-bold bg-custom-background text-center w-20 text-xl"
-                            value="<?= $current_quantity; ?>" min="1" max="100" readonly>
-                        <button type="submit"
-                            name="action"
-                            value="increase"
-                            class="btn btn-circle border-custom-accent bg-custom-accent plus-btn">
-                            +
-                        </button>
+                        <div class="quantity-selector flex">
+                            <button type="button" class="minus-btn btn btn-circle size-10 disabled:bg-custom-background  border-custom-accent bg-custom-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus ">
+                                    <path d="M5 12h14" />
+                                </svg></button>
+                            <input type="number" class="quantity-input input border-none bg-custom-background shadow-none text-center text-xl font-bold" min="1" max="<?= $product['stock'] ?>" value="<?= $current_quantity ?>">
+                            <button type="button" class="plus-btn btn btn-circle size-10 bg-custom-accent border-custom-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
+                                    <path d="M5 12h14" />
+                                    <path d="M12 5v14" />
+                                </svg></button>
+                        </div>
                     </div>
                 </form>
             <?php else: ?>
@@ -185,12 +273,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'], $_POST[
             <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
                 <form method="POST" action="./functions/buynow.php" class="grow w-1/2">
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
-                    <button type="submit" class="btn btn-lg border-custom-accent bg-custom-background text-custom-accent w-full rounded-full">Buy Now</button>
+                    <button type="submit" class="btn btn-lg border-custom-accent bg-custom-background text-custom-accent w-full rounded-full  text-sm"">Buy Now</button>
                 </form>
-                <form id="addToCartForm" method="POST" action="./functions/addtocart.php" class="grow w-1/2">
-                    <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
-                    <input type="hidden" name="quantity" id="hiddenQuantityInput" value="<?= $current_quantity; ?>">
-                    <button type="submit" class="btn btn-lg border-custom-accent bg-custom-accent  text-custom-background  w-full rounded-full">Add To Cart</button>
+                <form id=" addToCartForm" method="POST" action="./functions/addtocart.php" class="grow w-1/2">
+                        <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                        <input type="hidden" name="quantity" id="hiddenQuantityInput" value="<?= $current_quantity ?>">
+                        <button type="submit" class="btn btn-lg bg-custom-accent border-custom-accent rounded-full w-full text-custom-background text-sm">Add To Cart</button>
                 </form>
             <?php else: ?>
                 <form method="POST" action="./functions/buynow.php" class="grow w-1/2">

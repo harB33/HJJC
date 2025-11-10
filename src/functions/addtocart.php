@@ -8,81 +8,69 @@ if (!isset($_SESSION['customer_user'])) {
 }
 
 if (!isset($_POST['product_id']) || empty($_POST['product_id'])) {
-    die("Error: Product ID is missing. Cannot add to cart.");
+    die("Error: Product ID is missing.");
 }
 
 $product_id = (int)$_POST['product_id'];
+if ($product_id <= 0) die("Error: Invalid Product ID.");
 
-if ($product_id <= 0) {
-    die("Error: Invalid Product ID.");
-}
+$quantity_to_add = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
+if ($quantity_to_add <= 0) $quantity_to_add = 1;
 
-$sql_check_product = "SELECT product_id, stock FROM products WHERE product_id = ?";
-$stmt_check = $conn->prepare($sql_check_product);
+// Get product stock
+$stmt_check = $conn->prepare("SELECT stock FROM products WHERE product_id = ?");
 $stmt_check->bind_param("i", $product_id);
 $stmt_check->execute();
 $result_check = $stmt_check->get_result();
-
-if ($result_check === false || $result_check->num_rows === 0) {
-    die("Error: Product stock info not found.");
+if (!$result_check || $result_check->num_rows === 0) {
+    die("Error: Product not found.");
 }
-
-$product_data = $result_check->fetch_assoc();
-$stock = (int)$product_data['stock'];
+$product = $result_check->fetch_assoc();
+$stock = (int)$product['stock'];
 $stmt_check->close();
 
+// Get customer ID
 $user_identifier = $_SESSION['customer_user'];
-
-$sql_get_id = "SELECT customer_id FROM users WHERE customer_user = ?";
-$stmt_get_id = $conn->prepare($sql_get_id);
+$stmt_get_id = $conn->prepare("SELECT customer_id FROM users WHERE customer_user = ?");
 $stmt_get_id->bind_param("s", $user_identifier);
 $stmt_get_id->execute();
 $result_id = $stmt_get_id->get_result();
 $row = $result_id->fetch_assoc();
-$customer_id = $row['customer_id'];
+$customer_id = (int)$row['customer_id'];
 $stmt_get_id->close();
 
-if (empty($customer_id)) {
-    die("Error: Customer ID could not be found for user: " . htmlspecialchars($user_identifier));
-}
+// Check if product is already in cart
+$stmt_cart = $conn->prepare("SELECT cart_id, quantity FROM cart WHERE customer_id = ? AND product_id = ?");
+$stmt_cart->bind_param("ii", $customer_id, $product_id);
+$stmt_cart->execute();
+$result_cart = $stmt_cart->get_result();
 
-$quantity = isset($_POST['quantity']) && !empty($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
-if ($quantity <= 0) {
-    $quantity = 1;
-}
+if ($result_cart->num_rows > 0) {
+    // Product exists in cart → add to existing quantity
+    $row_cart = $result_cart->fetch_assoc();
+    $cart_id = $row_cart['cart_id'];
+    $existing_quantity = (int)$row_cart['quantity'];
 
-$check_sql = "SELECT cart_id, quantity FROM cart WHERE customer_id = ? AND product_id = ?";
-$check_stmt = $conn->prepare($check_sql);
-$check_stmt->bind_param("ii", $customer_id, $product_id);
-$check_stmt->execute();
-$result_check = $check_stmt->get_result();
+    $new_quantity = $existing_quantity + $quantity_to_add;
+    if ($new_quantity > $stock) die("Error: Quantity exceeds stock.");
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $new_quantity = $quantity;
-
-    if ($new_quantity > $stock) {
-        die("Error: Requested quantity exceeds available stock.");
-    }
-
-    $update_sql = "UPDATE cart SET quantity = ? WHERE cart_id = ?";
-    $update_stmt = $conn->prepare($update_sql);
-    $update_stmt->bind_param("ii", $new_quantity, $row['cart_id']);
-    $update_stmt->execute();
-    $update_stmt->close();
+    $stmt_update = $conn->prepare("UPDATE cart SET quantity = ? WHERE cart_id = ?");
+    $stmt_update->bind_param("ii", $new_quantity, $cart_id);
+    $stmt_update->execute();
+    $stmt_update->close();
 } else {
-    if ($quantity > $stock) {
-        die("Error: Requested quantity exceeds available stock.");
-    }
-    $insert_sql = "INSERT INTO cart (customer_id, product_id, quantity, created_at) VALUES (?, ?, ?, NOW())";
-    $insert_stmt = $conn->prepare($insert_sql);
-    $insert_stmt->bind_param("iii", $customer_id, $product_id, $quantity);
-    $insert_stmt->execute();
-    $insert_stmt->close();
+    // Product not in cart → insert new row
+    if ($quantity_to_add > $stock) die("Error: Quantity exceeds stock.");
+
+    $stmt_insert = $conn->prepare("INSERT INTO cart (customer_id, product_id, quantity, created_at) VALUES (?, ?, ?, NOW())");
+    $stmt_insert->bind_param("iii", $customer_id, $product_id, $quantity_to_add);
+    $stmt_insert->execute();
+    $stmt_insert->close();
 }
 
-$check_stmt->close();
+$stmt_cart->close();
 $conn->close();
 
-header("Location: ../cart.php?status=added&cache_buster=" . time()); // Added cache buster
+// Redirect
+header("Location: ../cart.php?status=added&cache_bust=" . time());
 exit();

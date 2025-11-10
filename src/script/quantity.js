@@ -1,69 +1,37 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const selector = document.querySelector('.quantity-selector');
-    
-    // Safety check
-    if (!selector) {
-        return;
+document.addEventListener("DOMContentLoaded", () => {
+    const minusButton = document.querySelector(".minus-btn");
+    const plusButton = document.querySelector(".plus-btn");
+    const quantityInput = document.querySelector(".quantity-input");
+    const hiddenQuantityInput = document.getElementById("hiddenQuantityInput");
+
+    if (!minusButton || !plusButton || !quantityInput || !hiddenQuantityInput) return;
+
+    const min = parseInt(quantityInput.getAttribute("min")) || 1;
+    const max = parseInt(quantityInput.getAttribute("max")) || 100;
+
+    function synchronizeQuantity(value) {
+        let parsedValue = parseInt(value, 10) || 1;
+        parsedValue = Math.max(min, Math.min(parsedValue, max));
+        quantityInput.value = parsedValue;
+        hiddenQuantityInput.value = parsedValue;
+        minusButton.disabled = parsedValue <= min;
+        plusButton.disabled = parsedValue >= max;
     }
 
-    const input = selector.querySelector('.quantity-input');
-    const minusBtn = selector.querySelector('.minus-btn');
-    const plusBtn = selector.querySelector('.plus-btn');
-
-    // Safety check
-    if (!input || !minusBtn || !plusBtn) {
-        return;
-    }
-
-    // Get min/max values from HTML attributes
-    const min = parseInt(input.getAttribute('min'));
-    const max = parseInt(input.getAttribute('max'));
-
-    // This function sets the button state on page load
-    function checkMinMax() {
-        const currentValue = parseInt(input.value);
-        minusBtn.disabled = (currentValue <= min);
-        plusBtn.disabled = (currentValue >= max);
-    }
-
-    // Event listener for the Minus button
-    minusBtn.addEventListener('click', function() {
-        let currentValue = parseInt(input.value);
-        if (currentValue > min) {
-            input.value = currentValue - 1;
-            // checkMinMax(); // <-- THIS LINE WAS THE BUG. Do not call it here.
-        }
+    // Button handlers
+    plusButton.addEventListener("click", () => {
+        synchronizeQuantity(parseInt(quantityInput.value, 10) + 1);
     });
 
-    // Event listener for the Plus button
-    plusBtn.addEventListener('click', function() {
-        let currentValue = parseInt(input.value);
-        if (currentValue < max) {
-            input.value = currentValue + 1;
-            // checkMinMax(); // <-- THIS LINE WAS THE BUG. Do not call it here.
-        }
+    minusButton.addEventListener("click", () => {
+        synchronizeQuantity(parseInt(quantityInput.value, 10) - 1);
     });
-    // Run initial check ON PAGE LOAD (this is correct)
-    checkMinMax();
-});
 
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. Get the Add To Cart form
-    const addToCartForm = document.getElementById('addToCartForm');
-    if (!addToCartForm) return;
-
-    // 2. Get the currently visible quantity input (from the quantity selector form)
-    const visibleQuantityInput = document.querySelector('.quantity-input');
-    
-    // 3. Get the new hidden quantity input we added to the Add To Cart form
-    const hiddenQuantityInput = document.getElementById('hiddenQuantityInput');
-    
-    // 4. Attach an event listener to the Add To Cart form
-    addToCartForm.addEventListener('submit', function(e) {
-        // Before submitting, update the hidden quantity field with the current visible value
-        if (visibleQuantityInput && hiddenQuantityInput) {
-            hiddenQuantityInput.value = visibleQuantityInput.value;
-        }
-        // Let the form submit normally
+    // Allow manual input
+    quantityInput.addEventListener("input", (e) => {
+        synchronizeQuantity(e.target.value);
     });
+
+    // Initialize
+    synchronizeQuantity(quantityInput.value);
 });
