@@ -70,6 +70,41 @@ while ($row = $result->fetch_assoc()) {
                             </div>
                             <div class="flex flex-col justify-evenly">
                                 <p class="font-extrabold text-xl" >₱<?= number_format($row['price'], 2); ?></p>
+                                <form action="./functions/updatecart.php" method="post">
+                                    <input type="hidden" name="product_id" value="<?= $row['product_id']; ?>">
+                                    <button type="button" id="decrease-<?= $row['cart_id'] ?>">-</button>
+                                    <input 
+                                        type="number" 
+                                        id="qty-<?= $row['cart_id'] ?>" 
+                                        name="quantity" 
+                                        value="<?= $row['quantity']; ?>" 
+                                        min="1" 
+                                        max="100"
+                                        readonly
+                                    >
+                                    <button type="button" id="increase-<?= $row['cart_id'] ?>">+</button>
+                                </form>
+                                 <script>
+                                    const dec<?= $row['cart_id'] ?> = document.getElementById("dec-<?= $row['cart_id'] ?>");
+                                    const inc<?= $row['cart_id'] ?> = document.getElementById("inc-<?= $row['cart_id'] ?>");
+                                    const qty<?= $row['cart_id'] ?> = document.getElementById("qty-<?= $row['cart_id'] ?>");
+                                    const form<?= $row['cart_id'] ?> = document.querySelector("form[action='./functions/updatecart.php']");
+
+                                    function submitNow() {
+                                        form<?= $row['cart_id'] ?>.submit();
+                                    }
+
+                                    dec<?= $row['cart_id'] ?>.addEventListener("click", () => {
+                                        let quantity = parseInt(qty<?= $row['cart_id'] ?>.value);
+                                        if (quantity > 1) qty<?= $row['cart_id'] ?>.value = quantity - 1;
+                                        submitNow();
+                                    });
+
+                                    inc<?= $row['cart_id'] ?>.addEventListener("click", () => {
+                                        qty<?= $row['cart_id'] ?>.value = parseInt(qty<?= $row['cart_id'] ?>.value) + 1;
+                                        submitNow();
+                                    });
+                                </script>
                                 <form action="./functions/remove_item.php" method="post">
                                     <input type="hidden" name="remove" value="<?= $row['cart_id']; ?>">
                                     <button type="submit" class="btn btn-sm btn-error">Remove</button>
