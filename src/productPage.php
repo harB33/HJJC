@@ -49,32 +49,32 @@ $product = $result->fetch_assoc();
                     <div>
                         <h1 class=" font-bold mb-2">Milk</h1>
                         <div class="flex flex-wrap gap-2">
-                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="milk" value="Hot" required aria-label="Dairy Milk">
-                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="milk" value="Cold" aria-label="Oat Milk">
-                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="milk" value="Cold" aria-label="Coconut Milk">
+                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="milk" value="Dairy Milk" required aria-label="Dairy Milk">
+                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="milk" value="Oat Milk" aria-label="Oat Milk">
+                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="milk" value="Coconut Milk" aria-label="Coconut Milk">
                         </div>
                     </div>
                     <div>
                         <h1 class=" font-bold mb-2">Espresso Shots</h1>
                         <div class="flex flex-wrap gap-2">
-                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="shots" value="Hot" required aria-label="No Shot">
-                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="shots" value="Cold" aria-label="LYDIA">
-                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="shots" value="Cold" aria-label="BOSS">
+                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="shots" value="No Shot" required aria-label="No Shot">
+                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="shots" value="LYDIA" aria-label="LYDIA">
+                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="shots" value="BOSS" aria-label="BOSS">
                         </div>
                     </div>
                     <div>
                         <h1 class=" font-bold mb-2">Sweetness</h1>
                         <div class="flex flex-wrap gap-2">
-                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="sweetness" value="Hot" required aria-label="Regular Sweet">
-                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="sweetness" value="Cold" aria-label="Less Sweet">
-                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="sweetness" value="Cold" aria-label="More Sweet">
+                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="sweetness" value="Regular Sweet" required aria-label="Regular Sweet">
+                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="sweetness" value="Less Sweet" aria-label="Less Sweet">
+                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="sweetness" value="More Sweet" aria-label="More Sweet">
                         </div>
                     </div>
                     <div>
                         <h1 class=" font-bold mb-2">Ice Level</h1>
                         <div class="flex flex-wrap gap-2">
-                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="ice" value="Hot" required aria-label="Normal Ice">
-                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="ice" value="Cold" aria-label="Less Ice">
+                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="ice" value="Normal Ice" required aria-label="Normal Ice">
+                            <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="ice" value="Less Ice" aria-label="Less Ice">
                         </div>
                     </div>
                 </form>
@@ -91,11 +91,11 @@ $product = $result->fetch_assoc();
             </div>
         </div>
         <div class="flex gap-4 w-[90%] items-center justify-center">
-            <form method="POST" action="./functions/addtocart.php" class="grow w-1/2">
+            <form method="POST" action="./functions/buynow.php" class="grow w-1/2">
                 <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                 <button type="submit" class="btn btn-lg border-custom-accent bg-custom-background text-custom-accent w-full rounded-full">Buy Now</button>
             </form>
-            <form method="POST" action="./functions/buynow.php" class="grow w-1/2">
+            <form method="POST" action="./functions/addtocart.php" class="grow w-1/2">
                 <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                 <button type="submit" class="btn btn-lg border-custom-accent bg-custom-accent  text-custom-background  w-full rounded-full">Add To Cart</button>
             </form>
