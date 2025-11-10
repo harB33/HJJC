@@ -20,7 +20,7 @@ include './db/sessionStart.php';
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="h-12 object-contain" />
             </a>
             <div class="flex items-center gap-2 w-full  justify-end ">
-                <label class="input rounded-full h-[70%] w-[50%] outline-0 bg-custom-background">
+                <label class="input rounded-full h-[70%] w-[50%] outline-0 border-custom-accent bg-custom-background">
                     <svg
                         class="h-[1em]  stroke-custom-accent"
                         xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +62,7 @@ include './db/sessionStart.php';
                     </div>
                     <div class="drawer-side backdrop-blur-2xl">
                         <label for="my-drawer-5" aria-label="close sidebar" class="drawer-overlay backdrop-blur-2xl"></label>
-                        <ul class="menu bg-custom-secondary rounded-box w-56 sm:w-100  min-h-screen backdrop-">
+                        <ul class="menu bg-custom-background rounded-box w-56 sm:w-100  min-h-screen backdrop-">
                             <li>
                                 <h2 class="menu-title">
                                     <?php
@@ -75,7 +75,7 @@ include './db/sessionStart.php';
                                     ?>
                                 </h2>
                                 <ul>
-                                    <li><a>ORDER NOW</a></li>
+                                    <li><a href="./home.php">ORDER NOW</a></li>
                                     <li><a href="./about.php">ABOUT US</a></li>
                                     <li><a>CONTACT US</a></li>
                                 </ul>
