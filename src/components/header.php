@@ -20,7 +20,7 @@ include './db/sessionStart.php';
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="h-12 object-contain" />
             </a>
             <div class="flex items-center gap-2 w-full  justify-end ">
-                <label class="input rounded-full h-[70%] w-[50%] outline-0 border-custom-accent bg-custom-background">
+                <label class="input rounded-full h-[70%] w-[180px] outline-0 border-custom-accent bg-custom-background">
                     <svg
                         class="h-[1em]  stroke-custom-accent"
                         xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@ include './db/sessionStart.php';
                             <path d="m21 21-4.3-4.3"></path>
                         </g>
                     </svg>
-                    <input type="search" required placeholder="Explore" />
+                    <input type="search" required placeholder="Explore..." />
                 </label>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -2,6 +2,28 @@
 include("./db/sessionStart.php");
 include("./db/db.php");
 
+if (isset($_GET['update_cart_id']) && isset($_GET['new_qty'])) {
+    $update_cart_id = filter_var($_GET['update_cart_id'], FILTER_VALIDATE_INT);
+    $new_qty = filter_var($_GET['new_qty'], FILTER_VALIDATE_INT);
+
+    // Ensure quantity is not less than 1
+    if ($new_qty < 1) {
+        $new_qty = 1;
+    }
+
+    if ($update_cart_id !== false) {
+        $sql_update = "UPDATE cart SET quantity = ? WHERE cart_id = ?";
+        $stmt_update = $conn->prepare($sql_update);
+        $stmt_update->bind_param("ii", $new_qty, $update_cart_id);
+        $stmt_update->execute();
+        $stmt_update->close();
+    }
+
+    // Redirect to the same page without the GET parameters to prevent re-submission
+    header('Location: ' . basename($_SERVER['PHP_SELF']));
+    exit;
+}
+
 $user = $_SESSION['customer_user'];
 $sql_user = "SELECT customer_id FROM users WHERE customer_user = ?";
 $stmt_user = $conn->prepare($sql_user);
@@ -16,7 +38,7 @@ $row = $res->fetch_assoc();
 $customer_id = $row['customer_id'];
 $_SESSION['customer_id'] = $customer_id;
 
-$sql_cart =" SELECT c.cart_id, c.product_id, c.customer_id, c.quantity, p.*
+$sql_cart = " SELECT c.cart_id, c.product_id, c.customer_id, c.quantity, p.*
 FROM cart c
 JOIN products p ON c.product_id = p.product_id
 WHERE c.customer_id = ?";
@@ -39,61 +61,112 @@ while ($row = $result->fetch_assoc()) {
 ?>
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./image/logo.ico" type="image/x-icon">
     <link
         href="https://cdn.jsdelivr.net/npm/daisyui@5"
         rel="stylesheet"
         type="text/css" />
     <title>HJJC Store|Cart</title>
-    <link rel="stylesheet" href="./style/output.css" /> 
+    <link rel="stylesheet" href="./style/output.css" />
 </head>
+
 <body>
     <div class="sticky top-0 z-50 ">
         <?php include './components/header.php'; ?>
     </div>
-    <section class="grid grid-cols-[70%_30%] justify-items-center">
-        <div class="flex flex-col gap-4 w-full justify-center items-center">
+    <section class="flex min-h-screen h-screen w-full justify-center items-start pt-20 bg-custom-background">
+        <div class="fixed top-[8%] left-[5%] z-40">
+            <a href="./home.php" class="btn btn-circle bg-custom-accent border-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left stroke-custom-background">
+                    <path d="m15 18-6-6 6-6" />
+                </svg>
+            </a>
+        </div>
+        <?php
+        if (empty($cart_items)) {
+            echo '
+                <div class="flex w-full fixed top-1/2 left-1/2 -translate-1/2 items-center justify-center gap-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag-icon lucide-shopping-bag"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>
+                    Your Bag is Empty
+                </div>
+                ';
+        }
+        ?>
+        <div class="flex flex-col gap-4 w-[90%] justify-center items-start">
             <?php foreach ($cart_items as $row): ?>
-                <div class=" w-[60%]">
-                    <div class="flex p-4 bg-red-400 w-fit rounded-2xl gap-4">
-                        <div class="size-[35%]">
-                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="w-full" >
-                                <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class=" w-full object-cover rounded-lg shadow-lg group-hover:scale-110 transition-transform duration-700 ease-in-out">
-                            </a>
+                <div class="w-full rounded-2xl border-custom-accent border-2">
+                    <div class="flex p-2.5  size-full justify-between flex-1 rounded-2xl gap-4">
+                        <div class="gap-2 flex ">
+                            <div class="h-full max-w-[120px]">
+                                <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="h-full">
+                                    <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class=" w-full object-cover rounded-lg shadow-lg group-hover:scale-110 transition-transform duration-700 ease-in-out">
+                                </a>
+                            </div>
+                            <div>
+                                <h1 class="font-bold text-black/75"><?= htmlspecialchars($row['product_name']); ?></h1>
+                                <!-- <p class=" w-full overflow-hidden"><?= nl2br(htmlspecialchars($row['product_desc'])); ?></p> -->
+                            </div>
                         </div>
                         <div class="flex gap-4 w-fit">
-                            <div class="max-h-[5lh] overflow-hidden">
-                                <h1 class="font-bold text-black/75"><?= htmlspecialchars($row['product_name']); ?></h1>
-                                <p class=" w-full overflow-hidden"><?= nl2br(htmlspecialchars($row['product_desc'])); ?></p>
-                            </div>
-                            <div class="flex flex-col justify-evenly">
-                                <p class="font-extrabold text-xl" >₱<?= number_format($row['price'], 2); ?></p>
-                                <form action="./functions/remove_item.php" method="post">
-                                    <input type="hidden" name="remove" value="<?= $row['cart_id']; ?>">
-                                    <button type="submit" class="btn btn-sm btn-error">Remove</button>
-                                </form>
+                            <div class="flex w-fit h-full">
+                                <div class="w-fit flex flex-col justify-between h-full">
+                                    <div>
+                                        <p class="font-extrabold text-xl float-right">₱<?= number_format($row['price'], 2); ?></p>
+                                    </div>
+                                    <div class="quantity-selector flex items-center">
+                                        <a href="?update_cart_id=<?= $row['cart_id']; ?>&new_qty=<?= $row['quantity'] - 1; ?>"
+                                            class="btn btn-circle size-8 border-custom-accent bg-custom-accent minus-btn <?= ($row['quantity'] <= 1) ? 'disabled' : ''; ?>"
+                                            role="button">
+                                            -
+                                        </a>
+                                        <input type="number"
+                                            class="input quantity-input border-none font-bold bg-custom-background text-center w-15 text-xl"
+                                            value="<?= $row['quantity']; ?>"
+                                            min="1" max="100" readonly>
+                                        <a href="?update_cart_id=<?= $row['cart_id']; ?>&new_qty=<?= $row['quantity'] + 1; ?>"
+                                            class="btn btn-circle size-8 border-custom-accent bg-custom-accent plus-btn"
+                                            role="button">
+                                            +
+                                        </a>
+                                    </div>
+                                    <div class="">
+                                        <form action="./functions/remove_item.php" method="post">
+                                            <input type="hidden" name="remove" value="<?= $row['cart_id']; ?>">
+                                            <button type="submit" class="btn btn-sm btn-error text-custom-background float-right">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2">
+                                                    <path d="M10 11v6" />
+                                                    <path d="M14 11v6" />
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+                                                    <path d="M3 6h18" />
+                                                    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                                </svg>
+                                                <p>
+                                                    Remove
+                                                </p>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="group flex w-[60%] p-4  hover:bg-linear-to-br from-custom-primary/15 to-color-custom-secondary/35 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                    <a href="./productPage.php?id=<?= $row['product_id']; ?>" class=" flex items-center justify-center w-full">
-                        <div class="overflow-hidden rounded-lg w-[15%]">
-                            <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class=" w-full object-cover rounded-lg shadow-lg group-hover:scale-110 transition-transform duration-700 ease-in-out"/>
-                        </div>
-                        <div>
-                            <h3 class=" text-black/75 overflow-clip group-hover:text-custom-primary duration-300"><?= htmlspecialchars($row['product_name']); ?></h3>
-                            <p class="float-right font-bold text-black/85 duration-300">₱<?= number_format($row['price'], 2); ?></p>
-                        </div>
-                    </a>
-                </div> -->
             <?php endforeach; ?>
         </div>
-        <div class="bg-red-400 h-3/5">
-                asd
-        </div>
     </section>
+    <?php if (!empty($cart_items)): ?>
+        <section class=" w-full items-end justify-center flex flex-col fixed bottom-0 p-4 bg-custom-background shadow-2xl">
+            <div>
+                <h1 class="text-md font-medium w-full float-right ">Total</h1>
+                <p class="text-2xl font-bold w-full text-custom-accent">₱<?= number_format($total, 2); ?></p>
+            </div>
+        </section>
+    <?php endif; ?>
 </body>
+
 </html>
+
+<script src="./script/quantity.js"></script>

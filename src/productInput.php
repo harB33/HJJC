@@ -112,7 +112,7 @@ if (isset($_POST["finish"])) {
     <div class="sticky top-0 z-50 w-full backdrop-blur-sm ">
         <?php include './components/header.php'; ?>
     </div>
-    <section class="flex flex-col items-center gap-8 w-screen h-screen" >
+    <section class="flex flex-col items-center gap-8 w-screen h-screen pt-20" >
         <div class="flex flex-col items-center gap-4 h-a">
             <h1 class="font-giaza font-black text-5xl">PRODUCT INPUT</h1>
         </div>

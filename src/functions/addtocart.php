@@ -1,9 +1,10 @@
 <?php
 include("../db/sessionStart.php");
-include("../db/db.php"); 
+include("../db/db.php");
 
 if (!isset($_SESSION['customer_user'])) {
-    die("Error: You must be logged in to add items to your cart.");
+    header("Location: ../components/mustBeLoggedIn.php");
+    die;
 }
 
 if (!isset($_POST['product_id']) || empty($_POST['product_id'])) {
@@ -27,7 +28,7 @@ $stmt_check->close();
 
 $user_identifier = $_SESSION['customer_user'];
 
-$sql_get_id = "SELECT customer_id FROM users WHERE customer_user = ?"; 
+$sql_get_id = "SELECT customer_id FROM users WHERE customer_user = ?";
 $stmt_get_id = $conn->prepare($sql_get_id);
 $stmt_get_id->bind_param("s", $user_identifier);
 $stmt_get_id->execute();
@@ -51,7 +52,10 @@ $result = $check_stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $new_quantity = $row['quantity'] + $quantity;
+    // V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V 
+    // FIX: Use the submitted quantity directly to REPLACE the old quantity.
+    $new_quantity = $quantity;
+    // ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ 
     $update_sql = "UPDATE cart SET quantity = ? WHERE cart_id = ?";
     $update_stmt = $conn->prepare($update_sql);
     $update_stmt->bind_param("ii", $new_quantity, $row['cart_id']);
@@ -68,7 +72,7 @@ if ($result->num_rows > 0) {
 $check_stmt->close();
 
 
-header("Location: ../cart.php?status=added");
+header("Location: ../cart.php?status=added&cache_buster=" . time()); // Added cache buster
 exit();
 
 $conn->close();

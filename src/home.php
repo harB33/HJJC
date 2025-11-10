@@ -47,57 +47,37 @@ $frappe_result = mysqli_query($conn, $frappe_sql);
         <?php include './components/header.php'; ?>
     </div>
     <section class="flex w-full h-full">
-        <!-- <section class="">
-            <div class="carousel w-full hidden">
-                <div id="slide1" class="carousel-item relative w-full">
-                    <img
-                        src="./image/banner.png"
-                        class="w-full " />
-                    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide4" class="btn btn-circle">❮</a>
-                        <a href="#slide2" class="btn btn-circle">❯</a>
-                    </div>
-                </div>
-                <div id="slide2" class="carousel-item relative w-full">
-                    <img
-                        src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
-                        class="w-full" />
-                    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide1" class="btn btn-circle">❮</a>
-                        <a href="#slide3" class="btn btn-circle">❯</a>
-                    </div>
-                </div>
-                <div id="slide3" class="carousel-item relative w-full">
-                    <img
-                        src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
-                        class="w-full" />
-                    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide2" class="btn btn-circle">❮</a>
-                        <a href="#slide4" class="btn btn-circle">❯</a>
-                    </div>
-                </div>
-                <div id="slide4" class="carousel-item relative w-full">
-                    <img
-                        src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
-                        class="w-full" />
-                    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide3" class="btn btn-circle">❮</a>
-                        <a href="#slide1" class="btn btn-circle">❯</a>
-                    </div>
-                </div>
-            </div>
-        </section> -->
         <section class="flex items-center justify-center h-screen bg-custom-accent sticky top-0 flex-col p-2.5  ">
-            <div class="grid grid-cols-1 place-items-center w-fit gap-2">
-                <a href="#bestSeller" class="size-12 sm:size-45 border">Best Seller</a>
-                <a href="#coffee" class="size-12 sm:size-45 border">Coffee</a>
-                <a href="#frappe" class="size-12 sm:size-45 border">Frappe</a>
-                <a href="#tea" class="size-12 sm:size-45 border">Tea</a>
+            <div class="grid grid-cols-1 place-items-center w-fit gap-16 content-center text-center">
+                <a href="#bestSeller" class="size-12 sm:size-45 flex flex-col text-sm ">
+                    <div>
+                        <img src="./image/best-seller.png" alt="">
+                        Best Seller
+                    </div>
+                </a>
+                <a href="#coffee" class="size-12 sm:size-45 flex flex-col  text-sm">
+                    <div>
+                        <img src="./image/coffee-cup.png" alt="">
+                        Coffee
+                    </div>
+                </a>
+                <a href="#frappe" class="size-12 sm:size-45 flex flex-col  text-sm">
+                    <div>
+                        <img src="./image/frappe.png" alt="">
+                        Frappe
+                    </div>
+                </a>
+                <a href="#tea" class="size-12 sm:size-45 flex flex-col  text-sm">
+                    <div>
+                        <img src="./image/green-tea.png" alt="">
+                        Tea
+                    </div>
+                </a>
             </div>
         </section>
         <section class=" w-full min-h-max flex flex-col  items-center bg-custom-background">
             <h1 id="bestSeller"></h1>
-            <h1 class=" text-4xl font-black my-fadeInCard  sticky top-0 w-full text-center pt-14 pb-2 bg-custom-background shadow-md z-30">Best Seller</h1>
+            <h1 class=" text-4xl font-black my-fadeInCard  sticky top-0 w-full text-center pt-14 pb-2 bg-custom-background shadow-md z-30 ">Best Seller</h1>
             <section class="flex flex-col  items-center overflow-y-scroll h-fit w-full p-4 ">
                 <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-clip scroll-m-32">
                     <?php while ($row = mysqli_fetch_assoc($coffee_result)): ?>

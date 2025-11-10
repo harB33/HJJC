@@ -18,15 +18,15 @@
 <body class="w-screen overflow-x-clip min-h-screen">
     <?php include './components/header.php'; ?>
     <section class="flex flex-col items-center text-center w-full overflow-clip ">
-        <div class="h-screen w-full ">
+        <div class="h-screen w-screen ">
             <video class="w-full h-full object-cover brightness-50" autoplay loop muted>
                 <source src="./image/1107.mp4">
             </video>
         </div>
         <section id="title" class=" font-light h-screen w-full flex flex-col p-8 overflow-clip justify-center items-center absolute z-20">
-            <div class=" w-full flex flex-col items-center justify-center z-10 mb-8 grow ">
-                <h1 class="font-giaza font-black text-2xl z-1 text-custom-accent">Define Your Standard.</h1>
-                <h1 class=" font-light text-md text-custom-background/90">Relentless perfection. We transform the world's finest ingredients into exquisite beverages that redefine your standard.</h1>
+            <div class=" w-full flex flex-col items-center justify-center z-10 mb-8 grow">
+                <h1 class="font-giaza font-black text-2xl z-1 text-custom-accent  text-shadow-lg">Define Your Standard.</h1>
+                <h1 class=" font-light text-md text-custom-background/90  text-shadow-lg">Relentless perfection. We transform the world's finest ingredients into exquisite beverages that redefine your standard.</h1>
             </div>
             <div>
                 <div class="flex justify-center flex-col items-center">
@@ -42,7 +42,7 @@
         </section>
         <section class="flex flex-col h-[90dvh] px-6 w-full pt-20 bg-custom-secondary items-center  z-10">
             <div class="flex flex-col items-center my-moveDown">
-                <h1 class="font-giaza font-black text-2xl mb-6">The Standard Has Arrived.</h1>
+                <h1 class="font-giaza font-black text-2xl mb-6">The <span class="">Standard</span> Has Arrived.</h1>
                 <p class=" font-light text-md mb-2">HJJC is proud to introduce an unparalleled coffee experience to the Philippines. We are defined by a relentless pursuit of perfection. Our baristas transform the world's finest ingredients into exquisite beverages that stimulate the senses and redefine your expectations.</p>
                 <p class=" font-light text-md">Discover the new pinnacle of taste.</p>
             </div>

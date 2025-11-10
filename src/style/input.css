@@ -212,3 +212,15 @@
     -webkit-appearance: none;
     margin: 0;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+@view-transition {
+    navigation: auto; 
+}
+
+::view-transition-group(*) {
+    animation-duration: 0.5s;
+}
