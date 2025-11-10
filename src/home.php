@@ -92,7 +92,7 @@ $frappe_result = mysqli_query($conn, $frappe_sql);
                 <a href="#bestSeller" class="size-12 sm:size-45 border">Best Seller</a>
                 <a href="#coffee" class="size-12 sm:size-45 border">Coffee</a>
                 <a href="#frappe" class="size-12 sm:size-45 border">Frappe</a>
-                <a href="#frappe" class="size-12 sm:size-45 border">Tea</a>
+                <a href="#tea" class="size-12 sm:size-45 border">Tea</a>
             </div>
         </section>
         <section class=" w-full min-h-max flex flex-col  items-center bg-custom-background">
@@ -132,7 +132,7 @@ $frappe_result = mysqli_query($conn, $frappe_sql);
                     <?php endwhile; ?>
                 </section>
             </section>
-            <h1 id="justforyou"></h1>
+            <h1 id="frappe"></h1>
             <h1 class=" text-4xl font-black my-fadeInCard  sticky top-0 w-full text-center pt-14 pb-2 bg-custom-background shadow-md z-30">Frappe</h1>
             <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 ">
                 <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-clip scroll-m-32">
