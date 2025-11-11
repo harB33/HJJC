@@ -17,6 +17,13 @@ if ($product_id <= 0) die("Error: Invalid Product ID.");
 $quantity_to_add = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
 if ($quantity_to_add <= 0) $quantity_to_add = 1;
 
+//started product_details here
+$temperature = $_POST['temperature'] ?? '';
+$milk_type = $_POST['milk_type'] ?? '';
+$espresso_shots = $_POST['espresso_shots'] ?? 'No Shot';
+$sweetness = $_POST['sweetness'] ?? 'Regular Sweet';
+$ice_level = $_POST['ice_level'] ?? 'Normal Ice';
+
 // Get product stock
 $stmt_check = $conn->prepare("SELECT stock FROM products WHERE product_id = ?");
 $stmt_check->bind_param("i", $product_id);
@@ -40,8 +47,24 @@ $customer_id = (int)$row['customer_id'];
 $stmt_get_id->close();
 
 // Check if product is already in cart
-$stmt_cart = $conn->prepare("SELECT cart_id, quantity FROM cart WHERE customer_id = ? AND product_id = ?");
-$stmt_cart->bind_param("ii", $customer_id, $product_id);
+$stmt_cart = $conn->prepare("SELECT cart_id, quantity FROM cart WHERE customer_id = ? 
+    AND product_id = ? 
+    AND temperature = ?
+    AND milk_type = ?
+    AND espresso_shots = ?
+    AND sweetness = ?
+    AND ice_level = ?"
+);
+
+$stmt_cart->bind_param("iisssss", 
+    $customer_id, 
+    $product_id,
+    $temperature,
+    $milk_type,
+    $espresso_shots,
+    $sweetness,
+    $ice_level
+);
 $stmt_cart->execute();
 $result_cart = $stmt_cart->get_result();
 
@@ -62,8 +85,18 @@ if ($result_cart->num_rows > 0) {
     // Product not in cart → insert new row
     if ($quantity_to_add > $stock) die("Error: Quantity exceeds stock.");
 
-    $stmt_insert = $conn->prepare("INSERT INTO cart (customer_id, product_id, quantity, created_at) VALUES (?, ?, ?, NOW())");
-    $stmt_insert->bind_param("iii", $customer_id, $product_id, $quantity_to_add);
+    $stmt_insert = $conn->prepare("INSERT INTO cart (customer_id, product_id, temperature, milk_type, espresso_shots, sweetness, ice_level, quantity, created_at) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+        $stmt_insert->bind_param("iisssssi", 
+        $customer_id, 
+        $product_id,
+        $temperature,
+        $milk_type,
+        $espresso_shots,
+        $sweetness,
+        $ice_level,
+        $quantity_to_add
+    );
     $stmt_insert->execute();
     $stmt_insert->close();
 }
