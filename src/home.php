@@ -1,7 +1,5 @@
 <?php
-include("../db/sessionStart.php");
 include("./db/db.php");
-include("./functions/searchbar.php");
 
 date_default_timezone_set('Asia/Manila');
 
