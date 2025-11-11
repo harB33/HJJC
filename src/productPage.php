@@ -68,7 +68,7 @@ if ($customer_id == 0) {
     <section class=" w-full min-h-screen justify-center items-center flex pt-20 pb-40 bg-custom-background relative">
         <div class="fixed top-[8%] left-[5%] z-40">
             <a href="./home.php" class="btn btn-circle bg-custom-accent border-none">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left stroke-custom-background">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left stroke-custom-background">
                     <path d="m15 18-6-6 6-6" />
                 </svg>
             </a>

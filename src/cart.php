@@ -38,7 +38,9 @@ $row = $res->fetch_assoc();
 $customer_id = $row['customer_id'];
 $_SESSION['customer_id'] = $customer_id;
 
-$sql_cart = " SELECT c.cart_id, c.product_id, c.customer_id, c.quantity, p.*
+$sql_cart = "SELECT c.cart_id, c.product_id, c.customer_id, c.quantity, 
+                    c.temperature, c.milk_type, c.espresso_shots, c.sweetness, c.ice_level,
+                    p.*
 FROM cart c
 JOIN products p ON c.product_id = p.product_id
 WHERE c.customer_id = ?";
@@ -51,6 +53,25 @@ $result = $stmt_cart->get_result();
 if ($result === false) {
     die("❌ **CART QUERY FAILED!** Check your SQL syntax or column names: " . mysqli_error($conn));
 }
+
+$cart_id_query = "SELECT c.*
+                    FROM cart c
+                    WHERE c.customer_id = ?";
+
+$stmt_cart_id = $conn->prepare($cart_id_query);
+$stmt_cart_id->bind_param("i", $customer_id);
+$stmt_cart_id->execute();
+$result_cart_id = $stmt_cart_id->get_result();
+
+$cart_row = $result_cart_id->fetch_assoc();
+
+if ($cart_row) {
+    $cart_temp = $cart_row['temperature'];
+} else {
+    $cart_temp = "N/A";
+}
+
+$stmt_cart_id->close();
 
 $total = 0;
 $cart_items = [];
@@ -78,10 +99,11 @@ while ($row = $result->fetch_assoc()) {
         <?php include './components/header.php'; ?>
     </div>
     <section class="flex min-h-screen h-full w-full justify-center items-start pt-20 bg-custom-background">
-        <div class="fixed top-[8%] left-[5%] z-40">
+        <div class="fixed top-[6%] left-[4%] z-40">
             <a href="./home.php" class="btn btn-circle bg-custom-accent border-none">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left stroke-custom-background">
-                    <path d="m15 18-6-6 6-6" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
+                    <path d="m12 19-7-7 7-7" />
+                    <path d="M19 12H5" />
                 </svg>
             </a>
         </div>
@@ -107,7 +129,25 @@ while ($row = $result->fetch_assoc()) {
                             </div>
                             <div>
                                 <h1 class="font-bold text-black/75"><?= htmlspecialchars($row['product_name']); ?></h1>
-                                <!-- <p class=" w-full overflow-hidden"><?= nl2br(htmlspecialchars($row['product_desc'])); ?></p> -->
+                                <p class=" w-full overflow-hidden font-medium text-xs leading-tight">
+                                    <span class="font-light">Temp: </span><?= htmlspecialchars($row['temperature']); ?><br>
+                                    <span class="font-light">Milk: </span><?= htmlspecialchars($row['milk_type']); ?><br>
+                                    <span class="font-light">Shots: </span><?= htmlspecialchars($row['espresso_shots']); ?><br>
+                                    <span class="font-light">Sweetness: </span><?= htmlspecialchars($row['sweetness']); ?><br>
+                                    <span class="font-light">Ice: </span><?= htmlspecialchars($row['ice_level']); ?>
+                                </p>
+                                <p>
+                                    <?php
+                                    if (empty($cart_items)) {
+                                        echo '
+                                    <div class="flex w-full fixed top-1/2 left-1/2 -translate-1/2 items-center justify-center gap-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag-icon lucide-shopping-bag"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>
+                                    Your Bag is Empty
+                                    </div>
+                                    ';
+                                    }
+                                    ?>
+                                </p>
                             </div>
                         </div>
                         <div class="flex gap-4 w-fit">

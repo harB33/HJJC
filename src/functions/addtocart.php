@@ -22,7 +22,7 @@ $temperature = $_POST['temperature'] ?? '';
 $milk_type = $_POST['milk_type'] ?? '';
 $espresso_shots = $_POST['espresso_shots'] ?? 'No Shot';
 $sweetness = $_POST['sweetness'] ?? 'Regular Sweet';
-$ice_level = $_POST['ice_level'] ?? 'Normal Ice';
+$ice_level = $_POST['ice_level'] ?? '';
 
 // Get product stock
 $stmt_check = $conn->prepare("SELECT stock FROM products WHERE product_id = ?");
