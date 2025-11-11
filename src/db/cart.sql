@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2025 at 08:57 AM
+-- Generation Time: Nov 11, 2025 at 12:40 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,10 +35,18 @@ CREATE TABLE `cart` (
   `milk_type` enum('Dairy Milk','Oat Milk','Coconut Milk','') NOT NULL,
   `espresso_shots` enum('No Shot','LYDIA','BOSS','') NOT NULL DEFAULT 'No Shot',
   `sweetness` enum('Regular Sweet','Less Sweet','More Sweet','') NOT NULL DEFAULT 'Regular Sweet',
-  `ice_level` enum('Normal Ice','Less Ice','','') NULL DEFAULT 'Normal Ice',
+  `ice_level` enum('Normal Ice','Less Ice','','') DEFAULT 'Normal Ice',
   `quantity` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `customer_id`, `product_id`, `temperature`, `milk_type`, `espresso_shots`, `sweetness`, `ice_level`, `quantity`, `created_at`) VALUES
+(23, 2, 5, 'Hot', 'Dairy Milk', 'No Shot', 'Regular Sweet', 'Normal Ice', 1, '2025-11-11 11:39:55'),
+(24, 2, 5, 'Iced', 'Oat Milk', 'LYDIA', 'Less Sweet', 'Less Ice', 1, '2025-11-11 11:40:02');
 
 --
 -- Indexes for dumped tables
@@ -49,7 +57,8 @@ CREATE TABLE `cart` (
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`cart_id`),
-  ADD UNIQUE KEY `customer_product` (`customer_id`,`product_id`),
+  ADD UNIQUE KEY `customer_product_custom` (`customer_id`,`product_id`,`temperature`,`milk_type`,`espresso_shots`,`sweetness`,`ice_level`),
+  ADD UNIQUE KEY `unique_cart_item` (`customer_id`,`product_id`,`temperature`,`milk_type`,`espresso_shots`,`sweetness`,`ice_level`),
   ADD KEY `cart_ibfk_2` (`product_id`);
 
 --
@@ -60,7 +69,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables

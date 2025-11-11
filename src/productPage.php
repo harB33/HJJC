@@ -119,7 +119,7 @@ if ($customer_id == 0) {
                     <div>
                         <h1 class=" font-bold mb-2">Ice Level</h1>
                         <div class="flex w-full  flex-wrap gap-2">
-                            <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="ice_level" value="Normal Ice" required aria-label="Normal Ice">
+                            <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="ice_level" value="Normal Ice"  aria-label="Normal Ice">
                             <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="ice_level" value="Less Ice" aria-label="Less Ice">
                         </div>
                     </div>
@@ -140,20 +140,12 @@ if ($customer_id == 0) {
                                 <button type="button" class="minus-btn btn btn-circle size-10 disabled:bg-custom-background  border-custom-accent bg-custom-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus ">
                                         <path d="M5 12h14" />
                                     </svg></button>
-                                <input type="number" class="quantity-input input border-none bg-custom-background shadow-none text-center text-xl font-bold" min="1" max="<?= $product['stock'] ?>" value="<?= $current_quantity ?>">
+                                <input type="number" class="quantity-input input border-none bg-custom-background shadow-none text-center text-xl font-bold" min="1" max="<?= $product['stock'] ?>" value="<?= $current_quantity ?>" readonly>
                                 <button type="button" class="plus-btn btn btn-circle size-10 bg-custom-accent border-custom-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
                                         <path d="M5 12h14" />
                                         <path d="M12 5v14" />
                                     </svg></button>
                             </div>
-                            <button type="button" class="minus-btn btn btn-circle size-10 disabled:bg-custom-background  border-custom-accent bg-custom-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus ">
-                                    <path d="M5 12h14" />
-                                </svg></button>
-                            <input type="number" class="quantity-input input border-none bg-custom-background shadow-none text-center text-xl font-bold" min="1" max="<?= $product['stock'] ?>" value="<?= $current_quantity ?>" readonly>
-                            <button type="button" class="plus-btn btn btn-circle size-10 bg-custom-accent border-custom-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
-                                    <path d="M5 12h14" />
-                                    <path d="M12 5v14" />
-                                </svg></button>
                         </div>
                     </form>
                 <?php else: ?>
