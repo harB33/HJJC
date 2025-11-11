@@ -118,16 +118,16 @@ while ($row = $result->fetch_assoc()) {
                                     </div>
                                     <div class="quantity-selector flex items-center">
                                         <a href="?update_cart_id=<?= $row['cart_id']; ?>&new_qty=<?= $row['quantity'] - 1; ?>"
-                                            class="btn btn-circle size-8 border-custom-accent bg-custom-accent minus-btn <?= ($row['quantity'] <= 1) ? 'disabled' : ''; ?>"
+                                            class="btn btn-circle size-6 border-custom-accent bg-custom-accent minus-btn <?= ($row['quantity'] <= 1) ? 'disabled' : ''; ?>"
                                             role="button">
                                             -
                                         </a>
                                         <input type="number"
-                                            class="input quantity-input border-none font-bold bg-custom-background text-center w-15 text-xl"
+                                            class="input quantity-input border-none font-bold bg-custom-background text-center w-8 text-xl shadow-none"
                                             value="<?= $row['quantity']; ?>"
                                             min="1" max="100" readonly>
                                         <a href="?update_cart_id=<?= $row['cart_id']; ?>&new_qty=<?= $row['quantity'] + 1; ?>"
-                                            class="btn btn-circle size-8 border-custom-accent bg-custom-accent plus-btn"
+                                            class="btn btn-circle size-6 border-custom-accent bg-custom-accent plus-btn"
                                             role="button">
                                             +
                                         </a>
@@ -135,16 +135,15 @@ while ($row = $result->fetch_assoc()) {
                                     <div class="">
                                         <form action="./functions/remove_item.php" method="post">
                                             <input type="hidden" name="remove" value="<?= $row['cart_id']; ?>">
-                                            <button type="submit" class="btn btn-sm btn-error text-custom-background float-right">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2">
+                                            <button type="submit" class=" btn-error text-custom-background float-right flex">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2 stroke-red-400">
                                                     <path d="M10 11v6" />
                                                     <path d="M14 11v6" />
                                                     <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
                                                     <path d="M3 6h18" />
                                                     <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
                                                 </svg>
-                                                <p>
-                                                    Remove
+                                                <p class="text-red-400">
                                                 </p>
                                             </button>
                                         </form>
@@ -157,14 +156,22 @@ while ($row = $result->fetch_assoc()) {
             <?php endforeach; ?>
         </div>
     </section>
-    <?php if (!empty($cart_items)): ?>
-        <section class=" w-full items-end justify-center flex flex-col fixed bottom-0 p-4 bg-custom-background shadow-2xl">
-            <div>
-                <h1 class="text-md font-medium w-full float-right ">Total</h1>
-                <p class="text-2xl font-bold w-full text-custom-accent">₱<?= number_format($total, 2); ?></p>
+    <section class=" w-full items-center justify-center flex  fixed bottom-0 p-4 bg-custom-background shadow-2xl">
+        <?php if (!empty($cart_items)): ?>
+            <div class="flex gap-4 grow w-1/2 items-center justify-center">
+                <form method="POST" action="./functions/buynow.php" class="grow w-full">
+                    <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
+                    <button type="submit" class="btn btn-lg border-custom-accent bg-custom-background text-custom-accent w-full rounded-full  text-sm">Buy Now</button>
+                </form>
             </div>
-        </section>
-    <?php endif; ?>
+            <div class=" w-1/2 grow items-end justify-center flex flex-col">
+                <div>
+                    <h1 class="text-md font-medium w-full float-right ">Total</h1>
+                    <p class="text-2xl font-bold w-full text-custom-accent">₱<?= number_format($total, 2); ?></p>
+                </div>
+            </div>
+        <?php endif; ?>
+    </section>
 </body>
 
 </html>
