@@ -127,7 +127,6 @@ if ($customer_id == 0) {
             </div>
         </div>
     </section>
-
     <section class=" w-full items-center justify-center flex flex-col fixed bottom-0 p-4 bg-custom-background shadow-2xl">
         <div class="flex gap-4 w-[90%] h-full justify-between items-end mb-4">
             <p class="text-2xl font-bold w-1/2 grow ">₱<?= number_format($product['price'], 2); ?></p>
@@ -147,6 +146,14 @@ if ($customer_id == 0) {
                                         <path d="M12 5v14" />
                                     </svg></button>
                             </div>
+                            <button type="button" class="minus-btn btn btn-circle size-10 disabled:bg-custom-background  border-custom-accent bg-custom-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus ">
+                                    <path d="M5 12h14" />
+                                </svg></button>
+                            <input type="number" class="quantity-input input border-none bg-custom-background shadow-none text-center text-xl font-bold" min="1" max="<?= $product['stock'] ?>" value="<?= $current_quantity ?>" readonly>
+                            <button type="button" class="plus-btn btn btn-circle size-10 bg-custom-accent border-custom-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
+                                    <path d="M5 12h14" />
+                                    <path d="M12 5v14" />
+                                </svg></button>
                         </div>
                     </form>
                 <?php else: ?>
@@ -160,7 +167,7 @@ if ($customer_id == 0) {
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                     <button type="submit" class="btn btn-lg border-custom-accent bg-custom-background text-custom-accent w-full rounded-full  text-sm">Buy Now</button>
                 </form>
-                <div class="grow w-1/2"">
+                <div class="grow w-1/2">
                     <input type="hidden" form="addToCartForm" name="product_id" value="<?= $product['product_id'] ?>">
                     <input type="hidden" form="addToCartForm" name="quantity" id="hiddenQuantityInput" value="<?= $current_quantity ?>">
                     <button type="submit" form="addToCartForm" class="btn btn-lg bg-custom-accent border-custom-accent rounded-full w-full text-custom-background text-sm">Add To Cart</button>

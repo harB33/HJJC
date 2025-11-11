@@ -98,7 +98,32 @@ if ($result_cart->num_rows > 0) {
         $quantity_to_add
     );
     $stmt_insert->execute();
+    $cart_id = $conn->insert_id;
     $stmt_insert->close();
+
+    if ($cart_id === 0) {
+        // This should not happen if the cart INSERT succeeded
+        die("Error: Failed to retrieve cart ID for new item.");
+    }
+
+    $stmt_details = $conn->prepare("
+        INSERT INTO product_details 
+        (product_id, cart_id, temperature, milk_type, espresso_shots, sweetness, ice_level)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    ");
+
+    $stmt_details->bind_param("iisssss",
+        $product_id,
+        $cart_id,
+        $temperature,
+        $milk_type,
+        $espresso_shots,
+        $sweetness,
+        $ice_level
+    );
+
+    $stmt_details->execute();
+    $stmt_details->close();
 }
 
 $stmt_cart->close();
