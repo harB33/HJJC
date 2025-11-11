@@ -44,7 +44,17 @@ $frappe_result = mysqli_query($conn, $frappe_sql);
 
 <body class="w-screen overflow-x-hidden scroll-smooth">
     <div class="sticky top-0 z-50 w-full backdrop-blur-sm ">
-        <?php include './components/header.php'; ?>
+        <!-- Ewan ko kung tama-->
+        <?php include './components/header.php'; 
+        if ($result->num_rows > 0) {
+            while($product = $result->fetch_assoc()) {
+                // Your existing code to display product cards/items using $product['...']
+            }
+        } else {
+            // No results found message
+            echo "<p class='text-center text-lg'>No products found matching \"". htmlspecialchars($search_query) . "\"</p>";
+        }
+        ?>
     </div>
     <section class="flex w-full h-full">
         <section class="flex items-center justify-center h-screen bg-custom-accent sticky top-0 flex-col p-2.5  ">
