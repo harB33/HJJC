@@ -149,7 +149,7 @@ if ($customer_id == 0) {
                     </div>
                 </form>
             <?php else: ?>
-                <a href="./login.php" class="text-sm w-max underline">Click Here To Log In</a>
+                <a href="./login.php" class="text-sm text-nowrap w-max underline">Click Here To Log In</a>
             <?php endif; ?>
         </div>
         <div class="flex gap-4 w-[90%] items-center justify-center">

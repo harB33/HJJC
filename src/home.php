@@ -49,25 +49,25 @@ $frappe_result = mysqli_query($conn, $frappe_sql);
     <section class="flex w-full h-full">
         <section class="flex items-center justify-center h-screen bg-custom-accent sticky top-0 flex-col p-2.5  ">
             <div class="grid grid-cols-1 place-items-center w-fit gap-16 content-center text-center">
-                <a href="#bestSeller" class="size-12 sm:size-45 flex flex-col text-sm ">
-                    <div>
+                <a href="#bestSeller" class="size-12 sm:size-45 flex flex-col text-sm hover:scale-105 duration-300">
+                    <div class=" leading-none">
                         <img src="./image/best-seller.png" alt="">
                         Best Seller
                     </div>
                 </a>
-                <a href="#coffee" class="size-12 sm:size-45 flex flex-col  text-sm">
+                <a href="#coffee" class="size-12 sm:size-45 flex flex-col  text-sm hover:scale-105 duration-300">
                     <div>
                         <img src="./image/coffee-cup.png" alt="">
                         Coffee
                     </div>
                 </a>
-                <a href="#frappe" class="size-12 sm:size-45 flex flex-col  text-sm">
+                <a href="#frappe" class="size-12 sm:size-45 flex flex-col  text-sm hover:scale-105 duration-300">
                     <div>
                         <img src="./image/frappe.png" alt="">
                         Frappe
                     </div>
                 </a>
-                <a href="#tea" class="size-12 sm:size-45 flex flex-col  text-sm">
+                <a href="#tea" class="size-12 sm:size-45 flex flex-col  text-sm hover:scale-105 duration-300">
                     <div>
                         <img src="./image/green-tea.png" alt="">
                         Tea
@@ -77,11 +77,13 @@ $frappe_result = mysqli_query($conn, $frappe_sql);
         </section>
         <section class=" w-full min-h-max flex flex-col  items-center bg-custom-background">
             <h1 id="bestSeller"></h1>
-            <h1 class=" text-4xl font-black my-fadeInCard  sticky top-0 w-full text-center pt-14 pb-2 bg-custom-background shadow-md z-30 ">Best Seller</h1>
-            <section class="flex flex-col  items-center overflow-y-scroll h-fit w-full p-4 ">
-                <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-clip scroll-m-32">
+            <h1 class=" text-3xl font-black my-fadeInCard  sticky top-0 w-full text-center pt-14 pb-2 bg-custom-background shadow-md z-30 flex items-center justify-center">Best Seller <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame-icon lucide-flame fill-custom-accent">
+                    <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4" />
+                </svg></h1>
+            <section class="flex flex-col  items-center overflow-y-scroll h-fit w-full p-4 pb-14 ">
+                <section class="grid grid-cols-2  gap-2.5 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
                     <?php while ($row = mysqli_fetch_assoc($coffee_result)): ?>
-                        <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/15 to-color-custom-secondary/35 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <div class=" group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                             <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
@@ -91,33 +93,33 @@ $frappe_result = mysqli_query($conn, $frappe_sql);
                                     <p class="float-right group-hover:scale-110 font-bold text-black/85 duration-300 mt-">₱<?= number_format($row['price'], 2); ?></p>
                                 </div>
                             </a>
-                            <div class="flex w-full gap-2 hidden">
-                                <form method="POST" action="./functions/addtocart.php" class=" flex w-full">
-                                    <input type="hidden" name="product_id" value="<?= $row['product_id']; ?>">
-                                    <button type="submit" class="btn btn-md rounded-2xl w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 bg-custom-primary/90 btn-primary text-white hover:bg-custom-secondary">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag">
-                                            <path d="M16 10a4 4 0 0 1-8 0" />
-                                            <path d="M3.103 6.034h17.794" />
-                                            <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
+                            <!-- <div class="flex w-full gap-2 hidden">
+                                    <form method="POST" action="./functions/addtocart.php" class=" flex w-full">
+                                        <input type="hidden" name="product_id" value="<?= $row['product_id']; ?>">
+                                        <button type="submit" class="btn btn-md rounded-2xl w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 bg-custom-primary/90 btn-primary text-white hover:bg-custom-secondary">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag">
+                                                <path d="M16 10a4 4 0 0 1-8 0" />
+                                                <path d="M3.103 6.034h17.794" />
+                                                <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
+                                            </svg>
+                                            Add to Cart</button>
+                                    </form>
+                                    <button class="btn btn-md rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-white hover:bg-custom-secondary/40">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart text-color-custom-primary">
+                                            <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
                                         </svg>
-                                        Add to Cart</button>
-                                </form>
-                                <button class="btn btn-md rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-white hover:bg-custom-secondary/40">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart text-color-custom-primary">
-                                        <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
-                                    </svg>
-                                </button>
-                            </div>
+                                    </button>
+                                </div> -->
                         </div>
                     <?php endwhile; ?>
                 </section>
             </section>
             <h1 id="frappe"></h1>
-            <h1 class=" text-4xl font-black my-fadeInCard  sticky top-0 w-full text-center pt-14 pb-2 bg-custom-background shadow-md z-30">Frappe</h1>
+            <h1 class=" text-4xl font-black my-fadeInCard  sticky top-0 w-full text-center pt-14  pb-2 bg-linear-to-t from-custom-background from-50% to-custom-background/10 to-100% shadow-md z-30">Frappe</h1>
             <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 ">
-                <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-clip scroll-m-32">
+                <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
                     <?php while ($row = mysqli_fetch_assoc($frappe_result)): ?>
-                        <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/15 to-color-custom-secondary/35 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                             <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
@@ -127,7 +129,7 @@ $frappe_result = mysqli_query($conn, $frappe_sql);
                                     <p class="float-right group-hover:scale-110 font-bold text-black/85 duration-300 mt-">₱<?= number_format($row['price'], 2); ?></p>
                                 </div>
                             </a>
-                            <div class="flex w-full gap-2 hidden">
+                            <!-- <div class="flex w-full gap-2 hidden">
                                 <form method="POST" action="./functions/addtocart.php" class=" flex w-full">
                                     <input type="hidden" name="product_id" value="<?= $row['product_id']; ?>">
                                     <button type="submit" class="btn btn-md rounded-2xl w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 bg-custom-primary/90 btn-primary text-white hover:bg-custom-secondary">
@@ -143,7 +145,7 @@ $frappe_result = mysqli_query($conn, $frappe_sql);
                                         <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
                                     </svg>
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
                     <?php endwhile; ?>
                 </section>
