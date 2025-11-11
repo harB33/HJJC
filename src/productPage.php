@@ -1,130 +1,24 @@
-<!-- <?php
-        include("./db/sessionStart.php");
-        include './db/db.php';
-
-        // Check for database connection failure immediately
-        if (!$conn || $conn->connect_error) {
-            die("Database connection failed: " . ($conn ? $conn->connect_error : 'Unknown error'));
-        }
-
-        // Get product ID from URL
-        $id = (int)$_GET['id'];
-        if ($id <= 0) {
-            die("Invalid Product ID.");
-        }
-
-        // Fetch product details
-        $result = $conn->query("SELECT * FROM products WHERE product_id=$id");
-        $product = $result->fetch_assoc();
-
-        // --- START: UNIFIED CUSTOMER ID LOGIC ---
-        $customer_id = 0; // Default for guests
-
-        if (isset($_SESSION['customer_user'])) {
-            $user_identifier = $_SESSION['customer_user'];
-
-            // Get customer ID from username
-            $stmt_get_id = $conn->prepare("SELECT customer_id FROM users WHERE customer_user = ?");
-            $stmt_get_id->bind_param("s", $user_identifier);
-            $stmt_get_id->execute();
-            $result_id = $stmt_get_id->get_result();
-
-            if ($row = $result_id->fetch_assoc()) {
-                $customer_id = (int)$row['customer_id'];
-            }
-            $stmt_get_id->close();
-        }
-        // --- END: UNIFIED CUSTOMER ID LOGIC ---
-
-        // --- HANDLE POST SUBMISSION (UPDATE/INSERT for +/- buttons) ---
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'], $_POST['action'])) {
-
-            // Only logged-in users can modify the cart
-            if ($customer_id > 0) {
-                $product_id = (int)$_POST['product_id'];
-                $action = $_POST['action'];
-
-                // Fetch current quantity from DB
-                $stmt = $conn->prepare("SELECT cart_id, quantity FROM cart WHERE customer_id = ? AND product_id = ?");
-                $stmt->bind_param("ii", $customer_id, $product_id);
-                $stmt->execute();
-                $res = $stmt->get_result();
-                $item = $res->fetch_assoc();
-                $stmt->close();
-
-                // Determine current quantity
-                $current_qty = $item ? (int)$item['quantity'] : 1;
-                $cart_id = $item ? $item['cart_id'] : null;
-
-                // Adjust quantity
-                if ($action === 'increase') {
-                    $current_qty++;
-                }
-                if ($action === 'decrease') {
-                    $current_qty = max(1, $current_qty - 1);
-                }
-
-                // Update or insert into cart
-                if ($cart_id) {
-                    $stmt = $conn->prepare("UPDATE cart SET quantity = ? WHERE cart_id = ?");
-                    $stmt->bind_param("ii", $current_qty, $cart_id);
-                } else {
-                    $stmt = $conn->prepare("INSERT INTO cart (customer_id, product_id, quantity) VALUES (?, ?, ?)");
-                    $stmt->bind_param("iii", $customer_id, $product_id, $current_qty);
-                }
-                $stmt->execute();
-                $stmt->close();
-            }
-
-            // Redirect to prevent form resubmission
-            header("Location: productPage.php?id=$id&cache_bust=" . time());
-            exit;
-        }
-
-        // --- FETCH CURRENT QUANTITY FOR PAGE DISPLAY ---
-        if ($customer_id == 0) {
-            $current_quantity = 1;
-        } else {
-            $stmt_qty = $conn->prepare("SELECT quantity FROM cart WHERE customer_id = ? AND product_id = ?");
-            $stmt_qty->bind_param("ii", $customer_id, $id);
-            $stmt_qty->execute();
-            $res_qty = $stmt_qty->get_result();
-
-            if ($row_qty = $res_qty->fetch_assoc()) {
-                $current_quantity = $row_qty['quantity'];
-            } else {
-                $current_quantity = 1;
-            }
-            $stmt_qty->close();
-        }
-        ?> -->
-
 <?php
 include("./db/sessionStart.php");
 include './db/db.php';
 
-// Check for database connection failure immediately
 if (!$conn || $conn->connect_error) {
     die("Database connection failed: " . ($conn ? $conn->connect_error : 'Unknown error'));
 }
 
-// Get product ID from URL
 $id = (int)$_GET['id'];
 if ($id <= 0) {
     die("Invalid Product ID.");
 }
 
-// Fetch product details
 $result = $conn->query("SELECT * FROM products WHERE product_id=$id");
 $product = $result->fetch_assoc();
 
-// --- START: UNIFIED CUSTOMER ID LOGIC ---
 $customer_id = 0; // Default for guests
 
 if (isset($_SESSION['customer_user'])) {
     $user_identifier = $_SESSION['customer_user'];
 
-    // Get customer ID from username
     $stmt_get_id = $conn->prepare("SELECT customer_id FROM users WHERE customer_user = ?");
     $stmt_get_id->bind_param("s", $user_identifier);
     $stmt_get_id->execute();
@@ -135,15 +29,9 @@ if (isset($_SESSION['customer_user'])) {
     }
     $stmt_get_id->close();
 }
-// --- END: UNIFIED CUSTOMER ID LOGIC ---
-
-// --- FETCH CURRENT QUANTITY FOR PAGE DISPLAY ---
-// THIS IS THE BLOCK WE RE-INTRODUCE
 if ($customer_id == 0) {
-    // Guest users always start at 1
     $current_quantity = 1;
 } else {
-    // Logged-in users show the current quantity already in their cart
     $stmt_qty = $conn->prepare("SELECT quantity FROM cart WHERE customer_id = ? AND product_id = ?");
     $stmt_qty->bind_param("ii", $customer_id, $id);
     $stmt_qty->execute();
@@ -152,16 +40,11 @@ if ($customer_id == 0) {
     if ($row_qty = $res_qty->fetch_assoc()) {
         $current_quantity = $row_qty['quantity'];
     } else {
-        // If not in cart, default to 1
         $current_quantity = 1;
     }
     $stmt_qty->close();
 }
-// --- END FETCH CURRENT QUANTITY ---
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
@@ -266,7 +149,7 @@ if ($customer_id == 0) {
                     </div>
                 </form>
             <?php else: ?>
-                <a href="./login.php" class="text-sm w-max underline">Click Here To Log In</a>
+                <a href="./login.php" class="text-sm text-nowrap w-max underline">Click Here To Log In</a>
             <?php endif; ?>
         </div>
         <div class="flex gap-4 w-[90%] items-center justify-center">

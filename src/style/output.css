@@ -35,6 +35,7 @@
     --font-weight-bold: 700;
     --font-weight-extrabold: 800;
     --font-weight-black: 900;
+    --leading-tight: 1.25;
     --radius-lg: 0.5rem;
     --radius-2xl: 1rem;
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -5486,6 +5487,12 @@
   .z-1 {
     z-index: 1;
   }
+  .z-2 {
+    z-index: 2;
+  }
+  .z-3 {
+    z-index: 3;
+  }
   .z-10 {
     z-index: 10;
   }
@@ -5721,6 +5728,9 @@
   .m-1 {
     margin: calc(var(--spacing) * 1);
   }
+  .m-4 {
+    margin: calc(var(--spacing) * 4);
+  }
   .filter {
     @layer daisyui.component {
       display: flex;
@@ -5922,6 +5932,9 @@
   .mt-10 {
     margin-top: calc(var(--spacing) * 10);
   }
+  .mt-40 {
+    margin-top: calc(var(--spacing) * 40);
+  }
   .footer-title {
     @layer daisyui.component {
       margin-bottom: calc(0.25rem * 2);
@@ -5944,17 +5957,11 @@
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
   }
-  .mb-5 {
-    margin-bottom: calc(var(--spacing) * 5);
-  }
   .mb-6 {
     margin-bottom: calc(var(--spacing) * 6);
   }
   .mb-8 {
     margin-bottom: calc(var(--spacing) * 8);
-  }
-  .mb-50 {
-    margin-bottom: calc(var(--spacing) * 50);
   }
   .status {
     @layer daisyui.component {
@@ -6676,14 +6683,6 @@
     width: calc(var(--spacing) * 35);
     height: calc(var(--spacing) * 35);
   }
-  .size-\[80\%\] {
-    width: 80%;
-    height: 80%;
-  }
-  .size-\[90\%\] {
-    width: 90%;
-    height: 90%;
-  }
   .size-full {
     width: 100%;
     height: 100%;
@@ -6721,14 +6720,8 @@
   .h-full {
     height: 100%;
   }
-  .h-max {
-    height: max-content;
-  }
   .h-screen {
     height: 100vh;
-  }
-  .max-h-\[5lh\] {
-    max-height: 5lh;
   }
   .min-h-30 {
     min-height: calc(var(--spacing) * 30);
@@ -6760,9 +6753,6 @@
   .w-15 {
     width: calc(var(--spacing) * 15);
   }
-  .w-20 {
-    width: calc(var(--spacing) * 20);
-  }
   .w-50 {
     width: calc(var(--spacing) * 50);
   }
@@ -6784,9 +6774,6 @@
   .w-\[180px\] {
     width: 180px;
   }
-  .w-auto {
-    width: auto;
-  }
   .w-fit {
     width: fit-content;
   }
@@ -6801,21 +6788,6 @@
   }
   .max-w-\[120px\] {
     max-width: 120px;
-  }
-  .min-w-0 {
-    min-width: calc(var(--spacing) * 0);
-  }
-  .min-w-\[120px\] {
-    min-width: 120px;
-  }
-  .min-w-\[130px\] {
-    min-width: 130px;
-  }
-  .min-w-\[140\] {
-    min-width: 140;
-  }
-  .min-w-\[140px\] {
-    min-width: 140px;
   }
   .min-w-full {
     min-width: 100%;
@@ -7010,6 +6982,9 @@
   .gap-2 {
     gap: calc(var(--spacing) * 2);
   }
+  .gap-2\.5 {
+    gap: calc(var(--spacing) * 2.5);
+  }
   .gap-4 {
     gap: calc(var(--spacing) * 4);
   }
@@ -7036,6 +7011,9 @@
   }
   .overflow-x-hidden {
     overflow-x: hidden;
+  }
+  .overflow-x-visible {
+    overflow-x: visible;
   }
   .overflow-y-scroll {
     overflow-y: scroll;
@@ -7147,8 +7125,33 @@
     }
     background-image: linear-gradient(var(--tw-gradient-stops));
   }
+  .bg-linear-to-t {
+    --tw-gradient-position: to top;
+    @supports (background-image: linear-gradient(in lab, red, red)) {
+      --tw-gradient-position: to top in oklab;
+    }
+    background-image: linear-gradient(var(--tw-gradient-stops));
+  }
+  .from-custom-background {
+    --tw-gradient-from: var(--color-custom-background);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
   .from-custom-primary {
     --tw-gradient-from: var(--color-custom-primary);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .from-custom-primary\/2 {
+    --tw-gradient-from: color-mix(in srgb, #bf8343 2%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-from: color-mix(in oklab, var(--color-custom-primary) 2%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .from-custom-primary\/3 {
+    --tw-gradient-from: color-mix(in srgb, #bf8343 3%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-from: color-mix(in oklab, var(--color-custom-primary) 3%, transparent);
+    }
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
   .from-custom-primary\/15 {
@@ -7158,11 +7161,144 @@
     }
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
+  .from-custom-primary\/25 {
+    --tw-gradient-from: color-mix(in srgb, #bf8343 25%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-from: color-mix(in oklab, var(--color-custom-primary) 25%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .from-custom-primary\/35 {
+    --tw-gradient-from: color-mix(in srgb, #bf8343 35%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-from: color-mix(in oklab, var(--color-custom-primary) 35%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
   .from-custom-primary\/40 {
     --tw-gradient-from: color-mix(in srgb, #bf8343 40%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       --tw-gradient-from: color-mix(in oklab, var(--color-custom-primary) 40%, transparent);
     }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .from-custom-primary\/50 {
+    --tw-gradient-from: color-mix(in srgb, #bf8343 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-from: color-mix(in oklab, var(--color-custom-primary) 50%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .from-5\% {
+    --tw-gradient-from-position: 5%;
+  }
+  .from-50\% {
+    --tw-gradient-from-position: 50%;
+  }
+  .from-75\% {
+    --tw-gradient-from-position: 75%;
+  }
+  .to-custom-accent {
+    --tw-gradient-to: var(--color-custom-accent);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-accent\/1 {
+    --tw-gradient-to: color-mix(in srgb, #e69c4d 1%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-accent) 1%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-accent\/2 {
+    --tw-gradient-to: color-mix(in srgb, #e69c4d 2%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-accent) 2%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-accent\/5 {
+    --tw-gradient-to: color-mix(in srgb, #e69c4d 5%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-accent) 5%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-accent\/15 {
+    --tw-gradient-to: color-mix(in srgb, #e69c4d 15%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-accent) 15%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-accent\/20 {
+    --tw-gradient-to: color-mix(in srgb, #e69c4d 20%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-accent) 20%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-accent\/25 {
+    --tw-gradient-to: color-mix(in srgb, #e69c4d 25%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-accent) 25%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-accent\/50 {
+    --tw-gradient-to: color-mix(in srgb, #e69c4d 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-accent) 50%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-background {
+    --tw-gradient-to: var(--color-custom-background);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-background\/0 {
+    --tw-gradient-to: color-mix(in srgb, #f9f6f3 0%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-background) 0%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-background\/1 {
+    --tw-gradient-to: color-mix(in srgb, #f9f6f3 1%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-background) 1%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-background\/5 {
+    --tw-gradient-to: color-mix(in srgb, #f9f6f3 5%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-background) 5%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-background\/10 {
+    --tw-gradient-to: color-mix(in srgb, #f9f6f3 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-background) 10%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-background\/50 {
+    --tw-gradient-to: color-mix(in srgb, #f9f6f3 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-background) 50%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-background\/90 {
+    --tw-gradient-to: color-mix(in srgb, #f9f6f3 90%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-custom-background) 90%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-custom-background\/100 {
+    --tw-gradient-to: var(--color-custom-background);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
   .to-custom-secondary {
@@ -7176,11 +7312,17 @@
     }
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
+  .to-100\% {
+    --tw-gradient-to-position: 100%;
+  }
   .mask-repeat {
     mask-repeat: repeat;
   }
   .fill-current {
     fill: currentcolor;
+  }
+  .fill-custom-accent {
+    fill: var(--color-custom-accent);
   }
   .stroke-current {
     stroke: currentcolor;
@@ -7200,6 +7342,9 @@
   .object-cover {
     object-fit: cover;
   }
+  .p-0 {
+    padding: calc(var(--spacing) * 0);
+  }
   .p-1 {
     padding: calc(var(--spacing) * 1);
   }
@@ -7214,6 +7359,9 @@
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
+  }
+  .p-5 {
+    padding: calc(var(--spacing) * 5);
   }
   .p-8 {
     padding: calc(var(--spacing) * 8);
@@ -7254,14 +7402,26 @@
   .px-6 {
     padding-inline: calc(var(--spacing) * 6);
   }
+  .pt-0 {
+    padding-top: calc(var(--spacing) * 0);
+  }
+  .pt-1 {
+    padding-top: calc(var(--spacing) * 1);
+  }
+  .pt-4 {
+    padding-top: calc(var(--spacing) * 4);
+  }
+  .pt-8 {
+    padding-top: calc(var(--spacing) * 8);
+  }
+  .pt-10 {
+    padding-top: calc(var(--spacing) * 10);
+  }
   .pt-14 {
     padding-top: calc(var(--spacing) * 14);
   }
   .pt-20 {
     padding-top: calc(var(--spacing) * 20);
-  }
-  .pb-0 {
-    padding-bottom: calc(var(--spacing) * 0);
   }
   .pb-2 {
     padding-bottom: calc(var(--spacing) * 2);
@@ -7269,11 +7429,11 @@
   .pb-3 {
     padding-bottom: calc(var(--spacing) * 3);
   }
+  .pb-14 {
+    padding-bottom: calc(var(--spacing) * 14);
+  }
   .pb-40 {
     padding-bottom: calc(var(--spacing) * 40);
-  }
-  .pb-80 {
-    padding-bottom: calc(var(--spacing) * 80);
   }
   .text-center {
     text-align: center;
@@ -7319,6 +7479,14 @@
   .text-\[20px\] {
     font-size: 20px;
   }
+  .leading-none {
+    --tw-leading: 1;
+    line-height: 1;
+  }
+  .leading-tight {
+    --tw-leading: var(--leading-tight);
+    line-height: var(--leading-tight);
+  }
   .font-black {
     --tw-font-weight: var(--font-weight-black);
     font-weight: var(--font-weight-black);
@@ -7342,6 +7510,9 @@
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
+  }
+  .text-nowrap {
+    text-wrap: nowrap;
   }
   .text-wrap {
     text-wrap: wrap;
@@ -7748,417 +7919,25 @@
       }
     }
   }
-  .disabled\:btn {
-    &:disabled {
-      :where(&) {
-        @layer daisyui.component {
-          width: unset;
-        }
-      }
-      .prose & {
-        text-decoration-line: none;
-      }
-      @layer daisyui.component {
-        display: inline-flex;
-        flex-shrink: 0;
-        cursor: pointer;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: center;
-        gap: calc(0.25rem * 1.5);
-        text-align: center;
-        vertical-align: middle;
-        outline-offset: 2px;
-        webkit-user-select: none;
-        user-select: none;
-        padding-inline: var(--btn-p);
-        color: var(--btn-fg);
-        --tw-prose-links: var(--btn-fg);
-        height: var(--size);
-        font-size: var(--fontsize, 0.875rem);
-        font-weight: 600;
-        outline-color: var(--btn-color, var(--color-base-content));
-        transition-property: color, background-color, border-color, box-shadow;
-        transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-        transition-duration: 0.2s;
-        border-start-start-radius: var(--join-ss, var(--radius-field));
-        border-start-end-radius: var(--join-se, var(--radius-field));
-        border-end-start-radius: var(--join-es, var(--radius-field));
-        border-end-end-radius: var(--join-ee, var(--radius-field));
-        background-color: var(--btn-bg);
-        background-size: auto, calc(var(--noise) * 100%);
-        background-image: none, var(--btn-noise);
-        border-width: var(--border);
-        border-style: solid;
-        border-color: var(--btn-border);
-        text-shadow: 0 0.5px oklch(100% 0 0 / calc(var(--depth) * 0.15));
-        touch-action: manipulation;
-        box-shadow: 0 0.5px 0 0.5px oklch(100% 0 0 / calc(var(--depth) * 6%)) inset, var(--btn-shadow);
-        --size: calc(var(--size-field, 0.25rem) * 10);
-        --btn-bg: var(--btn-color, var(--color-base-200));
-        --btn-fg: var(--color-base-content);
-        --btn-p: 1rem;
-        --btn-border: var(--btn-bg);
-        @supports (color: color-mix(in lab, red, red)) {
-          --btn-border: color-mix(in oklab, var(--btn-bg), #000 calc(var(--depth) * 5%));
-        }
-        --btn-shadow: 0 3px 2px -2px var(--btn-bg),
-      0 4px 3px -2px var(--btn-bg);
-        @supports (color: color-mix(in lab, red, red)) {
-          --btn-shadow: 0 3px 2px -2px color-mix(in oklab, var(--btn-bg) calc(var(--depth) * 30%), #0000),
-      0 4px 3px -2px color-mix(in oklab, var(--btn-bg) calc(var(--depth) * 30%), #0000);
-        }
-        --btn-noise: var(--fx-noise);
-        @media (hover: hover) {
-          &:hover {
-            --btn-bg: var(--btn-color, var(--color-base-200));
-            @supports (color: color-mix(in lab, red, red)) {
-              --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-base-200)), #000 7%);
-            }
-          }
-        }
-        &:focus-visible, &:has(:focus-visible) {
-          outline-width: 2px;
-          outline-style: solid;
-          isolation: isolate;
-        }
-        &:active:not(.btn-active) {
-          translate: 0 0.5px;
-          --btn-bg: var(--btn-color, var(--color-base-200));
-          @supports (color: color-mix(in lab, red, red)) {
-            --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-base-200)), #000 5%);
-          }
-          --btn-border: var(--btn-color, var(--color-base-200));
-          @supports (color: color-mix(in lab, red, red)) {
-            --btn-border: color-mix(in oklab, var(--btn-color, var(--color-base-200)), #000 7%);
-          }
-          --btn-shadow: 0 0 0 0 oklch(0% 0 0/0), 0 0 0 0 oklch(0% 0 0/0);
-        }
-        &:is(input[type="checkbox"], input[type="radio"]) {
-          appearance: none;
-          &::after {
-            --tw-content: attr(aria-label);
-            content: var(--tw-content);
-          }
-        }
-        &:where(input:checked:not(.filter .disabled\:btn)) {
-          --btn-color: var(--color-primary);
-          --btn-fg: var(--color-primary-content);
-          isolation: isolate;
-        }
-      }
-      &:disabled {
-        @layer daisyui.modifier {
-          &:not(.btn-link, .btn-ghost) {
-            background-color: var(--color-base-content);
-            @supports (color: color-mix(in lab, red, red)) {
-              background-color: color-mix(in oklab, var(--color-base-content) 10%, transparent);
-            }
-            box-shadow: none;
-          }
-          pointer-events: none;
-          --btn-border: #0000;
-          --btn-noise: none;
-          --btn-fg: var(--color-base-content);
-          @supports (color: color-mix(in lab, red, red)) {
-            --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-          }
-          @media (hover: hover) {
-            &:hover {
-              pointer-events: none;
-              background-color: var(--color-neutral);
-              @supports (color: color-mix(in lab, red, red)) {
-                background-color: color-mix(in oklab, var(--color-neutral) 20%, transparent);
-              }
-              --btn-border: #0000;
-              --btn-fg: var(--color-base-content);
-              @supports (color: color-mix(in lab, red, red)) {
-                --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-              }
-            }
-          }
-        }
-      }
-      &[disabled] {
-        @layer daisyui.modifier {
-          &:not(.btn-link, .btn-ghost) {
-            background-color: var(--color-base-content);
-            @supports (color: color-mix(in lab, red, red)) {
-              background-color: color-mix(in oklab, var(--color-base-content) 10%, transparent);
-            }
-            box-shadow: none;
-          }
-          pointer-events: none;
-          --btn-border: #0000;
-          --btn-noise: none;
-          --btn-fg: var(--color-base-content);
-          @supports (color: color-mix(in lab, red, red)) {
-            --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-          }
-          @media (hover: hover) {
-            &:hover {
-              pointer-events: none;
-              background-color: var(--color-neutral);
-              @supports (color: color-mix(in lab, red, red)) {
-                background-color: color-mix(in oklab, var(--color-neutral) 20%, transparent);
-              }
-              --btn-border: #0000;
-              --btn-fg: var(--color-base-content);
-              @supports (color: color-mix(in lab, red, red)) {
-                --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-              }
-            }
-          }
-        }
+  .hover\:shadow-md {
+    &:hover {
+      @media (hover: hover) {
+        --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
       }
     }
   }
-  .disabled\:btn {
-    &:disabled {
-      :where(&) {
-        @layer daisyui.component {
-          width: unset;
-        }
+  .hover\:shadow-sm {
+    &:hover {
+      @media (hover: hover) {
+        --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
       }
-      .prose & {
-        text-decoration-line: none;
-      }
-      @layer daisyui.component {
-        display: inline-flex;
-        flex-shrink: 0;
-        cursor: pointer;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: center;
-        gap: calc(0.25rem * 1.5);
-        text-align: center;
-        vertical-align: middle;
-        outline-offset: 2px;
-        webkit-user-select: none;
-        user-select: none;
-        padding-inline: var(--btn-p);
-        color: var(--btn-fg);
-        --tw-prose-links: var(--btn-fg);
-        height: var(--size);
-        font-size: var(--fontsize, 0.875rem);
-        font-weight: 600;
-        outline-color: var(--btn-color, var(--color-base-content));
-        transition-property: color, background-color, border-color, box-shadow;
-        transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-        transition-duration: 0.2s;
-        border-start-start-radius: var(--join-ss, var(--radius-field));
-        border-start-end-radius: var(--join-se, var(--radius-field));
-        border-end-start-radius: var(--join-es, var(--radius-field));
-        border-end-end-radius: var(--join-ee, var(--radius-field));
-        background-color: var(--btn-bg);
-        background-size: auto, calc(var(--noise) * 100%);
-        background-image: none, var(--btn-noise);
-        border-width: var(--border);
-        border-style: solid;
-        border-color: var(--btn-border);
-        text-shadow: 0 0.5px oklch(100% 0 0 / calc(var(--depth) * 0.15));
-        touch-action: manipulation;
-        box-shadow: 0 0.5px 0 0.5px oklch(100% 0 0 / calc(var(--depth) * 6%)) inset, var(--btn-shadow);
-        --size: calc(var(--size-field, 0.25rem) * 10);
-        --btn-bg: var(--btn-color, var(--color-base-200));
-        --btn-fg: var(--color-base-content);
-        --btn-p: 1rem;
-        --btn-border: var(--btn-bg);
-        @supports (color: color-mix(in lab, red, red)) {
-          --btn-border: color-mix(in oklab, var(--btn-bg), #000 calc(var(--depth) * 5%));
-        }
-        --btn-shadow: 0 3px 2px -2px var(--btn-bg),
-      0 4px 3px -2px var(--btn-bg);
-        @supports (color: color-mix(in lab, red, red)) {
-          --btn-shadow: 0 3px 2px -2px color-mix(in oklab, var(--btn-bg) calc(var(--depth) * 30%), #0000),
-      0 4px 3px -2px color-mix(in oklab, var(--btn-bg) calc(var(--depth) * 30%), #0000);
-        }
-        --btn-noise: var(--fx-noise);
-        @media (hover: hover) {
-          &:hover {
-            --btn-bg: var(--btn-color, var(--color-base-200));
-            @supports (color: color-mix(in lab, red, red)) {
-              --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-base-200)), #000 7%);
-            }
-          }
-        }
-        &:focus-visible, &:has(:focus-visible) {
-          outline-width: 2px;
-          outline-style: solid;
-          isolation: isolate;
-        }
-        &:active:not(.btn-active) {
-          translate: 0 0.5px;
-          --btn-bg: var(--btn-color, var(--color-base-200));
-          @supports (color: color-mix(in lab, red, red)) {
-            --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-base-200)), #000 5%);
-          }
-          --btn-border: var(--btn-color, var(--color-base-200));
-          @supports (color: color-mix(in lab, red, red)) {
-            --btn-border: color-mix(in oklab, var(--btn-color, var(--color-base-200)), #000 7%);
-          }
-          --btn-shadow: 0 0 0 0 oklch(0% 0 0/0), 0 0 0 0 oklch(0% 0 0/0);
-        }
-        &:is(input[type="checkbox"], input[type="radio"]) {
-          appearance: none;
-          &::after {
-            --tw-content: attr(aria-label);
-            content: var(--tw-content);
-          }
-        }
-        &:where(input:checked:not(.filter .disabled\:btn)) {
-          --btn-color: var(--color-primary);
-          --btn-fg: var(--color-primary-content);
-          isolation: isolate;
-        }
-      }
-      &:disabled {
-        @layer daisyui.modifier {
-          &:not(.btn-link, .btn-ghost) {
-            background-color: var(--color-base-content);
-            @supports (color: color-mix(in lab, red, red)) {
-              background-color: color-mix(in oklab, var(--color-base-content) 10%, transparent);
-            }
-            box-shadow: none;
-          }
-          pointer-events: none;
-          --btn-border: #0000;
-          --btn-noise: none;
-          --btn-fg: var(--color-base-content);
-          @supports (color: color-mix(in lab, red, red)) {
-            --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-          }
-          @media (hover: hover) {
-            &:hover {
-              pointer-events: none;
-              background-color: var(--color-neutral);
-              @supports (color: color-mix(in lab, red, red)) {
-                background-color: color-mix(in oklab, var(--color-neutral) 20%, transparent);
-              }
-              --btn-border: #0000;
-              --btn-fg: var(--color-base-content);
-              @supports (color: color-mix(in lab, red, red)) {
-                --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-              }
-            }
-          }
-        }
-      }
-      &[disabled] {
-        @layer daisyui.modifier {
-          &:not(.btn-link, .btn-ghost) {
-            background-color: var(--color-base-content);
-            @supports (color: color-mix(in lab, red, red)) {
-              background-color: color-mix(in oklab, var(--color-base-content) 10%, transparent);
-            }
-            box-shadow: none;
-          }
-          pointer-events: none;
-          --btn-border: #0000;
-          --btn-noise: none;
-          --btn-fg: var(--color-base-content);
-          @supports (color: color-mix(in lab, red, red)) {
-            --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-          }
-          @media (hover: hover) {
-            &:hover {
-              pointer-events: none;
-              background-color: var(--color-neutral);
-              @supports (color: color-mix(in lab, red, red)) {
-                background-color: color-mix(in oklab, var(--color-neutral) 20%, transparent);
-              }
-              --btn-border: #0000;
-              --btn-fg: var(--color-base-content);
-              @supports (color: color-mix(in lab, red, red)) {
-                --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  .disabled\:btn-disabled {
-    &:disabled {
-      @layer daisyui.modifier {
-        &:not(.btn-link, .btn-ghost) {
-          background-color: var(--color-base-content);
-          @supports (color: color-mix(in lab, red, red)) {
-            background-color: color-mix(in oklab, var(--color-base-content) 10%, transparent);
-          }
-          box-shadow: none;
-        }
-        pointer-events: none;
-        --btn-border: #0000;
-        --btn-noise: none;
-        --btn-fg: var(--color-base-content);
-        @supports (color: color-mix(in lab, red, red)) {
-          --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-        }
-        @media (hover: hover) {
-          &:hover {
-            pointer-events: none;
-            background-color: var(--color-neutral);
-            @supports (color: color-mix(in lab, red, red)) {
-              background-color: color-mix(in oklab, var(--color-neutral) 20%, transparent);
-            }
-            --btn-border: #0000;
-            --btn-fg: var(--color-base-content);
-            @supports (color: color-mix(in lab, red, red)) {
-              --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-            }
-          }
-        }
-      }
-    }
-  }
-  .disabled\:btn-disabled {
-    &:disabled {
-      @layer daisyui.modifier {
-        &:not(.btn-link, .btn-ghost) {
-          background-color: var(--color-base-content);
-          @supports (color: color-mix(in lab, red, red)) {
-            background-color: color-mix(in oklab, var(--color-base-content) 10%, transparent);
-          }
-          box-shadow: none;
-        }
-        pointer-events: none;
-        --btn-border: #0000;
-        --btn-noise: none;
-        --btn-fg: var(--color-base-content);
-        @supports (color: color-mix(in lab, red, red)) {
-          --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-        }
-        @media (hover: hover) {
-          &:hover {
-            pointer-events: none;
-            background-color: var(--color-neutral);
-            @supports (color: color-mix(in lab, red, red)) {
-              background-color: color-mix(in oklab, var(--color-neutral) 20%, transparent);
-            }
-            --btn-border: #0000;
-            --btn-fg: var(--color-base-content);
-            @supports (color: color-mix(in lab, red, red)) {
-              --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
-            }
-          }
-        }
-      }
-    }
-  }
-  .disabled\:border-custom-accent {
-    &:disabled {
-      border-color: var(--color-custom-accent);
     }
   }
   .disabled\:bg-custom-background {
     &:disabled {
       background-color: var(--color-custom-background);
-    }
-  }
-  .disabled\:stroke-amber-300 {
-    &:disabled {
-      stroke: var(--color-amber-300);
     }
   }
   .max-sm\:hidden {
@@ -9044,6 +8823,10 @@ html {
   inherits: false;
   initial-value: 100%;
 }
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-font-weight {
   syntax: "*";
   inherits: false;
@@ -9258,6 +9041,7 @@ html {
       --tw-gradient-from-position: 0%;
       --tw-gradient-via-position: 50%;
       --tw-gradient-to-position: 100%;
+      --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-shadow: 0 0 #0000;
       --tw-shadow-color: initial;
