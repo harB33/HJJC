@@ -8,6 +8,7 @@ if (isset($_POST['remove']) && isset($_SESSION['customer_id'])) {
     $customer_id = (int)$_SESSION['customer_id'];
     
     $del_sql = "DELETE FROM cart WHERE cart_id = ? AND customer_id = ?";
+
     $del_stmt = $conn->prepare($del_sql);
      if ($del_stmt === false) {
         die("Prepare failed: " . $conn->error);
