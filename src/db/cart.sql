@@ -35,7 +35,7 @@ CREATE TABLE `cart` (
   `milk_type` enum('Dairy Milk','Oat Milk','Coconut Milk','') NOT NULL,
   `espresso_shots` enum('No Shot','LYDIA','BOSS','') NOT NULL DEFAULT 'No Shot',
   `sweetness` enum('Regular Sweet','Less Sweet','More Sweet','') NOT NULL DEFAULT 'Regular Sweet',
-  `ice_level` enum('Normal Ice','Less Ice','','') NOT NULL DEFAULT 'Normal Ice',
+  `ice_level` enum('Normal Ice','Less Ice','','') NULL DEFAULT 'Normal Ice',
   `quantity` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
