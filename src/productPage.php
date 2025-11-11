@@ -129,28 +129,30 @@ if ($customer_id == 0) {
     </section>
 
     <section class=" w-full items-center justify-center flex flex-col fixed bottom-0 p-4 bg-custom-background shadow-2xl">
-        <div class="flex gap-4 w-[90%] h-full items-center justify-between mb-4">
+        <div class="flex gap-4 w-[90%] h-full justify-between items-end mb-4">
             <p class="text-2xl font-bold w-1/2 grow ">₱<?= number_format($product['price'], 2); ?></p>
-            <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
-                <form method="POST" action="productPage.php?id=<?= $product['product_id']; ?>" class="quantity-form flex w-1/2 grow">
-                    <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
-                    <input type="hidden" name="current_quantity" class="current-quantity-value" value="<?= $current_quantity; ?>">
-                    <div class="quantity-selector flex">
+            <div class="w-1/2 grow flex justify-end">
+                <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
+                    <form method="POST" action="productPage.php?id=<?= $product['product_id']; ?>" class="quantity-form flex w-fit ">
+                        <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
+                        <input type="hidden" name="current_quantity" class="current-quantity-value" value="<?= $current_quantity; ?>">
                         <div class="quantity-selector flex">
-                            <button type="button" class="minus-btn btn btn-circle size-10 disabled:bg-custom-background  border-custom-accent bg-custom-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus ">
-                                    <path d="M5 12h14" />
-                                </svg></button>
-                            <input type="number" class="quantity-input input border-none bg-custom-background shadow-none text-center text-xl font-bold" min="1" max="<?= $product['stock'] ?>" value="<?= $current_quantity ?>">
-                            <button type="button" class="plus-btn btn btn-circle size-10 bg-custom-accent border-custom-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
-                                    <path d="M5 12h14" />
-                                    <path d="M12 5v14" />
-                                </svg></button>
+                            <div class="quantity-selector flex">
+                                <button type="button" class="minus-btn btn btn-circle size-10 disabled:bg-custom-background  border-custom-accent bg-custom-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus ">
+                                        <path d="M5 12h14" />
+                                    </svg></button>
+                                <input type="number" class="quantity-input input border-none bg-custom-background shadow-none text-center text-xl font-bold" min="1" max="<?= $product['stock'] ?>" value="<?= $current_quantity ?>">
+                                <button type="button" class="plus-btn btn btn-circle size-10 bg-custom-accent border-custom-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
+                                        <path d="M5 12h14" />
+                                        <path d="M12 5v14" />
+                                    </svg></button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            <?php else: ?>
-                <a href="./login.php" class="text-sm text-nowrap w-max underline">Click Here To Log In</a>
-            <?php endif; ?>
+                    </form>
+                <?php else: ?>
+                    <a href="./login.php" class="text-sm text-nowrap w-max underline">Click Here To Log In</a>
+                <?php endif; ?>
+            </div>
         </div>
         <div class="flex gap-4 w-[90%] items-center justify-center">
             <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
