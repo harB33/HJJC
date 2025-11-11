@@ -84,7 +84,7 @@ if ($customer_id == 0) {
                 </div>
             </div>
             <div class="w-[90%]">
-                <form class=" gap-12 flex flex-col" action="./functions/addtocart.php" method="post">
+                <form id=" addToCartForm" method="POST" action="./functions/addtocart.php" class="grow w-1/2">
                     <div>
                         <h1 class=" font-bold mb-2">Temperature</h1>
                         <div class="flex flex-wrap gap-2">
@@ -123,6 +123,10 @@ if ($customer_id == 0) {
                             <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="ice_level" value="Less Ice" aria-label="Less Ice">
                         </div>
                     </div>
+                    <!--Submit-->
+                        <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                        <input type="hidden" name="quantity" id="hiddenQuantityInput" value="<?= $current_quantity ?>">
+                        <button type="submit" class="btn btn-lg bg-custom-accent border-custom-accent rounded-full w-full text-custom-background text-sm">Add To Cart</button>
                 </form>
             </div>
         </div>
@@ -156,12 +160,7 @@ if ($customer_id == 0) {
             <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
                 <form method="POST" action="./functions/buynow.php" class="grow w-1/2">
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
-                    <button type="submit" class="btn btn-lg border-custom-accent bg-custom-background text-custom-accent w-full rounded-full  text-sm"">Buy Now</button>
-                </form>
-                <form id=" addToCartForm" method="POST" action="./functions/addtocart.php" class="grow w-1/2">
-                        <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
-                        <input type="hidden" name="quantity" id="hiddenQuantityInput" value="<?= $current_quantity ?>">
-                        <button type="submit" class="btn btn-lg bg-custom-accent border-custom-accent rounded-full w-full text-custom-background text-sm">Add To Cart</button>
+                    <button type="submit" class="btn btn-lg border-custom-accent bg-custom-background text-custom-accent w-full rounded-full  text-sm">Buy Now</button>
                 </form>
             <?php else: ?>
                 <form method="POST" action="./functions/buynow.php" class="grow w-1/2">
