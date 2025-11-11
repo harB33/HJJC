@@ -4790,9 +4790,6 @@
   .inset-1 {
     inset: calc(var(--spacing) * 1);
   }
-  .inset-1\.5 {
-    inset: calc(var(--spacing) * 1.5);
-  }
   .dropdown-right {
     @layer daisyui.modifier {
       --anchor-h: right;
@@ -6744,20 +6741,8 @@
   .max-h-0 {
     max-height: calc(var(--spacing) * 0);
   }
-  .max-h-\[2lh\] {
-    max-height: 2lh;
-  }
-  .max-h-\[5\] {
-    max-height: 5;
-  }
-  .max-h-\[5lh\] {
-    max-height: 5lh;
-  }
   .min-h-30 {
     min-height: calc(var(--spacing) * 30);
-  }
-  .min-h-\[3lh\] {
-    min-height: 3lh;
   }
   .min-h-\[5lh\] {
     min-height: 5lh;
@@ -6828,11 +6813,17 @@
   .w-max {
     width: max-content;
   }
+  .w-min {
+    width: min-content;
+  }
   .w-screen {
     width: 100vw;
   }
   .max-w-\[120px\] {
     max-width: 120px;
+  }
+  .max-w-min {
+    max-width: min-content;
   }
   .min-w-full {
     min-width: 100%;
@@ -7146,12 +7137,6 @@
     background-color: color-mix(in srgb, #bf8343 75%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-custom-primary) 75%, transparent);
-    }
-  }
-  .bg-custom-primary\/90 {
-    background-color: color-mix(in srgb, #bf8343 90%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-custom-primary) 90%, transparent);
     }
   }
   .bg-custom-secondary {
@@ -7773,40 +7758,9 @@
       }
     }
   }
-  .group-hover\:opacity-100 {
-    &:is(:where(.group):hover *) {
-      @media (hover: hover) {
-        opacity: 100%;
-      }
-    }
-  }
   .checked\:border-custom-accent {
     &:checked {
       border-color: var(--color-custom-accent);
-    }
-  }
-  .checked\:bg-custom-accent\/2 {
-    &:checked {
-      background-color: color-mix(in srgb, #e69c4d 2%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--color-custom-accent) 2%, transparent);
-      }
-    }
-  }
-  .checked\:bg-custom-accent\/5 {
-    &:checked {
-      background-color: color-mix(in srgb, #e69c4d 5%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--color-custom-accent) 5%, transparent);
-      }
-    }
-  }
-  .checked\:bg-custom-accent\/25 {
-    &:checked {
-      background-color: color-mix(in srgb, #e69c4d 25%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--color-custom-accent) 25%, transparent);
-      }
     }
   }
   .checked\:bg-custom-accent\/50 {
@@ -7829,23 +7783,6 @@
         --tw-scale-y: 105%;
         --tw-scale-z: 105%;
         scale: var(--tw-scale-x) var(--tw-scale-y);
-      }
-    }
-  }
-  .hover\:bg-custom-secondary {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-custom-secondary);
-      }
-    }
-  }
-  .hover\:bg-custom-secondary\/40 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: color-mix(in srgb, #e6bf95 40%, transparent);
-        @supports (color: color-mix(in lab, red, red)) {
-          background-color: color-mix(in oklab, var(--color-custom-secondary) 40%, transparent);
-        }
       }
     }
   }

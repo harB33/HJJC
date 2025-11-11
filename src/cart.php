@@ -73,11 +73,11 @@ while ($row = $result->fetch_assoc()) {
     <link rel="stylesheet" href="./style/output.css" />
 </head>
 
-<body>
+<body class="w-screen overflow-x-hidden scroll-smooth">
     <div class="sticky top-0 z-50 ">
         <?php include './components/header.php'; ?>
     </div>
-    <section class="flex min-h-screen h-screen w-full justify-center items-start pt-20 bg-custom-background">
+    <section class="flex min-h-screen h-full w-full justify-center items-start pt-20 bg-custom-background">
         <div class="fixed top-[8%] left-[5%] z-40">
             <a href="./home.php" class="btn btn-circle bg-custom-accent border-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left stroke-custom-background">
@@ -123,7 +123,7 @@ while ($row = $result->fetch_assoc()) {
                                             -
                                         </a>
                                         <input type="number"
-                                            class="input quantity-input border-none font-bold bg-custom-background text-center w-8 text-xl shadow-none"
+                                            class="input quantity-input border-none font-bold bg-custom-background text-center w-10 text-xl shadow-none"
                                             value="<?= $row['quantity']; ?>"
                                             min="1" max="100" readonly>
                                         <a href="?update_cart_id=<?= $row['cart_id']; ?>&new_qty=<?= $row['quantity'] + 1; ?>"
