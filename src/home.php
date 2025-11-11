@@ -88,8 +88,8 @@ $frappe_result = mysqli_query($conn, $frappe_sql);
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
-                                <div class="min-h-max mt-2 duration-300">
-                                    <h3 class=" text-black/75 overflow-clip group-hover:text-custom-primary duration-300"><?= htmlspecialchars($row['product_name']); ?></h3>
+                                <div class="min-h-max duration-300">
+                                    <h3 class=" text-black/75 overflow-clip group-hover:text-custom-primary duration-300 leading-none p-1"><?= htmlspecialchars($row['product_name']); ?></h3>
                                     <p class="float-right group-hover:scale-110 font-bold text-black/85 duration-300 mt-">₱<?= number_format($row['price'], 2); ?></p>
                                 </div>
                             </a>
@@ -124,8 +124,8 @@ $frappe_result = mysqli_query($conn, $frappe_sql);
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
-                                <div class="min-h-max mt-2 duration-300">
-                                    <h3 class=" text-black/75 overflow-clip group-hover:text-custom-primary duration-300"><?= htmlspecialchars($row['product_name']); ?></h3>
+                                <div class="min-h-max duration-300">
+                                    <h3 class=" text-black/75 overflow-clip group-hover:text-custom-primary duration-300 leading-none p-1"><?= htmlspecialchars($row['product_name']); ?></h3>
                                     <p class="float-right group-hover:scale-110 font-bold text-black/85 duration-300 mt-">₱<?= number_format($row['price'], 2); ?></p>
                                 </div>
                             </a>
