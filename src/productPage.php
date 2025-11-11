@@ -85,6 +85,7 @@ if ($customer_id == 0) {
             </div>
             <div class="w-[90%]">
                 <form id="addToCartForm" method="POST" action="./functions/addtocart.php" class="flex flex-col gap-6 w-full">
+                    <?php if ($product['category_id'] < 5): ?>
                     <div>
                         <h1 class=" font-bold mb-2">Temperature</h1>
                         <div class="flex w-full flex-wrap gap-2">
@@ -119,10 +120,13 @@ if ($customer_id == 0) {
                     <div>
                         <h1 class=" font-bold mb-2">Ice Level</h1>
                         <div class="flex w-full  flex-wrap gap-2">
-                            <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="ice_level" value="Normal Ice"  aria-label="Normal Ice">
+                            <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="ice_level" value="Normal Ice" aria-label="Normal Ice">
                             <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="ice_level" value="Less Ice" aria-label="Less Ice">
                         </div>
                     </div>
+                    <?php else: ?>
+                        <p class=" min-h-[40vh]" >helloworld</p>
+                    <?php endif; ?>
                 </form>
             </div>
         </div>

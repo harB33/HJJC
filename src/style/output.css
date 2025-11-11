@@ -4791,6 +4791,9 @@
   .inset-1 {
     inset: calc(var(--spacing) * 1);
   }
+  .inset-1\.5 {
+    inset: calc(var(--spacing) * 1.5);
+  }
   .dropdown-right {
     @layer daisyui.modifier {
       --anchor-h: right;
@@ -6730,6 +6733,9 @@
   .h-85 {
     height: calc(var(--spacing) * 85);
   }
+  .h-100 {
+    height: calc(var(--spacing) * 100);
+  }
   .h-\[1em\] {
     height: 1em;
   }
@@ -6757,11 +6763,71 @@
   .max-h-0 {
     max-height: calc(var(--spacing) * 0);
   }
+  .max-h-\[2lh\] {
+    max-height: 2lh;
+  }
+  .max-h-\[5\] {
+    max-height: 5;
+  }
+  .max-h-\[5lh\] {
+    max-height: 5lh;
+  }
+  .max-h-screen {
+    max-height: 100vh;
+  }
+  .min-h-1 {
+    min-height: calc(var(--spacing) * 1);
+  }
+  .min-h-1\/2 {
+    min-height: calc(1/2 * 100%);
+  }
   .min-h-30 {
     min-height: calc(var(--spacing) * 30);
   }
+  .min-h-\[0\%\] {
+    min-height: 0%;
+  }
+  .min-h-\[0vh\] {
+    min-height: 0vh;
+  }
+  .min-h-\[3lh\] {
+    min-height: 3lh;
+  }
   .min-h-\[5lh\] {
     min-height: 5lh;
+  }
+  .min-h-\[10\%\] {
+    min-height: 10%;
+  }
+  .min-h-\[30vh\] {
+    min-height: 30vh;
+  }
+  .min-h-\[40vh\] {
+    min-height: 40vh;
+  }
+  .min-h-\[50\] {
+    min-height: 50;
+  }
+  .min-h-\[50vh\] {
+    min-height: 50vh;
+  }
+  .min-h-\[80\%\] {
+    min-height: 80%;
+  }
+  .min-h-\[80\] {
+    min-height: 80;
+  }
+  .min-h-\[100\%\] {
+    min-height: 100%;
+  }
+  .min-h-\[100\] {
+    min-height: 100;
+  }
+  .min-h-\[100vh\] {
+    min-height: 100vh;
+  }
+  .min-h-full {
+    min-height: 100%;
   }
   .min-h-max {
     min-height: max-content;
@@ -7025,6 +7091,9 @@
   .justify-evenly {
     justify-content: space-evenly;
   }
+  .justify-start {
+    justify-content: flex-start;
+  }
   .gap-0 {
     gap: calc(var(--spacing) * 0);
   }
@@ -7153,6 +7222,12 @@
     background-color: color-mix(in srgb, #bf8343 75%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-custom-primary) 75%, transparent);
+    }
+  }
+  .bg-custom-primary\/90 {
+    background-color: color-mix(in srgb, #bf8343 90%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-custom-primary) 90%, transparent);
     }
   }
   .bg-custom-secondary {
@@ -7778,9 +7853,40 @@
       }
     }
   }
+  .group-hover\:opacity-100 {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        opacity: 100%;
+      }
+    }
+  }
   .checked\:border-custom-accent {
     &:checked {
       border-color: var(--color-custom-accent);
+    }
+  }
+  .checked\:bg-custom-accent\/2 {
+    &:checked {
+      background-color: color-mix(in srgb, #e69c4d 2%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-custom-accent) 2%, transparent);
+      }
+    }
+  }
+  .checked\:bg-custom-accent\/5 {
+    &:checked {
+      background-color: color-mix(in srgb, #e69c4d 5%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-custom-accent) 5%, transparent);
+      }
+    }
+  }
+  .checked\:bg-custom-accent\/25 {
+    &:checked {
+      background-color: color-mix(in srgb, #e69c4d 25%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-custom-accent) 25%, transparent);
+      }
     }
   }
   .checked\:bg-custom-accent\/50 {
@@ -7803,6 +7909,23 @@
         --tw-scale-y: 105%;
         --tw-scale-z: 105%;
         scale: var(--tw-scale-x) var(--tw-scale-y);
+      }
+    }
+  }
+  .hover\:bg-custom-secondary {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-custom-secondary);
+      }
+    }
+  }
+  .hover\:bg-custom-secondary\/40 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in srgb, #e6bf95 40%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-custom-secondary) 40%, transparent);
+        }
       }
     }
   }

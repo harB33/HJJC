@@ -129,6 +129,7 @@ while ($row = $result->fetch_assoc()) {
                             </div>
                             <div>
                                 <h1 class="font-bold text-black/75"><?= htmlspecialchars($row['product_name']); ?></h1>
+                                <?php if($row['category_id'] < 5): ?>
                                 <p class=" w-full overflow-hidden font-medium text-xs leading-tight">
                                     <span class="font-light">Temp: </span><?= htmlspecialchars($row['temperature']); ?><br>
                                     <span class="font-light">Milk: </span><?= htmlspecialchars($row['milk_type']); ?><br>
@@ -136,6 +137,7 @@ while ($row = $result->fetch_assoc()) {
                                     <span class="font-light">Sweetness: </span><?= htmlspecialchars($row['sweetness']); ?><br>
                                     <span class="font-light">Ice: </span><?= htmlspecialchars($row['ice_level']); ?>
                                 </p>
+                                <?php endif; ?>
                                 <p>
                                     <?php
                                     if (empty($cart_items)) {
