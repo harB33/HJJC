@@ -66,10 +66,11 @@ if ($customer_id == 0) {
         <?php include './components/header.php'; ?>
     </div>
     <section class=" w-full min-h-screen justify-center items-center flex pt-20 pb-40 bg-custom-background relative">
-        <div class="fixed top-[8%] left-[5%] z-40">
-            <a href="./home.php" class="btn btn-circle bg-custom-accent border-none">
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left stroke-custom-background">
-                    <path d="m15 18-6-6 6-6" />
+        <div class="fixed top-[6%] left-[4%] z-40">
+            <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent border-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
+                    <path d="m12 19-7-7 7-7" />
+                    <path d="M19 12H5" />
                 </svg>
             </a>
         </div>
@@ -86,46 +87,46 @@ if ($customer_id == 0) {
             <div class="w-[90%]">
                 <form id="addToCartForm" method="POST" action="./functions/addtocart.php" class="flex flex-col gap-6 w-full">
                     <?php if ($product['category_id'] < 5): ?>
-                    <div>
-                        <h1 class=" font-bold mb-2">Temperature</h1>
-                        <div class="flex w-full flex-wrap gap-2">
-                            <input class="btn shadow-none bg-custom-background  checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="temperature" value="Hot" required aria-label="Hot">
-                            <input class="btn shadow-none bg-custom-background  checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="temperature" value="Iced" aria-label="Iced">
+                        <div>
+                            <h1 class=" font-bold mb-2">Temperature</h1>
+                            <div class="flex w-full flex-wrap gap-2">
+                                <input class="btn shadow-none bg-custom-background  checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="temperature" value="Hot" required aria-label="Hot">
+                                <input class="btn shadow-none bg-custom-background  checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="temperature" value="Iced" aria-label="Iced">
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <h1 class=" font-bold mb-2">Milk</h1>
-                        <div class="flex w-full flex-wrap gap-2">
-                            <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="milk_type" value="Dairy Milk" required aria-label="Dairy Milk">
-                            <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="milk_type" value="Oat Milk" aria-label="Oat Milk">
-                            <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="milk_type" value="Coconut Milk" aria-label="Coconut Milk">
+                        <div>
+                            <h1 class=" font-bold mb-2">Milk</h1>
+                            <div class="flex w-full flex-wrap gap-2">
+                                <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="milk_type" value="Dairy Milk" required aria-label="Dairy Milk">
+                                <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="milk_type" value="Oat Milk" aria-label="Oat Milk">
+                                <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="milk_type" value="Coconut Milk" aria-label="Coconut Milk">
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <h1 class=" font-bold mb-2">Espresso Shots</h1>
-                        <div class="flex w-full flex-wrap gap-2">
-                            <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="espresso_shots" value="No Shot" required aria-label="No Shot">
-                            <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="espresso_shots" value="LYDIA" aria-label="LYDIA">
-                            <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="espresso_shots" value="BOSS" aria-label="BOSS">
+                        <div>
+                            <h1 class=" font-bold mb-2">Espresso Shots</h1>
+                            <div class="flex w-full flex-wrap gap-2">
+                                <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="espresso_shots" value="No Shot" required aria-label="No Shot">
+                                <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="espresso_shots" value="LYDIA" aria-label="LYDIA">
+                                <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="espresso_shots" value="BOSS" aria-label="BOSS">
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <h1 class=" font-bold mb-2">Sweetness</h1>
-                        <div class="flex w-full  flex-wrap gap-2">
-                            <input class="btn shadow-none bg-custom-background  checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="sweetness" value="Regular Sweet" required aria-label="Regular Sweet">
-                            <input class="btn shadow-none bg-custom-background  checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="sweetness" value="Less Sweet" aria-label="Less Sweet">
-                            <input class="btn shadow-none bg-custom-background  checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="sweetness" value="More Sweet" aria-label="More Sweet">
+                        <div>
+                            <h1 class=" font-bold mb-2">Sweetness</h1>
+                            <div class="flex w-full  flex-wrap gap-2">
+                                <input class="btn shadow-none bg-custom-background  checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="sweetness" value="Regular Sweet" required aria-label="Regular Sweet">
+                                <input class="btn shadow-none bg-custom-background  checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="sweetness" value="Less Sweet" aria-label="Less Sweet">
+                                <input class="btn shadow-none bg-custom-background  checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="sweetness" value="More Sweet" aria-label="More Sweet">
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <h1 class=" font-bold mb-2">Ice Level</h1>
-                        <div class="flex w-full  flex-wrap gap-2">
-                            <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="ice_level" value="Normal Ice" aria-label="Normal Ice">
-                            <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="ice_level" value="Less Ice" aria-label="Less Ice">
+                        <div>
+                            <h1 class=" font-bold mb-2">Ice Level</h1>
+                            <div class="flex w-full  flex-wrap gap-2">
+                                <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="ice_level" value="Normal Ice" aria-label="Normal Ice">
+                                <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="ice_level" value="Less Ice" aria-label="Less Ice">
+                            </div>
                         </div>
-                    </div>
                     <?php else: ?>
-                        <p class=" min-h-[40vh]" >helloworld</p>
+                        <p class=" min-h-[40vh]">helloworld</p>
                     <?php endif; ?>
                 </form>
             </div>

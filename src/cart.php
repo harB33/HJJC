@@ -74,10 +74,13 @@ if ($cart_row) {
 $stmt_cart_id->close();
 
 $total = 0;
+$total_quantity = 0; // Initialize a new variable for total quantity
 $cart_items = [];
+
 while ($row = $result->fetch_assoc()) {
     $cart_items[] = $row;
     $total += $row['price'] * $row['quantity'];
+    $total_quantity += $row['quantity'];
 }
 ?>
 <!DOCTYPE html>
@@ -98,9 +101,10 @@ while ($row = $result->fetch_assoc()) {
     <div class="sticky top-0 z-50 ">
         <?php include './components/header.php'; ?>
     </div>
-    <section class="flex min-h-screen h-full w-full justify-center items-start pt-20 bg-custom-background">
+    <section class="flex flex-col min-h-screen h-full w-full justify-start items-center pt-10 bg-custom-background">
+        <h1 class="text-3xl font-extrabold text-custom-text/90 w-full text-center py-10">CHECK OUT</h1>
         <div class="fixed top-[6%] left-[4%] z-40">
-            <a href="./home.php" class="btn btn-circle bg-custom-accent border-none">
+            <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent border-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
                     <path d="m12 19-7-7 7-7" />
                     <path d="M19 12H5" />
@@ -124,19 +128,19 @@ while ($row = $result->fetch_assoc()) {
                         <div class="gap-2 flex ">
                             <div class="h-full max-w-[120px]">
                                 <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="h-full">
-                                    <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class=" w-full object-cover rounded-lg shadow-lg group-hover:scale-110 transition-transform duration-700 ease-in-out">
+                                    <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class=" w-full object-cover rounded-lg shadow group-hover:scale-110 transition-transform duration-700 ease-in-out">
                                 </a>
                             </div>
                             <div>
-                                <h1 class="font-bold text-black/75"><?= htmlspecialchars($row['product_name']); ?></h1>
-                                <?php if($row['category_id'] < 5): ?>
-                                <p class=" w-full overflow-hidden font-medium text-xs leading-tight">
-                                    <span class="font-light">Temp: </span><?= htmlspecialchars($row['temperature']); ?><br>
-                                    <span class="font-light">Milk: </span><?= htmlspecialchars($row['milk_type']); ?><br>
-                                    <span class="font-light">Shots: </span><?= htmlspecialchars($row['espresso_shots']); ?><br>
-                                    <span class="font-light">Sweetness: </span><?= htmlspecialchars($row['sweetness']); ?><br>
-                                    <span class="font-light">Ice: </span><?= htmlspecialchars($row['ice_level']); ?>
-                                </p>
+                                <h1 class="font-bold text-sm text-black/75"><?= htmlspecialchars($row['product_name']); ?></h1>
+                                <?php if ($row['category_id'] < 5): ?>
+                                    <p class=" w-full overflow-hidden font-light text-xs leading-tight">
+                                        <span class="font-extralight">Temp: </span><?= htmlspecialchars($row['temperature']); ?><br>
+                                        <span class="font-extralight">Milk: </span><?= htmlspecialchars($row['milk_type']); ?><br>
+                                        <span class="font-extralight">Shots: </span><?= htmlspecialchars($row['espresso_shots']); ?><br>
+                                        <span class="font-extralight">Sweetness: </span><?= htmlspecialchars($row['sweetness']); ?><br>
+                                        <span class="font-extralight">Ice: </span><?= htmlspecialchars($row['ice_level']); ?>
+                                    </p>
                                 <?php endif; ?>
                                 <p>
                                     <?php
@@ -156,7 +160,7 @@ while ($row = $result->fetch_assoc()) {
                             <div class="flex w-fit h-full">
                                 <div class="w-fit flex flex-col justify-between h-full">
                                     <div>
-                                        <p class="font-extrabold text-xl float-right">₱<?= number_format($row['price'], 2); ?></p>
+                                        <p class="font-bold text-sm text-black/80 float-right">₱<?= number_format($row['price'], 2); ?></p>
                                     </div>
                                     <div class="quantity-selector flex items-center">
                                         <a href="?update_cart_id=<?= $row['cart_id']; ?>&new_qty=<?= $row['quantity'] - 1; ?>"
@@ -203,12 +207,13 @@ while ($row = $result->fetch_assoc()) {
             <div class="flex gap-4 grow w-1/2 items-center justify-center">
                 <form method="POST" action="./functions/buynow.php" class="grow w-full">
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
-                    <button type="submit" class="btn btn-lg border-custom-accent bg-custom-background text-custom-accent w-full rounded-full  text-sm">Buy Now</button>
+                    <button type="submit" class="btn btn-lg border-custom-accent bg-custom-accent text-custom-background w-full rounded-full  text-sm">Buy Now</button>
                 </form>
             </div>
             <div class=" w-1/2 grow items-end justify-center flex flex-col">
                 <div>
-                    <h1 class="text-md font-medium w-full float-right ">Total</h1>
+                    <h1 class="text-sm font-medium w-full float-right flex justify-between">Qty: <span><?php echo $total_quantity ?></span> </h1>
+                    <h1 class="text-sm font-medium w-full float-right ">Total</h1>
                     <p class="text-2xl font-bold w-full text-custom-accent">₱<?= number_format($total, 2); ?></p>
                 </div>
             </div>
