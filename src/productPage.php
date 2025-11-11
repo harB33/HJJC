@@ -84,17 +84,17 @@ if ($customer_id == 0) {
                 </div>
             </div>
             <div class="w-[90%]">
-                <form id=" addToCartForm" method="POST" action="./functions/addtocart.php" class="grow w-1/2">
+                <form id="addToCartForm" method="POST" action="./functions/addtocart.php" class="flex flex-col gap-6 w-full">
                     <div>
                         <h1 class=" font-bold mb-2">Temperature</h1>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="flex w-full flex-wrap gap-2">
                             <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="temperature" value="Hot" required aria-label="Hot">
                             <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="temperature" value="Iced" aria-label="Iced">
                         </div>
                     </div>
                     <div>
                         <h1 class=" font-bold mb-2">Milk</h1>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="flex w-full flex-wrap gap-2">
                             <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="milk_type" value="Dairy Milk" required aria-label="Dairy Milk">
                             <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="milk_type" value="Oat Milk" aria-label="Oat Milk">
                             <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="milk_type" value="Coconut Milk" aria-label="Coconut Milk">
@@ -102,7 +102,7 @@ if ($customer_id == 0) {
                     </div>
                     <div>
                         <h1 class=" font-bold mb-2">Espresso Shots</h1>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="flex w-full flex-wrap gap-2">
                             <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="espresso_shots" value="No Shot" required aria-label="No Shot">
                             <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="espresso_shots" value="LYDIA" aria-label="LYDIA">
                             <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="espresso_shots" value="BOSS" aria-label="BOSS">
@@ -110,7 +110,7 @@ if ($customer_id == 0) {
                     </div>
                     <div>
                         <h1 class=" font-bold mb-2">Sweetness</h1>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="flex w-full  flex-wrap gap-2">
                             <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="sweetness" value="Regular Sweet" required aria-label="Regular Sweet">
                             <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="sweetness" value="Less Sweet" aria-label="Less Sweet">
                             <input class="btn shadow-none bg-custom-background checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="sweetness" value="More Sweet" aria-label="More Sweet">
@@ -118,25 +118,21 @@ if ($customer_id == 0) {
                     </div>
                     <div>
                         <h1 class=" font-bold mb-2">Ice Level</h1>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="flex w-full  flex-wrap gap-2">
                             <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="ice_level" value="Normal Ice" required aria-label="Normal Ice">
                             <input class="btn shadow-none checked:border-custom-accent  checked:bg-custom-accent/25 checked:text-black" type="radio" name="ice_level" value="Less Ice" aria-label="Less Ice">
                         </div>
                     </div>
-                    <!--Submit-->
-                        <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
-                        <input type="hidden" name="quantity" id="hiddenQuantityInput" value="<?= $current_quantity ?>">
-                        <button type="submit" class="btn btn-lg bg-custom-accent border-custom-accent rounded-full w-full text-custom-background text-sm">Add To Cart</button>
                 </form>
             </div>
         </div>
     </section>
 
     <section class=" w-full items-center justify-center flex flex-col fixed bottom-0 p-4 bg-custom-background shadow-2xl">
-        <div class="flex gap-4 w-[90%] h-full items-center justify-center mb-4">
-            <p class="text-2xl font-bold w-full ">₱<?= number_format($product['price'], 2); ?></p>
+        <div class="flex gap-4 w-[90%] h-full items-center justify-between mb-4">
+            <p class="text-2xl font-bold w-1/2 grow ">₱<?= number_format($product['price'], 2); ?></p>
             <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
-                <form method="POST" action="productPage.php?id=<?= $product['product_id']; ?>" class="quantity-form flex">
+                <form method="POST" action="productPage.php?id=<?= $product['product_id']; ?>" class="quantity-form flex w-1/2 grow">
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                     <input type="hidden" name="current_quantity" class="current-quantity-value" value="<?= $current_quantity; ?>">
                     <div class="quantity-selector flex">
@@ -162,6 +158,11 @@ if ($customer_id == 0) {
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                     <button type="submit" class="btn btn-lg border-custom-accent bg-custom-background text-custom-accent w-full rounded-full  text-sm">Buy Now</button>
                 </form>
+                <div class="grow w-1/2"">
+                    <input type="hidden" form="addToCartForm" name="product_id" value="<?= $product['product_id'] ?>">
+                    <input type="hidden" form="addToCartForm" name="quantity" id="hiddenQuantityInput" value="<?= $current_quantity ?>">
+                    <button type="submit" form="addToCartForm" class="btn btn-lg bg-custom-accent border-custom-accent rounded-full w-full text-custom-background text-sm">Add To Cart</button>
+                </div>
             <?php else: ?>
                 <form method="POST" action="./functions/buynow.php" class="grow w-1/2">
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
