@@ -40,7 +40,7 @@
                 </div>
             </div>
         </section>
-        <section class="flex flex-col h-[90dvh] px-6 w-full pt-20 bg-custom-secondary items-center  z-10">
+        <section class="flex flex-col h-lvh px-6 w-full pt-20 bg-custom-secondary items-center  z-10">
             <div class="flex flex-col items-center my-moveDown">
                 <h1 class="font-giaza font-black text-2xl mb-6">The <span class="">Standard</span> Has Arrived.</h1>
                 <p class=" font-light text-md mb-2">HJJC is proud to introduce an unparalleled coffee experience to the Philippines. We are defined by a relentless pursuit of perfection. Our baristas transform the world's finest ingredients into exquisite beverages that stimulate the senses and redefine your expectations.</p>
@@ -51,13 +51,85 @@
             </div>
             <img src="./image/design.png" alt="" class=" my-moveTop">
         </section>
-        <section class="flex flex-col h-[80vh] px-6 w-full justify-center bg-custom-secondary/20 items-center  z-10">
-            <div class="flex flex-col w-full justify-evenly h-full items-center ">
+        <section class="flex flex-col h-lvh px-6 w-full justify-evenly bg-custom-secondary/20 items-center  z-10">
+            <div class="flex flex-col w-full justify-evenly h-fit items-center ">
                 <div>
                     <h1 class="font-giaza font-black text-2xl mb-6">A Brew to Define Your Day.</h1>
                     <p class=" font-light text-md">Fuel your pursuit of perfection. From robust classics to nuanced single-origins, our menu offers an exquisite beverage to satisfy your distinct taste.</p>
                 </div>
-
+            </div>
+            <div class="slider" style="--width: 225px;--height:300px;--quantity:10;">
+                <div class="slider_list">
+                    <div class="list_item h-max p-4 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl" style="--position:1"><img src="./image/products/product_691187dfa0ee02.31544433.png" alt="" class="rounded-2xl">
+                        <div class="flex w-full justify-between  ">
+                            <p class="text-xl font-bold pb-3 text-custom-accent leading-none">Affogato</p>
+                            <p class="text-black/80 text-2xl font-black float-right">₱150</p>
+                        </div>
+                    </div>
+                    <div class="list_item p-4 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl" style="--position:2"><img src="./image/products/product_691187f16780b4.98755633.png" alt="" class="rounded-2xl">
+                        <div class="flex w-full justify-between">
+                            <p class="text-xl font-bold pb-3 text-custom-accent leading-none">Americano</p>
+                            <p class="text-black/80 text-2xl font-black float-right">₱150</p>
+                        </div>
+                    </div>
+                    <div class="list_item p-4 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl" style="--position:4"><img src="./image/products/product_69118851ee63a8.69493917.png" alt="" class="rounded-2xl">
+                        <div class="flex w-full justify-between">
+                            <p class="text-xl font-bold pb-3 text-custom-accent leading-none">Coffee Frappé</p>
+                            <p class="text-black/80 text-2xl font-black float-right">₱150</p>
+                        </div>
+                    </div>
+                    <div class="list_item p-4 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl" style="--position:5"><img src="./image/products/product_691188318450d4.46308589.png" alt="" class="rounded-2xl">
+                        <div class="flex w-full justify-between">
+                            <p class="text-xl font-bold pb-3 text-custom-accent leading-none">Chocolate Frappé</p>
+                            <p class="text-black/80 text-2xl font-black float-right">₱150</p>
+                        </div>
+                    </div>
+                    <div class="list_item p-4 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl" style="--position:3"><img src="./image/products/product_69118842ed1234.57943100.png" alt="" class="rounded-2xl">
+                        <div class="flex w-full justify-between">
+                            <p class="text-xl font-bold pb-3 text-custom-accent leading-none">Caramel Frappé</p>
+                            <p class="text-black/80 text-2xl font-black float-right">₱150</p>
+                        </div>
+                    </div>
+                    <div class="list_item p-4 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl" style="--position:6"><img src="./image/products/product_691187dfa0ee02.31544433.png" alt="" class="rounded-2xl">
+                        <div class="flex w-full justify-between">
+                            <p class="text-xl font-bold pb-3 text-custom-accent">Affogato</p>
+                            <p class="text-black/80 text-2xl font-black float-right">₱150</p>
+                        </div>
+                    </div>
+                    <div class="list_item p-4 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl" style="--position:7"><img src="./image/products/product_691187f16780b4.98755633.png" alt="" class="rounded-2xl">
+                        <div class="flex w-full justify-between">
+                            <p class="text-xl font-bold pb-3 text-custom-accent">Americano</p>
+                            <p class="text-black/80 text-2xl font-black float-right">₱150</p>
+                        </div>
+                    </div>
+                    <div class="list_item p-4 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl" style="--position:8"><img src="./image/products/product_69118842ed1234.57943100.png" alt="" class="rounded-2xl">
+                        <div class="flex w-full justify-between">
+                            <p class="text-xl font-bold pb-3 text-custom-accent leading-none">Coffee Frappé</p>
+                            <p class="text-black/80 text-2xl font-black float-right">₱150</p>
+                        </div>
+                    </div>
+                    <div class="list_item p-4 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl" style="--position:9"><img src="./image/products/product_69118851ee63a8.69493917.png" alt="" class="rounded-2xl">
+                        <div class="flex w-full justify-between">
+                            <p class="text-xl font-bold pb-3 text-custom-accent leading-none">Chocolate Frappé</p>
+                            <p class="text-black/80 text-2xl font-black float-right">₱150</p>
+                        </div>
+                    </div>
+                    <div class="list_item p-4 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl" style="--position:10"><img src="./image/products/product_691188318450d4.46308589.png" alt="" class="rounded-2xl">
+                        <div class="flex w-full justify-between">
+                            <p class="text-xl font-bold pb-3 text-custom-accent leading-none">Caramel Frappé</p>
+                            <p class="text-2xl font-black float-right text-black/80">₱150</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a href="./home.php" class="underline flex gap-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-bean-icon lucide-coffee-bean">
+                        <path d="M4.05 19.95a11.24 8.585 135 0 0 15.9-15.9 11.24 8.585 135 0 0-15.9 15.9" />
+                        <path d="M19.8 4.2C20 14 4 10 4.2 19.8" />
+                    </svg>
+                    Explore</a>
+            </div>
         </section>
         <section class="my-fadeInFooter z-10">
             <?php include './components/footer.html'; ?>
