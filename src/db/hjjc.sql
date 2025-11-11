@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2025 at 04:03 PM
+-- Generation Time: Nov 11, 2025 at 04:08 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,16 +48,14 @@ CREATE TABLE `cart` (
   `cart_id` int(11) UNSIGNED NOT NULL,
   `customer_id` int(11) UNSIGNED NOT NULL,
   `product_id` int(11) UNSIGNED NOT NULL,
+  `temperature` enum('Hot','Iced','','') NOT NULL,
+  `milk_type` enum('Dairy Milk','Oat Milk','Coconut Milk','') NOT NULL,
+  `espresso_shots` enum('No Shot','LYDIA','BOSS','') NOT NULL DEFAULT 'No Shot',
+  `sweetness` enum('Regular Sweet','Less Sweet','More Sweet','') NOT NULL DEFAULT 'Regular Sweet',
+  `ice_level` enum('Normal Ice','Less Ice','','') NOT NULL DEFAULT 'Normal Ice',
   `quantity` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cart_id`, `customer_id`, `product_id`, `quantity`, `created_at`) VALUES
-(3, 1, 3, 2, '2025-11-10 11:33:10');
 
 -- --------------------------------------------------------
 
@@ -79,7 +77,8 @@ INSERT INTO `category` (`category_id`, `category_name`, `created_at`) VALUES
 (1, 'Coffee', '2025-11-06 22:24:07'),
 (2, 'Milk Tea', '2025-11-06 22:25:22'),
 (3, 'Frappe', '2025-11-06 22:25:22'),
-(4, 'Pastries', '2025-11-10 15:00:41');
+(4, 'Shake', '2025-11-10 15:00:41'),
+(5, 'Pastries', '2025-11-11 03:06:25');
 
 -- --------------------------------------------------------
 
@@ -264,7 +263,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `category_id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `orders`
