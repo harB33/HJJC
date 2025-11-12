@@ -251,58 +251,57 @@ $_SESSION['total'] = $total;
                     </div>
                 </div>
             <?php endforeach; ?>
-            <div class="w-full rounded-2xl border-custom-accent border-2 p-2.5 mb-40">
-                <h1 class="pb-2.5">Paymenth Method</h1>
-                <form action="./cart.php" class="grid grid-cols-2 place-items-center gap-2.5 h-[15vh]">
-                    <div class="relative flex flex-col w-full h-full max-w-sm">
-                        <input
-                            type="radio"
-                            name="paymentMethod"
-                            id="cod-radio"
-                            class="hidden peer"
-                            value="cod">
-                        <label
-                            for="cod-radio" class="w-full h-full cursor-pointer border border-transparent rounded-2xl duration-300 peer-checked:border-[#e69c4d]">
-                            <div class="w-full h-full bg-custom-background rounded-2xl peer-checked:bg-[#e69c4d]">
-                                <div
-                                    class="w-full text-center text-black/75 h-full bg-custom-accent/15  text-xl font-black border-custom-accent/0 border-2 rounded-2xl duration-300   flex items-end justify-center pb-2.5  peer-checked:ring-2 peer-checked:ring-[#e69c4d] peer-checked:border-2   peer-checked:text-[#f9f6f3] peer-checked:bg-transparent">
-                                    CASH ON DELIVERY
+            <?php if (!empty($cart_items)): ?>
+                <div class="w-full rounded-2xl border-custom-accent border-2 p-2.5 mb-40">
+                    <h1 class="pb-2.5">Paymenth Method</h1>
+                    <form action="./cart.php" class="grid grid-cols-2 place-items-center gap-2.5 h-[15vh]">
+                        <div class="relative flex flex-col w-full h-full max-w-sm">
+                            <input type="radio" name="paymentMethod" id="cod-radio" class="hidden peer" value="cod">
+                            <label
+                                for="cod-radio" class="w-full h-full cursor-pointer border border-transparent rounded-2xl duration-300 peer-checked:border-[#e69c4d]">
+                                <div class="w-full h-full bg-custom-background rounded-2xl peer-checked:bg-[#e69c4d]">
+                                    <div
+                                        class="w-full text-center text-black/75 h-full bg-custom-accent/15  text-xl font-black border-custom-accent/0 border-2 rounded-2xl duration-300   flex items-end justify-center pb-2.5  peer-checked:ring-2 peer-checked:ring-[#e69c4d] peer-checked:border-2   peer-checked:text-[#f9f6f3] peer-checked:bg-transparent">
+                                        CASH ON DELIVERY
+                                    </div>
                                 </div>
-                            </div>
-                            <span class="absolute inset-y-0 top-[30%] -translate-y-[50%] left-[50%] -translate-x-[50%] flex h-full items-center text-gray-400 pointer-events-none peer-checked:text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet size-[90%] stroke-custom-accent peer-checked:stroke-[#f9f6f3]">
-                                    <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
-                                    <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
-                                </svg>
-                            </span>
-                        </label>
-                    </div>
-                    <div class="relative flex flex-col w-full h-full max-w-sm">
-                        <input
-                            type="radio"
-                            name="paymentMethod"
-                            id="cc-radio"
-                            class="hidden peer"
-                            value="cc">
-                        <label
-                            for="cc-radio"
-                            class="w-full h-full cursor-pointer border border-transparent rounded-2xl duration-300 peer-checked:border-[#e69c4d]">
-                            <div class="w-full h-full bg-custom-background rounded-2xl peer-checked:bg-[#e69c4d]">
-                                <div
-                                    class="w-full text-center text-black/75 h-full text-xl bg-custom-accent/15 font-black border-none rounded-2xl duration-300   flex items-end justify-center pb-2.5  peer-checked:ring-2 peer-checked:ring-[#e69c4d]    peer-checked:text-[#f9f6f3] peer-checked:bg-transparent">
-                                    CREDIT CARD
+                                <span class="absolute inset-y-0 top-[30%] -translate-y-[50%] left-[50%] -translate-x-[50%] flex h-full items-center text-gray-400 pointer-events-none peer-checked:text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet size-[90%] stroke-custom-accent peer-checked:stroke-[#f9f6f3]">
+                                        <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
+                                        <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
+                                    </svg>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="relative flex flex-col w-full h-full max-w-sm">
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                id="cc-radio"
+                                class="hidden peer"
+                                value="cc">
+                            <label
+                                for="cc-radio"
+                                class="w-full h-full cursor-pointer border border-transparent rounded-2xl duration-300 peer-checked:border-[#e69c4d]">
+                                <div class="w-full h-full bg-custom-background rounded-2xl peer-checked:bg-[#e69c4d]">
+                                    <div
+                                        class="w-full text-center text-black/75 h-full text-xl bg-custom-accent/15 font-black border-none rounded-2xl duration-300   flex items-end justify-center pb-2.5  peer-checked:ring-2 peer-checked:ring-[#e69c4d]    peer-checked:text-[#f9f6f3] peer-checked:bg-transparent">
+                                        CREDIT CARD
+                                    </div>
                                 </div>
-                            </div>
-                            <span class="absolute inset-y-0 top-[30%] -translate-y-[50%] left-[50%] -translate-x-[50%] flex h-full items-center text-gray-400 pointer-events-none peer-checked:text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card size-[90%] stroke-custom-accent peer-checked:stroke-[#f9f6f3]">
-                                    <rect width="20" height="14" x="2" y="5" rx="2" />
-                                    <line x1="2" x2="22" y1="10" y2="10" />
-                                </svg>
-                            </span>
-                        </label>
-                    </div>
-                </form>
-            </div>
+                                <span class="absolute inset-y-0 top-[30%] -translate-y-[50%] left-[50%] -translate-x-[50%] flex h-full items-center text-gray-400 pointer-events-none peer-checked:text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card size-[90%] stroke-custom-accent peer-checked:stroke-[#f9f6f3]">
+                                        <rect width="20" height="14" x="2" y="5" rx="2" />
+                                        <line x1="2" x2="22" y1="10" y2="10" />
+                                    </svg>
+                                </span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            <?php else: ?>
+            <?php endif; ?>
+
         </div>
     </section>
     <!-- <section class=" w-full items-center justify-center flex  fixed bottom-0 p-4 bg-custom-background shadow-2xl">
@@ -323,36 +322,35 @@ $_SESSION['total'] = $total;
         <?php endif; ?>
     </section> -->
     <section class="w-full items-center justify-center flex fixed bottom-0 p-4 bg-custom-background shadow-2xl">
-    <?php if (!empty($cart_items)): ?>
-        <form method="POST" action="./orders.php" class="flex gap-4 grow w-full items-center justify-center">
-            
-            <input type="hidden" name="total_amount" value="<?= $total; ?>">
-            <input type="hidden" name="selected_address_id" value="<?= htmlspecialchars($selected_address_id ?? ''); ?>">
+        <?php if (!empty($cart_items)): ?>
+            <form method="POST" action="./orders.php" class="flex gap-4 grow w-full items-center justify-center">
 
-            <input type="hidden" name="payment_method" id="hiddenPaymentMethod" value="">
-            
-            <div class="flex gap-4 grow w-1/2 items-center justify-center">
-                
-                <button 
-                    type="submit" 
-                    name="place_order" 
-                    class="btn btn-lg border-custom-accent bg-custom-accent text-custom-background w-full rounded-full text-sm"
-                    <?php if (!$selected_address_id): ?>disabled<?php endif; ?>
-                >
-                    <?= (!$selected_address_id) ? 'Add Address to Buy' : 'Buy Now'; ?>
-                </button>
-            </div>
-            
-            <div class=" w-1/2 grow items-end justify-center flex flex-col">
-                <div>
-                    <h1 class="text-sm font-medium w-full float-right flex justify-between">Quantity: <span><?php echo $total_quantity ?></span> </h1>
-                    <h1 class="text-sm font-medium w-full float-right ">Total:</h1>
-                    <p class="text-2xl font-bold w-full text-custom-accent">₱<?= number_format($total, 2); ?></p>
+                <input type="hidden" name="total_amount" value="<?= $total; ?>">
+                <input type="hidden" name="selected_address_id" value="<?= htmlspecialchars($selected_address_id ?? ''); ?>">
+
+                <input type="hidden" name="payment_method" id="hiddenPaymentMethod" value="">
+
+                <div class="flex gap-4 grow w-1/2 items-center justify-center">
+
+                    <button
+                        type="submit"
+                        name="place_order"
+                        class="btn btn-lg border-custom-accent bg-custom-accent text-custom-background w-full rounded-full text-sm"
+                        <?php if (!$selected_address_id): ?>disabled<?php endif; ?>>
+                        <?= (!$selected_address_id) ? 'Add Address to Buy' : 'Buy Now'; ?>
+                    </button>
                 </div>
-            </div>
-        </form>
-    <?php endif; ?>
-</section>
+
+                <div class=" w-1/2 grow items-end justify-center flex flex-col">
+                    <div>
+                        <h1 class="text-sm font-medium w-full float-right flex justify-between">Quantity: <span><?php echo $total_quantity ?></span> </h1>
+                        <h1 class="text-sm font-medium w-full float-right ">Total:</h1>
+                        <p class="text-2xl font-bold w-full text-custom-accent">₱<?= number_format($total, 2); ?></p>
+                    </div>
+                </div>
+            </form>
+        <?php endif; ?>
+    </section>
 </body>
 
 </html>
