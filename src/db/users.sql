@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2025 at 08:56 AM
+-- Generation Time: Nov 12, 2025 at 02:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -36,6 +36,7 @@ CREATE TABLE `users` (
   `customer_email` varchar(100) NOT NULL,
   `customer_phone` varchar(15) NOT NULL,
   `customer_pass` varchar(50) NOT NULL,
+  `role` enum('admin','user') NOT NULL DEFAULT 'user',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -43,10 +44,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`customer_id`, `customer_user`, `customer_firstname`, `customer_middlename`, `customer_lastname`, `customer_email`, `customer_phone`, `customer_pass`, `created_at`) VALUES
-(1, 'jomarivillanueva', 'Jomari', NULL, 'Wamil', 'Villanueva@gmail.com', '09927300876', 'JomariCrushsiVillanueva1', '2025-10-29 02:01:47'),
-(2, 'harvy12345', 'harvs', NULL, 'bautista', 'jwamcoc01@gmail.com', '09927300876', 'Harvy12345', '2025-10-31 13:40:41'),
-(3, 'Jomari12345', 'Jomari', '', 'Wamil', 'bautistaharvy13@gmail.com', '09927300876', 'Jomari12345', '2025-11-06 00:45:43');
+INSERT INTO `users` (`customer_id`, `customer_user`, `customer_firstname`, `customer_middlename`, `customer_lastname`, `customer_email`, `customer_phone`, `customer_pass`, `role`, `created_at`) VALUES
+(1, 'jomarivillanueva', 'Jomari', NULL, 'Wamil', 'Villanueva@gmail.com', '09927300876', 'JomariCrushsiVillanueva1', 'admin', '2025-10-29 02:01:47'),
+(2, 'harvy12345', 'harvs', NULL, 'bautista', 'jwamcoc01@gmail.com', '09927300876', 'Harvy12345', 'admin', '2025-10-31 13:40:41'),
+(3, 'Jomari12345', 'Jomari', '', 'Wamil', 'bautistaharvy13@gmail.com', '09927300876', 'Jomari12345', 'admin', '2025-11-06 00:45:43');
 
 --
 -- Indexes for dumped tables
