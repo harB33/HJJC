@@ -20,8 +20,8 @@ if ($quantity_to_add <= 0) $quantity_to_add = 1;
 //started product_details here
 $temperature = $_POST['temperature'] ?? '';
 $milk_type = $_POST['milk_type'] ?? '';
-$espresso_shots = $_POST['espresso_shots'] ?? 'No Shot';
-$sweetness = $_POST['sweetness'] ?? 'Regular Sweet';
+$espresso_shots = $_POST['espresso_shots'] ?? '';
+$sweetness = $_POST['sweetness'] ?? '';
 $ice_level = $_POST['ice_level'] ?? '';
 
 // Get product stock
