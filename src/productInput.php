@@ -160,8 +160,8 @@ if (isset($_POST["finish"])) {
                         <option value="1">1 Coffee</option>
                         <option value="2">2 Milk Tea</option>
                         <option value="3">3 Frappe</option>
-                        <option value="3">4 Shake</option>
-                        <option value="3">5 Pastries</option>
+                        <option value="4">4 Shake</option>
+                        <option value="5">5 Pastries</option>
                     </select>
                 </fieldset>
                 <label class="floating-label ">
