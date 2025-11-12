@@ -4,6 +4,10 @@ include("./db/db.php");
 
 $customer_id = (int)$_SESSION['customer_id'];
 $address_id = (int)$_POST['selected_address_id'];
+<<<<<<< HEAD
+=======
+$total_amount = $_SESSION['total'];
+>>>>>>> 7aaad2d12c92d7a4977fac26c949586f3a4c5ca1
 $conn->begin_transaction();
 
 try {
@@ -19,19 +23,19 @@ try {
     $order_id = $conn->insert_id;
     $stmt_order->close();
 
-    $sql_cart_data = "SELECT product_id, temperature, milk_type, espresso_shots, sweetness, ice_level, quantity 
+    $sql_cart_data = "SELECT product_id, temperature, milk_type, espresso_shots, sweetness, ice_level, quantity
                       FROM cart WHERE customer_id = ?";
     $stmt_cart_data = $conn->prepare($sql_cart_data);
     $stmt_cart_data->bind_param("i", $customer_id);
     $stmt_cart_data->execute();
     $cart_result = $stmt_cart_data->get_result();
 
-    $sql_details = "INSERT INTO order_details (order_id, product_id, quantity, temperature, milk_type, espresso_shots, sweetness, ice_level) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql_details = "INSERT INTO order_details (order_id, product_id, quantity, temperature, milk_type, espresso_shots, sweetness, ice_level, price) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt_details = $conn->prepare($sql_details);
 
     while ($item = $cart_result->fetch_assoc()) {
-        $stmt_details->bind_param("iiisssss", 
+        $stmt_details->bind_param("iiisssssi", 
             $order_id, 
             $item['product_id'], 
             $item['quantity'], 
@@ -39,7 +43,8 @@ try {
             $item['milk_type'], 
             $item['espresso_shots'], 
             $item['sweetness'], 
-            $item['ice_level']
+            $item['ice_level'],
+            $_SESSION['price']
         );
         if (!$stmt_details->execute()) {
             throw new Exception("Order detail insertion failed.");

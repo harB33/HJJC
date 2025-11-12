@@ -72,7 +72,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             }
         } else {
             // No results found message
-            echo "<p class='text-center text-lg'>No products found matching \"" . htmlspecialchars($search_query) . "\"</p>";
+            // echo "<p class='text-center text-lg'>No products found matching \"" . htmlspecialchars($search_query) . "\"</p>";
         }
         ?>
     </div>
@@ -123,7 +123,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame-icon lucide-flame fill-custom-accent">
                     <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4" />
                 </svg></h1>
-            <section class="flex flex-col  items-center overflow-y-scroll h-fit w-full p-4 pb-14 bg-linear-to-t from-custom-background from-50% to-custom-background/10 to-100%">
+            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 pb-14 bg-linear-to-t from-custom-background from-50% to-custom-background/10 to-100%">
                 <section class="grid grid-cols-2  gap-2.5 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($best_sellers as $row): ?>
                         <div class=" group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
