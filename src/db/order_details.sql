@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2025 at 08:57 AM
+-- Generation Time: Nov 12, 2025 at 01:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,15 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_items`
+-- Table structure for table `order_details`
 --
 
-CREATE TABLE `order_items` (
-  `order_item_id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE `order_details` (
+  `order_detail_id` int(10) UNSIGNED NOT NULL,
   `order_id` int(11) UNSIGNED NOT NULL,
   `product_id` int(11) UNSIGNED NOT NULL,
-  `order_item_quantity` int(11) NOT NULL,
-  `order_item_price` int(11) NOT NULL
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `temperature` enum('Hot','Iced') NOT NULL,
+  `milk_type` enum('Dairy Milk','Oak Milk','Coconut Milk') NOT NULL,
+  `espresso_shots` enum('No Shot','LYDIA','BOSS') NOT NULL,
+  `sweetness` enum('Regular Sweet','Less Sweet','More Sweet') NOT NULL,
+  `ice_level` enum('Regular Ice','Less Ice') NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -40,23 +46,20 @@ CREATE TABLE `order_items` (
 --
 
 --
--- Indexes for table `order_items`
+-- Indexes for table `order_details`
 --
-ALTER TABLE `order_items`
-  ADD PRIMARY KEY (`order_item_id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `product_id` (`product_id`);
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`order_detail_id`);
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Constraints for table `order_items`
+-- AUTO_INCREMENT for table `order_details`
 --
-ALTER TABLE `order_items`
-  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON UPDATE CASCADE;
+ALTER TABLE `order_details`
+  MODIFY `order_detail_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
