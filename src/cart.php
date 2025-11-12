@@ -62,8 +62,10 @@ $stmt_address->execute();
 $result_address = $stmt_address->get_result();
 
 $customer_address = null;
+$selected_address_id = null;
 if ($result_address->num_rows > 0) {
     $customer_address = $result_address->fetch_assoc();
+    $selected_address_id = $customer_address['address_id'];
 }
 
 $stmt_address->close();
@@ -298,10 +300,10 @@ while ($row = $result->fetch_assoc()) {
             </div>
         </div>
     </section>
-    <section class=" w-full items-center justify-center flex  fixed bottom-0 p-4 bg-custom-background shadow-2xl">
+    <!-- <section class=" w-full items-center justify-center flex  fixed bottom-0 p-4 bg-custom-background shadow-2xl">
         <?php if (!empty($cart_items)): ?>
             <div class="flex gap-4 grow w-1/2 items-center justify-center">
-                <form method="POST" action="./functions/buynow.php" class="grow w-full">
+                <form method="POST" action="./orders.php" class="grow w-full">
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                     <button type="submit" class="btn btn-lg border-custom-accent bg-custom-accent text-custom-background w-full rounded-full  text-sm">Buy Now</button>
                 </form>
@@ -314,7 +316,38 @@ while ($row = $result->fetch_assoc()) {
                 </div>
             </div>
         <?php endif; ?>
-    </section>
+    </section> -->
+    <section class="w-full items-center justify-center flex fixed bottom-0 p-4 bg-custom-background shadow-2xl">
+    <?php if (!empty($cart_items)): ?>
+        <form method="POST" action="./orders.php" class="flex gap-4 grow w-full items-center justify-center">
+            
+            <input type="hidden" name="total_amount" value="<?= $total; ?>">
+            <input type="hidden" name="selected_address_id" value="<?= htmlspecialchars($selected_address_id ?? ''); ?>">
+
+            <input type="hidden" name="payment_method" id="hiddenPaymentMethod" value="">
+            
+            <div class="flex gap-4 grow w-1/2 items-center justify-center">
+                
+                <button 
+                    type="submit" 
+                    name="place_order" 
+                    class="btn btn-lg border-custom-accent bg-custom-accent text-custom-background w-full rounded-full text-sm"
+                    <?php if (!$selected_address_id): ?>disabled<?php endif; ?>
+                >
+                    <?= (!$selected_address_id) ? 'Add Address to Buy' : 'Buy Now'; ?>
+                </button>
+            </div>
+            
+            <div class=" w-1/2 grow items-end justify-center flex flex-col">
+                <div>
+                    <h1 class="text-sm font-medium w-full float-right flex justify-between">Quantity: <span><?php echo $total_quantity ?></span> </h1>
+                    <h1 class="text-sm font-medium w-full float-right ">Total:</h1>
+                    <p class="text-2xl font-bold w-full text-custom-accent">₱<?= number_format($total, 2); ?></p>
+                </div>
+            </div>
+        </form>
+    <?php endif; ?>
+</section>
 </body>
 
 </html>
