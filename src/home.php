@@ -3,46 +3,48 @@ include("./db/db.php");
 
 date_default_timezone_set('Asia/Manila');
 
-$sql = "SELECT p.*, c.category_name 
+$best_sellers = []; // We'll need a real query for this eventually
+$coffee_items = [];
+$milk_tea_items = [];
+$frappe_items = [];
+$shake_items = [];
+$pastries_items = [];
+
+// 2. Run ONE query to get ALL products
+$sql = "SELECT p.*, c.category_name, c.category_id
         FROM products p
         JOIN category c ON p.category_id = c.category_id";
-
-// if (isset($_GET['sort']) && $_GET['sort'] == 'high') {
-//     $sql = "SELECT * FROM products ORDER BY price DESC";
-// } else {
-//     $sql = "SELECT * FROM products";
-// }
 $result = mysqli_query($conn, $sql);
 
-$coffee_sql = "SELECT p.*, c.category_name 
-                FROM products p
-                JOIN category c ON p.category_id = c.category_id
-                WHERE c.category_id = '1'";
-$coffee_result = mysqli_query($conn, $coffee_sql);
+// 3. Check if the query worked and has rows
+if ($result && mysqli_num_rows($result) > 0) {
+    // Loop through the single result ONCE
+    while ($row = mysqli_fetch_assoc($result)) {
 
-$milk_tea_sql = "SELECT p.*, c.category_name 
-            FROM products p
-            JOIN category c ON p.category_id = c.category_id
-            WHERE c.category_id = '2'";
-$milk_tea_result = mysqli_query($conn, $milk_tea_sql);
+        // 4. Sort each product into its correct array
+        switch ($row['category_id']) {
+            case '1':
+                $coffee_items[] = $row;
+                break;
+            case '2':
+                $milk_tea_items[] = $row;
+                break;
+            case '3':
+                $frappe_items[] = $row;
+                break;
+            case '4':
+                $shake_items[] = $row;
+                break;
+            case '5':
+                $pastries_items[] = $row;
+                break;
+        }
 
-$frappe_sql = "SELECT p.*, c.category_name 
-            FROM products p
-            JOIN category c ON p.category_id = c.category_id
-            WHERE c.category_id = '3'";
-$frappe_result = mysqli_query($conn, $frappe_sql);
-
-$shake_sql = "SELECT p.*, c.category_name 
-            FROM products p
-            JOIN category c ON p.category_id = c.category_id
-            WHERE c.category_id = '4'";
-$shake_result = mysqli_query($conn, $shake_sql);
-
-$pastries_sql = "SELECT p.*, c.category_name 
-            FROM products p
-            JOIN category c ON p.category_id = c.category_id
-            WHERE c.category_id = '5'";
-$pastries_result = mysqli_query($conn, $pastries_sql);
+        if ($row['category_id'] == '1') { // Using coffee as best-seller for this example
+            $best_sellers[] = $row;
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -117,37 +119,51 @@ $pastries_result = mysqli_query($conn, $pastries_sql);
         </section>
         <section class=" w-full min-h-max flex flex-col  items-center bg-custom-background">
             <h1 id="bestSeller"></h1>
-            <h1 class=" text-3xl font-black  sticky top-0 w-full text-center pt-14 pb-2 bg-linear-to-t from-custom-background from-50% to-custom-background/10 to-100% shadow-md z-30 flex items-center justify-center">Best Seller <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame-icon lucide-flame fill-custom-accent">
+            <h1 class=" text-3xl font-black  sticky top-0 w-full text-center pt-14 pb-2 bg-custom-background shadow-md z-30 flex items-center justify-center">Best Seller <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame-icon lucide-flame fill-custom-accent">
                     <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4" />
                 </svg></h1>
             <section class="flex flex-col  items-center overflow-y-scroll h-fit w-full p-4 pb-14 bg-linear-to-t from-custom-background from-50% to-custom-background/10 to-100%">
                 <section class="grid grid-cols-2  gap-2.5 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
+                    <?php foreach ($best_sellers as $row): ?>
+                        <div class=" group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
+                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
+                                <div class="overflow-hidden rounded-lg">
+                                    <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full skeleton aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
+                                </div>
+                                <div class="min-h-max duration-300">
+                                    <h3 class=" text-black/75 overflow-clip group-hover:text-custom-primary duration-300 leading-none p-1"><?= htmlspecialchars($row['product_name']); ?></h3>
+                                    <p class="float-right group-hover:scale-110 font-bold text-black/85 duration-300 mt-">₱<?= number_format($row['price'], 2); ?></p>
+                                </div>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
                 </section>
             </section>
             <h1 id="coffee"></h1>
-            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-linear-to-t from-custom-background from-50% to-custom-background/10 to-100% shadow-md z-30">Coffee</h1>
+            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-custom-background shadow-md z-30">Coffee</h1>
             <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 ">
                 <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
-                    <?php while ($row = mysqli_fetch_assoc($coffee_result)): ?>
+                    <?php foreach ($coffee_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                             <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
                                 <div class="overflow-hidden rounded-lg">
-                                    <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="skeleton w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
+                                    <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
-                                <div class="min-h-max duration-300 ">
+                                <div class="min-h-max duration-300">
                                     <h3 class=" text-black/75 overflow-clip group-hover:text-custom-primary duration-300 leading-none p-1"><?= htmlspecialchars($row['product_name']); ?></h3>
-                                    <p class="float-right group-hover:scale-110 font-bold text-black/85 duration-300">₱<?= number_format($row['price'], 2); ?></p>
+                                    <p class="float-right group-hover:scale-110 font-bold text-black/85 duration-300 mt-">₱<?= number_format($row['price'], 2); ?></p>
                                 </div>
                             </a>
                         </div>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 </section>
             </section>
             <h1 id="milktea"></h1>
-            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-linear-to-t from-custom-background from-50% to-custom-background/10 to-100% shadow-md z-30">Milk Tea</h1>
+            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-custom-background shadow-md z-30">Milk Tea</h1>
             <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 ">
                 <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
-                    <?php while ($row = mysqli_fetch_assoc($milk_tea_result)): ?>
+                    <?php foreach ($milk_tea_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                             <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
                                 <div class="overflow-hidden rounded-lg">
@@ -159,14 +175,14 @@ $pastries_result = mysqli_query($conn, $pastries_sql);
                                 </div>
                             </a>
                         </div>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 </section>
             </section>
             <h1 id="frappe"></h1>
-            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-linear-to-t from-custom-background from-50% to-custom-background/10 to-100% shadow-md z-30">Frappe</h1>
+            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-custom-background shadow-md z-30">Frappe</h1>
             <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 ">
                 <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
-                    <?php while ($row = mysqli_fetch_assoc($frappe_result)): ?>
+                    <?php foreach ($frappe_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                             <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
                                 <div class="overflow-hidden rounded-lg">
@@ -178,14 +194,14 @@ $pastries_result = mysqli_query($conn, $pastries_sql);
                                 </div>
                             </a>
                         </div>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 </section>
             </section>
             <h1 id="shake"></h1>
-            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-linear-to-t from-custom-background from-50% to-custom-background/10 to-100% shadow-md z-30">Shake</h1>
+            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-custom-background shadow-md z-30">Shake</h1>
             <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 ">
                 <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
-                    <?php while ($row = mysqli_fetch_assoc($shake_result)): ?>
+                    <?php foreach ($shake_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                             <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
                                 <div class="overflow-hidden rounded-lg">
@@ -197,14 +213,14 @@ $pastries_result = mysqli_query($conn, $pastries_sql);
                                 </div>
                             </a>
                         </div>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 </section>
             </section>
             <h1 id="pastries"></h1>
-            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-linear-to-t from-custom-background from-50% to-custom-background/10 to-100% shadow-md z-30">Pastries</h1>
+            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-custom-background shadow-md z-30">Pastries</h1>
             <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 ">
                 <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
-                    <?php while ($row = mysqli_fetch_assoc($pastries_result)): ?>
+                    <?php foreach ($pastries_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                             <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
                                 <div class="overflow-hidden rounded-lg">
@@ -216,7 +232,7 @@ $pastries_result = mysqli_query($conn, $pastries_sql);
                                 </div>
                             </a>
                         </div>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 </section>
             </section>
         </section>
