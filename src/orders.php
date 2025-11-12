@@ -4,10 +4,7 @@ include("./db/db.php");
 
 $customer_id = (int)$_SESSION['customer_id'];
 $address_id = (int)$_POST['selected_address_id'];
-<<<<<<< HEAD
-=======
 $total_amount = $_SESSION['total'];
->>>>>>> 7aaad2d12c92d7a4977fac26c949586f3a4c5ca1
 $conn->begin_transaction();
 
 try {
