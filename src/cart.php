@@ -97,7 +97,12 @@ while ($row = $result->fetch_assoc()) {
     $cart_items[] = $row;
     $total += $row['price'] * $row['quantity'];
     $total_quantity += $row['quantity'];
+    $price = $row['price'];
+    $_SESSION['price'] = $price;
 }
+$_SESSION['total'] = $total;
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
