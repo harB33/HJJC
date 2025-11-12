@@ -4,7 +4,6 @@ include("./db/db.php");
 
 $customer_id = (int)$_SESSION['customer_id'];
 $address_id = (int)$_POST['selected_address_id'];
-$total_amount = 0.0;
 $conn->begin_transaction();
 
 try {
