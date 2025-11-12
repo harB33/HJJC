@@ -82,16 +82,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./image/logo.ico" type="image/x-icon">
+    <link
+        href="https://cdn.jsdelivr.net/npm/daisyui@5"
+        rel="stylesheet"
+        type="text/css" />
     <title>HJJC Store|Orders</title>
+    <link rel="stylesheet" href="./style/output.css" />
 </head>
 
-<body>
-
+<body class="w-screen overflow-x-hidden scroll-smooth bg-custom-background">
+    <div class="sticky top-0 z-50 ">
+        <?php include './components/header.php'; ?>
+    </div>
+    <section>
+        
+    </section>
 </body>
 
 </html>
