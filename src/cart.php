@@ -236,6 +236,18 @@ while ($row = $result->fetch_assoc()) {
                     </div>
                 </div>
             <?php endforeach; ?>
+            <div class="w-full rounded-2xl border-custom-accent border-2 p-2.5 ">
+                <h1 class="pb-2.5">Paymenth Method</h1>
+                <form action="./cart.php" class="grid grid-cols-2 place-items-center gap-2.5 h-[20vh]">
+                    <div class="custom-radio-wrapper">
+                        <input type="radio" name="paymentMethod" id="radio1" class="hidden-radio">
+                        <label for="radio1" class="custom-radio-label">
+                            <div class="custom-indicator">asdasd</div>
+                        </label>
+                    </div>
+                    <input type="radio" name="paymentMethod">
+                </form>
+            </div>
         </div>
     </section>
     <section class=" w-full items-center justify-center flex  fixed bottom-0 p-4 bg-custom-background shadow-2xl">
