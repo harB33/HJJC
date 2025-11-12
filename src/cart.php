@@ -324,14 +324,10 @@ $_SESSION['total'] = $total;
     <section class="w-full items-center justify-center flex fixed bottom-0 p-4 bg-custom-background shadow-2xl">
         <?php if (!empty($cart_items)): ?>
             <form method="POST" action="./orders.php" class="flex gap-4 grow w-full items-center justify-center">
-
                 <input type="hidden" name="total_amount" value="<?= $total; ?>">
                 <input type="hidden" name="selected_address_id" value="<?= htmlspecialchars($selected_address_id ?? ''); ?>">
-
                 <input type="hidden" name="payment_method" id="hiddenPaymentMethod" value="">
-
                 <div class="flex gap-4 grow w-1/2 items-center justify-center">
-
                     <button
                         type="submit"
                         name="place_order"
@@ -340,7 +336,6 @@ $_SESSION['total'] = $total;
                         <?= (!$selected_address_id) ? 'Add Address to Buy' : 'Buy Now'; ?>
                     </button>
                 </div>
-
                 <div class=" w-1/2 grow items-end justify-center flex flex-col">
                     <div>
                         <h1 class="text-sm font-medium w-full float-right flex justify-between">Quantity: <span><?php echo $total_quantity ?></span> </h1>
