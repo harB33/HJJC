@@ -348,7 +348,7 @@ $_SESSION['total'] = $total;
                     <button
                         type="submit"
                         name="place_order"
-                        class="btn btn-lg border-custom-accent bg-custom-accent text-custom-background w-full rounded-full text-sm"
+                        class="btn btn-lg border-custom-accent btn-ghost  w-full rounded-full text-sm"
                         <?php if (!$selected_address_id): ?>disabled<?php endif; ?>>
                         <?= (!$selected_address_id) ? 'Add Address to Buy' : 'Buy Now'; ?>
                     </button>
