@@ -66,7 +66,7 @@ if ($customer_id == 0) {
         <?php include './components/header.php'; ?>
     </div>
     <section class=" w-full min-h-screen justify-center items-center flex pt-20 pb-40 bg-custom-background relative">
-        <div class="fixed top-[6%] left-[4%] z-40">
+        <div class="fixed top-[6%] left-[4%] z-40 ">
             <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent border-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
                     <path d="m12 19-7-7 7-7" />
@@ -75,12 +75,12 @@ if ($customer_id == 0) {
             </a>
         </div>
         <div class="flex flex-col md:flex-row gap-10 w-[90%] justify-center items-center">
-            <div class=" w-full justify-center flex gap-4">
-                <img src="image/products/<?= $product['product_img']; ?>" class="w-[50%] object-contain h-fit rounded-2xl " alt="<?= htmlspecialchars($product['product_name']); ?>" />
+            <div class=" w-full  justify-center flex gap-4 ">
+                <img src="image/products/<?= $product['product_img']; ?>" class="w-[50%] object-contain h-fit rounded-2xl skeleton " alt="<?= htmlspecialchars($product['product_name']); ?>" />
             </div>
             <div class="w-[90%]">
                 <div class=" w-full items-center  flex flex-col text-center ">
-                    <h1 class="text-2xl font-bold pb-3 text-custom-accent bg-custom-background w-full "><?= htmlspecialchars($product['product_name']); ?></h1>
+                    <h1 class="text-2xl font-bold pb-3 text-custom-accent bg-custom-background w-full"><?= htmlspecialchars($product['product_name']); ?></h1>
                     <p class="text-black/80 mb-6"><?= nl2br(htmlspecialchars($product['product_desc'])); ?></p>
                 </div>
             </div>
@@ -88,7 +88,7 @@ if ($customer_id == 0) {
                 <form id="addToCartForm" method="POST" action="./functions/addtocart.php" class="flex flex-col gap-6 w-full">
                     <?php if ($product['category_id'] < 5): ?>
                         <div>
-                            <h1 class=" font-bold mb-2">Temperature</h1>
+                            <h1 class=" font-bold mb-2 ">Temperature</h1>
                             <div class="flex w-full flex-wrap gap-2">
                                 <input class="btn shadow-none bg-custom-background  checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="temperature" value="Hot" required aria-label="Hot">
                                 <input class="btn shadow-none bg-custom-background  checked:border-custom-accent  checked:bg-custom-accent/50 checked:text-black" type="radio" name="temperature" value="Iced" aria-label="Iced">

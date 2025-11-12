@@ -45,6 +45,7 @@ FROM cart c
 JOIN products p ON c.product_id = p.product_id
 WHERE c.customer_id = ?";
 
+
 $stmt_cart = $conn->prepare($sql_cart);
 $stmt_cart->bind_param("i", $customer_id);
 $stmt_cart->execute();
@@ -53,6 +54,19 @@ $result = $stmt_cart->get_result();
 if ($result === false) {
     die("❌ **CART QUERY FAILED!** Check your SQL syntax or column names: " . mysqli_error($conn));
 }
+
+$sql_address = "SELECT * FROM address WHERE customer_id = ?";
+$stmt_address = $conn->prepare($sql_address);
+$stmt_address->bind_param("i", $customer_id);
+$stmt_address->execute();
+$result_address = $stmt_address->get_result();
+
+$customer_address = null;
+if ($result_address->num_rows > 0) {
+    $customer_address = $result_address->fetch_assoc();
+}
+
+$stmt_address->close();
 
 $cart_id_query = "SELECT c.*
                     FROM cart c
@@ -122,6 +136,28 @@ while ($row = $result->fetch_assoc()) {
         }
         ?>
         <div class="flex flex-col gap-4 w-[90%] justify-center items-start">
+            <div class="w-full rounded-2xl border-custom-accent border-2">
+                <div class="flex p-2.5 gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin">
+                        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <?php if ($customer_address): ?>
+                        <div class="flex flex-col">
+                            <p><?= htmlspecialchars($user); ?></p>
+                            <p class=""><?= htmlspecialchars($customer_address['address_name']); ?>, <?= htmlspecialchars($customer_address['address_city']); ?>, <?= htmlspecialchars($customer_address['address_region']); ?>, <?= htmlspecialchars($customer_address['address_brgy']); ?>, <?= htmlspecialchars($customer_address['address_postal']); ?></p>
+                        </div>
+                    <?php else: ?>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M8 12h8" />
+                                <path d="M12 8v8" />
+                            </svg>Add Address
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
             <?php foreach ($cart_items as $row): ?>
                 <div class="w-full rounded-2xl border-custom-accent border-2">
                     <div class="flex p-2.5  size-full justify-between flex-1 rounded-2xl gap-4">

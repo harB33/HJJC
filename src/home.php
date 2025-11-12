@@ -63,14 +63,14 @@ $pastries_result = mysqli_query($conn, $pastries_sql);
 <body class="w-screen overflow-x-hidden scroll-smooth">
     <div class="sticky top-0 z-50 w-full backdrop-blur-sm ">
         <!-- Ewan ko kung tama-->
-        <?php include './components/header.php'; 
+        <?php include './components/header.php';
         if ($result->num_rows > 0) {
-            while($product = $result->fetch_assoc()) {
+            while ($product = $result->fetch_assoc()) {
                 // Your existing code to display product cards/items using $product['...']
             }
         } else {
             // No results found message
-            echo "<p class='text-center text-lg'>No products found matching \"". htmlspecialchars($search_query) . "\"</p>";
+            echo "<p class='text-center text-lg'>No products found matching \"" . htmlspecialchars($search_query) . "\"</p>";
         }
         ?>
     </div>
@@ -132,11 +132,11 @@ $pastries_result = mysqli_query($conn, $pastries_sql);
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                             <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
                                 <div class="overflow-hidden rounded-lg">
-                                    <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
+                                    <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="skeleton w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
-                                <div class="min-h-max duration-300">
+                                <div class="min-h-max duration-300 ">
                                     <h3 class=" text-black/75 overflow-clip group-hover:text-custom-primary duration-300 leading-none p-1"><?= htmlspecialchars($row['product_name']); ?></h3>
-                                    <p class="float-right group-hover:scale-110 font-bold text-black/85 duration-300 mt-">₱<?= number_format($row['price'], 2); ?></p>
+                                    <p class="float-right group-hover:scale-110 font-bold text-black/85 duration-300">₱<?= number_format($row['price'], 2); ?></p>
                                 </div>
                             </a>
                         </div>
