@@ -116,7 +116,7 @@ while ($row = $result->fetch_assoc()) {
         <?php include './components/header.php'; ?>
     </div>
     <section class="flex flex-col min-h-screen h-full w-full justify-start items-center pt-10 bg-custom-background">
-        <h1 class="text-3xl font-extrabold text-custom-text/90 w-full text-center py-10">CHECK OUT</h1>
+        <h1 class="text-3xl font-extrabold text-custom-text/80 w-full text-center py-10">CHECK OUT</h1>
         <div class="fixed top-[6%] left-[4%] z-40">
             <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent border-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
@@ -138,14 +138,14 @@ while ($row = $result->fetch_assoc()) {
         <div class="flex flex-col gap-4 w-[90%] justify-center items-start">
             <div class="w-full rounded-2xl border-custom-accent border-2">
                 <div class="flex p-2.5 gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin stroke-custom-text/75">
                         <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
                         <circle cx="12" cy="10" r="3" />
                     </svg>
                     <?php if ($customer_address): ?>
-                        <div class="flex flex-col">
+                        <div class="flex flex-col font-extralight w-full">
                             <p><?= htmlspecialchars($user); ?></p>
-                            <p class=""><?= htmlspecialchars($customer_address['address_name']); ?>, <?= htmlspecialchars($customer_address['address_city']); ?>, <?= htmlspecialchars($customer_address['address_region']); ?>, <?= htmlspecialchars($customer_address['address_brgy']); ?>, <?= htmlspecialchars($customer_address['address_postal']); ?></p>
+                            <p class=" text-custom-text/50"><?= htmlspecialchars($customer_address['address_name']); ?>, <?= htmlspecialchars($customer_address['address_city']); ?>, <?= htmlspecialchars($customer_address['address_region']); ?>, <?= htmlspecialchars($customer_address['address_brgy']); ?>, <?= htmlspecialchars($customer_address['address_postal']); ?></p>
                         </div>
                     <?php else: ?>
                         <div>
@@ -202,16 +202,21 @@ while ($row = $result->fetch_assoc()) {
                                         <a href="?update_cart_id=<?= $row['cart_id']; ?>&new_qty=<?= $row['quantity'] - 1; ?>"
                                             class="btn btn-circle size-6 border-custom-accent bg-custom-accent minus-btn <?= ($row['quantity'] <= 1) ? 'disabled' : ''; ?>"
                                             role="button">
-                                            -
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus stroke-custom-background">
+                                                <path d="M5 12h14" />
+                                            </svg>
                                         </a>
                                         <input type="number"
-                                            class="input quantity-input border-none font-bold bg-custom-background text-center w-10 text-xl shadow-none"
+                                            class="input quantity-input border-none font-medium bg-custom-background text-center w-10 text-sm shadow-none"
                                             value="<?= $row['quantity']; ?>"
                                             min="1" max="100" readonly>
                                         <a href="?update_cart_id=<?= $row['cart_id']; ?>&new_qty=<?= $row['quantity'] + 1; ?>"
                                             class="btn btn-circle size-6 border-custom-accent bg-custom-accent plus-btn"
                                             role="button">
-                                            +
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus stroke-custom-background">
+                                                <path d="M5 12h14" />
+                                                <path d="M12 5v14" />
+                                            </svg>
                                         </a>
                                     </div>
                                     <div class="">
@@ -236,16 +241,56 @@ while ($row = $result->fetch_assoc()) {
                     </div>
                 </div>
             <?php endforeach; ?>
-            <div class="w-full rounded-2xl border-custom-accent border-2 p-2.5 ">
+            <div class="w-full rounded-2xl border-custom-accent border-2 p-2.5 mb-40">
                 <h1 class="pb-2.5">Paymenth Method</h1>
-                <form action="./cart.php" class="grid grid-cols-2 place-items-center gap-2.5 h-[20vh]">
-                    <div class="custom-radio-wrapper">
-                        <input type="radio" name="paymentMethod" id="radio1" class="hidden-radio">
-                        <label for="radio1" class="custom-radio-label">
-                            <div class="custom-indicator">asdasd</div>
+                <form action="./cart.php" class="grid grid-cols-2 place-items-center gap-2.5 h-[15vh]">
+                    <div class="relative flex flex-col w-full h-full max-w-sm">
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            id="cod-radio"
+                            class="hidden peer"
+                            value="cod">
+                        <label
+                            for="cod-radio" class="w-full h-full cursor-pointer border border-transparent rounded-2xl duration-300 peer-checked:border-[#e69c4d]">
+                            <div class="w-full h-full bg-custom-background rounded-2xl peer-checked:bg-[#e69c4d]">
+                                <div
+                                    class="w-full text-center text-black/75 h-full bg-custom-accent/15  text-xl font-black border-custom-accent/0 border-2 rounded-2xl duration-300   flex items-end justify-center pb-2.5  peer-checked:ring-2 peer-checked:ring-[#e69c4d] peer-checked:border-2   peer-checked:text-[#f9f6f3] peer-checked:bg-transparent">
+                                    CASH ON DELIVERY
+                                </div>
+                            </div>
+                            <span class="absolute inset-y-0 top-[30%] -translate-y-[50%] left-[50%] -translate-x-[50%] flex h-full items-center text-gray-400 pointer-events-none peer-checked:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet size-[90%] stroke-custom-accent peer-checked:stroke-[#f9f6f3]">
+                                    <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
+                                    <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
+                                </svg>
+                            </span>
                         </label>
                     </div>
-                    <input type="radio" name="paymentMethod">
+                    <div class="relative flex flex-col w-full h-full max-w-sm">
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            id="cc-radio"
+                            class="hidden peer"
+                            value="cc">
+                        <label
+                            for="cc-radio"
+                            class="w-full h-full cursor-pointer border border-transparent rounded-2xl duration-300 peer-checked:border-[#e69c4d]">
+                            <div class="w-full h-full bg-custom-background rounded-2xl peer-checked:bg-[#e69c4d]">
+                                <div
+                                    class="w-full text-center text-black/75 h-full text-xl bg-custom-accent/15 font-black border-none rounded-2xl duration-300   flex items-end justify-center pb-2.5  peer-checked:ring-2 peer-checked:ring-[#e69c4d]    peer-checked:text-[#f9f6f3] peer-checked:bg-transparent">
+                                    CREDIT CARD
+                                </div>
+                            </div>
+                            <span class="absolute inset-y-0 top-[30%] -translate-y-[50%] left-[50%] -translate-x-[50%] flex h-full items-center text-gray-400 pointer-events-none peer-checked:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card size-[90%] stroke-custom-accent peer-checked:stroke-[#f9f6f3]">
+                                    <rect width="20" height="14" x="2" y="5" rx="2" />
+                                    <line x1="2" x2="22" y1="10" y2="10" />
+                                </svg>
+                            </span>
+                        </label>
+                    </div>
                 </form>
             </div>
         </div>
