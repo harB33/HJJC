@@ -143,7 +143,7 @@ $_SESSION['total'] = $total;
         }
         ?>
         <div class="flex flex-col gap-4 w-[90%] justify-center items-start">
-            <div class="w-full rounded-2xl border-custom-accent border-2">
+            <div class="w-full rounded-2xl border-custom-accent border shadow-md">
                 <div class="flex p-2.5 gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin stroke-custom-text/75">
                         <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
@@ -169,38 +169,75 @@ $_SESSION['total'] = $total;
                 </div>
             </div>
             <?php foreach ($cart_items as $row): ?>
-                <div class="w-full rounded-2xl border-custom-accent border-2">
-                    <div class="flex p-2.5  size-full justify-between flex-1 rounded-2xl gap-4">
+                <div class="w-full rounded-2xl border-custom-accent border shadow-md">
+                    <div class="flex p-2.5  size-full justify-between flex-1 rounded-2xl gap-4 ">
                         <div class="gap-2 flex ">
                             <div class="h-full max-w-[120px]">
                                 <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="h-full">
                                     <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class=" w-full object-cover rounded-lg shadow group-hover:scale-110 transition-transform duration-700 ease-in-out">
                                 </a>
                             </div>
-                            <div>
-                                <h1 class="font-bold text-sm text-black/75"><?= htmlspecialchars($row['product_name']); ?></h1>
-                                <?php if ($row['category_id'] < 5): ?>
-                                    <p class=" w-full overflow-hidden font-light text-xs leading-tight">
-                                        <span class="font-extralight">Temp: </span><?= htmlspecialchars($row['temperature']); ?><br>
-                                        <span class="font-extralight">Milk: </span><?= htmlspecialchars($row['milk_type']); ?><br>
-                                        <span class="font-extralight">Shots: </span><?= htmlspecialchars($row['espresso_shots']); ?><br>
-                                        <span class="font-extralight">Sweetness: </span><?= htmlspecialchars($row['sweetness']); ?><br>
-                                        <span class="font-extralight">Ice: </span><?= htmlspecialchars($row['ice_level']); ?>
-                                    </p>
-                                <?php endif; ?>
-                                <p>
-                                    <?php
-                                    if (empty($cart_items)) {
-                                        echo '
+                            <div class="flex flex-col justify-between">
+                                <div>
+                                    <h1 class="font-bold text-sm text-black/75"><?= htmlspecialchars($row['product_name']); ?></h1>
+                                    <?php if ($row['category_id'] < 5): ?>
+                                        <p class="text-gray-600 text-sm">
+                                            <?php
+                                            $customizations = [];
+                                            if (!empty($row['temperature'])) {
+                                                $customizations[] = htmlspecialchars($row['temperature']);
+                                            }
+                                            if (!empty($row['milk_type'])) {
+                                                $customizations[] = htmlspecialchars($row['milk_type']);
+                                            }
+                                            if (!empty($row['sweetness'])) {
+                                                $customizations[] = htmlspecialchars($row['sweetness']);
+                                            }
+                                            if (!empty($row['ice_level'])) {
+                                                $customizations[] = htmlspecialchars($row['ice_level']);
+                                            }
+                                            if (!empty($customizations)) {
+                                                echo implode(' | ', $customizations);
+                                            }
+                                            ?>
+                                        </p>
+                                    <?php endif; ?>
+                                    <p>
+                                        <?php
+                                        if (empty($cart_items)) {
+                                            echo '
                                     <div class="flex w-full fixed top-1/2 left-1/2 -translate-1/2 items-center justify-center gap-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag-icon lucide-shopping-bag"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>
                                     Your Bag is Empty
                                     </div>
                                     ';
-                                    }
-                                    ?>
-                                </p>
+                                        }
+                                        ?>
+                                    </p>
+                                </div>
+                                <div class="quantity-selector flex items-center">
+                                    <a href="?update_cart_id=<?= $row['cart_id']; ?>&new_qty=<?= $row['quantity'] - 1; ?>"
+                                        class="btn btn-circle size-6 border-custom-accent bg-custom-accent minus-btn <?= ($row['quantity'] <= 1) ? 'disabled' : ''; ?>"
+                                        role="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus stroke-custom-background">
+                                            <path d="M5 12h14" />
+                                        </svg>
+                                    </a>
+                                    <input type="number"
+                                        class="input quantity-input border-none font-medium bg-custom-background text-center w-15 text-sm shadow-none"
+                                        value="<?= $row['quantity']; ?>"
+                                        min="1" max="100" readonly>
+                                    <a href="?update_cart_id=<?= $row['cart_id']; ?>&new_qty=<?= $row['quantity'] + 1; ?>"
+                                        class="btn btn-circle size-6 border-custom-accent bg-custom-accent plus-btn"
+                                        role="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus stroke-custom-background">
+                                            <path d="M5 12h14" />
+                                            <path d="M12 5v14" />
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
+
                         </div>
                         <div class="flex gap-4 w-fit">
                             <div class="flex w-fit h-full">
@@ -208,27 +245,7 @@ $_SESSION['total'] = $total;
                                     <div>
                                         <p class="font-bold text-sm text-black/80 float-right">₱<?= number_format($row['price'], 2); ?></p>
                                     </div>
-                                    <div class="quantity-selector flex items-center">
-                                        <a href="?update_cart_id=<?= $row['cart_id']; ?>&new_qty=<?= $row['quantity'] - 1; ?>"
-                                            class="btn btn-circle size-6 border-custom-accent bg-custom-accent minus-btn <?= ($row['quantity'] <= 1) ? 'disabled' : ''; ?>"
-                                            role="button">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus stroke-custom-background">
-                                                <path d="M5 12h14" />
-                                            </svg>
-                                        </a>
-                                        <input type="number"
-                                            class="input quantity-input border-none font-medium bg-custom-background text-center w-10 text-sm shadow-none"
-                                            value="<?= $row['quantity']; ?>"
-                                            min="1" max="100" readonly>
-                                        <a href="?update_cart_id=<?= $row['cart_id']; ?>&new_qty=<?= $row['quantity'] + 1; ?>"
-                                            class="btn btn-circle size-6 border-custom-accent bg-custom-accent plus-btn"
-                                            role="button">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus stroke-custom-background">
-                                                <path d="M5 12h14" />
-                                                <path d="M12 5v14" />
-                                            </svg>
-                                        </a>
-                                    </div>
+
                                     <div class="">
                                         <form action="./functions/remove_item.php" method="post">
                                             <input type="hidden" name="remove" value="<?= $row['cart_id']; ?>">
@@ -252,7 +269,7 @@ $_SESSION['total'] = $total;
                 </div>
             <?php endforeach; ?>
             <?php if (!empty($cart_items)): ?>
-                <div class="w-full rounded-2xl border-custom-accent border-2 p-2.5 mb-40">
+                <div class="w-full rounded-2xl border-custom-accent border p-2.5 mb-40 shadow-md ">
                     <h1 class="pb-2.5">Paymenth Method</h1>
                     <form action="./cart.php" class="grid grid-cols-2 place-items-center gap-2.5 h-[15vh]">
                         <div class="relative flex flex-col w-full h-full max-w-sm">
