@@ -201,19 +201,19 @@ $conn->close();
 </head>
 
 <body>
-    <div class="grid place-items-center">
+    <div class="grid place-items-center bg-custom-background">
         <div class="flex flex-col gap-2 justify-center items-center h-screen w-full border-r-2 border-[#0A1829]">
             <div class="size-35 rounded-full  grid place-items-center ">
                 <img src="./image/logo/Coffee_Logo.png" alt="logo">
             </div>
-            <h1 class="font-black text-3xl mb-8">CREATE YOUR ACCOUNT</h1>
-            <form action="./register.php" method="post" class="flex flex-col gap-2 w-3/4 justify-center items-center">
+            <h1 class="font-black text-3xl mb-4 text-custom-text/90">CREATE ACCOUNT</h1>
+            <form action="./register.php" method="post" class="flex flex-col gap-4 w-3/4 justify-center items-center max-w-xl max-lg:gap-4 max-lg:w-3/4 lg:w-[80%]">
                 <?php
                 if ($_SESSION['registration'] == true) {
                     echo '
-                <label class="input validator input-lg rounded-full w-full floating-label">
-                    <span class="left-8 text-lg">Username</span>
-                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
+                    <span class="left-8 text-lg bg-custom-background">Username</span>
+                    <svg class="h-[1em] opacity-50 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                             stroke-linejoin="round"
                             stroke-linecap="round"
@@ -235,9 +235,9 @@ $conn->close();
                         title="Only letters, numbers or dash"
                         name="user" />
                 </label>
-                <div class="flex max-sm:flex-col gap-2 w-full">
-                <label class="group input validator input-lg rounded-full w-full floating-label">
-                    <span class="left-8 text-lg">Password</span>
+                <div class="flex max-sm:flex-col gap-2 max-lg:gap4 w-full ">
+                <label class="group input validator input-lg rounded-full w-full floating-label bg-custom-background">
+                    <span class="left-8 text-lg bg-custom-background">Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
                         <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
@@ -245,7 +245,7 @@ $conn->close();
                     </g>
                     </svg>
                     <input
-                    class=" text-sm"
+                    class=" text-sm bg-custom-background"
                     id="passwordInput"
                     type="password"
                     required
@@ -269,7 +269,7 @@ $conn->close();
                     </label>
                 </label>
                 <label class="group input validator input-lg rounded-full w-full floating-label">
-                    <span class="left-8 text-lg">Confirm Password</span>
+                    <span class="left-8 text-lg bg-custom-background">Confirm Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
                         <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
@@ -277,7 +277,7 @@ $conn->close();
                     </g>
                     </svg>
                     <input
-                    class=" text-sm"
+                    class=" text-sm bg-custom-background"
                     id="confirmPasswordInput"
                     type="password"
                     required
@@ -303,7 +303,7 @@ $conn->close();
                 </label>
                 </div>
                     <label class="input validator input-lg rounded-full w-full floating-label">
-                        <span class="left-8 text-lg">First Name</span>
+                        <span class="left-8 text-lg bg-custom-background">First Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
                                 stroke-linejoin="round"
@@ -316,7 +316,7 @@ $conn->close();
                             </g>
                         </svg>
                         <input
-                            class=" text-sm"
+                            class=" text-sm bg-custom-background"
                             type="text"
                             required
                             placeholder="First Name"
@@ -327,7 +327,7 @@ $conn->close();
                             name="first_name" />
                     </label>
                     <label class="input validator input-lg rounded-full w-full floating-label">
-                        <span class="left-8 text-lg">Last Name</span>
+                        <span class="left-8 text-lg bg-custom-background">Last Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
                                 stroke-linejoin="round"
@@ -340,7 +340,7 @@ $conn->close();
                             </g>
                         </svg>
                         <input
-                            class=" text-sm"
+                            class=" text-sm bg-custom-background"
                             type="text"
                             required
                             placeholder="Last Name"
@@ -351,7 +351,7 @@ $conn->close();
                             name="last_name" />
                     </label>
                     <label class="input validator input-lg rounded-full w-full floating-label">
-                        <span class="left-8 text-lg">Middle Name</span>
+                        <span class="left-8 text-lg bg-custom-background">Middle Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
                                 stroke-linejoin="round"
@@ -364,7 +364,7 @@ $conn->close();
                             </g>
                         </svg>
                         <input
-                            class=" text-sm"
+                            class=" text-sm bg-custom-background"
                             type="text"
                             placeholder="Middle Name"
                             pattern="[A-Za-z]*"
@@ -374,7 +374,7 @@ $conn->close();
                             name="middle_name" />
                     </label>
                 <label class="input validator input-lg rounded-full w-full floating-label">
-                    <span class="left-8 text-lg">Email</span>
+                    <span class="left-8 text-lg bg-custom-background">Email</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                             stroke-linejoin="round"
@@ -386,10 +386,10 @@ $conn->close();
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                         </g>
                     </svg>
-                    <input type="email" class=" text-sm" name="email" placeholder="mail@site.com" required />
+                    <input type="email" class=" text-sm bg-custom-background" name="email" placeholder="mail@site.com" required />
                 </label>
                 <label class="input validator input-lg rounded-full w-full floating-label">
-                    <span class="left-8 text-lg">Phone Number</span>
+                    <span class="left-8 text-lg bg-custom-background">Phone Number</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                         <g fill="none">
                             <path
@@ -402,14 +402,14 @@ $conn->close();
                                 fill="currentColor"></path>
                         </g>
                     </svg>
-                    <input type="tel" name="phone" class=" text-sm" placeholder="0900-000-0000" required />
+                    <input type="tel" name="phone" class=" text-sm bg-custom-background" placeholder="0900-000-0000" required />
                 </label>
-                <input type="submit" class="btn rounded-full w-full btn-lg  border text-[20px]" name="register" value="REGISTER">
+                <input type="submit" class="btn rounded-full bg-custom-accent w-full btn-lg  border text-[20px]" name="register" value="REGISTER">
                 ';
                 } else {
                     echo '
-                    <label class="input validator input-lg rounded-full w-3/4 floating-label">
-                    <span class="left-8 text-lg">Verification Code</span>
+                    <label class="input validator input-lg rounded-full w-3/4 floating-label bg-custom-background">
+                    <span class="left-8 text-lg bg-custom-background">Verification Code</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                             stroke-linejoin="round"
@@ -422,6 +422,7 @@ $conn->close();
                         </g>
                     </svg>
                     <input
+                        class="bg-custom-background"
                         type="text"
                         required
                         placeholder="Verification Code"
@@ -431,7 +432,7 @@ $conn->close();
                         title="Only letters, numbers or dash"
                         name="code" />
                 </label>
-                <input type="submit" class="btn rounded-full w-3/4 btn-lg  border text-[20px]" name="verify" value="VERIFY">
+                <input type="submit" class="btn rounded-full bg-custom-accent w-3/4 btn-lg  border text-[20px]" name="verify" value="VERIFY">
                     ';
                 }
                 ?>
