@@ -18,7 +18,6 @@ if (isset($_POST["finish"])) {
     
             $target_dir = "image/products/";
     
-            // Create folder if it doesn't exist
             if (!is_dir($target_dir)) {
                 mkdir($target_dir, 0755, true);
             }
@@ -26,7 +25,6 @@ if (isset($_POST["finish"])) {
             $img_name = basename($_FILES[$fileInputName]['name']);
             $tmp_name = $_FILES[$fileInputName]['tmp_name'];
     
-            // Get file extension and validate type
             $file_ext = strtolower(pathinfo($img_name, PATHINFO_EXTENSION));
             $allowed_ext = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
     
@@ -35,13 +33,11 @@ if (isset($_POST["finish"])) {
                 exit;
             }
     
-            // Rename file (avoid overwriting existing files)
             $newFileName = uniqid("product_", true) . "." . $file_ext;
             $target_file = $target_dir . $newFileName;
     
-            // Move uploaded file
             if (move_uploaded_file($tmp_name, $target_file)) {
-                return $newFileName; // Return new filename (to save in DB)
+                return $newFileName; 
             } else {
                 echo "❌ Error uploading file.";
                 exit;
