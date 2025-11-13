@@ -2,18 +2,13 @@
 include("./db/sessionStart.php");
 include("./db/db.php");
 
-// ----------------------------------------------------------------------
-// --- CORRECTED Admin Page Logic ---------------------------------------
-// ----------------------------------------------------------------------
 if (!isset($_SESSION['customer_user']) || empty($_SESSION['customer_user'])) {
     header("Location: login.php");
     exit();
 }
 
-// 1. Get the username from the session
 $username_from_session = $_SESSION['customer_user'];
 
-// 2. Query the database using the USERNAME column
 $sql_auth = "SELECT customer_id, role FROM users WHERE customer_user = ?";
 $stmt = $conn->prepare($sql_auth);
 
@@ -29,7 +24,6 @@ if (!$stmt->execute()) {
 
 $result = $stmt->get_result();
 
-// 3. Check if user exists
 if ($result->num_rows === 0) {
     session_destroy();
     header("Location: login.php");
@@ -39,13 +33,11 @@ if ($result->num_rows === 0) {
 $user = $result->fetch_assoc();
 $stmt->close();
 
-// 4. Check for admin role
 if ($user['role'] !== 'admin') {
     header("Location: index.php");
     exit();
 }
 
-// 5. Store the actual numeric customer_id
 $customer_id = (int)$user['customer_id'];
 
 // ----------------------------------------------------------------------

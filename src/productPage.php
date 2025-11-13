@@ -14,7 +14,7 @@ if ($id <= 0) {
 $result = $conn->query("SELECT * FROM products WHERE product_id=$id");
 $product = $result->fetch_assoc();
 
-$customer_id = 0; // Default for guests
+$customer_id = 0;
 
 if (isset($_SESSION['customer_user'])) {
     $user_identifier = $_SESSION['customer_user'];

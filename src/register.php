@@ -29,7 +29,7 @@ function userAndEmailAlert()
         $middle_name = filter_input(INPUT_POST, "middle_name", FILTER_SANITIZE_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
         $phone = filter_input(INPUT_POST, "phone", FILTER_SANITIZE_SPECIAL_CHARS);
-        // $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
+        $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
 
         if ($email !== false && $email !== null) {
             list($userEmail, $domain) = explode("@", $email);
@@ -102,7 +102,7 @@ function userAndEmailAlert()
             } else {
 
                 $_SESSION['user'] = $user;
-                $_SESSION['pass'] = $pass;
+                $_SESSION['pass'] = $hashed_pass;
                 $_SESSION['first_name'] = $first_name;
                 $_SESSION['last_name'] = $last_name;
                 $_SESSION['middle_name'] = $middle_name;

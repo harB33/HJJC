@@ -1,6 +1,5 @@
 <?php
 
-//require '../vendor/autoload.php';
 require '../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -163,7 +162,7 @@ function createWelcomePDF($firstName)
         ';
 
         $mpdf->WriteHTML($html);
-        return $mpdf->Output('welcome.pdf', 'S'); // 'S' returns as a string
+        return $mpdf->Output('welcome.pdf', 'S'); 
 
     } catch (\Exception $e) {
         return "PDF Error: " . $e->getMessage();
@@ -193,7 +192,7 @@ function sendVerification($email, $verificationCode, $firstName)
         $imagePath = __DIR__ . '/../image/logo/logo.png';
         $mail->addEmbeddedImage($imagePath, 'logo-hjjc');
 
-        $pdfData = createWelcomePDF($firstName); // This uses mpdf
+        $pdfData = createWelcomePDF($firstName); 
 
         if (strpos($pdfData, 'PDF Error:') === 0) {
             return $pdfData;
