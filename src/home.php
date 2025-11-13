@@ -77,7 +77,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         ?>
     </div>
     <section class="flex w-full h-full">
-        <section class="flex items-center justify-center h-screen bg-custom-accent sticky top-0 flex-col sm:p-2.5 lg:p-4 ">
+        <section class="flex items-center justify-center h-screen bg-custom-accent sticky top-0 flex-col max-lg:p-2.5 lg:p-4 ">
             <div class="grid grid-cols-1 place-items-center w-fit gap-16 content-center text-center">
                 <a href="#bestSeller" class="max-sm:size-12 sm:size-18 flex flex-col text-sm hover:scale-105 duration-300">
                     <div class=" leading-none ">

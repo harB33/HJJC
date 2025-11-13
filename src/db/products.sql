@@ -28,16 +28,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `products` (
-  `product_id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `product_name` varchar(50) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `product_img` varchar(255) NOT NULL,
   `product_desc` text NOT NULL,
   `stock` int(11) NOT NULL DEFAULT 0,
   `category_id` int(11) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+ALTER TABLE `products`
+ADD COLUMN `updated_at` TIMESTAMP NOT NULL DEFAULT current_timestamp();
+
+ALTER TABLE `products`
+  ADD KEY `category_id` (`category_id`);
 --
 -- Dumping data for table `products`
 --

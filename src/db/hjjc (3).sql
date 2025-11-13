@@ -1,0 +1,632 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 13, 2025 at 06:49 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `hjjc`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `address_id` int(11) UNSIGNED NOT NULL,
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `address_name` varchar(150) NOT NULL,
+  `address_city` varchar(150) NOT NULL,
+  `address_region` varchar(50) NOT NULL,
+  `address_brgy` varchar(20) NOT NULL,
+  `address_postal` int(10) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `address`
+--
+
+INSERT INTO `address` (`address_id`, `customer_id`, `address_name`, `address_city`, `address_region`, `address_brgy`, `address_postal`, `created_at`) VALUES
+(1, 1, '794 Fullon St, Tondo', 'Manila', 'NCR', '52', 1012, '2025-11-12 07:30:37'),
+(2, 1, '794 Fullon St, Tondo', 'Manila', 'NCR', '52', 1012, '2025-11-12 07:30:37'),
+(3, 4, '794 Fullon St, Tondo', 'Manila', 'NCR', '52', 1012, '2025-11-13 13:01:02'),
+(4, 4, '794 Fullon St, Tondo', 'Manila', 'NCR', '52', 1012, '2025-11-13 13:01:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `cart_id` int(11) UNSIGNED NOT NULL,
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `temperature` enum('Hot','Iced','','') NOT NULL,
+  `milk_type` enum('Dairy Milk','Oat Milk','Coconut Milk','') NOT NULL,
+  `espresso_shots` enum('No Shot','LYDIA','BOSS','') NOT NULL DEFAULT 'No Shot',
+  `sweetness` enum('Regular Sweet','Less Sweet','More Sweet','') NOT NULL DEFAULT 'Regular Sweet',
+  `ice_level` enum('Normal Ice','Less Ice','','') DEFAULT 'Normal Ice',
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `customer_id`, `product_id`, `temperature`, `milk_type`, `espresso_shots`, `sweetness`, `ice_level`, `quantity`, `created_at`) VALUES
+(1, 2, 6, 'Hot', 'Dairy Milk', 'No Shot', 'Regular Sweet', 'Normal Ice', 1, '2025-11-11 12:51:10'),
+(62, 2, 6, 'Iced', 'Oat Milk', 'LYDIA', 'Less Sweet', 'Less Ice', 1, '2025-11-13 01:49:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `category_id` int(5) UNSIGNED NOT NULL,
+  `category_name` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `category_name`, `created_at`) VALUES
+(1, 'Coffee', '2025-11-06 22:24:07'),
+(2, 'Milk Tea', '2025-11-06 22:25:22'),
+(3, 'Frappe', '2025-11-06 22:25:22'),
+(4, 'Shake', '2025-11-10 15:00:41'),
+(5, 'Pastries', '2025-11-11 03:06:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(10) UNSIGNED NOT NULL,
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `address_id` int(11) UNSIGNED NOT NULL,
+  `total_amount` decimal(10,2) NOT NULL,
+  `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` enum('Pending','Paid','Shipped','Completed','Cancelled') NOT NULL DEFAULT 'Pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `customer_id`, `address_id`, `total_amount`, `order_date`, `status`) VALUES
+(48, 1, 1, 298.00, '2025-11-12 14:49:04', 'Pending'),
+(49, 1, 1, 447.00, '2025-11-12 23:31:32', 'Pending'),
+(50, 1, 1, 447.00, '2025-11-12 23:43:11', 'Shipped'),
+(51, 1, 1, 745.00, '2025-11-13 11:07:37', 'Pending'),
+(52, 1, 1, 298.00, '2025-11-13 12:32:11', 'Pending'),
+(53, 4, 3, 149.00, '2025-11-13 13:01:06', 'Pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `order_detail_id` int(10) UNSIGNED NOT NULL,
+  `order_id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `temperature` enum('Hot','Iced') NOT NULL,
+  `milk_type` enum('Dairy Milk','Oak Milk','Coconut Milk') NOT NULL,
+  `espresso_shots` enum('No Shot','LYDIA','BOSS') NOT NULL,
+  `sweetness` enum('Regular Sweet','Less Sweet','More Sweet') NOT NULL,
+  `ice_level` enum('Regular Ice','Less Ice') NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`order_detail_id`, `order_id`, `product_id`, `quantity`, `temperature`, `milk_type`, `espresso_shots`, `sweetness`, `ice_level`, `price`, `created_at`) VALUES
+(1, 48, 5, 2, '', '', '', '', '', 149.00, '2025-11-12 14:49:04'),
+(2, 49, 5, 3, '', '', '', '', '', 149.00, '2025-11-12 23:31:32'),
+(3, 50, 5, 3, '', '', '', '', '', 149.00, '2025-11-12 23:43:11'),
+(4, 51, 5, 5, '', '', '', '', '', 149.00, '2025-11-13 11:07:37'),
+(5, 52, 5, 2, '', '', '', '', '', 149.00, '2025-11-13 12:32:11'),
+(6, 53, 5, 1, '', '', '', '', '', 149.00, '2025-11-13 13:01:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `product_img` varchar(255) NOT NULL,
+  `product_desc` text NOT NULL,
+  `stock` int(11) NOT NULL DEFAULT 0,
+  `category_id` int(11) UNSIGNED NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`product_id`, `product_name`, `price`, `product_img`, `product_desc`, `stock`, `category_id`, `created_at`, `updated_at`) VALUES
+(5, 'Americano', 150.00, 'product_6912964a5e2409.55733899.png', 'Americano', 20, 1, '2025-11-11 17:50:02', '2025-11-11 17:50:02'),
+(6, 'Affogato', 100.00, 'product_69129ccc7a9570.51906915.png', 'affogato is an Italian dessert made by pouring a shot of hot espresso over a scoop of cold vanilla ice cream or gelato.', 30, 1, '2025-11-11 18:17:48', '2025-11-11 18:17:48'),
+(7, 'Black Coffee', 90.00, 'product_69129eefdcc3c0.77333053.png', 'Black coffee is a simple beverage made by brewing coffee grounds in water with no added milk, cream, or sugar.', 50, 1, '2025-11-11 18:26:55', '2025-11-11 18:26:55'),
+(8, 'Brown Sugar Latte', 110.00, 'product_69129f491a2517.37196033.png', 'A brown sugar latte is a coffee beverage made with espresso, milk, and brown sugar syrup or a homemade brown sugar sauce.', 50, 1, '2025-11-11 18:28:25', '2025-11-11 18:28:25'),
+(9, 'Cafe au Lait', 130.00, 'product_69129f997eeb03.87744796.png', 'A cafÃ© au lait is a French coffee drink made with equal parts hot brewed coffee and steamed milk. Unlike a latte, it uses regular brewed coffee instead of espresso and traditionally has little to no foam. ', 30, 1, '2025-11-11 18:29:45', '2025-11-11 18:29:45'),
+(10, 'Cafe Bombon', 100.00, 'product_6912a5520b1464.49650437.png', 'CafÃ© BombÃ³n is a Spanish coffee drink made of equal parts strong espresso and sweetened condensed milk, creating a rich, sweet, and bitter balance that is often layered in a glass to show off the distinct colors before mixing. ', 20, 1, '2025-11-11 18:54:10', '2025-11-11 18:54:10'),
+(12, 'Cafe Breve', 100.00, 'product_6912a6e3674291.76414163.png', 'A caffÃ¨ breve is an American-style espresso drink made with steamed half-and-half (half milk, half cream) instead of milk, which gives it a richer, creamier, and naturally sweeter taste compared to a standard latte. ', 20, 1, '2025-11-11 19:00:51', '2025-11-11 19:00:51'),
+(13, 'Cafe Con Leche', 100.00, 'product_6912a71fd0f991.79603885.png', 'CafÃ© con leche is a Spanish coffee drink made with strong coffee (traditionally espresso) and hot, scalded milk, usually in equal parts.', 20, 1, '2025-11-11 19:01:51', '2025-11-11 19:01:51'),
+(14, 'Cafe Cubano', 100.00, 'product_6912a77b0fd3f3.60150617.png', 'CafÃ© Cubano is a strong, sweet espresso-style coffee from Cuba made by brewing dark-roasted coffee grounds with demerara sugar.', 20, 1, '2025-11-11 19:03:23', '2025-11-11 19:03:23'),
+(15, 'Cafe de Olla', 99.00, 'product_6912a8329cc1d3.37085344.png', 'CafÃ© de olla is a traditional Mexican coffee, historically brewed in a clay pot (olla de barro), with a unique flavor profile from cinnamon and piloncillo (unrefined cane sugar).', 20, 1, '2025-11-11 19:06:26', '2025-11-11 19:06:26'),
+(16, 'Cafe Miel', 90.00, 'product_6912a8bf5edeb0.87303381.png', 'Miel is a delicious Spanish coffee drink that originated in Spain. It combines coffee, steamed milk (or frothed cold milk for iced) and a drizzle of honey. ', 30, 1, '2025-11-11 19:08:47', '2025-11-11 19:08:47'),
+(17, 'Cappuccino', 120.00, 'product_6912a90b5db672.84534609.png', 'A cappuccino is an Italian coffee drink with three equal parts of espresso, steamed milk, and frothed milk foam.', 40, 1, '2025-11-11 19:10:03', '2025-11-11 19:10:03'),
+(19, 'Caramel Macchiato', 120.00, 'product_6912e8c629d923.48374687.png', 'A caramel macchiato is a coffee drink made with steamed milk, vanilla syrup, and espresso, topped with a caramel drizzle.', 30, 1, '2025-11-11 23:41:58', '2025-11-11 23:41:58'),
+(20, 'Cinnamon Latte', 110.00, 'product_6912e9265c9a25.46553900.png', 'A cinnamon latte is a coffee beverage made with espresso, steamed milk, and cinnamon-flavored syrup, often topped with whipped cream and a sprinkle of cinnamon.', 40, 1, '2025-11-11 23:43:34', '2025-11-11 23:43:34'),
+(21, 'Coconut Latte', 99.00, 'product_6912e9d54590b6.73250459.png', 'A coconut latte is a coffee drink made with espresso and coconut milk, which provides a creamy texture and a sweet, tropical flavor.', 35, 1, '2025-11-11 23:46:29', '2025-11-11 23:46:29'),
+(22, 'Cold Brew', 79.00, 'product_6912ea4e5e9261.27853763.png', 'Cold brew is coffee made by steeping coarse coffee grounds in cold or room-temperature water for 12 to 24 hours, resulting in a concentrate that is smooth, less acidic, and can be served over ice, mixed with milk, or diluted with water.', 30, 1, '2025-11-11 23:48:30', '2025-11-11 23:48:30'),
+(23, 'Cortado', 90.00, 'product_6912eac5a71628.70963736.png', 'A cortado is a Spanish coffee drink made with equal parts espresso and lightly steamed milk, creating a balanced and smooth beverage. ', 40, 1, '2025-11-11 23:50:29', '2025-11-11 23:50:29'),
+(24, 'Dalgona Coffee', 110.00, 'product_6912eb53df78c0.43482256.png', 'Dalgona coffee is a whipped, frothy coffee drink made from instant coffee, sugar, and hot water whipped to a creamy foam, then served over hot or cold milk.', 40, 1, '2025-11-11 23:52:51', '2025-11-11 23:52:51'),
+(25, 'Espresso Con Panna', 110.00, 'product_6912ee35bc5674.13061214.png', 'Espresso con panna is an Italian drink meaning \"espresso with cream,\" consisting of a shot or two of espresso topped with a dollop of whipped cream.', 50, 1, '2025-11-12 00:05:09', '2025-11-12 00:05:09'),
+(26, 'Espresso', 100.00, 'product_6912eea7587a12.82272141.png', 'Espresso is a concentrated coffee made by forcing hot water under high pressure through finely-ground coffee beans.', 60, 1, '2025-11-12 00:07:03', '2025-11-12 00:07:03'),
+(27, 'Flat White', 120.00, 'product_6912ef1df0a206.78185359.png', 'A flat white is an espresso-based drink made with a double shot of espresso and a thin, \"flat\" layer of steamed milk with a velvety microfoam texture.', 40, 1, '2025-11-12 00:09:01', '2025-11-12 00:09:01'),
+(28, 'Hazalnut Latte', 130.00, 'product_6912ef8ba342a5.61909381.png', 'A hazelnut latte is a warm coffee drink made with espresso, steamed milk, and hazelnut flavoring, resulting in a smooth, nutty, and creamy beverage.', 30, 1, '2025-11-12 00:10:51', '2025-11-12 00:10:51'),
+(30, 'Honey Oat Latte', 100.00, 'product_6912f2cdbf7117.05928010.png', 'A Honey Oat Latte is a creamy coffee beverage made with espresso, steamed oat milk, and honey. ', 30, 1, '2025-11-12 00:24:45', '2025-11-12 00:24:45'),
+(31, 'Iced Americano', 120.00, 'product_6912f33a453d27.97505262.png', 'An iced americano is a refreshing cold coffee drink made by combining espresso shots with cold water and ice. It is a simple, black coffee drink with a strong espresso flavor that is diluted by the cold water and melted ice.', 20, 1, '2025-11-12 00:26:34', '2025-11-12 00:26:34'),
+(32, 'Iced Caramel Latte', 130.00, 'product_6912f38d40c542.09661832.png', 'An iced caramel latte is a chilled coffee drink made with a blend of espresso, cold milk, and a sweet caramel syrup or sauce, served over ice.', 60, 1, '2025-11-12 00:27:57', '2025-11-12 00:27:57'),
+(33, 'Iced Hazelnut Latte', 120.00, 'product_6912f4f3e61bd5.87925583.png', 'An Iced Hazelnut Latte is a cold coffee drink made with espresso, chilled milk, and hazelnut syrup, creating a smooth, creamy, and sweet nutty beverage.', 40, 1, '2025-11-12 00:33:55', '2025-11-12 00:33:55'),
+(34, 'Iced Latte', 110.00, 'product_6912f52e0c7137.06116647.png', 'An iced latte is a cold coffee beverage made with espresso, cold milk, and ice, creating a creamier, richer taste than iced coffee.', 11, 1, '2025-11-12 00:34:54', '2025-11-12 00:34:54'),
+(35, 'Iced Matcha Latte', 120.00, 'product_6912f65c941ae2.02094073.png', 'An iced matcha latte is a refreshing, creamy beverage made from matcha green tea powder, milk, and a sweetener, served over ice.', 50, 1, '2025-11-12 00:39:56', '2025-11-12 00:39:56'),
+(36, 'Iced Mocha', 110.00, 'product_6912f74d86d838.15853377.png', 'An iced mocha is a cold, coffee-based drink made with espresso, chocolate syrup, and milk poured over ice.', 40, 1, '2025-11-12 00:43:57', '2025-11-12 00:43:57'),
+(37, 'Iced Vanilla Latte', 150.00, 'product_6912f7a9e3ada1.91009986.png', 'An Iced Vanilla Latte is a cold coffee beverage made from espresso, milk, and vanilla syrup, served over ice.', 30, 1, '2025-11-12 00:45:29', '2025-11-12 00:45:29'),
+(38, 'Irish Coffee', 100.00, 'product_6912f800084883.87148911.png', 'Irish coffee is a hot cocktail made with hot coffee, Irish whiskey, sugar, and topped with a layer of cream. ', 20, 1, '2025-11-12 00:46:56', '2025-11-12 00:46:56'),
+(39, 'Latte', 80.00, 'product_6912f84989cda8.59856514.png', 'A latte is an espresso-based drink made with one or two shots of espresso, a larger amount of steamed milk, and topped with a thin layer of frothed milk.', 30, 1, '2025-11-12 00:48:09', '2025-11-12 00:48:09'),
+(40, 'Lungo', 100.00, 'product_6912f87b79c978.87660786.png', 'A lungo is an Italian espresso drink made by using the same amount of coffee grounds as a standard espresso but forcing more hot water through them, resulting in a longer, larger, and milder coffee with a more bitter taste.', 20, 1, '2025-11-12 00:48:59', '2025-11-12 00:48:59'),
+(41, 'Macchiato', 110.00, 'product_6912f8e04bc824.23036044.png', 'A macchiato is an espresso drink \"marked\" with a small amount of foamed or steamed milk, creating a strong coffee flavor with a hint of creaminess.', 30, 1, '2025-11-12 00:50:40', '2025-11-12 00:50:40'),
+(42, 'Matcha Latte', 120.00, 'product_6912f90fb1a4f2.65923906.png', 'A matcha latte is a creamy, vibrant green beverage made from finely ground green tea powder (matcha), hot water, and frothed milk, often served hot or iced.', 50, 1, '2025-11-12 00:51:27', '2025-11-12 00:51:27'),
+(43, 'Mocha', 140.00, 'product_6912f996db90d3.06894647.png', 'A mocha is an espresso-based coffee drink that combines coffee with chocolate, typically made with espresso, steamed milk, and chocolate syrup or powder.', 40, 1, '2025-11-12 00:53:42', '2025-11-12 00:53:42'),
+(44, 'Nitro Cold Brew', 110.00, 'product_6912f9ed1c3c93.52144241.png', 'Nitro cold brew is cold brew coffee infused with nitrogen gas, which gives it a creamy, velvety-smooth texture and a foamy head, similar to a stout beer.', 40, 1, '2025-11-12 00:55:09', '2025-11-12 00:55:09'),
+(45, 'Pumpkim Spice Latte', 90.00, 'product_6913051f751a05.07092315.png', 'A Pumpkin Spice Latte (PSL) is a coffee drink made with espresso, steamed milk, and a blend of spices like cinnamon, nutmeg, and clove.', 20, 1, '2025-11-12 01:42:55', '2025-11-12 01:42:55'),
+(46, 'Red Eye', 110.00, 'product_69130562ba3fc7.82011772.png', 'A Red Eye is a coffee drink made by adding a shot of espresso to a standard cup of drip coffee for an extra caffeine boost.', 20, 1, '2025-11-12 01:44:02', '2025-11-12 01:44:02'),
+(47, 'Ristretto', 100.00, 'product_691305bf25c696.08521474.png', 'Ristretto is an Italian coffee term for \"restricted,\" meaning a short, concentrated shot of espresso made with less hot water than a regular espresso.', 25, 1, '2025-11-12 01:45:35', '2025-11-12 01:45:35'),
+(48, 'Spanish Latte', 130.00, 'product_691306e195bb14.98705855.png', 'A Spanish latte is an espresso-based drink made with espresso, steamed milk, and sweetened condensed milk, which makes it richer and sweeter than a regular latte.', 53, 1, '2025-11-12 01:50:25', '2025-11-12 01:50:25'),
+(49, 'Spanish Mocha', 140.00, 'product_6913071b1f0aa9.40090032.png', 'A Spanish mocha is a rich coffee drink made with espresso, condensed milk, and chocolate, which provides a sweeter, creamier profile than a regular mocha.', 30, 1, '2025-11-12 01:51:23', '2025-11-12 01:51:23'),
+(50, 'Tiramisu Latte', 150.00, 'product_69130778168aa1.21927225.png', 'A Tiramisu Latte is a coffee drink inspired by the classic Italian dessert, combining espresso with tiramisu flavors like mascarpone cream, chocolate, and a dusting of cocoa.', 36, 1, '2025-11-12 01:52:56', '2025-11-12 01:52:56'),
+(51, 'Toffee Nut Latte', 160.00, 'product_691307b4d66204.02995852.png', 'A Toffee Nut Latte is a warm, sweet coffee beverage made with espresso, steamed milk, and a toffee nut syrup that provides a rich, buttery, and nutty flavor.', 42, 1, '2025-11-12 01:53:56', '2025-11-12 01:53:56'),
+(52, 'Turkish Coffee', 110.00, 'product_691307e6b77e49.29725095.png', 'Turkish coffee is a strong, unfiltered brew made from very finely ground coffee beans, water, and often sugar, which is simmered in a pot called a cezve.', 25, 1, '2025-11-12 01:54:46', '2025-11-12 01:54:46'),
+(53, 'Vanilla Latte', 120.00, 'product_6913081ad4ac85.49228812.png', 'A vanilla latte is a coffee drink made with espresso, steamed milk, and vanilla syrup.', 45, 1, '2025-11-12 01:55:38', '2025-11-12 01:55:38'),
+(54, 'Vietnamese Coffee', 100.00, 'product_69130847f1a839.88193121.png', 'Vietnamese coffee is a strong, dark-roast coffee made from beans grown in Vietnam, traditionally brewed with a metal drip filter called a phin.', 45, 1, '2025-11-12 01:56:23', '2025-11-12 01:56:23'),
+(55, 'White Mocha', 149.00, 'product_6913088d5c8865.37173683.png', 'A white mocha is a coffee drink made with espresso, steamed milk, and white chocolate syrup or sauce. It offers a sweet, creamy, and indulgent flavor profile, with white chocolate replacing the dark chocolate found in a traditional mocha.', 30, 1, '2025-11-12 01:57:33', '2025-11-12 01:57:33'),
+(56, 'Caramel Frappe', 130.00, 'product_69130caea2eba9.29254677.png', 'A caramel frappe is a blended, iced coffee drink with a sweet, creamy, and smooth consistency, made with coffee, milk, and caramel syrup, then topped with whipped cream and a caramel drizzle.', 30, 3, '2025-11-12 02:15:10', '2025-11-12 02:15:10'),
+(57, 'Chocolate Frappe', 130.00, 'product_69130ce4813f15.36392712.png', 'A chocolate frappe is a blended, icy, and creamy drink made with milk, chocolate flavorings (like syrup or cocoa), and ice, often topped with whipped cream and extra chocolate toppings.', 30, 3, '2025-11-12 02:16:04', '2025-11-12 02:16:04'),
+(58, 'Coffee Frappe', 130.00, 'product_69130d0da10209.73403976.png', 'A coffee frappe is a blended, cold, and frothy coffee drink that can be made by combining coffee, milk, sugar, and ice, then shaken or blended until it\'s thick and creamy.', 20, 3, '2025-11-12 02:16:45', '2025-11-12 02:16:45'),
+(59, 'Cookies and Cream Frappe', 150.00, 'product_69130d5d267fc8.70478465.png', 'FrappuccinoÂ® Roast coffee, mocha sauce and FrappuccinoÂ® chips blended with milk and ice, layered on top of whipped cream and chocolate cookie crumble and topped with vanilla whipped cream, mocha drizzle and even more chocolate cookie crumble.', 25, 3, '2025-11-12 02:18:05', '2025-11-12 02:18:05'),
+(60, 'Espresso Frappe', 130.00, 'product_69130d99d246b2.20282672.png', 'An espresso frappe is a blended, iced coffee drink made with espresso, milk, and ice, often sweetened and topped with whipped cream and sauces.', 30, 3, '2025-11-12 02:19:05', '2025-11-12 02:19:05'),
+(61, 'Hazelnut Frappe', 140.00, 'product_69130de7d5b381.61296317.png', 'A hazelnut frappe is a blended, icy coffee drink featuring a rich, nutty hazelnut flavor, typically made with coffee, milk, ice, and hazelnut syrup.', 40, 3, '2025-11-12 02:20:23', '2025-11-12 02:20:23'),
+(62, 'Matcha Frappe', 145.00, 'product_69130e23b82781.16483983.png', 'A Matcha FrappÃ© is a blended, iced beverage that combines the earthy, rich flavor of matcha green tea with creamy milk and ice, creating a sweet and refreshing treat.', 35, 3, '2025-11-12 02:21:23', '2025-11-12 02:21:23'),
+(63, 'Mocha Frappe', 130.00, 'product_69130e4fae9749.32905950.png', 'A mocha frappe is a blended, icy coffee drink with a rich, chocolatey flavor from a mix of coffee, milk, ice, and chocolate syrup or cocoa powder.', 30, 3, '2025-11-12 02:22:07', '2025-11-12 02:22:07'),
+(64, 'Oreo Frappe', 135.00, 'product_69130e86713e61.43350537.png', 'An Oreo frappe is a blended iced coffee drink made with milk, ice, and crushed Oreo cookies, often including chocolate syrup and a coffee flavor.', 30, 3, '2025-11-12 02:23:02', '2025-11-12 02:23:02'),
+(65, 'Strawberry Frappe', 160.00, 'product_69130ebc7a8706.98921368.png', 'A strawberry frappe is a cold, blended beverage made with ice, milk, and strawberry puree or syrup, topped with whipped cream. It\'s a sweet, creamy, and refreshing drink with a distinct strawberry flavor.', 45, 3, '2025-11-12 02:23:56', '2025-11-12 02:23:56'),
+(66, 'Vanilla Frappe', 140.00, 'product_69130ee8bf7bb7.24542738.png', 'A vanilla frappe is a blended iced beverage made with vanilla, milk, and ice, often topped with whipped cream.', 35, 3, '2025-11-12 02:24:40', '2025-11-12 02:24:40'),
+(67, 'White Mocha Frappe', 120.00, 'product_69130f163709c0.82596026.png', 'A White Mocha Frappe is a blended, iced coffee drink with a creamy, sweet flavor from white chocolate syrup mixed with coffee, milk, and ice.', 30, 3, '2025-11-12 02:25:26', '2025-11-12 02:25:26'),
+(68, 'Avocado Shake', 110.00, 'product_6913106e8a25d8.38970405.png', 'Avocado shakes are refreshing and easy to make. Simply blend avocados with coconut milk. Layer with crushed ice, sweetened condensed milk, and a sprinkling of toasted coconut.', 50, 4, '2025-11-12 02:31:10', '2025-11-12 02:31:10'),
+(69, 'Banana Shake', 110.00, 'product_691315063f0f03.69770544.png', 'Banana Shake is basically a sweetened drink made by blending ripe bananas, milk, ice cream, flavorings and a sweetener. ', 30, 4, '2025-11-12 02:50:46', '2025-11-12 02:50:46'),
+(70, 'Black Forest Shake', 120.00, 'product_6913157337f796.70620226.png', 'A Black Forest Shake is a rich, creamy dessert drink inspired by the classic German Black Forest cake (Black Forest gateau). It combines the signature flavors of chocolate and cherries, typically in a smooth, sippable form.', 30, 4, '2025-11-12 02:52:35', '2025-11-12 02:52:35'),
+(71, 'Blueberry Shake', 150.00, 'product_691315a73cd118.55554136.png', 'A blueberry shake is a creamy, sweet, and thick drink made by blending blueberries with milk and a sweetener, typically vanilla ice cream.', 25, 4, '2025-11-12 02:53:27', '2025-11-12 02:53:27'),
+(72, 'Butterscotch Shake', 130.00, 'product_691315e9764c82.07353199.png', 'made with vanilla ice cream and ribboned with sweet, decadent butterscotch sauce for a shake with well-balanced flavours. The butterscotch sauce, which is made with butter and caramelized brown sugar, is rich and sweet and goes perfectly with the creamy vanilla ice cream.', 45, 4, '2025-11-12 02:54:33', '2025-11-12 02:54:33'),
+(73, 'Caramel Shake', 120.00, 'product_691316488aa3b5.08439612.png', 'A caramel shake is a creamy, smooth, and indulgent frozen drink with a rich, buttery, and sweet flavor profile. It is typically made by blending vanilla ice cream, milk (often whole milk for thickness), and a generous amount of caramel sauce until smooth.', 50, 4, '2025-11-12 02:56:08', '2025-11-12 02:56:08'),
+(74, 'Cheesecake Shake', 160.00, 'product_69131679a7f7a8.74009189.png', 'A Cheesecake Shake is a rich, creamy, and indulgent blended drink that captures all the classic flavors and textures of a traditional cheesecake dessert in a portable, sippable form. It offers a unique balance of a sweet and slightly tangy flavor profile.', 40, 4, '2025-11-12 02:56:57', '2025-11-12 02:56:57'),
+(75, 'Chocolate Peanut Butter Shake', 130.00, 'product_691316bea08ba1.80800433.png', 'A Chocolate Peanut Butter Shake is a rich, creamy, and indulgent blended beverage that delivers the classic and beloved combination of robust chocolate and nutty peanut butter flavors. It is essentially a frosty, drinkable dessert that offers a perfect balance of sweet and salty. ', 50, 4, '2025-11-12 02:58:06', '2025-11-12 02:58:06'),
+(76, 'Chocolate Shake', 120.00, 'product_6913171c6c83f9.73638321.png', 'A Chocolate Shake is a classic, rich, creamy, and indulgent blended beverage that delivers a deep, satisfying cocoa flavor in a smooth, thick, and frosty form. It is a timeless, popular treat that serves as a liquid dessert for chocolate lovers.', 30, 4, '2025-11-12 02:59:40', '2025-11-12 02:59:40'),
+(77, 'Coconut Shake', 120.00, 'product_69131789497934.39836718.png', 'A Coconut Shake is a creamy, rich, and intensely refreshing blended tropical beverage. It is widely popular in Southeast Asia (where it is often known as Buko Shake in the Philippines) as a cooling treat on a hot day. It captures the essence of a beach vacation in a glass.', 45, 4, '2025-11-12 03:01:29', '2025-11-12 03:01:29'),
+(78, 'Coffee Shake', 130.00, 'product_691317af566408.02183783.png', 'A Coffee Shake is a robust and invigorating blended beverage that combines the rich, aromatic flavor of coffee with the creamy texture of a classic milkshake. It provides a unique balance of a refreshing, frosty treat and the caffeinated kick of a traditional cup of coffee.', 20, 4, '2025-11-12 03:02:07', '2025-11-12 03:02:07'),
+(79, 'Cookies and Cream Shake', 150.00, 'product_691317efb827a1.01439142.png', 'A Cookies and Cream Shake is a classic, indulgent milkshake that blends a creamy vanilla base with crushed chocolate sandwich cookies (most commonly Oreos). It is cherished for its contrasting and satisfying combination of smooth, rich \"cream\" flavor and delightful \"cookie\" crunch. \r\nKey ', 50, 4, '2025-11-12 03:03:11', '2025-11-12 03:03:11'),
+(80, 'Dark Chocolate Shake', 160.00, 'product_69131827b05f42.50940329.png', 'A Dark Chocolate Shake is a rich, decadent, and intensely flavored blended beverage that focuses on the deep, complex notes of high-cocoa chocolate, typically with less sweetness than a standard milk chocolate shake.', 40, 4, '2025-11-12 03:04:07', '2025-11-12 03:04:07'),
+(81, 'Mango Shake', 120.00, 'product_69131867307e64.86439096.png', 'A Mango Shake is a bright, vibrant, and highly refreshing blended fruit drink that is a popular treat, especially in tropical regions during the peak of mango season. It is known for its distinctly sweet, juicy, and aromatic tropical flavor.', 30, 4, '2025-11-12 03:05:11', '2025-11-12 03:05:11'),
+(82, 'Matcha Shake', 130.00, 'product_6913189376fd90.84738617.png', 'A Matcha Shake is a distinctively flavored, vibrant green, creamy blended beverage that merges the earthy, slightly vegetal, and robust notes of Japanese matcha green tea powder with a sweet, rich base, such as ice cream or milk.', 30, 4, '2025-11-12 03:05:55', '2025-11-12 03:05:55'),
+(83, 'Melon Shake', 120.00, 'product_691318ca8f60f6.40874187.png', 'A Melon Shake is a light, creamy, and exceptionally refreshing blended beverage that highlights the sweet, aromatic, and juicy flavors of fresh melon, most commonly cantaloupe or honeydew. It\'s a popular choice as a thirst-quencher, particularly during warm weather.', 50, 4, '2025-11-12 03:06:50', '2025-11-12 03:06:50'),
+(84, 'Mint Chocolate Shake', 130.00, 'product_6913190d45f885.76574971.png', 'A Mint Chocolate Shake is a highly popular, festive, and refreshing blended beverage that combines the cool, invigorating flavor of mint with the sweet, rich taste of chocolate. It offers a unique and satisfying balance between a refreshing sensation and an indulgent dessert.', 40, 4, '2025-11-12 03:07:57', '2025-11-12 03:07:57'),
+(85, 'Mocha Shake', 120.00, 'product_691319617f4852.56580465.png', 'A Mocha Shake is a rich, creamy, and indulgent blended beverage that harmonizes two classic flavors: chocolate and coffee (mocha is the combination of these two).', 35, 4, '2025-11-12 03:09:21', '2025-11-12 03:09:21'),
+(86, 'Nutella Shake', 100.00, 'product_691319b920dc32.21667282.png', 'A Nutella Shake is a rich, creamy, and decadent blended beverage that delivers the distinct and beloved combination of chocolate and hazelnut flavors. ', 20, 4, '2025-11-12 03:10:49', '2025-11-12 03:10:49'),
+(87, 'Oreo Shake', 130.00, 'product_691319ec1be0d5.12820404.png', 'An Oreo Shake is a popular, rich, and creamy blended beverage that transforms the classic chocolate sandwich cookie into a thick, sippable dessert.', 30, 4, '2025-11-12 03:11:40', '2025-11-12 03:11:40'),
+(88, 'Papaya Shake', 120.00, 'product_69131a16a229d1.37292222.png', 'A Papaya Shake is a smooth, creamy, and healthy blended beverage that captures the sweet, delicate, and aromatic flavor of ripe papaya in a frosty, refreshing drink.', 40, 4, '2025-11-12 03:12:22', '2025-11-12 03:12:22'),
+(89, 'Peanut Butter Shake', 130.00, 'product_69131a440511c3.10607054.png', 'A Peanut Butter Shake is a rich, creamy, and indulgent blended drink that captures the distinctive, comforting flavor of peanut butter in a frosty, sippable form. It offers a unique balance of a sweet dessert and the slightly salty, roasted notes of peanuts. ', 30, 4, '2025-11-12 03:13:08', '2025-11-12 03:13:08'),
+(90, 'Pistachio Shake', 140.00, 'product_69131a76923951.77928679.png', 'A Pistachio Shake is a rich, creamy, and indulgent blended beverage that delivers a sophisticated, nutty flavor profile with a delicate balance of sweetness and a hint of saltiness. ', 50, 4, '2025-11-12 03:13:58', '2025-11-12 03:13:58'),
+(91, 'Red Velvet Shake', 150.00, 'product_69131aa4628de2.37712879.png', 'A Red Velvet Shake is a decadent, rich, and creamy blended beverage that transforms the distinctive flavor profile of classic red velvet cake and cream cheese frosting into a luxurious, sippable form.', 50, 4, '2025-11-12 03:14:44', '2025-11-12 03:14:44'),
+(92, 'Salted Caramel Shake', 120.00, 'product_69131ad146f7e4.60201073.png', 'A Salted Caramel Shake is a rich, creamy, and indulgent blended beverage that perfectly balances the deep sweetness of caramel with the sharp contrast of sea salt. It is a sophisticated and highly satisfying twist on a classic milkshake.', 30, 4, '2025-11-12 03:15:29', '2025-11-12 03:15:29'),
+(93, 'Strawberry Shake', 150.00, 'product_69131afdafc8d8.78462452.png', 'A Strawberry Shake is a classic, vibrant, and refreshing blended beverage that captures the sweet, natural flavor of ripe strawberries in a creamy, frosty form. It is one of the most popular and timeless milkshake flavors.', 45, 4, '2025-11-12 03:16:13', '2025-11-12 03:16:13'),
+(94, 'Taro Shake', 140.00, 'product_69131b2b113fc8.38195077.png', 'A Taro Shake is a distinct and popular beverage, originating from Asia (often found as taro milk tea or a smoothie).', 35, 4, '2025-11-12 03:16:59', '2025-11-12 03:16:59'),
+(95, 'Ube Shake', 130.00, 'product_69131b4faf02a5.91485599.png', 'An Ube Shake is a vibrant, creamy, and visually stunning beverage made from ube (pronounced \"ooh-beh\"), a purple yam native to the Philippines. ', 30, 4, '2025-11-12 03:17:35', '2025-11-12 03:17:35'),
+(96, 'Vanilla Almond Shake', 150.00, 'product_69131b78ccd980.86419993.png', 'A Vanilla Almond Shake is a creamy, nutritious, and subtly sweet blended beverage that merges the classic, comforting notes of vanilla with the distinct, slightly nutty flavor of almonds.', 50, 4, '2025-11-12 03:18:16', '2025-11-12 03:18:16'),
+(97, 'Vanilla Shake', 120.00, 'product_69131b9855b0f5.57629912.png', 'A Vanilla Shake is a classic, foundational blended beverage celebrated for its simple elegance, creamy texture, and comforting, sweet flavor profile.', 30, 4, '2025-11-12 03:18:48', '2025-11-12 03:18:48'),
+(98, 'Vanilla Shake', 120.00, 'product_69133139b46914.97220996.png', 'A Vanilla Shake is a classic, foundational blended beverage celebrated for its simple elegance, creamy texture, and comforting, sweet flavor profile.', 30, 4, '2025-11-12 04:51:05', '2025-11-12 04:51:05'),
+(99, 'Almond Milk Tea', 100.00, 'product_69133208b48946.16187100.png', 'An Almond Milk Tea is a sweet, creamy, and dairy-free beverage that combines brewed tea with almond milk and often a sweetener.', 30, 2, '2025-11-12 04:54:32', '2025-11-12 04:54:32'),
+(101, 'Black Sugar Pearl Milk Tea', 100.00, 'product_69133293ad49f0.79184141.png', 'A Black Sugar Pearl Milk Tea, often referred to simply as \"Black Sugar Boba,\" is a rich, creamy, and visually distinctive Taiwanese drink that has gained global popularity.', 30, 2, '2025-11-12 04:56:51', '2025-11-12 04:56:51'),
+(102, 'Blueberry Milk Tea', 100.00, 'product_691332bdcbccf7.94985867.png', 'A Blueberry Milk Tea is a refreshing and fruity variation of the popular milk tea beverage that combines brewed tea with the sweet and slightly tangy flavor of blueberries and the smoothness of milk.', 30, 2, '2025-11-12 04:57:33', '2025-11-12 04:57:33'),
+(103, 'Brown Sugar Milk Tea', 100.00, 'product_691332fb1b5603.86281181.png', 'A Brown Sugar Milk Tea is a deeply rich, creamy, and highly popular Taiwanese drink, renowned for its distinctive sweet, caramelized, and molasses-like flavor profile.', 30, 2, '2025-11-12 04:58:35', '2025-11-12 04:58:35'),
+(105, 'Croissant', 145.00, 'product_6913375d0cde74.54677071.png', 'A crescent-shaped, flaky, buttery, and light yeast-leavened pastry made from laminated dough.', 10, 5, '2025-11-12 05:17:17', '2025-11-12 05:17:17'),
+(106, 'Danish', 150.00, 'product_6913380f5d96c5.17604289.png', 'A multi-layered, sweet, yeast-leavened pastry, often topped with fruit, cheese, or nuts.', 10, 5, '2025-11-12 05:20:15', '2025-11-12 05:20:15'),
+(107, 'Pain au Chocolat', 160.00, 'product_691338ffc0a510.46960964.png', 'A rectangular laminated pastry, similar to a croissant, wrapped around one or two pieces of dark chocolate.', 10, 5, '2025-11-12 05:24:15', '2025-11-12 05:24:15'),
+(109, 'Kouign-amann', 130.00, 'product_69133a1839b329.57248784.png', 'A round, layered pastry from Brittany, France, made with laminated dough, caramelized with sugar and butter.', 10, 5, '2025-11-12 05:28:56', '2025-11-12 05:28:56'),
+(110, 'Mille-feuille', 140.00, 'product_69133a72329244.73228080.png', 'A classic French pastry made of three layers of puff pastry alternating with two layers of pastry cream.', 10, 5, '2025-11-12 05:30:26', '2025-11-12 05:30:26'),
+(111, 'Palmiers', 100.00, 'product_69133b6301bcd3.18092691.png', 'A \"palm tree\" or \"elephant ear\" pastry made from puff pastry cut and baked to caramelize the sugar into a crisp, buttery treat.', 10, 5, '2025-11-12 05:34:27', '2025-11-12 05:34:27'),
+(112, 'Turnover', 145.00, 'product_69133c53ddbca4.24533458.png', 'A folded piece of pastry dough (often puff pastry) enclosing a sweet or savory filling, like fruit.', 10, 5, '2025-11-12 05:38:27', '2025-11-12 05:38:27'),
+(113, 'Almond Croissant', 160.00, 'product_69133cf062f6f4.36957135.png', 'A day-old croissant soaked in syrup, filled with almond cream (frangipane), topped with sliced almonds, and rebaked.', 10, 5, '2025-11-12 05:41:04', '2025-11-12 05:41:04'),
+(115, 'Eclair', 120.00, 'product_69133e3cba1c79.57437417.png', 'A long, slender pastry made of choux dough filled with cream and topped with a flavored icing, often chocolate.', 10, 5, '2025-11-12 05:46:36', '2025-11-12 05:46:36'),
+(116, 'Sticky Bun', 135.00, 'product_69133e67e6daf1.40713885.png', 'A sweet, spiral pastry rolled with cinnamon and nuts (like pecans) and glazed with a sticky, buttery caramel sauce.', 10, 5, '2025-11-12 05:47:19', '2025-11-12 05:47:19'),
+(117, 'Cream Puff', 110.00, 'product_69133ef1ac3539.13424582.png', 'A round, hollow pastry made from choux dough, typically filled with whipped cream or pastry cream.', 10, 5, '2025-11-12 05:49:37', '2025-11-12 05:49:37'),
+(118, 'Profiterole', 115.00, 'product_6913400049af62.23009491.png', 'A small, hollow, baked choux pastry ball, usually filled with whipped cream or ice cream and often topped with chocolate sauce.', 10, 5, '2025-11-12 05:54:08', '2025-11-12 05:54:08'),
+(119, 'Beignet', 115.00, 'product_6913404bd78eb1.88211129.png', 'A square piece of deep-fried yeast dough, traditionally covered with powdered sugar; famous in New Orleans.', 10, 5, '2025-11-12 05:55:23', '2025-11-12 05:55:23'),
+(120, 'Zeppole', 120.00, 'product_691341c275afe7.92489147.png', 'An Italian doughnut or fritter, typically deep-fried and often filled with custard, jelly, or cream.', 10, 5, '2025-11-12 06:01:38', '2025-11-12 06:01:38'),
+(121, 'Apple Fritter', 140.00, 'product_69134255e9f410.55286870.png', 'Chunks of apple mixed into a sweet batter, deep-fried until golden, and often glazed.', 10, 5, '2025-11-12 06:04:05', '2025-11-12 06:04:05'),
+(122, 'Caramel Milk Tea', 110.00, 'product_6913427cc02655.39315327.png', 'A Caramel Milk Tea is a rich, creamy, and indulgent beverage that combines the deep, malty flavor of brewed tea with the sweet, buttery notes of caramel and the smoothness of milk.', 30, 2, '2025-11-12 06:04:44', '2025-11-12 06:04:44'),
+(123, 'Cheese Foam Milk Tea', 110.00, 'product_691342be67c2d3.91955060.png', 'A Cheese Foam Milk Tea is a popular and unique Taiwanese beverage that elevates traditional milk tea with a thick, velvety layer of creamy, sweet, and slightly salty foam on top. ', 50, 2, '2025-11-12 06:05:50', '2025-11-12 06:05:50'),
+(124, 'Chocolate Milk Tea', 120.00, 'product_691342f498f720.45377521.png', 'A Chocolate Milk Tea is a rich, creamy, and indulgent beverage that combines the deep, comforting flavor of chocolate with the smooth, often subtle, undertones of brewed black tea. ', 40, 2, '2025-11-12 06:06:44', '2025-11-12 06:06:44'),
+(125, 'Classic Milk Tea', 100.00, 'product_6913436a7bf0f4.74596765.png', 'A Classic Milk Tea is a globally beloved, simple yet sophisticated beverage that harmoniously blends strong brewed tea with milk and a sweetener.', 35, 2, '2025-11-12 06:08:42', '2025-11-12 06:08:42'),
+(126, 'Donut', 80.00, 'product_691343a4e10cb3.23043929.png', 'A small ring or ball of sweet, deep-fried dough, often topped with glaze, icing, or sprinkles.', 10, 5, '2025-11-12 06:09:40', '2025-11-12 06:09:40'),
+(127, 'Coconut Milk Tea', 100.00, 'product_691343f39069e5.18260073.png', 'A Coconut Milk Tea is a sweet, creamy, and dairy-free or plant-based beverage that infuses strong-brewed tea with the distinct, subtly sweet, and nutty flavor of coconut milk.', 25, 2, '2025-11-12 06:10:59', '2025-11-12 06:10:59'),
+(128, 'Churro', 60.00, 'product_69134409ee9c40.43021935.png', 'A ridged strip of fried choux pastry dough, typically coated in cinnamon sugar; popular in Spain and Latin America.', 10, 5, '2025-11-12 06:11:21', '2025-11-12 06:11:21'),
+(129, 'Coffee Milk Tea', 100.00, 'product_691344218f4d40.94309053.png', 'A Coffee Milk Tea is a rich, invigorating, and indulgent blended beverage that merges the robust flavors of coffee and tea with the creaminess of milk and sweetness. ', 20, 2, '2025-11-12 06:11:45', '2025-11-12 06:11:45'),
+(130, 'Earl Gray Milk Tea', 100.00, 'product_6913445d57bf40.16964262.png', 'An Earl Grey Milk Tea is a sophisticated, aromatic variation of classic milk tea, distinguished by the fragrant and citrusy notes of Earl Grey tea leaves.', 50, 2, '2025-11-12 06:12:45', '2025-11-12 06:12:45'),
+(131, 'Hazelnut Milk Tea', 120.00, 'product_6913448b31c374.50362131.png', 'An Hazelnut Milk Tea is a rich, aromatic, and comforting variation of classic milk tea, distinguished by the warm, nutty, and slightly sweet flavor of roasted hazelnuts.', 42, 2, '2025-11-12 06:13:31', '2025-11-12 06:13:31'),
+(132, 'Hokkaido Milk Tea', 110.00, 'product_691344b823a8c9.02129601.png', 'A Hokkaido Milk Tea is a rich, exceptionally creamy, and indulgent Japanese beverage known for its velvety smooth texture and subtle, natural sweetness.', 48, 2, '2025-11-12 06:14:16', '2025-11-12 06:14:16'),
+(133, 'Honey Lemon Milk Tea', 100.00, 'product_691344ecbcdd56.60524166.png', 'A Honey Lemon Milk Tea is a complex and highly customizable beverage that balances the sweet, floral notes of honey with the bright, zesty tang of lemon and the creamy richness of milk tea.', 100, 2, '2025-11-12 06:15:08', '2025-11-12 06:15:08'),
+(134, 'Honey MIlk Tea', 100.00, 'product_6913451757df54.58976397.png', 'A Honey Milk Tea is a sweet, smooth, and comforting variation of classic milk tea that replaces standard sugar with honey, offering a more nuanced, natural sweetness and a subtle floral aroma.', 24, 2, '2025-11-12 06:15:51', '2025-11-12 06:15:51'),
+(135, 'Honeydew Milk Tea', 100.00, 'product_69134564721605.69273755.png', 'A Honeydew Milk Tea is a sweet, light, and fruity variation of the classic milk tea beverage, renowned for its refreshing flavor and characteristic vibrant green color. ', 44, 2, '2025-11-12 06:17:08', '2025-11-12 06:17:08'),
+(136, 'Jasmine Milk Tea', 100.00, 'product_6913459728a5f1.39714473.png', 'A Jasmine Milk Tea is a fragrant, delicate, and refreshing variation of the classic milk tea, distinguished by the light, floral, and subtly sweet aroma and taste of jasmine flowers.', 50, 2, '2025-11-12 06:17:59', '2025-11-12 06:17:59'),
+(137, 'Lychee Milk Tea', 100.00, 'product_691345ca45e3b3.31051074.png', 'A Lychee Milk Tea is a fragrant, sweet, and creamy beverage that provides a refreshing, tropical twist on classic milk tea. It combines brewed tea with the delicate, sweet, and slightly floral flavor of the exotic lychee fruit.', 40, 2, '2025-11-12 06:18:50', '2025-11-12 06:18:50'),
+(138, 'Berliner', 75.00, 'product_691345cd236c89.37511711.png', 'A German doughnut made from sweet yeast dough, without a hole, typically filled with jam and dusted with powdered sugar.', 10, 5, '2025-11-12 06:18:53', '2025-11-12 06:18:53'),
+(139, 'Cruller', 85.00, 'product_691346116d4708.83150997.png', 'A twisted or ring-shaped doughnut made from a light, airy dough, often topped with a simple glaze.', 10, 5, '2025-11-12 06:20:01', '2025-11-12 06:20:01'),
+(140, 'Mango Milk Tea', 100.00, 'product_6913468424fb84.74566033.png', 'A Mango Milk Tea is a sweet, creamy, and highly refreshing tropical beverage that blends brewed tea with the luscious flavor of ripe mango and the smoothness of milk.', 35, 2, '2025-11-12 06:21:56', '2025-11-12 06:21:56'),
+(141, 'Cronut', 85.00, 'product_6913470e7017f1.65787926.png', 'A hybrid pastry of a croissant and a donutâ€”laminated dough is fried and then flavored.', 10, 5, '2025-11-12 06:24:14', '2025-11-12 06:24:14'),
+(142, 'Jalebi', 55.00, 'product_6913478986d235.98704090.png', 'A spiral-shaped sweet from the Indian subcontinent, made by deep-frying maida flour batter and soaking it in sugar syrup.', 10, 5, '2025-11-12 06:26:17', '2025-11-12 06:26:17'),
+(143, 'Matcha Milk Tea', 100.00, 'product_691347b12b62c7.56619086.png', 'A Matcha Milk Tea is a distinctive, vibrant green, and flavorful beverage that combines the earthy, slightly bitter notes of Japanese matcha green tea powder with the creamy richness of milk and a touch of sweetness.', 23, 2, '2025-11-12 06:26:57', '2025-11-12 06:26:57'),
+(144, 'Okinawa Milk Tea', 110.00, 'product_691347e1651ee2.54588420.png', 'An Okinawa Milk Tea is a distinctive Japanese beverage known for its deep, rich, and complex flavor profile that comes from its signature sweetener: Okinawa brown sugar (kokuto).', 45, 2, '2025-11-12 06:27:45', '2025-11-12 06:27:45'),
+(145, 'Oolong Milk Tea', 110.00, 'product_69134814a89967.43970585.png', 'Oolong Milk Tea is a sophisticated and highly aromatic variation of classic milk tea that uses oolong tea as its base. Oolong tea, which falls between green and black tea in terms of oxidation, provides a unique flavor profile that is distinct from standard milk teas.', 45, 2, '2025-11-12 06:28:36', '2025-11-12 06:28:36'),
+(146, 'Peach Milk Tea', 100.00, 'product_69134842652c53.51647957.png', 'A Peach Milk Tea is a light, fruity, and fragrant variation of the classic milk tea beverage, renowned for its delicate, sweet flavor profile and refreshing quality. ', 20, 2, '2025-11-12 06:29:22', '2025-11-12 06:29:22'),
+(147, 'Red Bean Milk Tea', 100.00, 'product_6913486aedb7f0.32191811.png', 'A Red Bean Milk Tea is a sweet, creamy, and unique Asian beverage that blends classic milk tea with a topping or mix-in of sweetened adzuki (red) beans, which are popular in many East Asian desserts.', 45, 2, '2025-11-12 06:30:02', '2025-11-12 06:30:02'),
+(148, 'Rose Milk Tea', 100.00, 'product_69134898f2ede1.84717299.png', 'A Rose Milk Tea is a sweet, creamy, and elegantly fragrant beverage that blends strong brewed tea with the delicate, floral essence of roses and the richness of milk.', 26, 2, '2025-11-12 06:30:48', '2025-11-12 06:30:48'),
+(149, 'Strawberry Milk Tea', 100.00, 'product_691348c5e9e0f5.76009205.png', 'A Strawberry Milk Tea is a sweet, creamy, and vibrant beverage that blends brewed tea with the fresh, fruity flavor of ripe strawberries and the smooth richness of milk.', 50, 2, '2025-11-12 06:31:33', '2025-11-12 06:31:33'),
+(150, 'Taro Milk Tea', 100.00, 'product_691348ec1e20d0.07916090.png', 'A Taro Milk Tea is a distinctive, popular Asian beverage that has gained global recognition for its unique flavor profile, vibrant color, and comforting richness.', 25, 2, '2025-11-12 06:32:12', '2025-11-12 06:32:12'),
+(151, 'Thai Milk Tea', 100.00, 'product_691349168684d7.16020287.png', 'A Thai Milk Tea (Cha Yen in Thai) is a popular and iconic creamy, sweet, and spiced beverage renowned for its distinctive vibrant orange color and refreshing taste.', 45, 2, '2025-11-12 06:32:54', '2025-11-12 06:32:54'),
+(152, 'Ube Milk Tea', 100.00, 'product_69134944cefbb3.28700160.png', 'An Ube Milk Tea is a distinctive, sweet, and visually striking beverage that transforms the flavor of ube (a purple yam from the Philippines) into a creamy, unique milk tea experience. It is recognizable by its natural, vibrant purple color and mild flavor profile.', 40, 2, '2025-11-12 06:33:40', '2025-11-12 06:33:40'),
+(153, 'Krapfen', 100.00, 'product_6913494c6409c4.15151526.png', 'A Central European sweet, deep-fried yeast dough similar to a donut, usually filled with jam.', 10, 5, '2025-11-12 06:33:48', '2025-11-12 06:33:48'),
+(154, 'Wintermelon Milk Tea', 110.00, 'product_69134979be74f4.92947133.png', 'A Wintermelon Milk Tea is a popular, highly refreshing Taiwanese beverage that combines the unique, subtle flavor of wintermelon (ash gourd) with a creamy base of milk and often a brewed tea.', 20, 2, '2025-11-12 06:34:33', '2025-11-12 06:34:33'),
+(155, 'PÄ…czki', 80.00, 'product_691349e545bfb6.97847612.png', 'A traditional Polish filled doughnut made from rich, sweet, yeast dough and deep-fried.', 10, 5, '2025-11-12 06:36:21', '2025-11-12 06:36:21'),
+(156, 'Sopapilla', 95.00, 'product_69134a93a42dd9.20546419.png', 'A light, puffy, deep-fried pastry, typically served warm and drizzled with honey or sugar.', 10, 5, '2025-11-12 06:39:15', '2025-11-12 06:39:15'),
+(157, 'Muffin', 125.00, 'product_69134b4482d457.94422126.png', 'A small, round, quick bread leavened with baking powder, often containing fruits, nuts, or chocolate.', 10, 5, '2025-11-12 06:42:12', '2025-11-12 06:42:12'),
+(158, 'Cupcake', 115.00, 'product_69134b9bd4e9e6.29455382.png', 'A small cake designed to serve one person, baked in a small cup-shaped paper or aluminum liner, and typically frosted.', 10, 5, '2025-11-12 06:43:39', '2025-11-12 06:43:39'),
+(159, 'Financier', 110.00, 'product_69134beacfeac9.12811086.png', 'A small French cake made with browned butter (beurre noisette), almond flour, and egg whites, usually rectangular.', 10, 5, '2025-11-12 06:44:58', '2025-11-12 06:44:58'),
+(160, 'Petit Four', 120.00, 'product_69134c70ae57c3.67955584.png', 'A small, bite-sized confectionery or savory appetizer, particularly glazed cakes and small layered pastries.', 10, 5, '2025-11-12 06:47:12', '2025-11-12 06:47:12'),
+(161, 'Croquembouche', 350.00, 'product_69134cddc51521.22007162.png', 'A high cone of profiteroles (cream puffs) stacked and bound together with threads of caramel.', 10, 5, '2025-11-12 06:49:01', '2025-11-12 06:49:01'),
+(162, 'Gugelhupf', 250.00, 'product_69134dd8a2f3e1.29779909.png', 'A traditional Central European yeast cake, often baked in a distinctive ring mold, sometimes considered a rich bread/pastry.', 10, 5, '2025-11-12 06:53:12', '2025-11-12 06:53:12'),
+(163, 'Madeleines', 40.00, 'product_69134e2e710f57.50788403.png', 'Small, shell-shaped sponge cakes from France, noted for their distinctive humped shape.', 10, 5, '2025-11-12 06:54:38', '2025-11-12 06:54:38'),
+(164, 'Cinnamon Roll', 130.00, 'product_69134f2787be55.92309046.png', 'A spiral of yeast dough layered with cinnamon and sugar and topped with a creamy frosting.', 10, 5, '2025-11-12 06:58:47', '2025-11-12 06:58:47'),
+(165, 'Whoopie Pie', 100.00, 'product_69134ffb232331.45882951.png', 'An American baked good, considered either a cookie, pie, or cake, made of two soft cookies with a cream filling.', 10, 5, '2025-11-12 07:02:19', '2025-11-12 07:02:19'),
+(166, 'Coffee Cake', 145.00, 'product_69135057785fd5.62664485.png', 'A cake intended to be eaten with coffee, usually a single layer, topped with a streusel or crumb topping.', 10, 5, '2025-11-12 07:03:51', '2025-11-12 07:03:51'),
+(167, 'Entremet', 145.00, 'product_69135114437412.16770592.png', 'A multi-layered mousse-based dessert with various textural elements, served chilled and often glazed.', 10, 5, '2025-11-12 07:07:00', '2025-11-12 07:07:00'),
+(168, 'Devil\'s Food Cake', 145.00, 'product_6913514ed37c59.37468649.png', 'A moist, dark chocolate cake, often served as a cupcake or small slice.', 10, 5, '2025-11-12 07:07:58', '2025-11-12 07:07:58'),
+(169, 'German Chocolate Cake', 145.00, 'product_691351982511a4.19273256.png', 'A layered chocolate cake with a signature filling/frosting of coconut and pecans, often served as a small pastry.', 10, 5, '2025-11-12 07:09:12', '2025-11-12 07:09:12'),
+(170, 'Pavlova', 145.00, 'product_691351d294fd90.15845595.png', 'A meringue-based dessert, often prepared in individual nests, topped with whipped cream and fresh fruit.', 10, 5, '2025-11-12 07:10:10', '2025-11-12 07:10:10'),
+(171, 'Strudel', 140.00, 'product_69149c37b0f271.61315268.png', 'A layered pastry with a filling (like apple), popular in Central Europe, traditionally made with thin dough.', 10, 5, '2025-11-13 06:39:51', '2025-11-13 06:39:51'),
+(172, 'Tart', 120.00, 'product_69149d52c44361.01649942.png', 'A baked dish consisting of a filling over a pastry base with an open top (no pastry lid).', 10, 5, '2025-11-13 06:44:34', '2025-11-13 06:44:34'),
+(173, 'Galette', 150.00, 'product_69149de447eb73.24172645.png', 'A term used for various flat, round, or free-form pastries; often a rustic tart with folded edges.', 10, 5, '2025-11-13 06:47:00', '2025-11-13 06:47:00'),
+(174, 'Pastel de Nata', 100.00, 'product_69149e1ebc8c71.09288617.png', 'A Portuguese egg custard tart, often dusted with cinnamon, with a flaky, caramelized top.', 10, 5, '2025-11-13 06:47:58', '2025-11-13 06:47:58'),
+(175, 'Treacle Tart', 145.00, 'product_69149e7e589a39.91429067.png', 'A traditional British baked dessert consisting of a sweet shortcrust pastry base with a filling of golden syrup and breadcrumbs.', 10, 5, '2025-11-13 06:49:34', '2025-11-13 06:49:34'),
+(176, 'Key Lime Pie', 145.00, 'product_69149ef64e04b8.30060528.png', 'A tart dessert made of Key lime juice, egg yolks, and sweetened condensed milk in a pastry crust (often served as mini tarts).', 10, 5, '2025-11-13 06:51:34', '2025-11-13 06:51:34'),
+(177, 'Lemon Bar', 90.00, 'product_69149f37bfd4b9.96711863.png', 'A small bar of shortbread crust topped with a tangy, sweet lemon curd filling.', 10, 5, '2025-11-13 06:52:39', '2025-11-13 06:52:39'),
+(178, 'Pecan Pie Bar', 90.00, 'product_69149f4777e6b2.35425945.png', 'A small bar of shortbread crust topped with a tangy, sweet lemon curd filling.', 10, 5, '2025-11-13 06:52:55', '2025-11-13 06:52:55'),
+(179, 'Pecan Pie Bar', 90.00, 'product_69149f7d8a5932.25413819.png', 'A simplified, bar-form version of the classic Southern pecan pie.', 10, 5, '2025-11-13 06:53:49', '2025-11-13 06:53:49'),
+(180, 'Pecan Pie Bar', 145.00, 'product_69149fc23dbbb7.99010905.png', 'A sweet custard pie made from pumpkin, often served in small tart forms.', 10, 5, '2025-11-13 06:54:58', '2025-11-13 06:54:58'),
+(181, 'Macaron', 30.00, 'product_6914a00b6933c9.33044933.png', 'A sweet meringue-based confectionery made with egg white, icing sugar, granulated sugar, and almond powder, filled with ganache or jam.', 10, 5, '2025-11-13 06:56:11', '2025-11-13 06:56:11'),
+(182, 'Baklava', 35.00, 'product_6914a050a93fc3.01058335.png', 'A rich, sweet pastry made of layers of phyllo dough filled with chopped nuts and sweetened with syrup or honey.', 10, 5, '2025-11-13 06:57:20', '2025-11-13 06:57:20'),
+(183, 'Cannoli', 60.00, 'product_6914a0b67f5434.57954237.png', 'An Italian pastry from Sicily; a tube-shaped shell of fried dough, filled with sweet ricotta cheese.', 10, 5, '2025-11-13 06:59:02', '2025-11-13 06:59:02'),
+(184, 'Kolache', 100.00, 'product_6914a0f8280724.12978294.png', 'A sweet roll from Central Europe, popular in Texas, featuring a dollop of fruit or cheese filling in the center.', 10, 5, '2025-11-13 07:00:08', '2025-11-13 07:00:08'),
+(185, 'Panna Cotta', 80.00, 'product_6914a13a168586.62340488.png', 'An Italian cooked cream dessert, not strictly a pastry, but often served with a pastry crust or as a component.', 10, 5, '2025-11-13 07:01:14', '2025-11-13 07:01:14'),
+(186, 'Tiramisu', 120.00, 'product_6914a1759d36f8.76281441.png', 'A popular Italian coffee-flavored dessert, made of ladyfingers dipped in coffee, layered with mascarpone cheese.', 10, 5, '2025-11-13 07:02:13', '2025-11-13 07:02:13'),
+(187, 'Lamington', 110.00, 'product_6914a1a93126c8.20324117.png', 'An Australian cake made of sponge cake squares dipped in chocolate sauce and rolled in desiccated coconut.', 10, 5, '2025-11-13 07:03:05', '2025-11-13 07:03:05'),
+(188, 'Mochis (sweet)', 50.00, 'product_6914a1e0b60c79.33318574.png', 'Japanese sweet glutinous rice paste (mochi) molded around a sweet filling, often ice cream or red bean paste.', 10, 5, '2025-11-13 07:04:00', '2025-11-13 07:04:00'),
+(189, 'Sfogliatella', 120.00, 'product_6914a20daa3829.28308133.png', 'A shell-shaped, Italian pastry from Naples, with many thin, crispy layers and a filling of ricotta and candied peel.', 10, 5, '2025-11-13 07:04:45', '2025-11-13 07:04:45'),
+(190, 'Gateau Basque', 130.00, 'product_6914a25c8f9653.51262626.png', 'A traditional cherry or custard-filled shortbread cake from the Basque region of France.', 10, 5, '2025-11-13 07:06:04', '2025-11-13 07:06:04'),
+(191, 'King Cake', 135.00, 'product_6914a2c1c96095.29125991.png', 'A ring-shaped bread/pastry decorated with colored icing and sugar, traditionally eaten during the Carnival season.', 10, 5, '2025-11-13 07:07:45', '2025-11-13 07:07:45');
+INSERT INTO `products` (`product_id`, `product_name`, `price`, `product_img`, `product_desc`, `stock`, `category_id`, `created_at`, `updated_at`) VALUES
+(192, 'Roulade', 120.00, 'product_6914a2f820d2c3.79739473.png', 'A European dish of a slice of sponge cake spread with filling and rolled up (e.g., Swiss Roll).', 10, 5, '2025-11-13 07:08:40', '2025-11-13 07:08:40'),
+(193, 'Samosa (sweet)', 120.00, 'product_6914a3403d85e9.63328754.png', 'A fried or baked pastry with a sweet filling (like coconut or dried fruit), popular in parts of Asia.', 10, 5, '2025-11-13 07:09:52', '2025-11-13 07:09:52'),
+(194, 'Blueberry Muffin', 100.00, 'product_6914a37918e586.20923868.png', 'A muffin flavored with blueberries.', 10, 5, '2025-11-13 07:10:49', '2025-11-13 07:10:49'),
+(195, 'Chocolate Chip Cookie', 20.00, 'product_6914a3b11a7949.20862941.png', 'A drop cookie flavored with chocolate chips, often considered a simple American-style pastry.', 10, 5, '2025-11-13 07:11:45', '2025-11-13 07:11:45'),
+(196, 'Gingerbread Man', 20.00, 'product_6914a3e2db7f47.73355840.png', 'A biscuit or cookie made of ginger-flavored dough, cut into the shape of a stylized human.', 10, 5, '2025-11-13 07:12:34', '2025-11-13 07:12:34'),
+(197, 'Oatmeal Raisin Cookie', 20.00, 'product_6914a4169b6512.71383732.png', 'A drop cookie combining oats and raisins.', 10, 5, '2025-11-13 07:13:26', '2025-11-13 07:13:26'),
+(198, 'Red Velvet Cupcake', 80.00, 'product_6914a4570c31f7.27304599.png', 'A cupcake with a distinct mild cocoa flavor and a reddish hue, topped with cream cheese frosting.', 10, 5, '2025-11-13 07:14:31', '2025-11-13 07:14:31'),
+(199, 'Snickerdoodle', 70.00, 'product_6914a54ef1e399.90420749.png', 'A cookie made with butter or oil, sugar, and flour, rolled in cinnamon sugar before baking.', 10, 5, '2025-11-13 07:18:38', '2025-11-13 07:18:38'),
+(200, 'Shortbread', 70.00, 'product_6914a5b6e91fc9.82869752.png', 'A classic Scottish biscuit or cookie traditionally made from one part white sugar, two parts butter, and three parts flour.', 10, 5, '2025-11-13 07:20:22', '2025-11-13 07:20:22'),
+(201, 'Sugar Cookie', 25.00, 'product_6914a61804a382.52115079.png', 'A cookie made with a base of sugar, flour, butter, and egg, often decorated.', 10, 5, '2025-11-13 07:22:00', '2025-11-13 07:22:00'),
+(202, 'Boston Cream Pie', 100.00, 'product_6914a68796f254.03588240.png', 'two layers of sponge cake filled with pastry cream and topped with chocolate glaze', 10, 5, '2025-11-13 07:23:51', '2025-11-13 07:23:51'),
+(203, 'Spiegelkoek', 130.00, 'product_6914a739491fe3.65853997.png', 'A Dutch cake/pastry often made with layers of almond paste and cake, sometimes topped with apricot jam.', 10, 5, '2025-11-13 07:26:49', '2025-11-13 07:26:49'),
+(204, 'Yule Log (BÃ»che de NoÃ«l)', 250.00, 'product_6914a76f938846.40908389.png', 'A traditional Christmas dessert often made of a sponge cake rolled up with cream filling and decorated to look like a log.', 10, 5, '2025-11-13 07:27:43', '2025-11-13 07:27:43'),
+(205, 'Bananas Foster', 200.00, 'product_6914a7b0638387.91203425.png', 'A dessert of bananas cooked in butter, brown sugar, and rum, often used as a topping or filling for tarts/crepes.', 10, 5, '2025-11-13 07:28:48', '2025-11-13 07:28:48'),
+(206, 'Black Forest Cake', 140.00, 'product_6914a7f30f4ff4.67026552.png', 'A small pastry made of layers of chocolate sponge cake, whipped cream, and cherries, often soaked in Kirschwasser.', 10, 5, '2025-11-13 07:29:55', '2025-11-13 07:29:55'),
+(207, 'Carrot Cake', 140.00, 'product_6914a829153ac3.33268092.png', 'A cake containing grated carrot, often layered with cream cheese frosting and served in small, individual portions.', 10, 5, '2025-11-13 07:30:49', '2025-11-13 07:30:49'),
+(208, 'Cheesecake', 200.00, 'product_6914a88df00fd3.12667531.png', 'A dessert consisting of a sweet mixture of soft cheese (like cream cheese), eggs, and sugar on a crust, served in small portions.', 10, 5, '2025-11-13 07:32:29', '2025-11-13 07:32:29'),
+(209, 'Chiffon Cake', 200.00, 'product_6914a8c753a388.34105130.png', 'A very light cake made with vegetable oil, eggs, sugar, and flour, often flavored with citrus, served in small portions.', 10, 5, '2025-11-13 07:33:27', '2025-11-13 07:33:27'),
+(210, 'CrÃ¨me BrÃ»lÃ©e', 150.00, 'product_6914a8fe924fb4.43661079.png', 'A rich custard base topped with a layer of hardened caramelized sugar, sometimes served in a pastry crust.', 10, 5, '2025-11-13 07:34:22', '2025-11-13 07:34:22'),
+(211, 'Dacquoise', 150.00, 'product_6914a93432d553.51448484.png', 'A dessert cake made with layers of nut meringue (usually almond and hazelnut) and whipped cream or buttercream.', 10, 5, '2025-11-13 07:35:16', '2025-11-13 07:35:16'),
+(212, 'Ding Dong', 150.00, 'product_6914a97926b314.69385969.png', 'A brand name for a small, round, chocolate cake with cream filling, covered in a chocolate coating (commercial pastry).', 10, 5, '2025-11-13 07:36:25', '2025-11-13 07:36:25'),
+(213, 'Fairy Bread', 60.00, 'product_6914a9c1429851.26669599.png', 'Simple, fun Australian party food made of sliced bread spread with butter and covered with hundreds and thousands (sprinkles), sometimes on a brioche base.', 10, 5, '2025-11-13 07:37:37', '2025-11-13 07:37:37'),
+(214, 'Honeycomb Candy', 90.00, 'product_6914aa17ce8b08.93172097.png', 'A light, crunchy, caramelized sugar confection with bubbles of air, often used as a garnish or inclusion in pastries.', 10, 5, '2025-11-13 07:39:03', '2025-11-13 07:39:03'),
+(215, 'Hot Cross Bun', 100.00, 'product_6914aa4499f772.87703314.png', 'A spiced sweet bun made with currants or raisins, marked with a cross on the top, traditionally eaten on Good Friday.', 10, 5, '2025-11-13 07:39:48', '2025-11-13 07:39:48'),
+(216, 'Lard Cake', 110.00, 'product_6914aa8254a684.54992514.png', 'A traditional, rich cake or pastry that uses rendered lard as the main shortening, known for its flaky texture.', 10, 5, '2025-11-13 07:40:50', '2025-11-13 07:40:50'),
+(217, 'Moon Pie', 50.00, 'product_6914aab2dbda99.77909561.png', 'A commercial dessert sandwich of two round graham crackers with a marshmallow filling, dipped in a flavored coating', 10, 5, '2025-11-13 07:41:38', '2025-11-13 07:41:38'),
+(218, 'Neapolitan Cake', 120.00, 'product_6914ab0841a773.55830892.png', 'A small cake or cupcake featuring three distinct flavors/colors: vanilla, chocolate, and strawberry.', 10, 5, '2025-11-13 07:43:04', '2025-11-13 07:43:04'),
+(219, 'Opera Cake', 120.00, 'product_6914ab638b6746.07535320.png', 'A classic French cake made of layers of almond sponge cake soaked in coffee syrup, layered with coffee buttercream and chocolate ganache.', 10, 5, '2025-11-13 07:44:35', '2025-11-13 07:44:35'),
+(220, 'Pineapple Upside Down Cake', 130.00, 'product_6914ab974040b5.46202817.png', 'A cake baked with pineapple rings and cherries placed at the bottom, which become the top when inverted.', 10, 5, '2025-11-13 07:45:27', '2025-11-13 07:45:27'),
+(221, 'Scone', 30.00, 'product_6914abd36752d5.31709585.png', 'A single-serving quick bread, usually slightly sweetened, often served with jam and clotted cream', 10, 5, '2025-11-13 07:46:27', '2025-11-13 07:46:27'),
+(222, 'Frangipane', 120.00, 'product_6914ac0c90c794.08419272.png', 'A sweet almond cream used as a filling in various pastries, often baked into a tart or cake.', 10, 5, '2025-11-13 07:47:24', '2025-11-13 07:47:24'),
+(223, 'Savarin', 120.00, 'product_6914ac58746713.97383198.png', 'A ring-shaped yeast cake, similar to a Bundt cake, traditionally soaked in a rum syrup and often garnished with cream and fruit.', 10, 5, '2025-11-13 07:48:40', '2025-11-13 07:48:40'),
+(224, 'Vanilla Slice', 100.00, 'product_6914ace8828265.20065689.png', 'An Australian/New Zealand dessert made of two layers of puff pastry separated by a thick layer of vanilla custard or pastry cream.', 10, 5, '2025-11-13 07:51:04', '2025-11-13 07:51:04'),
+(225, 'Waffle', 110.00, 'product_6914ad1a430df1.27244949.png', 'A cooked batter or dough (often yeast-leavened) poured into a patterned mold; categorized as a sweet pastry.', 10, 5, '2025-11-13 07:51:54', '2025-11-13 07:51:54'),
+(226, 'Rhubarb Crumble Bar', 80.00, 'product_6914ad51496b12.18455916.png', 'A dessert bar with a base and crumble topping made of oats and flour, with a rhubarb filling in between.', 10, 5, '2025-11-13 07:52:49', '2025-11-13 07:52:49'),
+(227, 'GÃ¶zleme', 100.00, 'product_6914ad848b0011.15043167.png', 'A savory Turkish flatbread, but sweet versions are filled with ingredients like banana and chocolate.', 10, 5, '2025-11-13 07:53:40', '2025-11-13 07:53:40'),
+(228, 'Meringue', 70.00, 'product_6914adcb9767b3.66827804.png', 'A light, airy dessert or pastry component made from whipped egg whites and sugar, baked until crisp.', 10, 5, '2025-11-13 07:54:51', '2025-11-13 07:54:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_details`
+--
+
+CREATE TABLE `product_details` (
+  `detail_id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `cart_id` int(11) UNSIGNED NOT NULL,
+  `temperature` enum('Hot','Cold','','') NOT NULL,
+  `milk_type` enum('Dairy Milk','Oat Milk','Coconut Milk','') NOT NULL,
+  `espresso_shots` enum('No shot','LYDIA','BOSS','') NOT NULL DEFAULT 'No shot',
+  `sweetness` enum('Regular Sweet','Less Sweet','More Sweet','') NOT NULL DEFAULT 'Regular Sweet',
+  `ice_level` enum('Less Ice','Normal Ice','','') DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_reviews`
+--
+
+CREATE TABLE `product_reviews` (
+  `review_id` int(11) UNSIGNED NOT NULL,
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `review_comment` text DEFAULT NULL,
+  `review_rating` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `customer_user` varchar(100) NOT NULL,
+  `customer_firstname` varchar(50) NOT NULL,
+  `customer_middlename` varchar(50) DEFAULT NULL,
+  `customer_lastname` varchar(50) NOT NULL,
+  `customer_email` varchar(100) NOT NULL,
+  `customer_phone` varchar(15) NOT NULL,
+  `customer_pass` varchar(50) NOT NULL,
+  `role` enum('admin','user') NOT NULL DEFAULT 'user',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`customer_id`, `customer_user`, `customer_firstname`, `customer_middlename`, `customer_lastname`, `customer_email`, `customer_phone`, `customer_pass`, `role`, `created_at`) VALUES
+(1, 'jomarivillanueva', 'Jomari', NULL, 'Wamil', 'Villanueva@gmail.com', '09927300876', 'JomariCrushsiVillanueva1', 'admin', '2025-10-29 02:01:47'),
+(2, 'harvy12345', 'harvs', NULL, 'bautista', 'jwamcoc01@gmail.com', '09927300876', 'Harvy12345', 'admin', '2025-10-31 13:40:41'),
+(3, 'Jomari12345', 'Jomari', '', 'Wamil', 'bautistaharvy13@gmail.com', '09927300876', 'Jomari12345', 'admin', '2025-11-06 00:45:43'),
+(4, 'jomari111', 'Jomari', 'Lacoste', 'Wamil', 'shishironchi@gmail.com', '09927300876', '$2y$10$7aobcuaKCG3b/T2VGvMMNuU/j8hO6.XaIyfkSwmZwjr', 'user', '2025-11-13 11:54:59');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`address_id`),
+  ADD KEY `address_ibfk_1` (`customer_id`);
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD UNIQUE KEY `customer_product_custom` (`customer_id`,`product_id`,`temperature`,`milk_type`,`espresso_shots`,`sweetness`,`ice_level`),
+  ADD UNIQUE KEY `unique_cart_item` (`customer_id`,`product_id`,`temperature`,`milk_type`,`espresso_shots`,`sweetness`,`ice_level`),
+  ADD KEY `cart_ibfk_2` (`product_id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `address_id` (`address_id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`order_detail_id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `product_details`
+--
+ALTER TABLE `product_details`
+  ADD PRIMARY KEY (`detail_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `product_details_ibfk_2` (`cart_id`);
+
+--
+-- Indexes for table `product_reviews`
+--
+ALTER TABLE `product_reviews`
+  ADD PRIMARY KEY (`review_id`),
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`customer_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `address`
+--
+ALTER TABLE `address`
+  MODIFY `address_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `category_id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `order_detail_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
+
+--
+-- AUTO_INCREMENT for table `product_details`
+--
+ALTER TABLE `product_details`
+  MODIFY `detail_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `product_reviews`
+--
+ALTER TABLE `product_reviews`
+  MODIFY `review_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `customer_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `address`
+--
+ALTER TABLE `address`
+  ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_reviews`
+--
+ALTER TABLE `product_reviews`
+  ADD CONSTRAINT `product_reviews_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`),
+  ADD CONSTRAINT `product_reviews_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
