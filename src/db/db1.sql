@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2025 at 02:17 PM
+-- Generation Time: Nov 12, 2025 at 02:35 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,9 +44,7 @@ CREATE TABLE `address` (
 
 INSERT INTO `address` (`address_id`, `customer_id`, `address_name`, `address_city`, `address_region`, `address_brgy`, `address_postal`, `created_at`) VALUES
 (1, 1, '794 Fullon St, Tondo', 'Manila', 'NCR', '52', 1012, '2025-11-12 07:30:37'),
-(2, 1, '794 Fullon St, Tondo', 'Manila', 'NCR', '52', 1012, '2025-11-12 07:30:37'),
-(3, 4, '794 Fullon St, Tondo', 'Manila', 'NCR', '52', 1012, '2025-11-13 13:01:02'),
-(4, 4, '794 Fullon St, Tondo', 'Manila', 'NCR', '52', 1012, '2025-11-13 13:01:02');
+(2, 1, '794 Fullon St, Tondo', 'Manila', 'NCR', '52', 1012, '2025-11-12 07:30:37');
 
 -- --------------------------------------------------------
 
@@ -72,8 +70,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `customer_id`, `product_id`, `temperature`, `milk_type`, `espresso_shots`, `sweetness`, `ice_level`, `quantity`, `created_at`) VALUES
-(1, 2, 6, 'Hot', 'Dairy Milk', 'No Shot', 'Regular Sweet', 'Normal Ice', 1, '2025-11-11 12:51:10'),
-(62, 2, 6, 'Iced', 'Oat Milk', 'LYDIA', 'Less Sweet', 'Less Ice', 1, '2025-11-13 01:49:23');
+(1, 2, 6, 'Hot', 'Dairy Milk', 'No Shot', 'Regular Sweet', 'Normal Ice', 1, '2025-11-11 12:51:10');
 
 -- --------------------------------------------------------
 
@@ -113,18 +110,6 @@ CREATE TABLE `orders` (
   `status` enum('Pending','Paid','Shipped','Completed','Cancelled') NOT NULL DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`order_id`, `customer_id`, `address_id`, `total_amount`, `order_date`, `status`) VALUES
-(48, 1, 1, 298.00, '2025-11-12 14:49:04', 'Pending'),
-(49, 1, 1, 447.00, '2025-11-12 23:31:32', 'Pending'),
-(50, 1, 1, 447.00, '2025-11-12 23:43:11', 'Shipped'),
-(51, 1, 1, 745.00, '2025-11-13 11:07:37', 'Pending'),
-(52, 1, 1, 298.00, '2025-11-13 12:32:11', 'Pending'),
-(53, 4, 3, 149.00, '2025-11-13 13:01:06', 'Pending');
-
 -- --------------------------------------------------------
 
 --
@@ -144,18 +129,6 @@ CREATE TABLE `order_details` (
   `price` decimal(10,2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `order_details`
---
-
-INSERT INTO `order_details` (`order_detail_id`, `order_id`, `product_id`, `quantity`, `temperature`, `milk_type`, `espresso_shots`, `sweetness`, `ice_level`, `price`, `created_at`) VALUES
-(1, 48, 5, 2, '', '', '', '', '', 149.00, '2025-11-12 14:49:04'),
-(2, 49, 5, 3, '', '', '', '', '', 149.00, '2025-11-12 23:31:32'),
-(3, 50, 5, 3, '', '', '', '', '', 149.00, '2025-11-12 23:43:11'),
-(4, 51, 5, 5, '', '', '', '', '', 149.00, '2025-11-13 11:07:37'),
-(5, 52, 5, 2, '', '', '', '', '', 149.00, '2025-11-13 12:32:11'),
-(6, 53, 5, 1, '', '', '', '', '', 149.00, '2025-11-13 13:01:06');
 
 -- --------------------------------------------------------
 
@@ -240,8 +213,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`customer_id`, `customer_user`, `customer_firstname`, `customer_middlename`, `customer_lastname`, `customer_email`, `customer_phone`, `customer_pass`, `role`, `created_at`) VALUES
 (1, 'jomarivillanueva', 'Jomari', NULL, 'Wamil', 'Villanueva@gmail.com', '09927300876', 'JomariCrushsiVillanueva1', 'admin', '2025-10-29 02:01:47'),
 (2, 'harvy12345', 'harvs', NULL, 'bautista', 'jwamcoc01@gmail.com', '09927300876', 'Harvy12345', 'admin', '2025-10-31 13:40:41'),
-(3, 'Jomari12345', 'Jomari', '', 'Wamil', 'bautistaharvy13@gmail.com', '09927300876', 'Jomari12345', 'admin', '2025-11-06 00:45:43'),
-(4, 'jomari111', 'Jomari', 'Lacoste', 'Wamil', 'shishironchi@gmail.com', '09927300876', '$2y$10$7aobcuaKCG3b/T2VGvMMNuU/j8hO6.XaIyfkSwmZwjr', 'user', '2025-11-13 11:54:59');
+(3, 'Jomari12345', 'Jomari', '', 'Wamil', 'bautistaharvy13@gmail.com', '09927300876', 'Jomari12345', 'admin', '2025-11-06 00:45:43');
 
 --
 -- Indexes for dumped tables
@@ -273,17 +245,13 @@ ALTER TABLE `category`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `address_id` (`address_id`);
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `order_details`
 --
 ALTER TABLE `order_details`
-  ADD PRIMARY KEY (`order_detail_id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD PRIMARY KEY (`order_detail_id`);
 
 --
 -- Indexes for table `products`
@@ -322,13 +290,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `address_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `address_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -340,13 +308,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `order_detail_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `order_detail_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -370,7 +338,7 @@ ALTER TABLE `product_reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `customer_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `customer_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -388,20 +356,6 @@ ALTER TABLE `address`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`customer_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `order_details`
---
-ALTER TABLE `order_details`
-  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `products`
