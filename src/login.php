@@ -19,12 +19,13 @@ function userAndPassCorrect()
         if ($res && $res->num_rows > 0) {
             $row = mysqli_fetch_assoc($res);
 
-            if ($pass === $row['customer_pass']) {
+            if (password_verify($pass, $row['customer_pass'])) {
                 $_SESSION['customer_user'] = $user;
                 $_SESSION['loggedIn'] = True;
 
                 header("Location: ./index.php");
                 exit;
+                
             } else {
                 $alertMsg .= '
                     <div role="alert" class="alert alert-warning">
