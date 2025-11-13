@@ -14,7 +14,7 @@ include './db/sessionStart.php';
 </head>
 
 <body data-theme="light" class="backdrop-blur-lg ">
-    <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center max-lg:px-2.5 max-lg:py-0.5 bg-custom-background backdrop-blur-sm">
+    <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center max-lg:px-2.5 max-lg:py-0.5 p-1.5 bg-custom-background backdrop-blur-sm">
         <div class="flex justify-between w-full">
             <a href="./index.php" class="">
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="max-lg:h-12 lg:h-16 object-contain" />
@@ -37,20 +37,6 @@ include './db/sessionStart.php';
                     </svg>
                     <input type="search" required placeholder="Explore..." />
                 </label>
-                <!-- <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-shopping-bag-icon lucide-shopping-bag h-10 max-sm:hidden">
-                    <path d="M16 10a4 4 0 0 1-8 0" />
-                    <path d="M3.103 6.034h17.794" />
-                    <path
-                        d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
-                </svg> -->
                 <div class="drawer drawer-end w-fit ">
                     <input id="my-drawer-5" type="checkbox" class="drawer-toggle" />
                     <div class="drawer-content">
@@ -75,17 +61,16 @@ include './db/sessionStart.php';
                                     ?>
                                 </h2>
                                 <ul>
-                                    <li><a href="./home.php">ORDER NOW</a></li>
-                                    <li><a href="./about.php">ABOUT US</a></li>
-                                    <li><a>CONTACT US</a></li>
+                                    <li><a href="./home.php">Place Order</a></li>
+                                    <li><a href="./cart.php">Cart</a></li>
+                                    <li><a href="./orders.php">Orders</a></li>
                                 </ul>
                             </li>
                             <?php
-                            // include './db/db.php';
                             if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == True) {
                                 echo '
                                     <li class="p-2">
-                                        <a href="./functions/logout.php" class=" shadow-custom-primary outline-none border-none flex items-center w-full p-2 bg-custom-accent">
+                                        <a href="./functions/logout.php" class=" shadow-custom-primary outline-none border-none flex items-center w-full p-2 m-2 bg-custom-accent">
                                             <div class="opacity-65"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in-icon lucide-log-in"><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></div>
                                             <div class="font-bold text-lg opacity-65">LOGOUT</div>
                                         </a>
@@ -94,7 +79,7 @@ include './db/sessionStart.php';
                             } else {
                                 echo '
                                     <li class="">
-                                        <a href="./login.php" class=" shadow-custom-primary outline-none border-none flex items-center w-full p-2 bg-custom-accent">
+                                        <a href="./login.php" class=" shadow-custom-primary outline-none border-none flex items-center w-full p-2 m-2 bg-custom-accent">
                                             <div class="opacity-65"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in-icon lucide-log-in"><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></div>
                                             <div class="font-bold text-lg opacity-65">LOGIN</div>
                                         </a>
