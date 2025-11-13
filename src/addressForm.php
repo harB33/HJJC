@@ -64,8 +64,8 @@ if (isset($_POST['address']) && isset($_SESSION['customer_id'])) {
     <div class="sticky top-0 z-50 ">
         <?php include './components/header.php'; ?>
     </div>
-    <section class="w-[90] h-full flex flex-col item-center mt-5 bg-custom-background">
-        <h1 class="text-3xl font-extrabold text-custom-text/80 w-full text-center py-10">Address</h1>
+    <section class="w-[90] min-h-screen h-full flex flex-col item-center py-15 bg-custom-background">
+        <h1 class="text-3xl font-extrabold text-custom-text/80 w-full text-center py-15">Address</h1>
         <div class="fixed max-lg:top-[6%] max-lg:left-[4%] lg:top-[10%] lg:left-[8%] z-40">
             <a href="./cart.php" class="btn btn-circle shadow-none bg-custom-accent border-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">

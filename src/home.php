@@ -63,7 +63,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 </head>
 
 <body class="w-screen overflow-x-hidden scroll-smooth">
-    <div class="sticky top-0 z-50 w-full backdrop-blur-sm ">
+    <div class="sticky top-0 z-50 w-full ">
         <!-- Ewan ko kung tama-->
         <?php include './components/header.php';
         if ($result->num_rows > 0) {
