@@ -141,7 +141,7 @@ function userAndPassCorrect()
                 ?>
             </div>
         </div>
-        <!-- <?php include './components/loginAnimation.html' ?> -->
+        <?php include './components/loginAnimation.html' ?>
     </div>
     </div>
 </body>
