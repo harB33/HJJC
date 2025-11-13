@@ -25,8 +25,8 @@
         </div>
         <section id="title" class=" font-light h-screen w-full flex flex-col p-8 overflow-clip justify-center items-center absolute z-20">
             <div class=" w-full flex flex-col items-center justify-center z-10 mb-8 grow">
-                <h1 class="font-giaza font-black text-2xl z-1 text-custom-accent  text-shadow-lg">Define Your Standard.</h1>
-                <h1 class=" font-light text-md text-custom-background/90  text-shadow-lg">Relentless perfection. We transform the world's finest ingredients into exquisite beverages that redefine your standard.</h1>
+                <h1 class="font-giaza font-black max-lg:text-2xl z-1 text-custom-accent lg:text-4xl text-shadow-lg">Define Your Standard.</h1>
+                <h1 class=" font-light max-lg:text-md text-custom-background/90 lg:text-xl text-shadow-lg">Relentless perfection. We transform the world's finest ingredients into exquisite beverages that redefine your standard.</h1>
             </div>
             <div>
                 <div class="flex justify-center flex-col items-center">
@@ -40,22 +40,22 @@
                 </div>
             </div>
         </section>
-        <section class="flex flex-col h-lvh px-6 w-full pt-20 bg-custom-secondary items-center  z-10">
-            <div class="flex flex-col items-center my-moveDown">
-                <h1 class="font-giaza font-black text-2xl mb-6">The <span class="">Standard</span> Has Arrived.</h1>
-                <p class=" font-light text-md mb-2">HJJC is proud to introduce an unparalleled coffee experience to the Philippines. We are defined by a relentless pursuit of perfection. Our baristas transform the world's finest ingredients into exquisite beverages that stimulate the senses and redefine your expectations.</p>
-                <p class=" font-light text-md">Discover the new pinnacle of taste.</p>
+        <section class="flex flex-col h-lvh px-6 w-full max-lg:pt-20 bg-custom-secondary items-center lg:justify-center lg:pt-0 z-10">
+            <div class="flex flex-col items-center max-w-2xl my-moveDown">
+                <h1 class="font-giaza font-black max-lg:text-2xl lg:text-4xl mb-6">The <span class="">Standard</span> Has Arrived.</h1>
+                <p class=" font-light text-md mb-2 lg:text-xl">HJJC is proud to introduce an unparalleled coffee experience to the Philippines. We are defined by a relentless pursuit of perfection. Our baristas transform the world's finest ingredients into exquisite beverages that stimulate the senses and redefine your expectations.</p>
+                <p class=" font-medium text-md lg:text-xl">Discover the new pinnacle of taste.</p>
             </div>
-            <div class="my-popUp z-20">
+            <div class="my-popUp z-20 lg:hidden">
                 <div class="animate-bounce text-custom-accent -rotate-10 translate-y-40 -translate-x-20 text-xl font-black  bg-black/80 p-1.5 rounded-2xl">Caramel Machiato!</div>
             </div>
-            <img src="./image/design.png" alt="" class=" my-moveTop">
+            <img src="./image/design.png" alt="" class=" my-moveTop lg:hidden">
         </section>
         <section class="flex flex-col h-lvh px-6 w-full justify-evenly bg-custom-secondary/20 items-center  z-10">
-            <div class="flex flex-col w-full justify-evenly h-fit items-center ">
+            <div class="flex flex-col w-full justify-evenly h-fit items-center max-w-2xl">
                 <div>
-                    <h1 class="font-giaza font-black text-2xl mb-6">A Brew to Define Your Day.</h1>
-                    <p class=" font-light text-md">Fuel your pursuit of perfection. From robust classics to nuanced single-origins, our menu offers an exquisite beverage to satisfy your distinct taste.</p>
+                    <h1 class="font-giaza font-black max-lg:text-2xl mb-6 lg:text-4xl">A Brew to Define Your Day.</h1>
+                    <p class=" font-light text-md lg:text-xl">Fuel your pursuit of perfection. From robust classics to nuanced single-origins, our menu offers an exquisite beverage to satisfy your distinct taste.</p>
                 </div>
             </div>
             <div class="slider" style="--width: 225px;--height:300px;--quantity:10;">
@@ -123,7 +123,7 @@
                 </div>
             </div>
             <div>
-                <a href="./home.php" class="underline flex gap-0.5">
+                <a href="./home.php" class="underline flex gap-0.5 max-lg:text-xl">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-bean-icon lucide-coffee-bean">
                         <path d="M4.05 19.95a11.24 8.585 135 0 0 15.9-15.9 11.24 8.585 135 0 0-15.9 15.9" />
                         <path d="M19.8 4.2C20 14 4 10 4.2 19.8" />

@@ -268,7 +268,7 @@ $conn->close();
                     </svg>
                     </label>
                 </label>
-                <label class="group input validator input-lg rounded-full w-full floating-label">
+                <label class="group input validator input-lg rounded-full w-full floating-label bg-custom-background">
                     <span class="left-8 text-lg bg-custom-background">Confirm Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
@@ -302,7 +302,7 @@ $conn->close();
                     </label>
                 </label>
                 </div>
-                    <label class="input validator input-lg rounded-full w-full floating-label">
+                    <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                         <span class="left-8 text-lg bg-custom-background">First Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
@@ -326,7 +326,7 @@ $conn->close();
                             title="Only letters and single spaces between words"
                             name="first_name" />
                     </label>
-                    <label class="input validator input-lg rounded-full w-full floating-label">
+                    <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                         <span class="left-8 text-lg bg-custom-background">Last Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
@@ -350,7 +350,7 @@ $conn->close();
                             title="Only letters"
                             name="last_name" />
                     </label>
-                    <label class="input validator input-lg rounded-full w-full floating-label">
+                    <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                         <span class="left-8 text-lg bg-custom-background">Middle Name</span>
                         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
@@ -373,7 +373,7 @@ $conn->close();
                             title="Only letters"
                             name="middle_name" />
                     </label>
-                <label class="input validator input-lg rounded-full w-full floating-label">
+                <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                     <span class="left-8 text-lg bg-custom-background">Email</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
@@ -388,7 +388,7 @@ $conn->close();
                     </svg>
                     <input type="email" class=" text-sm bg-custom-background" name="email" placeholder="mail@site.com" required />
                 </label>
-                <label class="input validator input-lg rounded-full w-full floating-label">
+                <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                     <span class="left-8 text-lg bg-custom-background">Phone Number</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                         <g fill="none">

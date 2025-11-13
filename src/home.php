@@ -77,39 +77,39 @@ if ($result && mysqli_num_rows($result) > 0) {
         ?>
     </div>
     <section class="flex w-full h-full">
-        <section class="flex items-center justify-center h-screen bg-custom-accent sticky top-0 flex-col p-2.5  ">
+        <section class="flex items-center justify-center h-screen bg-custom-accent sticky top-0 flex-col sm:p-2.5 lg:p-4 ">
             <div class="grid grid-cols-1 place-items-center w-fit gap-16 content-center text-center">
-                <a href="#bestSeller" class="size-12 sm:size-45 flex flex-col text-sm hover:scale-105 duration-300">
-                    <div class=" leading-none">
-                        <img src="./image/best-seller.png" alt="">
+                <a href="#bestSeller" class="max-sm:size-12 sm:size-18 flex flex-col text-sm hover:scale-105 duration-300">
+                    <div class=" leading-none ">
+                        <img src="./image/best-seller.png" alt="" class="">
                         Best Seller
                     </div>
                 </a>
-                <a href="#coffee" class="size-12 sm:size-45 flex flex-col  text-sm hover:scale-105 duration-300">
+                <a href="#coffee" class="max-sm:size-12 sm:size-18 flex flex-col  text-sm hover:scale-105 duration-300">
                     <div>
                         <img src="./image/coffee-cup.png" alt="">
                         Coffee
                     </div>
                 </a>
-                <a href="#milktea" class="size-12 sm:size-45 flex flex-col  text-sm hover:scale-105 duration-300">
+                <a href="#milktea" class="max-sm:size-12 sm:size-18 flex flex-col  text-sm hover:scale-105 duration-300">
                     <div>
                         <img src="./image/bubble-tea.png" alt="">
                         Milk Tea
                     </div>
                 </a>
-                <a href="#frappe" class="size-12 sm:size-45 flex flex-col  text-sm hover:scale-105 duration-300">
+                <a href="#frappe" class="max-sm:size-12 sm:size-18 flex flex-col  text-sm hover:scale-105 duration-300">
                     <div>
                         <img src="./image/frappe.png" alt="">
                         Frappe
                     </div>
                 </a>
-                <a href="#shake" class="size-12 sm:size-45 flex flex-col  text-sm hover:scale-105 duration-300">
+                <a href="#shake" class="max-sm:size-12 sm:size-18 flex flex-col  text-sm hover:scale-105 duration-300">
                     <div>
                         <img src="./image/smoothie.png" alt="">
                         Shake
                     </div>
                 </a>
-                <a href="#pastries" class="size-12 sm:size-45 flex flex-col  text-sm hover:scale-105 duration-300">
+                <a href="#pastries" class="max-sm:size-12 sm:size-18 flex flex-col  text-sm hover:scale-105 duration-300">
                     <div>
                         <img src="./image/cookie.png" alt="">
                         Pastries
@@ -119,15 +119,15 @@ if ($result && mysqli_num_rows($result) > 0) {
         </section>
         <section class=" w-full min-h-max flex flex-col  items-center bg-custom-background">
             <h1 id="bestSeller"></h1>
-            <h1 class=" text-3xl font-black  sticky top-0 w-full text-center pt-14 pb-2 bg-custom-background shadow-md z-30 flex items-center justify-center">Best Seller <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+            <h1 class=" max-sm:text-3xl lg:text-5xl font-black  sticky top-0 w-full text-center max-sm:pt-14 pb-2 bg-custom-background shadow-md z-30 flex items-center justify-center lg:pt-24">Best Seller <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame-icon lucide-flame fill-custom-accent">
                     <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4" />
                 </svg></h1>
-            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 pb-14 bg-linear-to-t from-custom-background from-50% to-custom-background/10 to-100%">
-                <section class="grid grid-cols-2  gap-2.5 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
+            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full max-lg:p-4 lg:p-8 pb-14 bg-linear-to-t from-custom-background from-50% to-custom-background/10 to-100%">
+                <section class="grid max-sm:grid-cols-2 max-lg:grid-cols-4 lg:grid-cols-5  gap-2.5 place-contents-center w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($best_sellers as $row): ?>
                         <div class=" group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
+                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class=" max-w-[200px]">
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full skeleton aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
@@ -141,12 +141,12 @@ if ($result && mysqli_num_rows($result) > 0) {
                 </section>
             </section>
             <h1 id="coffee"></h1>
-            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-custom-background shadow-md z-30">Coffee</h1>
-            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 ">
-                <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
+            <h1 class=" max-sm:text-3xl lg:text-5xl font-black  sticky top-0 w-full text-center max-sm:pt-14 pb-2 bg-custom-background shadow-md z-30 flex items-center justify-center lg:pt-24">Coffee</h1>
+            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full max-lg:p-4 lg:p-8 ">
+                <section class="grid max-sm:grid-cols-2 max-lg:grid-cols-4 lg:grid-cols-5  gap-2.5 place-contents-center w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($coffee_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
+                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
@@ -160,12 +160,12 @@ if ($result && mysqli_num_rows($result) > 0) {
                 </section>
             </section>
             <h1 id="milktea"></h1>
-            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-custom-background shadow-md z-30">Milk Tea</h1>
-            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 ">
-                <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
+            <h1 class=" max-sm:text-3xl lg:text-5xl font-black  sticky top-0 w-full text-center max-sm:pt-14 pb-2 bg-custom-background shadow-md z-30 flex items-center justify-center lg:pt-24">Milk Tea</h1>
+            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full max-lg:p-4 lg:p-8 ">
+                <section class="grid max-sm:grid-cols-2 max-lg:grid-cols-4 lg:grid-cols-5  gap-2.5 place-contents-center w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($milk_tea_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
+                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
@@ -179,12 +179,12 @@ if ($result && mysqli_num_rows($result) > 0) {
                 </section>
             </section>
             <h1 id="frappe"></h1>
-            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-custom-background shadow-md z-30">Frappe</h1>
-            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 ">
-                <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
+            <h1 class=" max-sm:text-3xl lg:text-5xl font-black  sticky top-0 w-full text-center max-sm:pt-14 pb-2 bg-custom-background shadow-md z-30 flex items-center justify-center lg:pt-24">Frappe</h1>
+            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full max-lg:p-4 lg:p-8 ">
+                <section class="grid max-sm:grid-cols-2 max-lg:grid-cols-4 lg:grid-cols-5  gap-2.5 place-contents-center w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($frappe_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
+                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
@@ -198,12 +198,12 @@ if ($result && mysqli_num_rows($result) > 0) {
                 </section>
             </section>
             <h1 id="shake"></h1>
-            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-custom-background shadow-md z-30">Shake</h1>
-            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 ">
-                <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
+            <h1 class=" max-sm:text-3xl lg:text-5xl font-black  sticky top-0 w-full text-center max-sm:pt-14 pb-2 bg-custom-background shadow-md z-30 flex items-center justify-center lg:pt-24">Shake</h1>
+            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full max-lg:p-4 lg:p-8 ">
+                <section class="grid max-sm:grid-cols-2 max-lg:grid-cols-4 lg:grid-cols-5  gap-2.5 place-contents-center w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($shake_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
+                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
@@ -217,12 +217,12 @@ if ($result && mysqli_num_rows($result) > 0) {
                 </section>
             </section>
             <h1 id="pastries"></h1>
-            <h1 class=" text-4xl font-black  sticky top-0 w-full text-center pt-14  pb-2 bg-custom-background shadow-md z-30">Pastries</h1>
-            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full p-4 ">
-                <section class="grid grid-cols-2  gap-4 place-contents-center  w-fit  overflow-x-visible scroll-m-32">
+            <h1 class=" max-sm:text-3xl lg:text-5xl font-black  sticky top-0 w-full text-center max-sm:pt-14 pb-2 bg-custom-background shadow-md z-30 flex items-center justify-center lg:pt-24">Pastries</h1>
+            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full max-lg:p-4 lg:p-8 ">
+                <section class="grid max-sm:grid-cols-2 max-lg:grid-cols-4 lg:grid-cols-5  gap-2.5 place-contents-center w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($pastries_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="">
+                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>

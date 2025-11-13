@@ -69,7 +69,7 @@ function userAndPassCorrect()
 </head>
 
 <body>
-    <div class="grid lg:grid-cols-[45%_55%] place-items-center ">
+    <div class="grid lg:grid-cols-[45%_55%] place-items-center bg-custom-background">
         <div class="flex flex-col gap-4 justify-center items-center h-screen w-full border-r-2 border-[#0A1829]">
             <div class="size-35 rounded-full  grid place-items-center ">
                 <img src="./image/logo/Coffee_Logo.png" alt="logo">
@@ -79,8 +79,8 @@ function userAndPassCorrect()
                 <p class="text-xl font-extralight">Let's get you back to your cart.</p>
             </div>
             <form action="./login.php" method="post" class="flex flex-col gap-4 justify-center items-center max-w-lg max-lg:w-3/4 lg:w-[80%]">
-                <label class="input validator input-lg rounded-full w-full floating-label ">
-                    <span class="text-xl left-8">Username</span>
+                <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
+                    <span class="text-xl left-8 bg-custom-background">Username</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
                             <circle cx="12" cy="8" r="5" />
@@ -98,8 +98,8 @@ function userAndPassCorrect()
                         title="Only letters, numbers or dash"
                         name="user" />
                 </label>
-                <label class="group input validator input-lg rounded-full w-full floating-label">
-                    <span class="text-xl left-8">Password</span>
+                <label class="group input validator input-lg rounded-full w-full floating-label bg-custom-background">
+                    <span class="text-xl left-8 bg-custom-background">Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
                             <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>

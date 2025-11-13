@@ -76,13 +76,11 @@ $orders_result = $conn->query($sql_orders);
     <link rel="stylesheet" href="./style/output.css" />
 </head>
 
-<body class="w-screen overflow-x-hidden scroll-smooth bg-custom-background">
+<body class="w-screen overflow-x-hidden min-h-screen scroll-smooth bg-custom-background">
     <div class="sticky top-0 z-50 ">
         <?php include './components/header.php'; ?>
     </div>
-
-    <main class="container mx-auto p-4 mt-8">
-
+    <section class="container mx-auto max-lg:py-10 lg:py-25">
         <?php
         // --- [REQUIRED] This block displays your success/error messages ---
         if (isset($_SESSION['status_message'])) {
@@ -100,10 +98,8 @@ $orders_result = $conn->query($sql_orders);
         }
         // --- End Flash Message ---
         ?>
-
-        <h1 class="text-3xl font-bold mb-6 text-gray-800">📦 Active Orders</h1>
+        <h1 class="text-3xl font-bold mb-6 text-gray-800">Active Orders</h1>
         <hr>
-
         <div class="overflow-x-auto bg-white rounded-lg shadow-xl mt-4">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -167,7 +163,7 @@ $orders_result = $conn->query($sql_orders);
                 </tbody>
             </table>
         </div>
-    </main>
+    </section>
 </body>
 
 </html>
@@ -178,4 +174,4 @@ if (isset($orders_result) && $orders_result instanceof mysqli_result) {
     $orders_result->close();
 }
 $conn->close();
-?>uuuuuuuuu
+?>

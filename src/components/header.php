@@ -13,11 +13,11 @@ include './db/sessionStart.php';
     <script src="./script/script.js" defer></script>
 </head>
 
-<body data-theme="light" class="backdrop-blur-lg">
-    <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center px-2.5 bg-custom-background backdrop-blur-sm">
+<body data-theme="light" class="backdrop-blur-lg ">
+    <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center lg:p-1.5 lg:px-5 max-sm:px-2.5 bg-custom-background backdrop-blur-sm">
         <div class="flex justify-between w-full">
             <a href="./index.php" class="">
-                <img src="./image/logo/Coffee_Logo.png" alt="logo" class="h-12 object-contain" />
+                <img src="./image/logo/Coffee_Logo.png" alt="logo" class="max-sm:h-12 lg:h-16 object-contain" />
             </a>
             <div class="flex items-center gap-2 w-full  justify-end ">
                 <label class="input rounded-full h-[70%] w-[180px] outline-0 border-custom-accent bg-custom-background">

@@ -99,8 +99,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
     <div class="sticky top-0 z-50 ">
         <?php include './components/header.php'; ?>
     </div>
-    <section class="flex flex-col min-h-screen h-full w-full justify-start items-center pt-20 bg-custom-background">
-        <div class="fixed top-[6%] left-[4%] z-40 ">
+    <section class="flex flex-col min-h-screen h-full w-full justify-start items-center lg:pt-20 max-lg:pt-10 bg-custom-background">
+        <div class="fixed max-lg:top-[6%] max-lg:left-[4%] lg:top-[10%] lg:left-[8%] z-40">
             <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent border-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
                     <path d="m12 19-7-7 7-7" />
@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                 </svg>
             </a>
         </div>
-        <h1 class="text-3xl font-bold mb-8 text-gray-800">Orders</h1>
+        <h1 class="max-lg:text-3xl lg:text-5xl font-extrabold text-custom-text/80 w-full text-center max-lg:py-10 lg:py-15">Orders</h1>
         <div class="orders-list-container w-full max-w-2xl px-4 md:px-0">
             <?php
             // 1. Fetch Orders for the current customer

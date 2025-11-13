@@ -65,8 +65,8 @@ if ($customer_id == 0) {
     <div class="sticky top-0 z-50 ">
         <?php include './components/header.php'; ?>
     </div>
-    <section class=" w-full min-h-screen justify-center items-center flex pt-20 pb-40 bg-custom-background relative">
-        <div class="fixed top-[6%] left-[4%] z-40 ">
+    <section class=" w-full min-h-screen justify-center items-center flex max-lg:pt-20 lg:pt-30 pb-40 bg-custom-background relative">
+        <div class="fixed max-lg:top-[6%] max-lg:left-[4%] lg:top-[10%] lg:left-[8%] z-40 ">
             <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent border-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
                     <path d="m12 19-7-7 7-7" />
@@ -74,9 +74,9 @@ if ($customer_id == 0) {
                 </svg>
             </a>
         </div>
-        <div class="flex flex-col md:flex-row gap-10 w-[90%] justify-center items-center">
+        <div class="flex flex-col  gap-10 w-[90%] max-w-2xl justify-center items-center">
             <div class=" w-full  justify-center flex gap-4 ">
-                <img src="image/products/<?= $product['product_img']; ?>" class="w-[50%] object-contain h-fit rounded-2xl skeleton " alt="<?= htmlspecialchars($product['product_name']); ?>" />
+                <img src="image/products/<?= $product['product_img']; ?>" class="w-[50%] max-w-[200px] object-contain h-fit rounded-2xl skeleton " alt="<?= htmlspecialchars($product['product_name']); ?>" />
             </div>
             <div class="w-[90%]">
                 <div class=" w-full items-center  flex flex-col text-center ">
@@ -133,7 +133,7 @@ if ($customer_id == 0) {
         </div>
     </section>
     <section class=" w-full items-center justify-center flex flex-col fixed bottom-0 p-4 bg-custom-background shadow-2xl">
-        <div class="flex gap-4 w-[90%] h-full justify-between items-end mb-4">
+        <div class="flex gap-4 w-[90%] max-w-2xl h-full justify-between items-end mb-4">
             <p class="text-2xl font-bold w-1/2 grow ">₱<?= number_format($product['price'], 2); ?></p>
             <div class="w-1/2 grow flex justify-end">
                 <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
@@ -158,7 +158,7 @@ if ($customer_id == 0) {
                 <?php endif; ?>
             </div>
         </div>
-        <div class="flex gap-4 w-[90%] items-center justify-center">
+        <div class="flex gap-4 w-[90%] max-w-2xl items-center justify-center">
             <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
                 <form method="POST" action="./functions/buynow.php" class="grow w-1/2">
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">

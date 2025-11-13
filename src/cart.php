@@ -122,9 +122,9 @@ $_SESSION['total'] = $total;
     <div class="sticky top-0 z-50 ">
         <?php include './components/header.php'; ?>
     </div>
-    <section class="flex flex-col min-h-screen h-full w-full justify-start items-center pt-10 bg-custom-background">
-        <h1 class="text-3xl font-extrabold text-custom-text/80 w-full text-center py-10">CHECK OUT</h1>
-        <div class="fixed top-[6%] left-[4%] z-40">
+    <section class="flex flex-col min-h-screen h-full w-full justify-start items-center lg:pt-20 max-lg:pt-10 bg-custom-background">
+        <h1 class=" max-lg:text-3xl lg:text-5xl font-extrabold text-custom-text/80 w-full text-center max-lg:py-10 lg:py-15">CHECK OUT</h1>
+        <div class="fixed max-lg:top-[6%] max-lg:left-[4%] lg:top-[10%] lg:left-[8%] z-40">
             <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent border-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
                     <path d="m12 19-7-7 7-7" />
@@ -142,7 +142,7 @@ $_SESSION['total'] = $total;
                 ';
         }
         ?>
-        <div class="flex flex-col gap-4 w-[90%] justify-center items-start">
+        <div class="flex flex-col gap-4 w-[90%] max-w-2xl justify-center items-start">
             <div class="w-full rounded-2xl border-custom-accent border shadow-md">
                 <div class="flex p-2.5 gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin stroke-custom-text/75">
@@ -338,9 +338,9 @@ $_SESSION['total'] = $total;
             </div>
         <?php endif; ?>
     </section> -->
-    <section class="w-full items-center justify-center flex fixed bottom-0 p-4 bg-custom-background shadow-2xl">
+    <section class="w-full  items-center justify-center flex fixed bottom-0 p-4 bg-custom-background shadow-2xl">
         <?php if (!empty($cart_items)): ?>
-            <form method="POST" action="./orders.php" class="flex gap-4 grow w-full items-center justify-center">
+            <form method="POST" action="./orders.php" class="flex gap-4 max-w-2xl grow w-full items-center justify-center">
                 <input type="hidden" name="total_amount" value="<?= $total; ?>">
                 <input type="hidden" name="selected_address_id" value="<?= htmlspecialchars($selected_address_id ?? ''); ?>">
                 <input type="hidden" name="payment_method" id="hiddenPaymentMethod" value="">
@@ -348,7 +348,7 @@ $_SESSION['total'] = $total;
                     <button
                         type="submit"
                         name="place_order"
-                        class="btn btn-lg border-custom-accent btn-ghost  w-full rounded-full text-sm"
+                        class="btn btn-lg border-custom-accent bg-custom-accent btn-ghost  w-full rounded-full text-sm"
                         <?php if (!$selected_address_id): ?>disabled<?php endif; ?>>
                         <?= (!$selected_address_id) ? 'Add Address to Buy' : 'Buy Now'; ?>
                     </button>
