@@ -49,13 +49,7 @@ require_once './functions/searchbar.php'
                     <input type="text" name="search" required placeholder="Explore..." 
                         value="<?php echo htmlspecialchars($search_query ?? ''); ?>" />
                 </label>
-<<<<<<< HEAD
-                    <button type="submit">Submit</button>
-                </form>
-                <div class="drawer drawer-end w-fit ">
-=======
                 <div class="drawer drawer-end w-fit md:hidden">
->>>>>>> d1dbb5a7612259e25eb1589c6f6cb6afb0eb9ece
                     <input id="my-drawer-5" type="checkbox" class="drawer-toggle" />
                     <div class="drawer-content">
                         <label for="my-drawer-5" class="drawer-button "><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu size-7">
