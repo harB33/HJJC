@@ -1,65 +1,88 @@
 <?php
-include("./db/sessionStart.php");
-include './db/db.php';
+require_once("./db/sessionStart.php");
+require_once('./db/db.php');
 
 if (!$conn || $conn->connect_error) {
     die("Database connection failed: " . ($conn ? $conn->connect_error : 'Unknown error'));
 }
 
-$id = $_GET['product_id'];
+$id = 0;
+$is_search_results = false;
+$search_results = [];
+$product = null;
 
-if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $id = (int)$_GET['product_id'];
+if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
+    $search_term = strtolower(trim($_GET['search']));
+    $param_value = '%' . $search_term . '%';
+    $is_search_results = true; 
 
+    $sql_search = "SELECT product_id, product_name, price, product_img, product_desc FROM products WHERE LOWER(product_name) LIKE ? OR LOWER(product_desc) LIKE ? ORDER BY product_name ASC";
+
+    $stmt_search = $conn->prepare($sql_search);
+    if (!$stmt_search) {
+        die("Error preparing search query: " . $conn->error);
+    }
+
+    $stmt_search->bind_param('ss', $param_value, $param_value);
+    $stmt_search->execute();
+    $result_search = $stmt_search->get_result();
+
+    while ($row = $result_search->fetch_assoc()) {
+        $search_results[] = $row;
+    }
+    $stmt_search->close();
+    
+    if (count($search_results) === 1) {
+        $id = (int)$search_results[0]['product_id'];
+        $is_search_results = false; 
+    }
+} 
+elseif (isset($_GET['id']) && !empty($_GET['id'])) {
+    $id = (int)$_GET['id'];
 } elseif (isset($_GET['product_id']) && !empty($_GET['product_id'])) {
     $id = (int)$_GET['product_id'];
 }
 
-if ($id <= 0) {
-    die("Error: Invalid or missing Product ID.");
-}
+if ($id > 0 && $is_search_results === false) {
+    $sql = "SELECT * FROM products WHERE product_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $product = $result->fetch_assoc();
 
-$sql = "SELECT * FROM products WHERE product_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('i', $id);
-$stmt->execute();
-$result = $stmt->get_result();
-$product = $result->fetch_assoc();
-
-if (!$product) {
-    die("Error: Product not found.");
-}
-$stmt->close();
-
-$customer_id = 0;
-
-if (isset($_SESSION['customer_user'])) {
-    $user_identifier = $_SESSION['customer_user'];
-
-    $stmt_get_id = $conn->prepare("SELECT customer_id FROM users WHERE customer_user = ?");
-    $stmt_get_id->bind_param("s", $user_identifier);
-    $stmt_get_id->execute();
-    $result_id = $stmt_get_id->get_result();
-
-    if ($row = $result_id->fetch_assoc()) {
-        $customer_id = (int)$row['customer_id'];
+    if (!$product) {
+        die("Error: Product not found.");
     }
-    $stmt_get_id->close();
-}
-if ($customer_id == 0) {
+    $stmt->close();
+    
+    $customer_id = 0;
+    if (isset($_SESSION['customer_user'])) {
+        $user_identifier = $_SESSION['customer_user'];
+        $stmt_get_id = $conn->prepare("SELECT customer_id FROM users WHERE customer_user = ?");
+        $stmt_get_id->bind_param("s", $user_identifier);
+        $stmt_get_id->execute();
+        $result_id = $stmt_get_id->get_result();
+        if ($row = $result_id->fetch_assoc()) {
+            $customer_id = (int)$row['customer_id'];
+        }
+        $stmt_get_id->close();
+    }
+
     $current_quantity = 1;
-} else {
-    $stmt_qty = $conn->prepare("SELECT quantity FROM cart WHERE customer_id = ? AND product_id = ?");
-    $stmt_qty->bind_param("ii", $customer_id, $id);
-    $stmt_qty->execute();
-    $res_qty = $stmt_qty->get_result();
-
-    if ($row_qty = $res_qty->fetch_assoc()) {
-        $current_quantity = $row_qty['quantity'];
-    } else {
-        $current_quantity = 1;
+    if ($customer_id == 0) {
+        $stmt_qty = $conn->prepare("SELECT quantity FROM cart WHERE customer_id = ? AND product_id = ?");
+        $stmt_qty->bind_param("ii", $customer_id, $id);
+        $stmt_qty->execute();
+        $res_qty = $stmt_qty->get_result();
+        if ($row_qty = $res_qty->fetch_assoc()) {
+            $current_quantity = $row_qty['quantity'];
+        }
+        $stmt_qty->close();
     }
-    $stmt_qty->close();
+
+} elseif ($id <= 0 && $is_search_results === false) {
+    die("Error: Invalid or missing Product ID.");
 }
 ?>
 

@@ -49,6 +49,9 @@ require_once './functions/searchbar.php'
                         </svg>
                         <input type="text" name="search" required placeholder="Explore..." 
                             value="<?php echo htmlspecialchars($search_query ?? ''); ?>" />
+                            <?php if (!empty($search_query)): ?>
+                                <a href="index.php">X</a>
+                            <?php endif; ?>
                     </label>
                     <button type="submit">Go</button>
                 </form>
