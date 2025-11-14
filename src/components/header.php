@@ -19,10 +19,6 @@ require_once './functions/searchbar.php'
             <a href="./index.php" class="">
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="max-lg:h-12 lg:h-16 object-contain" />
             </a>
-<<<<<<< HEAD
-            <div class="flex items-center gap-2 w-full  justify-end ">
-                <form action="./productPage.php" method="get">
-=======
             <div class="flex items-center gap-2 w-full justify-end md:justify-center">
                 <div class="grow items-center flex justify-center gap-20 max-md:hidden">
                     <a href="./index.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Home</a>
@@ -35,7 +31,6 @@ require_once './functions/searchbar.php'
                         <a href="./login.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105 duration-300">Login</a>
                     <?php endif; ?>
                 </div>
->>>>>>> d1dbb5a7612259e25eb1589c6f6cb6afb0eb9ece
                 <label class="input rounded-full h-[70%] w-[180px] outline-0 border-custom-accent bg-custom-background">
                     <svg
                         class="h-[1em]  stroke-custom-accent"
