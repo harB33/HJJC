@@ -14,13 +14,28 @@ require_once './functions/searchbar.php'
 </head>
 
 <body data-theme="light" class="backdrop-blur-lg ">
-    <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center max-lg:px-2.5 max-lg:py-0.5 p-1.5 bg-custom-background backdrop-blur-sm">
+    <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center lg:px-5 lg:py-2 max-lg:px-2.5 max-lg:py-0.5  bg-custom-background backdrop-blur-sm">
         <div class="flex justify-between w-full">
             <a href="./index.php" class="">
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="max-lg:h-12 lg:h-16 object-contain" />
             </a>
+<<<<<<< HEAD
             <div class="flex items-center gap-2 w-full  justify-end ">
                 <form action="./productPage.php" method="get">
+=======
+            <div class="flex items-center gap-2 w-full justify-end md:justify-center">
+                <div class="grow items-center flex justify-center gap-20 max-md:hidden">
+                    <a href="./index.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Home</a>
+                    <a href="./home.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Place Order</a>
+                    <a href="./cart.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Cart</a>
+                    <a href="./orders.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Orders</a>
+                    <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === True): ?>
+                        <a href="./functions/logout.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105 duration-300">Logout</a>
+                    <?php else: ?>
+                        <a href="./login.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105 duration-300">Login</a>
+                    <?php endif; ?>
+                </div>
+>>>>>>> d1dbb5a7612259e25eb1589c6f6cb6afb0eb9ece
                 <label class="input rounded-full h-[70%] w-[180px] outline-0 border-custom-accent bg-custom-background">
                     <svg
                         class="h-[1em]  stroke-custom-accent"
@@ -39,9 +54,13 @@ require_once './functions/searchbar.php'
                     <input type="text" name="search" required placeholder="Explore..." 
                         value="<?php echo htmlspecialchars($search_query ?? ''); ?>" />
                 </label>
+<<<<<<< HEAD
                     <button type="submit">Submit</button>
                 </form>
                 <div class="drawer drawer-end w-fit ">
+=======
+                <div class="drawer drawer-end w-fit md:hidden">
+>>>>>>> d1dbb5a7612259e25eb1589c6f6cb6afb0eb9ece
                     <input id="my-drawer-5" type="checkbox" class="drawer-toggle" />
                     <div class="drawer-content">
                         <label for="my-drawer-5" class="drawer-button "><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu size-7">
