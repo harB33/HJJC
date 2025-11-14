@@ -112,7 +112,6 @@ function userAndPassCorrect()
                         type="password"
                         required
                         placeholder="Password"
-                        minlength="8"
                         name="pass" />
                     <label class="swap opacity-0 pointer-events-none transition-opacity duration-300 group-focus-within:opacity-100 group-focus-within:pointer-events-auto" id="toggleLabel" tabindex="-1">
                         <input type="checkbox" id="toggleCheckbox" tabindex="-1" />
