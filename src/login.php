@@ -23,7 +23,7 @@ function userAndPassCorrect()
                 $_SESSION['customer_user'] = $user;
                 $_SESSION['loggedIn'] = True;
 
-                header("Location: ./login.php");
+                header("Location: ./index.php");
                 exit;
             } else {
                 $alertMsg .= '
