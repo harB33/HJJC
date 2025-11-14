@@ -1,6 +1,6 @@
 <?php
-include './db/sessionStart.php';
-
+require_once './db/sessionStart.php';
+require_once './functions/searchbar.php'
 ?>
 
 <head>
@@ -20,6 +20,7 @@ include './db/sessionStart.php';
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="max-lg:h-12 lg:h-16 object-contain" />
             </a>
             <div class="flex items-center gap-2 w-full  justify-end ">
+                <form action="./productPage.php" method="get">
                 <label class="input rounded-full h-[70%] w-[180px] outline-0 border-custom-accent bg-custom-background">
                     <svg
                         class="h-[1em]  stroke-custom-accent"
@@ -35,8 +36,11 @@ include './db/sessionStart.php';
                             <path d="m21 21-4.3-4.3"></path>
                         </g>
                     </svg>
-                    <input type="search" required placeholder="Explore..." />
+                    <input type="text" name="search" required placeholder="Explore..." 
+                        value="<?php echo htmlspecialchars($search_query ?? ''); ?>" />
                 </label>
+                    <button type="submit">Submit</button>
+                </form>
                 <div class="drawer drawer-end w-fit ">
                     <input id="my-drawer-5" type="checkbox" class="drawer-toggle" />
                     <div class="drawer-content">

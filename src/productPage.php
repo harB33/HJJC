@@ -6,13 +6,30 @@ if (!$conn || $conn->connect_error) {
     die("Database connection failed: " . ($conn ? $conn->connect_error : 'Unknown error'));
 }
 
-$id = (int)$_GET['id'];
-if ($id <= 0) {
-    die("Invalid Product ID.");
+$id = $_GET['product_id'];
+
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $id = (int)$_GET['product_id'];
+
+} elseif (isset($_GET['product_id']) && !empty($_GET['product_id'])) {
+    $id = (int)$_GET['product_id'];
 }
 
-$result = $conn->query("SELECT * FROM products WHERE product_id=$id");
+if ($id <= 0) {
+    die("Error: Invalid or missing Product ID.");
+}
+
+$sql = "SELECT * FROM products WHERE product_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('i', $id);
+$stmt->execute();
+$result = $stmt->get_result();
 $product = $result->fetch_assoc();
+
+if (!$product) {
+    die("Error: Product not found.");
+}
+$stmt->close();
 
 $customer_id = 0;
 
