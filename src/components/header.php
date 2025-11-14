@@ -53,7 +53,6 @@ require_once './functions/searchbar.php'
                                 <a href="index.php">X</a>
                             <?php endif; ?>
                     </label>
-                    <button type="submit">Go</button>
                 </form>
                 <div class="drawer drawer-end w-fit md:hidden">
                     <input id="my-drawer-5" type="checkbox" class="drawer-toggle" />
