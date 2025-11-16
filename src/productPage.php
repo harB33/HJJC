@@ -113,7 +113,7 @@ if ($id > 0 && $is_search_results === false) {
     
     <?php if ($is_search_results): ?>
     
-    <section class="w-full min-h-screen justify-center items-center flex max-lg:pt-20 lg:pt-30 pb-40 bg-custom-background relative">
+    <section class="w-full min-h-screen justify-center  flex max-lg:pt-20 lg:pt-30 pb-40 bg-custom-background relative">
         <div class="fixed max-lg:top-[6%] max-lg:left-[4%] lg:top-[10%] lg:left-[8%] z-40 ">
             <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent border-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
@@ -122,7 +122,7 @@ if ($id > 0 && $is_search_results === false) {
                 </svg>
             </a>
         </div>
-        <div class="flex flex-col gap-10 w-[90%] max-w-2xl pt-20">
+        <div class="flex flex-col gap-2.5 w-[90%] max-w-2xl">
             <h1 class="text-3xl font-bold text-custom-accent">
                 <?php if (count($search_results) > 0): ?>
                     Found <?= count($search_results); ?> Item(s)
@@ -135,17 +135,23 @@ if ($id > 0 && $is_search_results === false) {
             <?php if (empty($search_results)): ?>
                 <p class="text-xl text-red-500">Please try a different search term.</p>
             <?php else: ?>
-                <div class="flex flex-col gap-4">
+                <div class="pt-10 flex flex-col gap-4">
                 <?php foreach ($search_results as $result_product): ?>
                     <a href="productPage.php?id=<?= $result_product['product_id']; ?>" 
-                       class="flex gap-4 p-4 border rounded-2xl shadow-lg hover:bg-custom-accent/10 transition duration-150">
+                        class="flex gap-4 p-2 border-custom-accent border rounded-xl shadow-lg hover:bg-custom-accent/25 transition duration-300">
                         <img src="image/products/<?= $result_product['product_img']; ?>" 
-                             class="w-20 h-20 object-cover rounded-md" 
-                             alt="<?= htmlspecialchars($result_product['product_name']); ?>" />
-                        <div class="flex flex-col justify-center">
-                            <h2 class="text-xl font-bold text-custom-text"><?= htmlspecialchars($result_product['product_name']); ?></h2>
-                            <p class="text-md text-custom-accent">₱<?= number_format($result_product['price'], 2); ?></p>
+                            class=" h-full max-w-[120px] object-cover rounded-lg" 
+                            alt="<?= htmlspecialchars($result_product['product_name']); ?>" />
+                        <div class="flex w-full flex-col">
+                            <div class="w-full flex items-center justify-between">
+                                <h2 class="font-bold text-lg text-black/75"><?= htmlspecialchars($result_product['product_name']); ?></h2>
+                                <p class="text-md font-bold text-black/80">₱<?= number_format($result_product['price'], 2); ?></p>
+                            </div>
+                            <div class="w-full font-light">
+                                <p><?= htmlspecialchars($result_product['product_desc']); ?></p>
+                            </div>
                         </div>
+                        
                     </a>
                 <?php endforeach; ?>
                 </div>
@@ -181,43 +187,43 @@ if ($id > 0 && $is_search_results === false) {
                             <h1 class=" font-bold mb-2 text-custom-text/80 ">Temperature</h1>
                             <hr class="dashed border-t border-dotted border-gray-400 p-2">
                             <div class="grid grid-cols-3 w-full items-center justify-center flex-wrap gap-2">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="temperature" value="Hot" required aria-label="Hot">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="temperature" value="Iced" aria-label="Iced">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="temperature" value="Hot" required aria-label="Hot">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="temperature" value="Iced" aria-label="Iced">
                             </div>
                         </div>
                         <div class="border rounded-2xl shadow-lg p-5 backdrop-blur-2xl">
                             <h1 class=" font-bold mb-2 text-custom-text/80">Milk</h1>
                             <hr class="dashed border-t border-dotted border-gray-400 p-2">
                             <div class="grid grid-cols-3 w-full items-center justify-center flex-wrap gap-2">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="milk_type" value="Dairy Milk" required aria-label="Dairy Milk">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="milk_type" value="Oat Milk" aria-label="Oat Milk">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="milk_type" value="Coconut Milk" aria-label="Coconut Milk">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="milk_type" value="Dairy Milk" required aria-label="Dairy Milk">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="milk_type" value="Oat Milk" aria-label="Oat Milk">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="milk_type" value="Coconut Milk" aria-label="Coconut Milk">
                             </div>
                         </div>
                         <div class="border rounded-2xl shadow-lg p-5 backdrop-blur-2xl">
                             <h1 class=" font-bold mb-2 text-custom-text/80">Espresso Shots</h1>
                             <hr class="dashed border-t border-dotted border-gray-400 p-2">
                             <div class="grid grid-cols-3 w-full items-center justify-center flex-wrap gap-2">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="espresso_shots" value="No Shot" required aria-label="No Shot">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="espresso_shots" value="LYDIA" aria-label="LYDIA">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="espresso_shots" value="BOSS" aria-label="BOSS">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="espresso_shots" value="No Shot" required aria-label="No Shot">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="espresso_shots" value="LYDIA" aria-label="LYDIA">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="espresso_shots" value="BOSS" aria-label="BOSS">
                             </div>
                         </div>
                         <div class="border rounded-2xl shadow-lg p-5 backdrop-blur-2xl">
                             <h1 class=" font-bold mb-2 text-custom-text/80">Sweetness</h1>
                             <hr class="dashed border-t border-dotted border-gray-400 p-2">
                             <div class="grid grid-cols-3 w-full items-center justify-center flex-wrap gap-2">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="sweetness" value="Regular Sweet" required aria-label="Regular Sweet">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="sweetness" value="Less Sweet" aria-label="Less Sweet">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="sweetness" value="More Sweet" aria-label="More Sweet">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="sweetness" value="Regular Sweet" required aria-label="Regular Sweet">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="sweetness" value="Less Sweet" aria-label="Less Sweet">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="sweetness" value="More Sweet" aria-label="More Sweet">
                             </div>
                         </div>
                         <div class="border rounded-2xl shadow-lg p-5 backdrop-blur-2xl">
                             <h1 class=" font-bold mb-2 text-custom-text/80">Ice Level</h1>
                             <hr class="dashed border-t border-dotted border-gray-400 p-2">
                             <div class="grid grid-cols-3 w-full items-center justify-center flex-wrap gap-2">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="ice_level" value="Normal Ice" aria-label="Normal Ice">
-                                <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="ice_level" value="Less Ice" aria-label="Less Ice">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="ice_level" value="Normal Ice" aria-label="Normal Ice">
+                                <input class="btn max-w-[175px] leading-none shadow-none text-custom-text/75 bg-custom-accent/25 checked:border-custom-accent checked:bg-custom-accent/85 checked:text-black" type="radio" name="ice_level" value="Less Ice" aria-label="Less Ice">
                             </div>
                         </div>
                     <?php else: ?>
@@ -225,7 +231,8 @@ if ($id > 0 && $is_search_results === false) {
                     <?php endif; ?>
                 </form>
                 <!-- <img src="./image/coffee-shop.png" alt="" class="fixed left-[0%] bottom-[12%] w-[40%] opacity-80 z-0 brightness-80"> -->
-                <img src="./image/coffee-beans.png" alt="" class="fixed -right-[5%] -top-[5%] w-[20%] opacity-80 z-0 rotate-220">
+                <img src="./image/coffee-beans.png" alt="" class="fixed -right-[5%] -top-[5%] w-[20%] opacity-80 z-0 rotate-220 max-lg:hidden">
+                <img src="./image/coffee-beans.png" alt="" class="fixed -left-[5%] bottom-[0%] w-[20%] opacity-80 z-0 rotate-45 max-lg:hidden">
             </div>
         </div>
     </section>

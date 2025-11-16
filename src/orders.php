@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         }
     }
     
-    $conn->close();
+    // $conn->close();
 }
 
 function sendOrderConfirmation($email, $firstName, $orderId, $orderStatus)

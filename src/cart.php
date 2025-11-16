@@ -180,9 +180,9 @@ $_SESSION['total'] = $total;
                             </div>
                             <div class="flex flex-col justify-between">
                                 <div>
-                                    <h1 class="font-bold text-sm text-black/75"><?= htmlspecialchars($row['product_name']); ?></h1>
+                                    <h1 class="font-bold text-lg text-black/75"><?= htmlspecialchars($row['product_name']); ?></h1>
                                     <?php if ($row['category_id'] < 5): ?>
-                                        <p class="text-gray-600 text-sm">
+                                        <p class="text-gray-600 text-md">
                                             <?php
                                             $customizations = [];
                                             if (!empty($row['temperature'])) {
@@ -244,7 +244,7 @@ $_SESSION['total'] = $total;
                             <div class="flex w-fit h-full">
                                 <div class="w-fit flex flex-col justify-between h-full">
                                     <div>
-                                        <p class="font-bold text-sm text-black/80 float-right">₱<?= number_format($row['price'], 2); ?></p>
+                                        <p class="font-bold text-lg text-black/80 float-right">₱<?= number_format($row['price'], 2); ?></p>
                                     </div>
 
                                     <div class="">

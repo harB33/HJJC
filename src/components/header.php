@@ -31,8 +31,8 @@ require_once './functions/searchbar.php'
                         <a href="./login.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105 duration-300">Login</a>
                     <?php endif; ?>
                 </div>
-                <form action="./productPage.php" method="get">
-                    <label class="input rounded-full h-[70%] w-[180px] outline-0 border-custom-accent bg-custom-background">
+                <form action="./productPage.php" method="get" class="h-[70%]">
+                    <label class="input rounded-full h-full max-w-[200px] outline-0 border-custom-accent bg-custom-background">
                         <svg
                             class="h-[1em]  stroke-custom-accent"
                             xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@ require_once './functions/searchbar.php'
                         <input type="text" name="search" required placeholder="Explore..." 
                             value="<?php echo htmlspecialchars($search_query ?? ''); ?>" />
                             <?php if (!empty($search_query)): ?>
-                                <a href="index.php">X</a>
+                                <a href="index.php"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x h-[1em]"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></a>
                             <?php endif; ?>
                     </label>
                 </form>
