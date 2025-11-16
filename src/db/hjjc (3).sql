@@ -456,7 +456,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`customer_id`, `customer_user`, `customer_firstname`, `customer_middlename`, `customer_lastname`, `customer_email`, `customer_phone`, `customer_pass`, `role`, `created_at`) VALUES
 (1, 'jomarivillanueva', 'Jomari', NULL, 'Wamil', 'Villanueva@gmail.com', '09927300876', 'JomariCrushsiVillanueva1', 'admin', '2025-10-29 02:01:47'),
-(2, 'harvy12345', 'harvs', NULL, 'bautista', 'jwamcoc01@gmail.com', '09927300876', 'Harvy12345', 'admin', '2025-10-31 13:40:41'),
+(2, 'harvy12345', 'harvs', NULL, 'bautista', 'bautistaharvy@gmail.com', '09927300876', 'Harvy12345', 'admin', '2025-10-31 13:40:41'),
 (3, 'Jomari12345', 'Jomari', '', 'Wamil', 'bautistaharvy13@gmail.com', '09927300876', 'Jomari12345', 'admin', '2025-11-06 00:45:43'),
 (4, 'jomari111', 'Jomari', 'Lacoste', 'Wamil', 'shishironchi@gmail.com', '09927300876', '$2y$10$7aobcuaKCG3b/T2VGvMMNuU/j8hO6.XaIyfkSwmZwjr', 'user', '2025-11-13 11:54:59');
 

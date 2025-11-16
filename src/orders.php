@@ -2,9 +2,16 @@
 include("./db/sessionStart.php");
 include("./db/db.php");
 
+require '../vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+use Mpdf\Mpdf;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
 
     $success = true;
+    $order_id = null; 
 
     $customer_id = (int)$_SESSION['customer_id'];
     $address_id = (int)$_POST['selected_address_id'];
@@ -13,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
 
     try {
         $sql_order = "INSERT INTO orders (customer_id, total_amount, address_id, status) 
-                  VALUES (?, ?, ?, 'Pending')";
+                      VALUES (?, ?, ?, 'Pending')";
         $stmt_order = $conn->prepare($sql_order);
         $stmt_order->bind_param("idi", $customer_id, $total_amount, $address_id);
 
@@ -25,17 +32,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         $stmt_order->close();
 
         $sql_cart_data = "SELECT product_id, temperature, milk_type, espresso_shots, sweetness, ice_level, quantity
-                      FROM cart WHERE customer_id = ?";
+                          FROM cart WHERE customer_id = ?";
         $stmt_cart_data = $conn->prepare($sql_cart_data);
         $stmt_cart_data->bind_param("i", $customer_id);
         $stmt_cart_data->execute();
         $cart_result = $stmt_cart_data->get_result();
 
         $sql_details = "INSERT INTO order_details (order_id, product_id, quantity, temperature, milk_type, espresso_shots, sweetness, ice_level, price) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt_details = $conn->prepare($sql_details);
 
+        $sql_price = "SELECT price FROM products WHERE product_id = ?";
+        $stmt_price = $conn->prepare($sql_price);
+
+
         while ($item = $cart_result->fetch_assoc()) {
+            $product_id = $item['product_id'];
+            $stmt_price->bind_param("i", $product_id);
+            $stmt_price->execute();
+            $price_result = $stmt_price->get_result();
+            $price_row = $price_result->fetch_assoc();
+            
+            if (!$price_row) {
+                 throw new Exception("Product price not found for ID: " . $product_id);
+            }
+            $product_price = $price_row['price'];
+
             $stmt_details->bind_param(
                 "iiisssssd",
                 $order_id,
@@ -46,14 +68,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                 $item['espresso_shots'],
                 $item['sweetness'],
                 $item['ice_level'],
-                $_SESSION['price']
+                $product_price 
             );
+            
             if (!$stmt_details->execute()) {
                 throw new Exception("Order detail insertion failed.");
             }
         }
+        
         $stmt_details->close();
         $stmt_cart_data->close();
+        $stmt_price->close();
 
         $sql_clear = "DELETE FROM cart WHERE customer_id = ?";
         $stmt_clear = $conn->prepare($sql_clear);
@@ -70,14 +95,161 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         $success = false;
         error_log("Checkout Error: " . $e->getMessage());
     }
-    $conn->close();
+    
+    if ($success && $order_id !== null) { 
+        $user = $_SESSION['customer_user'];
+        $sql_user = "SELECT customer_email, customer_firstname FROM users WHERE customer_user = ?"; 
+        $stmt_user = $conn->prepare($sql_user);
+        $stmt_user->bind_param("s", $user);
+        $stmt_user->execute();
+        $res = $stmt_user->get_result();
 
-    if ($success) {
-        header("Location: ./orders.php");
-    } else {
-        header("Location: ./orders.php?error=payment_failed");
+        if ($res->num_rows === 0) {
+            error_log("Error: Could not find user for email.");
+        } else {
+            $row = $res->fetch_assoc();
+            $customer_email = $row['customer_email'];
+            $customer_name = $row['customer_firstname'];
+            $stmt_user->close();
+            
+            $orderStatus = 'Pending';
+            $orderConfirmationId = $order_id; 
+            
+            $mailResult = sendOrderConfirmation($customer_email, $customer_name, $orderConfirmationId, $orderStatus);
+            if ($mailResult !== true) {
+                error_log("Email sending failed for Order #$orderConfirmationId: " . $mailResult);
+            }
+        }
     }
-    exit();
+    
+    $conn->close();
+}
+
+function sendOrderConfirmation($email, $firstName, $orderId, $orderStatus)
+{
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->SMTPDebug = SMTP::DEBUG_OFF;
+        $mail->isSMTP();
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = true;
+        $mail->Username = "hjjc.store@gmail.com";
+        $mail->Password = "xxhx nkiw bwsi erwb";
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = 465;
+
+        $mail->setFrom("hjjc.store@gmail.com", "HJJC STORE");
+        $mail->addAddress($email);
+
+        $mail->isHTML(true);
+        $mail->Subject = "Your HJJC Store Order Confirmation #$orderId"; 
+
+        $imagePath = __DIR__ . '/image/logo/Coffee_Logo.png'; 
+
+        $mail->addEmbeddedImage(
+            $imagePath,   
+            'logo-hjjc',    
+            'Coffee_Logo.png', 
+            'base64',       
+            'image/png'   
+        );
+
+        $mail->Body = '
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                body {
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f8f9fa; /* Light grey background */
+                    font-family: Arial, sans-serif;
+                }
+                table {
+                    border-collapse: collapse;
+                }
+                .wrapper {
+                    width: 100%;
+                    padding: 40px 0;
+                }
+                .container {
+                    width: 90%;
+                    max-width: 600px;
+                    margin: 0 auto;
+                    background-color: #ffffff;
+                    border: 1px solid #e9ecef;
+                    border-radius: 8px; /* Supported by many modern clients */
+                    overflow: hidden;
+                }
+                .header {
+                    text-align: center;
+                    padding: 40px;
+                    border-bottom: 1px solid #e9ecef;
+                }
+                .content {
+                    padding: 40px;
+                    font-size: 16px;
+                    line-height: 1.6;
+                    color: #333;
+                }
+                .content p {
+                    margin: 0 0 20px 0;
+                }
+                .code {
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: #0d6efd; /* Blue */
+                }
+                .footer {
+                    text-align: center;
+                    padding: 30px 40px;
+                    font-size: 14px;
+                    color: #888;
+                    background-color: #f8f9fa;
+                }
+            </style>
+        </head>
+        <body>
+            <table class="wrapper" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td align="center">
+                        <table class="container" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                            <tr>
+                                <td class="header" align="center">
+                                    <img src="cid:logo-hjjc" alt="HJJC Store Logo" style="width: 120px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="content">
+                                    <p>Hi<strong> ' . htmlspecialchars($firstName) . '</strong>,</p>
+                                    <p>Your order has been successfully placed!</p>
+                                    <p>Your Order #<strong>' . htmlspecialchars($orderId) . '</strong> is currently <strong> ' . htmlspecialchars($orderStatus) . ' </strong>.</p>
+                                    <br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="footer" align="center">
+                                    <p>&copy; ' . date("Y") . ' HJJC Store. All rights reserved.</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </body>
+        </html>
+        ';
+
+        $mail->AltBody = "Hi $firstName, your order #$orderId has been successfully placed and is currently $orderStatus. You can track your order status on your orders page."; 
+
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        return "Mailer Error: " . $mail->ErrorInfo;
+    }
 }
 ?>
 
@@ -111,7 +283,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         <h1 class="max-lg:text-3xl lg:text-5xl font-extrabold text-custom-text/80 w-full text-center max-lg:py-10 lg:py-15">Orders</h1>
         <div class="orders-list-container w-full max-w-2xl px-4 md:px-0">
             <?php
-            // 1. Fetch Orders for the current customer
+            
             $customer_id = (int)$_SESSION['customer_id'];
             $sql_get_orders = "SELECT order_id, total_amount, status, order_date 
                                 FROM orders 
@@ -126,7 +298,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             if ($orders_result->num_rows == 0) {
                 echo "<p class='text-center text-gray-500'>You have not placed any orders yet.</p>";
             } else {
-                // 2. Loop through each ORDER
+                
                 while ($order = $orders_result->fetch_assoc()) {
                     $order_id = $order['order_id'];
             ?>
@@ -142,14 +314,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                                 </span>
                             </div>
                         </div>
-                        <div class="order-body>
+                        <div class="order-body">
                             <p class="mb-3">
                                 <strong class="text-lg text-custom-text/75">Total Amount: ₱<?php echo number_format($order['total_amount'], 2); ?></strong>
                             </p>
                             <h4 class="text-custom-text/50 font-semibold mb-2">Items in this order:</h4>
                             <ul class="list-none p-0">
                                 <?php
-                                // 3. Inner query to fetch DETAILS (items) for this specific order
+                                
                                 $sql_get_details = "SELECT od.*, p.product_name, p.product_img 
                                                     FROM order_details od
                                                     JOIN products p ON od.product_id = p.product_id 
@@ -159,7 +331,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                                 $stmt_get_details->bind_param("i", $order_id);
                                 $stmt_get_details->execute();
                                 $details_result = $stmt_get_details->get_result();
-                                // 4. Loop through each ITEM in the order
+
                                 while ($item = $details_result->fetch_assoc()) {
                                 ?>
                                     <li class="py-2 border-b border-dashed border-gray-200 flex items-center gap-3">
@@ -198,7 +370,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                                         </div>
                                     </li>
                                 <?php
-                                } // End of item loop
+                                }
                                 $stmt_get_details->close();
                                 ?>
                             </ul>
@@ -206,7 +378,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                         
                     </div>
             <?php
-                } // End of order loop
+                }
             }
             $stmt_get_orders->close();
             ?>

@@ -40,7 +40,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                 break;
         }
 
-        if ($row['category_id'] == '1') { // Using coffee as best-seller for this example
+        if ($row['category_id'] == '1') {
             $best_sellers[] = $row;
         }
     }
@@ -68,17 +68,15 @@ if ($result && mysqli_num_rows($result) > 0) {
         <?php include './components/header.php';
         if ($result->num_rows > 0) {
             while ($product = $result->fetch_assoc()) {
-                // Your existing code to display product cards/items using $product['...']
             }
         } else {
-            // No results found message
             // echo "<p class='text-center text-lg'>No products found matching \"" . htmlspecialchars($search_query) . "\"</p>";
         }
         ?>
     </div>
     <section class="flex w-full h-full">
         <section class="flex items-center justify-center h-screen bg-custom-accent sticky top-0 flex-col max-lg:p-2.5 lg:p-4 ">
-            <div class="grid grid-cols-1 place-items-center w-fit gap-16 content-center text-center">
+            <div class="grid grid-cols-1 place-items-center w-fit gap-16 content-center max-lg:5 lg:pt-8 text-center">
                 <a href="#bestSeller" class="max-sm:size-12 sm:size-18 flex flex-col text-sm hover:scale-105 duration-300">
                     <div class=" leading-none ">
                         <img src="./image/best-seller.png" alt="" class="">
@@ -218,7 +216,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             </section>
             <h1 id="pastries"></h1>
             <h1 class=" max-sm:text-3xl lg:text-5xl font-black  sticky top-0 w-full text-center max-sm:pt-14 pb-2 bg-custom-background shadow-md z-30 flex items-center justify-center lg:pt-24">Pastries</h1>
-            <section class="flex flex-col  items-center overflow-y-scroll h-screen w-full max-lg:p-4 lg:p-8 ">
+            <section class="flex flex-col pb-10  items-center overflow-y-scroll h-screen w-full max-lg:p-4 lg:p-8 ">
                 <section class="grid max-sm:grid-cols-2 max-lg:grid-cols-4 lg:grid-cols-5  gap-2.5 place-contents-center w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($pastries_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br from-custom-primary/50 to-custom-accent/20 hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
@@ -237,7 +235,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             </section>
         </section>
     </section>
-    <section class="my-fadeInFooter z-10">
+    <section class=" z-10">
         <?php include './components/footer.html'; ?>
     </section>
 </body>

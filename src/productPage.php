@@ -84,10 +84,10 @@ if ($customer_id == 0) {
                     <p class="text-black/80 mb-6"><?= nl2br(htmlspecialchars($product['product_desc'])); ?></p>
                 </div>
             </div>
-            <div class="w-[90%]">
-                <form id="addToCartForm" method="POST" action="./functions/addtocart.php" class="flex flex-col gap-6 w-full">
+            <div class="w-[90%] min-h-screen overflow-clip">
+                <form id="addToCartForm" method="POST" action="./functions/addtocart.php" class="relative flex flex-col gap-6 w-full z-10 ">
                     <?php if ($product['category_id'] < 5): ?>
-                        <div class="border rounded-2xl shadow-lg p-5">
+                        <div class="border rounded-2xl shadow-lg p-5 backdrop-blur-2xl ">
                             <h1 class=" font-bold mb-2 text-custom-text/80 ">Temperature</h1>
                             <hr class="dashed border-t border-dotted border-gray-400 p-2">
                             <div class="grid grid-cols-3 w-full items-center justify-center flex-wrap gap-2">
@@ -95,7 +95,7 @@ if ($customer_id == 0) {
                                 <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25    checked:border-custom-accent  checked:bg-custom-accent/85 checked:text-black" type="radio" name="temperature" value="Iced" aria-label="Iced">
                             </div>
                         </div>
-                        <div class="border rounded-2xl shadow-lg p-5">
+                        <div class="border rounded-2xl shadow-lg p-5 backdrop-blur-2xl">
                             <h1 class=" font-bold mb-2 text-custom-text/80">Milk</h1>
                             <hr class="dashed border-t border-dotted border-gray-400 p-2">
                             <div class="grid grid-cols-3 w-full items-center justify-center flex-wrap gap-2">
@@ -104,7 +104,7 @@ if ($customer_id == 0) {
                                 <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25   checked:border-custom-accent  checked:bg-custom-accent/85 checked:text-black" type="radio" name="milk_type" value="Coconut Milk" aria-label="Coconut Milk">
                             </div>
                         </div>
-                        <div class="border rounded-2xl shadow-lg p-5">
+                        <div class="border rounded-2xl shadow-lg p-5 backdrop-blur-2xl">
                             <h1 class=" font-bold mb-2 text-custom-text/80">Espresso Shots</h1>
                             <hr class="dashed border-t border-dotted border-gray-400 p-2">
                             <div class="grid grid-cols-3 w-full items-center justify-center flex-wrap gap-2">
@@ -113,7 +113,7 @@ if ($customer_id == 0) {
                                 <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25   checked:border-custom-accent  checked:bg-custom-accent/85 checked:text-black" type="radio" name="espresso_shots" value="BOSS" aria-label="BOSS">
                             </div>
                         </div>
-                        <div class="border rounded-2xl shadow-lg p-5">
+                        <div class="border rounded-2xl shadow-lg p-5 backdrop-blur-2xl">
                             <h1 class=" font-bold mb-2 text-custom-text/80">Sweetness</h1>
                             <hr class="dashed border-t border-dotted border-gray-400 p-2">
                             <div class="grid grid-cols-3 w-full items-center justify-center  flex-wrap gap-2">
@@ -122,7 +122,7 @@ if ($customer_id == 0) {
                                 <input class="btn min-w-[175px] shadow-none text-custom-text/75 bg-custom-accent/25    checked:border-custom-accent  checked:bg-custom-accent/85 checked:text-black" type="radio" name="sweetness" value="More Sweet" aria-label="More Sweet">
                             </div>
                         </div>
-                        <div class="border rounded-2xl shadow-lg p-5">
+                        <div class="border rounded-2xl shadow-lg p-5 backdrop-blur-2xl">
                             <h1 class=" font-bold mb-2 text-custom-text/80">Ice Level</h1>
                             <hr class="dashed border-t border-dotted border-gray-400 p-2">
                             <div class="grid grid-cols-3 w-full items-center justify-center  flex-wrap gap-2">
@@ -134,10 +134,12 @@ if ($customer_id == 0) {
                         <p class=" min-h-[40vh]"></p>
                     <?php endif; ?>
                 </form>
+                <!-- <img src="./image/coffee-shop.png" alt="" class="fixed left-[0%] bottom-[12%] w-[40%] opacity-80 z-0 brightness-80"> -->
+                <img src="./image/coffee-beans.png" alt="" class="fixed -right-[5%] -top-[5%] w-[20%] opacity-80 z-0 rotate-220">
             </div>
         </div>
     </section>
-    <section class=" w-full items-center justify-center flex flex-col fixed bottom-0 p-4 bg-custom-background shadow-2xl">
+    <section class=" w-full items-center justify-center flex flex-col fixed bottom-0 p-4 bg-custom-background shadow-2xl z-50">
         <div class="flex gap-4 w-[90%] max-w-2xl h-full justify-between items-end mb-4">
             <p class="text-2xl font-bold w-1/2 grow ">₱<?= number_format($product['price'], 2); ?></p>
             <div class="w-1/2 grow flex justify-end">

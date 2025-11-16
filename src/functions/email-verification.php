@@ -189,7 +189,7 @@ function sendVerification($email, $verificationCode, $firstName)
         $mail->isHTML(true);
         $mail->Subject = "Your HJJC Store Verification Code";
 
-        $imagePath = __DIR__ . '/../image/logo/logo.png';
+        $imagePath = __DIR__ . '/../image/logo/Coffee_Logo.png';
         $mail->addEmbeddedImage($imagePath, 'logo-hjjc');
 
         $pdfData = createWelcomePDF($firstName); 

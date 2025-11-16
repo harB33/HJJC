@@ -90,7 +90,7 @@ if ($cart_row) {
 $stmt_cart_id->close();
 
 $total = 0;
-$total_quantity = 0; // Initialize a new variable for total quantity
+$total_quantity = 0;
 $cart_items = [];
 
 while ($row = $result->fetch_assoc()) {
@@ -151,8 +151,9 @@ $_SESSION['total'] = $total;
                     </svg>
                     <?php if ($customer_address): ?>
                         <div class="flex flex-col font-extralight w-full">
-                            <p><?= htmlspecialchars($user); ?></p>
-                            <p class=" text-custom-text/50"><?= htmlspecialchars($customer_address['address_name']); ?>, <?= htmlspecialchars($customer_address['address_city']); ?>, <?= htmlspecialchars($customer_address['address_region']); ?>, <?= htmlspecialchars($customer_address['address_brgy']); ?>, <?= htmlspecialchars($customer_address['address_postal']); ?></p>
+                            <p class="text-custom-text"><?= htmlspecialchars($user); ?></p>
+                            <hr class="dashed border-t border-dotted border-gray-300">
+                            <p class=" text-custom-text/55"><?= htmlspecialchars($customer_address['address_name']); ?>, <?= htmlspecialchars($customer_address['address_city']); ?>, <?= htmlspecialchars($customer_address['address_region']); ?>, <?= htmlspecialchars($customer_address['address_brgy']); ?>, <?= htmlspecialchars($customer_address['address_postal']); ?></p>
                         </div>
                     <?php else: ?>
                         <div>
