@@ -1,6 +1,6 @@
 <?php
-include './db/sessionStart.php';
-
+require_once './db/sessionStart.php';
+require_once './functions/searchbar.php'
 ?>
 
 <head>
@@ -31,23 +31,29 @@ include './db/sessionStart.php';
                         <a href="./login.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105 duration-300">Login</a>
                     <?php endif; ?>
                 </div>
-                <label class="input rounded-full h-[70%] w-[180px] outline-0 border-custom-accent bg-custom-background">
-                    <svg
-                        class="h-[1em]  stroke-custom-accent"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24">
-                        <g
-                            stroke-linejoin="round"
-                            stroke-linecap="round"
-                            stroke-width="2.5"
-                            fill="none"
-                            stroke="">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.3-4.3"></path>
-                        </g>
-                    </svg>
-                    <input type="search" required placeholder="Explore..." />
-                </label>
+                <form action="./productPage.php" method="get">
+                    <label class="input rounded-full h-[70%] w-[180px] outline-0 border-custom-accent bg-custom-background">
+                        <svg
+                            class="h-[1em]  stroke-custom-accent"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <g
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+                        <input type="text" name="search" required placeholder="Explore..." 
+                            value="<?php echo htmlspecialchars($search_query ?? ''); ?>" />
+                            <?php if (!empty($search_query)): ?>
+                                <a href="index.php">X</a>
+                            <?php endif; ?>
+                    </label>
+                </form>
                 <div class="drawer drawer-end w-fit md:hidden">
                     <input id="my-drawer-5" type="checkbox" class="drawer-toggle" />
                     <div class="drawer-content">
