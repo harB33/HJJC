@@ -15,12 +15,12 @@ require_once './functions/searchbar.php'
 
 <body data-theme="light" class="backdrop-blur-lg ">
     <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center lg:px-5 lg:py-2 max-lg:px-2.5 max-lg:py-0.5  bg-custom-background backdrop-blur-sm">
-        <div class="flex justify-between w-full">
+        <div class="grid md:grid-cols-3 max-lg:grid-cols-2 items-center w-full max-sm:pr-6">
             <a href="./index.php" class="">
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="max-lg:h-12 lg:h-16 object-contain" />
             </a>
-            <div class="flex items-center gap-2 w-full justify-end md:justify-center">
-                <div class="grow items-center flex justify-center gap-20 max-md:hidden">
+            <!-- <div class="flex items-center gap-2 w-full justify-end md:justify-center"> -->
+                <div class="grow items-center flex justify-center md:gap-4 lg:gap-12 max-md:hidden text-nowrap">
                     <a href="./index.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Home</a>
                     <a href="./home.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Place Order</a>
                     <a href="./cart.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Cart</a>
@@ -31,27 +31,28 @@ require_once './functions/searchbar.php'
                         <a href="./login.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105 duration-300">Login</a>
                     <?php endif; ?>
                 </div>
-                <form action="./productPage.php" method="get" class="h-[70%]">
-                    <label class="input rounded-full h-full max-w-[200px] outline-0 border-custom-accent bg-custom-background">
-                        <svg
+                <div class="h-full w-full flex items-center justify-end">
+                    <form action="./productPage.php" method="get" class="h-[75%] w-full">
+                        <label class="input rounded-full float-right h-full w-[50%] max-md:min-w-[200px] max-w-[250px] outline-0 border-custom-accent bg-custom-background">
+                            <svg
                             class="h-[1em]  stroke-custom-accent"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24">
                             <g
-                                stroke-linejoin="round"
-                                stroke-linecap="round"
-                                stroke-width="2.5"
-                                fill="none"
-                                stroke="">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <path d="m21 21-4.3-4.3"></path>
-                            </g>
-                        </svg>
-                        <input type="text" name="search" required placeholder="Explore..." 
-                            value="<?php echo htmlspecialchars($search_query ?? ''); ?>" />
-                            <?php if (!empty($search_query)): ?>
-                                <a href="index.php"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x h-[1em]"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></a>
-                            <?php endif; ?>
+                            stroke-linejoin="round"
+                            stroke-linecap="round"
+                            stroke-width="2.5"
+                            fill="none"
+                            stroke="">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </g>
+                    </svg>
+                    <input type="text" name="search" required placeholder="Explore..." 
+                    value="<?php echo htmlspecialchars($search_query ?? ''); ?>" />
+                    <?php if (!empty($search_query)): ?>
+                        <a href="index.php"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x h-[1em]"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></a>
+                        <?php endif; ?>
                     </label>
                 </form>
                 <div class="drawer drawer-end w-fit md:hidden">
@@ -78,9 +79,9 @@ require_once './functions/searchbar.php'
                                     ?>
                                 </h2>
                                 <ul>
-                                    <li><a href="./home.php">Place Order</a></li>
-                                    <li><a href="./cart.php">Cart</a></li>
-                                    <li><a href="./orders.php">Orders</a></li>
+                                    <li><a href="./home.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-house-icon lucide-map-pin-house"><path d="M15 22a1 1 0 0 1-1-1v-4a1 1 0 0 1 .445-.832l3-2a1 1 0 0 1 1.11 0l3 2A1 1 0 0 1 22 17v4a1 1 0 0 1-1 1z"/><path d="M18 10a8 8 0 0 0-16 0c0 4.993 5.539 10.193 7.399 11.799a1 1 0 0 0 .601.2"/><path d="M18 22v-3"/><circle cx="10" cy="10" r="3"/></svg>Place Order</a></li>
+                                    <li><a href="./cart.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag-icon lucide-shopping-bag"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>Cart</a></li>
+                                    <li><a href="./orders.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck-icon lucide-truck"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>Orders</a></li>
                                 </ul>
                             </li>
                             <?php
@@ -106,6 +107,7 @@ require_once './functions/searchbar.php'
                             ?>
                         </ul>
                     </div>
+                </div>
                 </div>
                 <?php
                 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == True) {
@@ -174,7 +176,7 @@ require_once './functions/searchbar.php'
                     ';
                 }
                 ?>
-            </div>
+            <!-- </div> -->
         </div>
     </header>
 </body>
