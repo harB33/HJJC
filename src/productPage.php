@@ -115,7 +115,7 @@ if ($id > 0 && $is_search_results === false) {
     
     <section class="w-full min-h-screen justify-center  flex max-lg:pt-20 lg:pt-30 pb-40 bg-custom-background relative">
         <div class="fixed max-lg:top-[6%] max-lg:left-[4%] lg:top-[10%] lg:left-[8%] z-40 ">
-            <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent border-none">
+            <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent/20 border-custom-accent border hover:bg-custom-accent duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
                     <path d="m12 19-7-7 7-7" />
                     <path d="M19 12H5" />
@@ -163,7 +163,7 @@ if ($id > 0 && $is_search_results === false) {
     
     <section class=" w-full min-h-screen justify-center items-center flex max-lg:pt-20 lg:pt-30 pb-40 bg-custom-background relative">
         <div class="fixed max-lg:top-[6%] max-lg:left-[4%] lg:top-[10%] lg:left-[8%] z-40 ">
-            <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent border-none">
+            <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent/20 border-custom-accent border hover:bg-custom-accent duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
                     <path d="m12 19-7-7 7-7" />
                     <path d="M19 12H5" />
@@ -172,7 +172,7 @@ if ($id > 0 && $is_search_results === false) {
         </div>
         <div class="flex flex-col gap-10 w-[90%] max-w-2xl justify-center items-center">
             <div class=" w-full justify-center flex gap-4 ">
-                <img src="image/products/<?= htmlspecialchars($product['product_img']); ?>" class="w-[50%] max-w-[200px] object-contain h-fit rounded-2xl skeleton " alt="<?= htmlspecialchars($product['product_name']); ?>" />
+                <img src="image/products/<?= htmlspecialchars($product['product_img']); ?>" class="w-[50%] max-w-[300px] object-contain h-fit rounded-2xl skeleton " alt="<?= htmlspecialchars($product['product_name']); ?>" />
             </div>
             <div class="w-[90%]">
                 <div class=" w-full items-center flex flex-col text-center ">
@@ -270,7 +270,7 @@ if ($id > 0 && $is_search_results === false) {
             <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
                 <form method="POST" action="./functions/buynow.php" class="grow w-1/2">
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
-                    <button type="submit" class="btn btn-lg border-custom-accent bg-custom-background text-custom-accent w-full rounded-full text-sm">Buy Now</button>
+                    <button type="submit" class="btn btn-lg border-custom-accent bg-custom-accent/20 text-custom-accent w-full rounded-full text-sm">Buy Now</button>
                 </form>
                 <div class="grow w-1/2">
                     <input type="hidden" form="addToCartForm" name="product_id" value="<?= $product['product_id'] ?>">

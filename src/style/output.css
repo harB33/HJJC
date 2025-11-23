@@ -6118,6 +6118,21 @@
   .max-w-5xl {
     max-width: var(--container-5xl);
   }
+  .max-w-\[2px\] {
+    max-width: 2px;
+  }
+  .max-w-\[3px\] {
+    max-width: 3px;
+  }
+  .max-w-\[22px\] {
+    max-width: 22px;
+  }
+  .max-w-\[25px\] {
+    max-width: 25px;
+  }
+  .max-w-\[30px\] {
+    max-width: 30px;
+  }
   .max-w-\[120px\] {
     max-width: 120px;
   }
@@ -6126,6 +6141,18 @@
   }
   .max-w-\[200px\] {
     max-width: 200px;
+  }
+  .max-w-\[225px\] {
+    max-width: 225px;
+  }
+  .max-w-\[250px\] {
+    max-width: 250px;
+  }
+  .max-w-\[300px\] {
+    max-width: 300px;
+  }
+  .max-w-\[px\] {
+    max-width: px;
   }
   .max-w-lg {
     max-width: var(--container-lg);
@@ -6552,6 +6579,30 @@
   }
   .bg-custom-accent {
     background-color: var(--color-custom-accent);
+  }
+  .bg-custom-accent\/0 {
+    background-color: color-mix(in srgb, #e69c4d 0%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-custom-accent) 0%, transparent);
+    }
+  }
+  .bg-custom-accent\/1 {
+    background-color: color-mix(in srgb, #e69c4d 1%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-custom-accent) 1%, transparent);
+    }
+  }
+  .bg-custom-accent\/2 {
+    background-color: color-mix(in srgb, #e69c4d 2%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-custom-accent) 2%, transparent);
+    }
+  }
+  .bg-custom-accent\/10 {
+    background-color: color-mix(in srgb, #e69c4d 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-custom-accent) 10%, transparent);
+    }
   }
   .bg-custom-accent\/15 {
     background-color: color-mix(in srgb, #e69c4d 15%, transparent);
@@ -7394,6 +7445,13 @@
     &:hover {
       @media (hover: hover) {
         border-color: var(--color-green-900);
+      }
+    }
+  }
+  .hover\:bg-custom-accent {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-custom-accent);
       }
     }
   }
