@@ -177,7 +177,7 @@ if ($id > 0 && $is_search_results === false) {
             <div class="w-[90%]">
                 <div class=" w-full items-center flex flex-col text-center ">
                     <h1 class="text-2xl font-bold pb-3 text-custom-accent bg-custom-background w-full"><?= htmlspecialchars($product['product_name']); ?></h1>
-                    <p class="text-black/80 mb-6"><?= nl2br(htmlspecialchars($product['product_desc'])); ?></p>
+                    <p class="text-black/80  mb-6"><?= nl2br(htmlspecialchars($product['product_desc'])); ?></p>
                 </div>
             </div>
             <div class="w-[90%]">
