@@ -16,45 +16,73 @@ require_once './functions/searchbar.php'
 <body data-theme="light" class="backdrop-blur-lg ">
     <header class="shadow fixed top-0 w-screen flex justify-center z-50 items-center lg:px-5 lg:py-2 max-lg:px-2.5 max-lg:py-0.5  bg-custom-background backdrop-blur-sm">
         <div class="grid md:grid-cols-3 max-lg:grid-cols-2 items-center w-full max-sm:pr-6">
-            <a href="./index.php" class="">
+            <a href="./index.php" class="w-fit">
                 <img src="./image/logo/Coffee_Logo.png" alt="logo" class="max-lg:h-12 lg:h-16 object-contain" />
             </a>
             <!-- <div class="flex items-center gap-2 w-full justify-end md:justify-center"> -->
                 <div class="grow items-center flex justify-center md:gap-4 lg:gap-12 max-md:hidden text-nowrap">
-                    <a href="./index.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Home</a>
-                    <a href="./home.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Place Order</a>
-                    <a href="./cart.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Cart</a>
-                    <a href="./orders.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Orders</a>
-                    <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === True): ?>
+                    <a href="./index.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300 hover:border-dashed hover:border-b not-hover:border-gray-300 hover:border-custom-accent border-b">Home</a>
+                    <a href="./home.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300 hover:border-dashed hover:border-b not-hover:border-gray-300 hover:border-custom-accent border-b">Place Order</a>
+                    <a href="./cart.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300 hover:border-dashed hover:border-b not-hover:border-gray-300 hover:border-custom-accent border-b">Cart</a>
+                    <a href="./orders.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300 hover:border-dashed hover:border-b not-hover:border-gray-300 hover:border-custom-accent border-b">Orders</a>
+                    <!-- <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === True): ?>
                         <a href="./functions/logout.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105 duration-300">Logout</a>
                     <?php else: ?>
                         <a href="./login.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105 duration-300">Login</a>
-                    <?php endif; ?>
+                    <?php endif; ?> -->
                 </div>
                 <div class="h-full w-full flex items-center justify-end">
                     <form action="./productPage.php" method="get" class="h-[75%] w-full">
                         <label class="input rounded-full float-right h-full w-[50%] max-md:min-w-[200px] max-w-[250px] outline-0 border-custom-accent bg-custom-background">
                             <svg
-                            class="h-[1em]  stroke-custom-accent"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24">
+                                class="h-[1em]  stroke-custom-accent"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24">
                             <g
-                            stroke-linejoin="round"
-                            stroke-linecap="round"
-                            stroke-width="2.5"
-                            fill="none"
-                            stroke="">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.3-4.3"></path>
-                        </g>
-                    </svg>
-                    <input type="text" name="search" required placeholder="Explore..." 
-                    value="<?php echo htmlspecialchars($search_query ?? ''); ?>" />
-                    <?php if (!empty($search_query)): ?>
-                        <a href="index.php"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x h-[1em]"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></a>
-                        <?php endif; ?>
-                    </label>
-                </form>
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+                        <input type="text" name="search" required placeholder="Explore..." 
+                        value="<?php echo htmlspecialchars($search_query ?? ''); ?>" />
+                        <?php if (!empty($search_query)): ?>
+                            <a href="index.php"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x h-[1em]"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></a>
+                            <?php endif; ?>
+                        </label>
+                    </form>
+                    <div class="dropdown dropdown-end group max-md:hidden">
+                        <div tabindex="0" role="button" class=" m-1 group:"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round h-[2em] group-hover:stroke-amber-600 duration-150 cursor-pointer "><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></div>
+                        <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                        <?php
+                            if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == True) {
+                                echo $_SESSION['customer_user'];
+                                echo '
+                                    <li class=" duration-300">
+                                        <a href="./functions/logout.php" class=" shadow-custom-primary outline-none border-none flex items-center w-full mt-2 bg-custom-accent">
+                                            <div class="opacity-65"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in-icon lucide-log-in"><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></div>
+                                            <div class="font-bold text-lg opacity-65">LOGOUT</div>
+                                        </a>
+                                    </li>
+                                ';
+                            } else {
+                                echo 'Guest';
+                                echo '
+                                    <li class="duration-300">
+                                        <a href="./login.php" class=" shadow-custom-primary outline-none border-none flex items-center w-full mt-2 bg-custom-accent">
+                                            <div class="opacity-65"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in-icon lucide-log-in"><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></div>
+                                            <div class="font-bold text-lg opacity-65">LOGIN</div>
+                                        </a>
+                                    </li>
+                                ';
+                            }
+                            ?>
+                        </ul>
+                    </div>
                 <div class="drawer drawer-end w-fit md:hidden">
                     <input id="my-drawer-5" type="checkbox" class="drawer-toggle" />
                     <div class="drawer-content">
@@ -73,6 +101,8 @@ require_once './functions/searchbar.php'
                                     include './db/db.php';
                                     if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == True) {
                                         echo $_SESSION['customer_user'];
+                                        echo '
+                                        ';
                                     } else {
                                         echo 'Guest';
                                     }

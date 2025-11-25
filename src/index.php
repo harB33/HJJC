@@ -42,7 +42,7 @@
             <div class="flex flex-col justify-center items-start w-2/3 max-md:text-center">
                 <h1 class="font-giaza font-black max-lg:text-3xl lg:text-5xl mb-6">The <span class="">Standard</span> Has Arrived.</h1>
                 <p class=" font-light text-md mb-2 lg:text-2xl">HJJC is proud to introduce an unparalleled coffee experience to the Philippines. We are defined by a relentless pursuit of perfection. Our baristas transform the world's finest ingredients into exquisite beverages that stimulate the senses and redefine your expectations.</p>
-                <p class=" font-noarmal text-md lg:text-2xl ">Explore the new <span class="font-giaza capitalize font-black">pinnacle of taste.</span></p>
+                <p class=" font-light text-md lg:text-2xl ">Explore the new <span class=" text-black/80 font-giaza capitalize font-black border-b border-gray-400 pb-1 lg:text-3xl">pinnacle of taste.</span></p>
             </div>
         </section>
         <section class="flex flex-col min-h-screen w-full items-center z-10 pt-20 third-section bg-custom-secondary/20">
@@ -100,7 +100,10 @@
                     </div>
                 </div>
                 <div class="mb-10 max-md:hidden flex justify-center items-center w-full group">
-                    <a href="./home.php" class=" group-hover:underline underline-offset-4 duration-300 transition-colors flex items-center justify-center gap-2 group group-hover:text-custom-accent">Explore<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-icon lucide-coffee group-hover:stroke-[#e69c4d] duration-300 transition-colors"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg></a>
+                    <div class="flex items-center justify-center gap-2 hover:text-custom-accent active:text-custom-accent hover:border-dashed hover:border-b not-hover:border-gray-300 hover:border-custom-accent border-b">
+                        <a href="./home.php" class=" duration-300 transition-colors flex items-center justify-center group hover:text-custom-accent">Explore</a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-icon lucide-coffee group-hover:stroke-[#e69c4d] duration-300 transition-colors"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg>
+                    </div>
                 </div>
             </div>
             <div class="w-full mt-auto z-10 block leading-none">

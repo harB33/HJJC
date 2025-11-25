@@ -122,7 +122,7 @@ if ($id > 0 && $is_search_results === false) {
                 </svg>
             </a>
         </div>
-        <div class="flex flex-col gap-2.5 w-[90%] max-w-2xl">
+        <div class="flex flex-col gap-2.5 w-[90%] lg:max-w-6xl">
             <h1 class="text-3xl font-bold text-custom-accent">
                 <?php if (count($search_results) > 0): ?>
                     Found <?= count($search_results); ?> Item(s)
@@ -135,14 +135,14 @@ if ($id > 0 && $is_search_results === false) {
             <?php if (empty($search_results)): ?>
                 <p class="text-xl text-red-500">Please try a different search term.</p>
             <?php else: ?>
-                <div class="pt-10 flex flex-col gap-4">
+                <div class="pt-10 grid grid-cols-2 gap-8 p-8 rounded-2xl bg-custom-accent shadow-2xl">
                 <?php foreach ($search_results as $result_product): ?>
                     <a href="productPage.php?id=<?= $result_product['product_id']; ?>" 
-                        class="flex gap-4 p-2 border-custom-accent border rounded-xl shadow-lg hover:bg-custom-accent/25 transition duration-300">
+                        class="flex gap-4 p-2 bg-custom-secondary max-h-[6lh] border-custom-accent border rounded-xl shadow-lg hover:bg-custom-background transition duration-300">
                         <img src="image/products/<?= $result_product['product_img']; ?>" 
-                            class=" h-full max-w-[120px] object-cover rounded-lg" 
+                            class=" max-h-[120px] max-w-[120px] object-cover rounded-lg" 
                             alt="<?= htmlspecialchars($result_product['product_name']); ?>" />
-                        <div class="flex w-full flex-col">
+                        <div class="flex w-full flex-col  overflow-hidden max-h-[5lh]">
                             <div class="w-full flex items-center justify-between">
                                 <h2 class="font-bold text-lg text-black/75"><?= htmlspecialchars($result_product['product_name']); ?></h2>
                                 <p class="text-md font-bold text-black/80">₱<?= number_format($result_product['price'], 2); ?></p>
