@@ -73,7 +73,7 @@
                 <div class="md:p-4 max-md:p-2 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl relative w-full h-max transition-transform duration-200 hover:scale-[1.03]">
                     <img src="./image/products/product_6912e8c629d923.48374687.png" alt="Caramel Machiato" class="rounded-2xl opacity-0 block w-full" id="target-frappe">
                         <div class="w-full text-center mt-4">
-                            <p class="font-bold text-custom-text leading-none">Caramel Machiato</p>
+                            <p class="font-bold text-custom-text ">Caramel Machiato</p>
                         </div>
                     </div>
                 </a>
@@ -107,8 +107,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-10 max-md:hidden flex justify-center items-center w-full group">
-                    <div class="flex items-center justify-center gap-2 hover:text-custom-accent active:text-custom-accent hover:border-dashed hover:border-b not-hover:border-gray-300 hover:border-custom-accent border-b">
+                <div class="mb-10 max-md:hidden flex justify-center items-center w-full group -translate-y-20">
+                    <div class="flex items-center justify-center gap-2 hover:text-custom-accent active:text-custom-accent hover:border-dashed hover:border-b not-hover:border-gray-300 hover:border-custom-accent border-b group">
                         <a href="./home.php" class=" duration-300 transition-colors flex items-center justify-center group hover:text-custom-accent">Explore</a>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-icon lucide-coffee group-hover:stroke-[#e69c4d] duration-300 transition-colors"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg>
                     </div>
