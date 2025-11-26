@@ -166,7 +166,7 @@ function userAndEmailAlert()
                     <span>Successfullly Created an Account</span>
                     </div>';
             session_destroy();
-            header('Location: ./index.php');
+            header('Location: ./login.php');
         } else {
             $alertMsg .= '
                     <div role="alert" class="alert alert-success">
@@ -230,7 +230,7 @@ $conn->close();
                         type="text"
                         placeholder="Username"
                         pattern="[A-Za-z][A-Za-z0-9\-]*"
-                        minlength="5"
+                        minlength="3"
                         maxlength="30"
                         title="Only letters, numbers or dash"
                         name="user" 
@@ -331,7 +331,7 @@ $conn->close();
                             placeholder="First Name"
                             pattern="[A-Za-z\-]+( [A-Za-z\-]+)*"
                             maxlength="30"
-                            title="Only letters and single spaces between words"
+                            title="Type your First name and must contain only letters and single spaces between words"
                             name="first_name" 
                             oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')"
                             required />
@@ -355,7 +355,7 @@ $conn->close();
                             placeholder="Last Name"
                             pattern="[A-Za-z\-]+( [A-Za-z\-]+)*"
                             maxlength="30"
-                            title="Only letters"
+                            title="Type your Last name and must contain only letters and single spaces between words"
                             name="last_name"
                             oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')"
                             required />
@@ -379,10 +379,9 @@ $conn->close();
                             placeholder="Middle Name"
                             pattern="[A-Za-z\-]+( [A-Za-z\-]+)*"
                             maxlength="30"
-                            title="Only letters"
+                            title="Type your Middle name and must contain only letters and single spaces between words"
                             name="middle_name" 
-                            oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')"
-                            required />
+                            oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')" />
                     </label>
                 <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                     <span class="left-8 text-lg bg-custom-background">Email</span>
@@ -397,7 +396,11 @@ $conn->close();
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                         </g>
                     </svg>
-                    <input type="email" class=" text-sm bg-custom-background" name="email" placeholder="mail@site.com" required />
+                    <input type="email" class=" text-sm bg-custom-background" 
+                    name="email" 
+                    placeholder="mail@site.com" 
+                    title="Type your VALID Email Account" 
+                    required />
                 </label>
                 <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                     <span class="left-8 text-lg bg-custom-background">Phone Number</span>
@@ -413,7 +416,10 @@ $conn->close();
                                 fill="currentColor"></path>
                         </g>
                     </svg>
-                    <input type="tel" name="phone" class=" text-sm bg-custom-background" placeholder="0900-000-0000" required />
+                    <input type="tel" name="phone" class=" text-sm bg-custom-background" 
+                    placeholder="0900-000-0000" 
+                    title="Type your VALID Phone number"
+                    required />
                 </label>
                 <input type="submit" class="btn rounded-full bg-custom-accent w-full btn-lg  border text-[20px]" name="register" value="REGISTER">
                 ';
