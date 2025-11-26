@@ -228,13 +228,13 @@ $conn->close();
                     <input
                         class=" text-sm"
                         type="text"
-                        required
                         placeholder="Username"
                         pattern="[A-Za-z][A-Za-z0-9\-]*"
-                        minlength="3"
+                        minlength="5"
                         maxlength="30"
                         title="Only letters, numbers or dash"
-                        name="user" />
+                        name="user" 
+                        required />
                 </label>
                 <div class="flex max-sm:flex-col gap-2 max-lg:gap4 w-full ">
                 <label class="group input validator input-lg rounded-full w-full floating-label bg-custom-background">
@@ -249,13 +249,13 @@ $conn->close();
                     class=" text-sm bg-custom-background"
                     id="passwordInput"
                     type="password"
-                    required
                     placeholder="Password"
                     minlength="8"
                     pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                     oninput="checkPasswordStrength()"
-                    name="pass" />
+                    name="pass" 
+                    required />
                 <label class="swap opacity-0 pointer-events-none transition-opacity duration-300 group-focus-within:opacity-100 group-focus-within:pointer-events-auto" id="toggleLabel">
                     <input type="checkbox" id="toggleCheckbox"  tabindex="-1"/>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off swap-off">
@@ -283,12 +283,12 @@ $conn->close();
                     class=" text-sm bg-custom-background"
                     id="confirmPasswordInput"
                     type="password"
-                    required
                     placeholder="Confirm Password"
                     minlength="8"
                     pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                    title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
-                    name="confirmPass" />
+                    title="Must be the same as the Password you created"
+                    name="confirmPass" 
+                    required />
                 
                     <label class="swap opacity-0 pointer-events-none transition-opacity duration-300 group-focus-within:opacity-100 group-focus-within:pointer-events-auto" id="confirmToggleLabel">
                     <input type="checkbox" id="confirmToggleCheckbox"  tabindex="-1"/>
@@ -329,13 +329,13 @@ $conn->close();
                         <input
                             class=" text-sm bg-custom-background"
                             type="text"
-                            required
                             placeholder="First Name"
-                            pattern="[A-Za-z]+( [A-Za-z]+)*"
-                            minlength="3"
+                            pattern="[A-Za-z\-]+( [A-Za-z\-]+)*"
                             maxlength="30"
                             title="Only letters and single spaces between words"
-                            name="first_name" />
+                            name="first_name" 
+                            oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')"
+                            required />
                     </label>
                     <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                         <span class="left-8 text-lg bg-custom-background">Last Name</span>
@@ -353,13 +353,13 @@ $conn->close();
                         <input
                             class=" text-sm bg-custom-background"
                             type="text"
-                            required
                             placeholder="Last Name"
-                            pattern="[A-Za-z]*"
-                            minlength="3"
+                            pattern="[A-Za-z\-]+( [A-Za-z\-]+)*"
                             maxlength="30"
                             title="Only letters"
-                            name="last_name" />
+                            name="last_name"
+                            oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')"
+                            required />
                     </label>
                     <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                         <span class="left-8 text-lg bg-custom-background">Middle Name</span>
@@ -378,11 +378,12 @@ $conn->close();
                             class=" text-sm bg-custom-background"
                             type="text"
                             placeholder="Middle Name"
-                            pattern="[A-Za-z]*"
-                            minlength="3"
+                            pattern="[A-Za-z\-]+( [A-Za-z\-]+)*"
                             maxlength="30"
                             title="Only letters"
-                            name="middle_name" />
+                            name="middle_name" 
+                            oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')"
+                            required />
                     </label>
                 <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                     <span class="left-8 text-lg bg-custom-background">Email</span>
@@ -415,7 +416,7 @@ $conn->close();
                     </svg>
                     <input type="tel" name="phone" class=" text-sm bg-custom-background" placeholder="0900-000-0000" required />
                 </label>
-                <input type="submit" class="btn rounded-full bg-custom-accent w-full btn-lg  border text-[20px]" name="register" value="REGISTER" disabled>
+                <input type="submit" class="btn rounded-full bg-custom-accent w-full btn-lg  border text-[20px]" name="register" value="REGISTER">
                 ';
                 } else {
                     echo '
