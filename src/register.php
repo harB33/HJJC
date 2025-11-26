@@ -445,6 +445,7 @@ $conn->close();
                         name="code" />
                 </label>
                 <input type="submit" class="btn rounded-full bg-custom-accent w-3/4 btn-lg  border text-[20px]" name="verify" value="VERIFY">
+                <a href="./register.php" class="hover:underline text-sm">Register? Login</a>
                     ';
                 }
                 ?>
