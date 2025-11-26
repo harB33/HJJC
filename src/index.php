@@ -51,48 +51,56 @@
                     <h1 class="font-giaza font-black max-lg:text-2xl mb-6 lg:text-5xl">A Brew to Define Your Day.</h1>
                 </div>
                 <div class="grid grid-cols-5 max-md:grid-cols-2 gap-4 w-4/5 justify-center mb-20 ">
-                    <div class="md:p-4 max-md:p-2 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl w-full h-max max-md:hidden">
-                        <img src="./image/products/product_691187dfa0ee02.31544433.png" alt="" class="rounded-2xl block w-full">
-                        <div class="flex w-full justify-between mt-4">
-                            <p class="font-bold">Affogato</p>
-                            <p class="font-black">₱150</p>
+                <a href="./productPage.php?id=6" class="block max-md:hidden"> 
+                <div class="md:p-4 max-md:p-2 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl w-full h-max transition-transform duration-200 hover:scale-[1.03]">
+                    <img src="./image/products/product_691187dfa0ee02.31544433.png" alt="Affogato" class="rounded-2xl block w-full">
+                    <div class="w-full text-center mt-4">
+                        <p class="font-bold">Affogato</p>
+                    </div>
+                </div>
+                </a>
+            
+                <a href="./productPage.php?id=13" class="block max-md:hidden"> 
+                <div class="md:p-4 max-md:p-2 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl w-full h-max transition-transform duration-200 hover:scale-[1.03]">
+                    <img src="./image/products/product_6912a71fd0f991.79603885.png" alt="Affogato" class="rounded-2xl block w-full">
+                        <div class="w-full text-center mt-4">
+                        <p class="font-bold">Cafe Con Leche</p>
+                    </div>
+                </div>
+                </a>
+                    
+                <a href="./productPage.php?id=19" class="block max-md:hidden">
+                <div class="md:p-4 max-md:p-2 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl relative w-full h-max transition-transform duration-200 hover:scale-[1.03]">
+                    <img src="./image/products/product_6912e8c629d923.48374687.png" alt="Caramel Machiato" class="rounded-2xl opacity-0 block w-full" id="target-frappe">
+                        <div class="w-full text-center mt-4">
+                            <p class="font-bold text-custom-text leading-none">Caramel Machiato</p>
                         </div>
                     </div>
-                    <div class="md:p-4 max-md:p-2 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl w-full h-max">
-                        <img src="./image/products/product_691187dfa0ee02.31544433.png" alt="" class="rounded-2xl block w-full">
-                        <div class="flex w-full justify-between mt-4">
-                            <p class="font-bold">Affogato</p>
-                            <p class="font-black">₱150</p>
+                </a>
+                    
+                <a href="./productPage.php?id=24" class="block max-md:hidden"> 
+                <div class="md:p-4 max-md:p-2 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl w-full h-max transition-transform duration-200 hover:scale-[1.03]">
+                    <img src="./image/products/product_6912eb53df78c0.43482256.png" alt="Affogato" class="rounded-2xl block w-full">
+                        <div class="w-full text-center mt-4">
+                            <p class="font-bold">Dalgona Coffee</p>
+                    </div>
+                </div>
+                </a>
+                    
+                <a href="./productPage.php?id=43" class="block max-md:hidden"> 
+                <div class="md:p-4 max-md:p-2 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl w-full h-max transition-transform duration-200 hover:scale-[1.03]">
+                    <img src="./image/products/product_6912f996db90d3.06894647.png" alt="Affogato" class="rounded-2xl block w-full">
+                        <div class="w-full text-center mt-4">
+                            <p class="font-bold">Mocha</p>
                         </div>
                     </div>
-                    <div class="md:p-4 max-md:p-2 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl w-full h-max md:hidden">
-                        <img src="./image/products/product_691187dfa0ee02.31544433.png" alt="" class="rounded-2xl block w-full">
-                        <div class="flex w-full justify-between mt-4">
-                            <p class="font-bold">Affogato</p>
-                            <p class="font-black">₱150</p>
+                </a>
+                    <div class="md:p-4 max-md:p-2 border border-custom-accent rounded-2xl w-full group md:hidden">
+                        <div class="mb-10 flex justify-center items-center h-full group-hover:scale-105 duration-300">
+                            <a href="./home.php" class=" font-black group-hover:text-custom-accent">EXPLORE</a>
                         </div>
                     </div>
-                    <div class="md:p-4 max-md:p-2 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl relative w-full h-max max-md:hidden">
-                        <img src="./image/products/product_6912e8c629d923.48374687.png" alt="" class="rounded-2xl opacity-0 block w-full" id="target-frappe">
-                        <div class="flex w-full items-center justify-between mt-4">
-                            <p class=" font-bold text-custom-text leading-none">Caramel Machiato</p>
-                            <p class="text-black/80 font-black float-right">₱150</p>
-                        </div>
-                    </div>
-                    <div class="md:p-4 max-md:p-2 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl w-full h-max">
-                        <img src="./image/products/product_691187dfa0ee02.31544433.png" alt="" class="rounded-2xl block w-full">
-                        <div class="flex w-full justify-between mt-4">
-                            <p class="font-bold">Affogato</p>
-                            <p class="font-black">₱150</p>
-                        </div>
-                    </div>
-                    <div class="md:p-4 max-md:p-2 bg-linear-to-br from-custom-primary/50 to-custom-accent/20 rounded-2xl w-full h-max max-md:hidden">
-                        <img src="./image/products/product_691187dfa0ee02.31544433.png" alt="" class="rounded-2xl block w-full">
-                        <div class="flex w-full justify-between mt-4">
-                            <p class="font-bold">Affogato</p>
-                            <p class="font-black">₱150</p>
-                        </div>
-                    </div>
+                </div>
                     <div class="md:p-4 max-md:p-2 border border-custom-accent rounded-2xl w-full group md:hidden">
                         <div class="mb-10 flex justify-center items-center h-full group-hover:scale-105 duration-300">
                             <a href="./home.php" class=" font-black group-hover:text-custom-accent">EXPLORE</a>
@@ -117,5 +125,4 @@
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
     <script src="./script/scrollAnimation.js"></script>
 </body>
-
 </html>
