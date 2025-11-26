@@ -270,14 +270,7 @@ $conn->close();
                     </svg>
                     </label>
                 </label>
-                <div id="strengthContainer" class="w-full px-4 hidden flex-col gap-1 transition-all duration-300">
-                <div class="flex justify-between items-center text-xs">
-                    <span>Strength:</span>
-                    <span id="strengthText" class="font-bold uppercase">Weak</span>
-                </div>
-                    <progress id="strengthBar" class="progress w-full h-2" value="0" max="100"></progress>
-                    <p class="text-[10px] text-gray-500 mt-1" id="strengthMessage">Use 8+ chars, upper & lowercase, and numbers.</p>
-                </div>
+                
                 <label class="group input validator input-lg rounded-full w-full floating-label bg-custom-background">
                     <span class="left-8 text-lg bg-custom-background">Confirm Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -311,6 +304,14 @@ $conn->close();
                     </svg>
                     </label>
                 </label>
+                </div>
+                <div id="strengthContainer" class="w-full px-4 hidden flex-col gap-1 transition-all duration-300">
+                <div class="flex justify-between items-center text-xs">
+                    <span>Strength:</span>
+                    <span id="strengthText" class="font-bold uppercase">Weak</span>
+                </div>
+                    <progress id="strengthBar" class="progress w-full h-2" value="0" max="100"></progress>
+                    <p class="text-[10px] text-gray-500 mt-1" id="strengthMessage">Use 8+ chars, upper & lowercase, and numbers.</p>
                 </div>
                     <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                         <span class="left-8 text-lg bg-custom-background">First Name</span>
