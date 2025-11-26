@@ -198,6 +198,7 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style/output.css" />
     <script src="./script/script.js" defer></script>
+    <script src="./script/passStrong.js"></script>
 </head>
 
 <body>
@@ -253,6 +254,7 @@ $conn->close();
                     minlength="8"
                     pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                    oninput="checkPasswordStrength()"
                     name="pass" />
                 <label class="swap opacity-0 pointer-events-none transition-opacity duration-300 group-focus-within:opacity-100 group-focus-within:pointer-events-auto" id="toggleLabel">
                     <input type="checkbox" id="toggleCheckbox"  tabindex="-1"/>
@@ -268,6 +270,14 @@ $conn->close();
                     </svg>
                     </label>
                 </label>
+                <div id="strengthContainer" class="w-full px-4 hidden flex-col gap-1 transition-all duration-300">
+                <div class="flex justify-between items-center text-xs">
+                    <span>Strength:</span>
+                    <span id="strengthText" class="font-bold uppercase">Weak</span>
+                </div>
+                    <progress id="strengthBar" class="progress w-full h-2" value="0" max="100"></progress>
+                    <p class="text-[10px] text-gray-500 mt-1" id="strengthMessage">Use 8+ chars, upper & lowercase, and numbers.</p>
+                </div>
                 <label class="group input validator input-lg rounded-full w-full floating-label bg-custom-background">
                     <span class="left-8 text-lg bg-custom-background">Confirm Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -404,7 +414,7 @@ $conn->close();
                     </svg>
                     <input type="tel" name="phone" class=" text-sm bg-custom-background" placeholder="0900-000-0000" required />
                 </label>
-                <input type="submit" class="btn rounded-full bg-custom-accent w-full btn-lg  border text-[20px]" name="register" value="REGISTER">
+                <input type="submit" class="btn rounded-full bg-custom-accent w-full btn-lg  border text-[20px]" name="register" value="REGISTER" disabled>
                 ';
                 } else {
                     echo '
@@ -446,6 +456,8 @@ $conn->close();
         </div>
     </div>
     </div>
+
+    
 </body>
 
 </html>
