@@ -166,7 +166,7 @@ function userAndEmailAlert()
                     <span>Successfullly Created an Account</span>
                     </div>';
             session_destroy();
-            header('Location: ./index.php');
+            header('Location: ./login.php');
         } else {
             $alertMsg .= '
                     <div role="alert" class="alert alert-success">
@@ -198,6 +198,7 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style/output.css" />
     <script src="./script/script.js" defer></script>
+    <script src="./script/passStrong.js"></script>
 </head>
 
 <body>
@@ -227,13 +228,13 @@ $conn->close();
                     <input
                         class=" text-sm"
                         type="text"
-                        required
                         placeholder="Username"
                         pattern="[A-Za-z][A-Za-z0-9\-]*"
                         minlength="3"
                         maxlength="30"
-                        title="Only letters, numbers or dash"
-                        name="user" />
+                        title="Starts with letter and only consists of letters, numbers or dash"
+                        name="user" 
+                        required />
                 </label>
                 <div class="flex max-sm:flex-col gap-2 max-lg:gap4 w-full ">
                 <label class="group input validator input-lg rounded-full w-full floating-label bg-custom-background">
@@ -248,12 +249,13 @@ $conn->close();
                     class=" text-sm bg-custom-background"
                     id="passwordInput"
                     type="password"
-                    required
                     placeholder="Password"
                     minlength="8"
                     pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
-                    name="pass" />
+                    oninput="checkPasswordStrength()"
+                    name="pass" 
+                    required />
                 <label class="swap opacity-0 pointer-events-none transition-opacity duration-300 group-focus-within:opacity-100 group-focus-within:pointer-events-auto" id="toggleLabel">
                     <input type="checkbox" id="toggleCheckbox"  tabindex="-1"/>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off swap-off">
@@ -268,6 +270,7 @@ $conn->close();
                     </svg>
                     </label>
                 </label>
+                
                 <label class="group input validator input-lg rounded-full w-full floating-label bg-custom-background">
                     <span class="left-8 text-lg bg-custom-background">Confirm Password</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -280,12 +283,12 @@ $conn->close();
                     class=" text-sm bg-custom-background"
                     id="confirmPasswordInput"
                     type="password"
-                    required
                     placeholder="Confirm Password"
                     minlength="8"
                     pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                    title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
-                    name="confirmPass" />
+                    title="Must be the same as the Password you created"
+                    name="confirmPass" 
+                    required />
                 
                     <label class="swap opacity-0 pointer-events-none transition-opacity duration-300 group-focus-within:opacity-100 group-focus-within:pointer-events-auto" id="confirmToggleLabel">
                     <input type="checkbox" id="confirmToggleCheckbox"  tabindex="-1"/>
@@ -301,6 +304,14 @@ $conn->close();
                     </svg>
                     </label>
                 </label>
+                </div>
+                <div id="strengthContainer" class="w-full px-4 hidden flex-col gap-1 transition-all duration-300">
+                <div class="flex justify-between items-center text-xs">
+                    <span>Strength:</span>
+                    <span id="strengthText" class="font-bold uppercase">Weak</span>
+                </div>
+                    <progress id="strengthBar" class="progress w-full h-2" value="0" max="100"></progress>
+                    <p class="text-[10px] text-gray-500 mt-1" id="strengthMessage">Use 8+ chars, upper & lowercase, and numbers.</p>
                 </div>
                     <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                         <span class="left-8 text-lg bg-custom-background">First Name</span>
@@ -318,13 +329,12 @@ $conn->close();
                         <input
                             class=" text-sm bg-custom-background"
                             type="text"
-                            required
                             placeholder="First Name"
-                            pattern="[A-Za-z]+( [A-Za-z]+)*"
-                            minlength="3"
+                            pattern="[A-Za-z\-]+( [A-Za-z\-]+)*"
                             maxlength="30"
-                            title="Only letters and single spaces between words"
-                            name="first_name" />
+                            title="Type your First name and must contain only letters and single spaces between words"
+                            name="first_name" 
+                            oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')" />
                     </label>
                     <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                         <span class="left-8 text-lg bg-custom-background">Last Name</span>
@@ -342,13 +352,12 @@ $conn->close();
                         <input
                             class=" text-sm bg-custom-background"
                             type="text"
-                            required
                             placeholder="Last Name"
-                            pattern="[A-Za-z]*"
-                            minlength="3"
+                            pattern="[A-Za-z\-]+( [A-Za-z\-]+)*"
                             maxlength="30"
-                            title="Only letters"
-                            name="last_name" />
+                            title="Type your Last name and must contain only letters and single spaces between words"
+                            name="last_name"
+                            oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')" />
                     </label>
                     <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                         <span class="left-8 text-lg bg-custom-background">Middle Name</span>
@@ -367,11 +376,11 @@ $conn->close();
                             class=" text-sm bg-custom-background"
                             type="text"
                             placeholder="Middle Name"
-                            pattern="[A-Za-z]*"
-                            minlength="3"
+                            pattern="[A-Za-z\-]+( [A-Za-z\-]+)*"
                             maxlength="30"
-                            title="Only letters"
-                            name="middle_name" />
+                            title="Type your Middle name and must contain only letters and single spaces between words"
+                            name="middle_name" 
+                            oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')" />
                     </label>
                 <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                     <span class="left-8 text-lg bg-custom-background">Email</span>
@@ -386,7 +395,11 @@ $conn->close();
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                         </g>
                     </svg>
-                    <input type="email" class=" text-sm bg-custom-background" name="email" placeholder="mail@site.com" required />
+                    <input type="email" class=" text-sm bg-custom-background" 
+                    name="email" 
+                    placeholder="mail@site.com" 
+                    title="Type your VALID Email Account" 
+                    required />
                 </label>
                 <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                     <span class="left-8 text-lg bg-custom-background">Phone Number</span>
@@ -402,7 +415,12 @@ $conn->close();
                                 fill="currentColor"></path>
                         </g>
                     </svg>
-                    <input type="tel" name="phone" class=" text-sm bg-custom-background" placeholder="0900-000-0000" required />
+                    <input type="tel" name="phone" class=" text-sm bg-custom-background" 
+                    minlength="11"
+                    maxlength="11"
+                    placeholder="0900-000-0000" 
+                    title="Type your VALID Phone number. Must have 11 digits."
+                    required />
                 </label>
                 <input type="submit" class="btn rounded-full bg-custom-accent w-full btn-lg  border text-[20px]" name="register" value="REGISTER">
                 ';
@@ -433,6 +451,7 @@ $conn->close();
                         name="code" />
                 </label>
                 <input type="submit" class="btn rounded-full bg-custom-accent w-3/4 btn-lg  border text-[20px]" name="verify" value="VERIFY">
+                <a href="./functions/sessionDestroy.php" class="hover:underline text-sm">Register Again?</a>
                     ';
                 }
                 ?>
@@ -446,6 +465,8 @@ $conn->close();
         </div>
     </div>
     </div>
+
+    
 </body>
 
 </html>
