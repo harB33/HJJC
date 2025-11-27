@@ -232,7 +232,7 @@ $conn->close();
                         pattern="[A-Za-z][A-Za-z0-9\-]*"
                         minlength="3"
                         maxlength="30"
-                        title="Only letters, numbers or dash"
+                        title="Starts with letter and only consists of letters, numbers or dash"
                         name="user" 
                         required />
                 </label>
@@ -334,8 +334,7 @@ $conn->close();
                             maxlength="30"
                             title="Type your First name and must contain only letters and single spaces between words"
                             name="first_name" 
-                            oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')"
-                            required />
+                            oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')" />
                     </label>
                     <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                         <span class="left-8 text-lg bg-custom-background">Last Name</span>
@@ -358,8 +357,7 @@ $conn->close();
                             maxlength="30"
                             title="Type your Last name and must contain only letters and single spaces between words"
                             name="last_name"
-                            oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')"
-                            required />
+                            oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, \'\')" />
                     </label>
                     <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                         <span class="left-8 text-lg bg-custom-background">Middle Name</span>
@@ -418,8 +416,10 @@ $conn->close();
                         </g>
                     </svg>
                     <input type="tel" name="phone" class=" text-sm bg-custom-background" 
+                    minlength="11"
+                    maxlength="11"
                     placeholder="0900-000-0000" 
-                    title="Type your VALID Phone number"
+                    title="Type your VALID Phone number. Must have 11 digits."
                     required />
                 </label>
                 <input type="submit" class="btn rounded-full bg-custom-accent w-full btn-lg  border text-[20px]" name="register" value="REGISTER">
