@@ -1,5 +1,6 @@
 # HJJC Coffee Store ☕
 
+[![Status](https://img.shields.io/badge/Status-Development-orange?style=for-the-badge)](https://github.com/harB33/HJJC)
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![MySQL](https://img.shields.io/badge/MySQL-00758F?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
@@ -84,18 +85,39 @@ HJJC is a premium, high-fidelity e-commerce platform dedicated to delivering an 
 
 ---
 
-## 👥 Development Team
+## 📂 Project Structure
 
-Meet the minds behind HJJC Coffee Store:
-
-- **[harB33](https://github.com/harB33)** - Lead Developer
-- **[jomariwamil1012-ai](https://github.com/jomariwamil1012-ai)** - Database Admin
-- **John Rommel T. Patriarca** - CMO
-- **Cyril Nero Maligaya** - Journalist / Content Lead
+```text
+HJJC/
+├── config/            # Database and application configurations
+├── database/          # SQL scripts and database migrations
+├── includes/          # Shared PHP utility functions and core classes
+├── public/            # Entry point and static assets
+│   ├── assets/        # CSS, JS, and images
+│   ├── handlers/      # Form submission and AJAX handlers
+│   └── index.php      # Front Controller entry point
+├── views/             # Page templates and UI components
+│   ├── components/    # Reusable UI partials (header, footer, etc.)
+│   ├── layouts/       # Page layout wrappers
+│   └── pages/         # Individual page templates
+├── composer.json      # PHP dependencies
+└── package.json       # Frontend dependencies (Tailwind, etc.)
+```
 
 ---
 
-## 📄 License
+## 👨‍💻 Development Team
+
+Meet the minds behind HJJC Coffee Store:
+
+- **[harB33](https://github.com/harB33)** - *CTO / Lead Developer*
+- **[jomariwamil1012-ai](https://github.com/jomariwamil1012-ai)** - *Database Admin*
+- **John Rommel T. Patriarca** - *CMO*
+- **Cyril Nero Maligaya** - *Journalist / Content Lead*
+
+---
+
+## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
