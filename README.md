@@ -1,9 +1,13 @@
 # HJJC Coffee Store ☕
 
+<div align="center">
+
 [![Status](https://img.shields.io/badge/Status-Development-orange?style=for-the-badge)](https://github.com/harB33/HJJC)
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![MySQL](https://img.shields.io/badge/MySQL-00758F?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+
+</div>
 
 HJJC is a premium, high-fidelity e-commerce platform dedicated to delivering an unparalleled coffee experience in the Philippines. Built with a focus on **aesthetic excellence** and **seamless user experience**, HJJC redefines the standard of online coffee ordering.
 
