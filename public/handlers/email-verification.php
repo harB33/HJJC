@@ -1,6 +1,6 @@
 <?php
 
-require '../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -30,7 +30,7 @@ function createWelcomePDF($firstName)
             'margin_bottom' => 0,
         ]);
 
-        $logoPath = __DIR__ . '/../image/logo/logo.png';
+        $logoPath = __DIR__ . '/../assets/images/logo/logo.png';
         $logoData = file_get_contents($logoPath);
         $logoBase64 = 'data:image/png;base64,' . base64_encode($logoData);
         $year = date("Y");
@@ -189,7 +189,7 @@ function sendVerification($email, $verificationCode, $firstName)
         $mail->isHTML(true);
         $mail->Subject = "Your HJJC Store Verification Code";
 
-        $imagePath = __DIR__ . '/../image/logo/Coffee_Logo.png';
+        $imagePath = __DIR__ . '/../assets/images/logo/Coffee_Logo.png';
         $mail->addEmbeddedImage($imagePath, 'logo-hjjc');
 
         $pdfData = createWelcomePDF($firstName); 

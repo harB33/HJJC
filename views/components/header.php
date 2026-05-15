@@ -20,39 +20,39 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
                 <img src="<?php echo ASSET_URL; ?>/images/logo/Coffee_Logo.png" alt="logo" class="max-lg:h-12 lg:h-16 object-contain" />
             </a>
             <!-- <div class="flex items-center gap-2 w-full justify-end md:justify-center"> -->
-                <div class="grow items-center flex justify-center md:gap-4 lg:gap-12 max-md:hidden text-nowrap">
-                    <a href="<?php echo BASE_URL; ?>/" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300">Home</a>
-                    <a href="<?php echo BASE_URL; ?>/home" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300">Place Order</a>
-                    <a href="<?php echo BASE_URL; ?>/cart" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300">Cart</a>
-                    <a href="<?php echo BASE_URL; ?>/orders" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300">Orders</a>
-                    <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === True): ?>
-                        <a href="<?php echo BASE_URL; ?>/handlers/logout.php" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent duration-300">Logout</a>
-                    <?php else: ?>
-                        <a href="<?php echo BASE_URL; ?>/login" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent duration-300">Login</a>
-                    <?php endif; ?>
-                </div>
-                <div class="h-full w-full flex items-center justify-end">
-                    <form action="/product" method="get" class="h-[75%] w-full">
-                        <label class="input rounded-full float-right h-full w-[50%] max-md:min-w-[200px] max-w-[250px] outline-0 border-custom-accent bg-custom-background">
-                            <svg
-                            class="h-[1em]  stroke-custom-accent"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24">
-                            <g
-                            stroke-linejoin="round"
-                            stroke-linecap="round"
-                            stroke-width="2.5"
-                            fill="none"
-                            stroke="">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.3-4.3"></path>
-                        </g>
-                    </svg>
-                    <input type="text" name="search" required placeholder="Explore..." 
+            <div class="grow items-center flex justify-center md:gap-4 lg:gap-12 max-md:hidden text-nowrap">
+                <a href="<?php echo BASE_URL; ?>/" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300">Home</a>
+                <a href="<?php echo BASE_URL; ?>/home" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300">Place Order</a>
+                <a href="<?php echo BASE_URL; ?>/cart" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300">Cart</a>
+                <a href="<?php echo BASE_URL; ?>/orders" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300">Orders</a>
+                <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === True): ?>
+                    <a href="<?php echo BASE_URL; ?>/handlers/logout.php" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent duration-300">Logout</a>
+                <?php else: ?>
+                    <a href="<?php echo BASE_URL; ?>/login" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent duration-300">Login</a>
+                <?php endif; ?>
+            </div>
+            <div class="h-full w-full flex items-center justify-end">
+                <form action="/product" method="get" class="h-[75%] w-full">
+                    <label class="input rounded-full float-right h-full w-[50%] max-md:min-w-[200px] max-w-[250px] outline-0 border-custom-accent bg-custom-background">
+                        <svg
+                        class="h-[1em]  stroke-custom-accent"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24">
+                        <g
+                        stroke-linejoin="round"
+                        stroke-linecap="round"
+                        stroke-width="2.5"
+                        fill="none"
+                        stroke="">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </g>
+                </svg>
+                <input type="text" name="search" required placeholder="Explore..." 
                     value="<?php echo htmlspecialchars($search_query ?? ''); ?>" />
                     <?php if (!empty($search_query)): ?>
                         <a href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x h-[1em]"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></a>
-                        <?php endif; ?>
+                    <?php endif; ?>
                     </label>
                 </form>
                 <div class="drawer drawer-end w-fit md:hidden">
