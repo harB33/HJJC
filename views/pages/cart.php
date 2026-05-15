@@ -19,8 +19,9 @@ if (isset($_GET['update_cart_id']) && isset($_GET['new_qty'])) {
     }
 
     // Redirect to the same page without the GET parameters to prevent re-submission
-    header('Location: ' . basename($_SERVER['PHP_SELF']));
+    header('Location: ' . BASE_URL . '/cart');
     exit;
+
 }
 
 $user = $_SESSION['customer_user'];
@@ -124,7 +125,8 @@ $_SESSION['total'] = $total;
     <section class="flex flex-col min-h-screen h-full w-full justify-start items-center lg:pt-20 max-lg:pt-10 bg-custom-background">
         <h1 class=" max-lg:text-3xl lg:text-5xl font-extrabold text-custom-text/80 w-full text-center max-lg:py-10 lg:py-15">CHECK OUT</h1>
         <div class="fixed max-lg:top-[6%] max-lg:left-[4%] lg:top-[10%] lg:left-[8%] z-40">
-            <a href="/home" class="btn btn-circle shadow-none bg-custom-accent/20 border-custom-accent border hover:bg-custom-accent duration-300">
+            <a href="<?php echo BASE_URL; ?>/home" class="btn btn-circle shadow-none bg-custom-accent/20 border-custom-accent border hover:bg-custom-accent duration-300">
+
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
                     <path d="m12 19-7-7 7-7" />
                     <path d="M19 12H5" />
@@ -174,7 +176,8 @@ $_SESSION['total'] = $total;
                         <div class="gap-2 flex ">
                             <div class="h-full max-w-[120px]">
                                 <a href="/product?id=<?= $row['product_id']; ?>" class="h-full">
-                                    <img src="assets/images/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class=" w-full object-cover rounded-lg shadow group-hover:scale-110 transition-transform duration-700 ease-in-out">
+                                    <img src="<?php echo ASSET_URL; ?>/images/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class=" w-full object-cover rounded-lg shadow group-hover:scale-110 transition-transform duration-700 ease-in-out">
+
                                 </a>
                             </div>
                             <div class="flex flex-col justify-between">
@@ -247,7 +250,8 @@ $_SESSION['total'] = $total;
                                     </div>
 
                                     <div class="">
-                                        <form action="./handlers/remove_item.php" method="post">
+                                        <form action="<?php echo BASE_URL; ?>/public/handlers/remove_item.php" method="post">
+
                                             <input type="hidden" name="remove" value="<?= $row['cart_id']; ?>">
                                             <button type="submit" class=" btn-error text-custom-background float-right flex">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2 stroke-red-400">
@@ -349,4 +353,4 @@ $_SESSION['total'] = $total;
 
 </html>
 
-<script src="./assets/js/quantity.js"></script>
+<script src="<?php echo ASSET_URL; ?>/js/quantity.js"></script>

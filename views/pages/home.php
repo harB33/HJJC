@@ -144,7 +144,8 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <section class="grid max-sm:grid-cols-2 max-lg:grid-cols-4 lg:grid-cols-5 max-lg:gap-2 lg:gap-4 place-contents-center w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($coffee_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br hover:bg-custom-accent/25 hover:outline hover:outline-custom-accent hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
+                            <a href="<?php echo BASE_URL; ?>/product?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
+
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="<?php echo ASSET_URL; ?>/images/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
@@ -163,7 +164,8 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <section class="grid max-sm:grid-cols-2 max-lg:grid-cols-4 lg:grid-cols-5 max-lg:gap-2 lg:gap-4 place-contents-center w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($milk_tea_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br hover:bg-custom-accent/25 hover:outline hover:outline-custom-accent hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
+                            <a href="<?php echo BASE_URL; ?>/product?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
+
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="<?php echo ASSET_URL; ?>/images/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
@@ -182,7 +184,8 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <section class="grid max-sm:grid-cols-2 max-lg:grid-cols-4 lg:grid-cols-5 max-lg:gap-2 lg:gap-4 place-contents-center w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($frappe_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br hover:bg-custom-accent/25 hover:outline hover:outline-custom-accent hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
+                            <a href="<?php echo BASE_URL; ?>/product?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
+
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="<?php echo ASSET_URL; ?>/images/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
@@ -201,7 +204,8 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <section class="grid max-sm:grid-cols-2 max-lg:grid-cols-4 lg:grid-cols-5 max-lg:gap-2 lg:gap-4 place-contents-center w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($shake_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br hover:bg-custom-accent/25 hover:outline hover:outline-custom-accent hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
+                            <a href="<?php echo BASE_URL; ?>/product?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
+
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="<?php echo ASSET_URL; ?>/images/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>
@@ -220,7 +224,8 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <section class="grid max-sm:grid-cols-2 max-lg:grid-cols-4 lg:grid-cols-5 max-lg:gap-2 lg:gap-4 place-contents-center w-fit  overflow-x-visible scroll-m-32">
                     <?php foreach ($pastries_items as $row): ?>
                         <div class="group flex flex-col p-2 h-fit hover:bg-linear-to-br hover:bg-custom-accent/25 hover:outline hover:outline-custom-accent hover:shadow-lg rounded-2xl gap-2 hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
+                            <a href="<?php echo BASE_URL; ?>/product?id=<?= $row['product_id']; ?>" class="max-w-[200px]">
+
                                 <div class="overflow-hidden rounded-lg">
                                     <img src="<?php echo ASSET_URL; ?>/images/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class="w-full aspect-square object-cover rounded-lg shadow-lg scale-125 transition-transform duration-700 ease-in-out" />
                                 </div>

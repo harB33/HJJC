@@ -1,6 +1,6 @@
 <?php
-require_once("./db/sessionStart.php");
-require_once('./db/db.php');
+// DB and Session are handled by config.php via index.php
+
 
 if (!$conn || $conn->connect_error) {
     die("Database connection failed: " . ($conn ? $conn->connect_error : 'Unknown error'));
@@ -137,7 +137,7 @@ if ($id > 0 && $is_search_results === false) {
             <?php else: ?>
                 <div class="pt-10 flex flex-col gap-4">
                 <?php foreach ($search_results as $result_product): ?>
-                    <a href="productPage.php?id=<?= $result_product['product_id']; ?>" 
+                    <a href="<?php echo BASE_URL; ?>/product?id=<?= $result_product['product_id']; ?>" 
                         class="flex gap-4 p-2 border-custom-accent border rounded-xl shadow-lg hover:bg-custom-accent/25 transition duration-300">
                         <img src="<?php echo ASSET_URL; ?>/images/products/<?= $result_product['product_img']; ?>" 
                             class=" h-full max-w-[120px] object-cover rounded-lg" 
@@ -163,7 +163,8 @@ if ($id > 0 && $is_search_results === false) {
     
     <section class=" w-full min-h-screen justify-center items-center flex max-lg:pt-20 lg:pt-30 pb-40 bg-custom-background relative">
         <div class="fixed max-lg:top-[6%] max-lg:left-[4%] lg:top-[10%] lg:left-[8%] z-40 ">
-            <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent/20 border-custom-accent border hover:bg-custom-accent duration-300">
+            <a href="<?php echo BASE_URL; ?>/home" class="btn btn-circle shadow-none bg-custom-accent/20 border-custom-accent border hover:bg-custom-accent duration-300">
+
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
                     <path d="m12 19-7-7 7-7" />
                     <path d="M19 12H5" />
@@ -231,8 +232,9 @@ if ($id > 0 && $is_search_results === false) {
                     <?php endif; ?>
                 </form>
                 <!-- <img src="./image/coffee-shop.png" alt="" class="fixed left-[0%] bottom-[12%] w-[40%] opacity-80 z-0 brightness-80"> -->
-                <img src="./image/coffee-beans.png" alt="" class="fixed -right-[5%] -top-[5%] w-[20%] opacity-80 z-0 rotate-220 max-lg:hidden">
-                <img src="./image/coffee-beans.png" alt="" class="fixed -left-[5%] bottom-[0%] w-[20%] opacity-80 z-0 rotate-45 max-lg:hidden">
+                <img src="<?php echo ASSET_URL; ?>/images/coffee-beans.png" alt="" class="fixed -right-[5%] -top-[5%] w-[20%] opacity-80 z-0 rotate-220 max-lg:hidden">
+                <img src="<?php echo ASSET_URL; ?>/images/coffee-beans.png" alt="" class="fixed -left-[5%] bottom-[0%] w-[20%] opacity-80 z-0 rotate-45 max-lg:hidden">
+
             </div>
         </div>
     </section>
@@ -245,7 +247,8 @@ if ($id > 0 && $is_search_results === false) {
             <p class="text-2xl font-bold w-1/2 grow ">₱<?= number_format($product['price'], 2); ?></p>
             <div class="w-1/2 grow flex justify-end">
                 <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
-                    <form method="POST" action="productPage.php?id=<?= $product['product_id']; ?>" class="quantity-form flex w-fit ">
+                    <form method="POST" action="<?php echo BASE_URL; ?>/product?id=<?= $product['product_id']; ?>" class="quantity-form flex w-fit ">
+
                         <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                         <input type="hidden" name="current_quantity" class="current-quantity-value" value="<?= $current_quantity; ?>">
                         <div class="quantity-selector flex">
@@ -262,7 +265,8 @@ if ($id > 0 && $is_search_results === false) {
                         </div>
                     </form>
                 <?php else: ?>
-                    <a href="./login.php" class="text-sm text-nowrap w-max underline">Click Here To Log In</a>
+                    <a href="<?php echo BASE_URL; ?>/login" class="text-sm text-nowrap w-max underline">Click Here To Log In</a>
+
                 <?php endif; ?>
             </div>
         </div>
@@ -298,4 +302,4 @@ if ($id > 0 && $is_search_results === false) {
 
 </html>
 
-<script src="./script/quantity.js"></script>
+<script src="<?php echo ASSET_URL; ?>/js/quantity.js"></script>
