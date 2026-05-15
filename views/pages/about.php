@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../../config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -7,7 +8,7 @@
 </head>
 <body class="w-screen overflow-x-clip min-h-screen bg-custom-background">
     <div class="sticky top-0 z-50 w-full backdrop-blur-sm ">
-        <?php include './components/header.php'; ?>
+        <?php include VIEW_PATH . '/components/header.php'; ?>
     </div>
     <section class="font-light w-full flex flex-col p-8 overflow-clip justify-center items-center relative bg-linear-to-br from-custom-primary/40 to-custom-secondary/50 z-20">
         <div class="flex flex-col items-center justify-center text-center mt-10 h-[80vh]">

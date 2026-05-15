@@ -1,6 +1,5 @@
 <?php
-require_once __DIR__ . '/../db/sessionStart.php';
-require_once __DIR__ . '/../db/db.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $results = [];
 $search_query = '';

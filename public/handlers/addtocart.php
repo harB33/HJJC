@@ -1,9 +1,8 @@
 <?php
-include("../db/sessionStart.php");
-include("../db/db.php");
+require_once __DIR__ . '/../../config/config.php';
 
 if (!isset($_SESSION['customer_user'])) {
-    header("Location: ../components/mustBeLoggedIn.php");
+    header("Location: /login.php");
     die;
 }
 
@@ -103,5 +102,5 @@ if ($result_cart->num_rows > 0) {
 $stmt_cart->close();
 $conn->close();
 
-header("Location: ../cart.php?status=added&cache_bust=" . time());
+header("Location: /cart.php?status=added&cache_bust=" . time());
 exit();

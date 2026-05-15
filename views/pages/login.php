@@ -1,6 +1,5 @@
 <?php
-include("./db/sessionStart.php");
-include("./db/db.php");
+require_once __DIR__ . '/../../config/config.php';
 
 $alert_html_output = userAndPassCorrect();
 
@@ -23,7 +22,7 @@ function userAndPassCorrect()
                 $_SESSION['customer_user'] = $user;
                 $_SESSION['loggedIn'] = True;
 
-                header("Location: ./index.php");
+                header("Location: " . BASE_URL . "/");
                 exit;
             } else {
                 $alertMsg .= '
@@ -57,28 +56,28 @@ function userAndPassCorrect()
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./image/logo.ico" type="image/x-icon">
+    <link rel="icon" href="<?php echo ASSET_URL; ?>/images/logo.ico" type="image/x-icon">
     <title>HJJC. STORE|Register</title>
     <link
         href="https://cdn.jsdelivr.net/npm/daisyui@5"
         rel="stylesheet"
         type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="./style/output.css" />
-    <script src="./script/script.js" defer></script>
+    <link rel="stylesheet" href="<?php echo ASSET_URL; ?>/css/output.css" />
+    <script src="<?php echo ASSET_URL; ?>/js/script.js" defer></script>
 </head>
 
 <body>
     <div class="grid lg:grid-cols-[45%_55%] place-items-center bg-custom-background">
         <div class="flex flex-col gap-4 justify-center items-center h-screen w-full border-r-2 border-[#0A1829]">
             <div class="size-35 rounded-full  grid place-items-center ">
-                <img src="./image/logo/Coffee_Logo.png" alt="logo">
+                <img src="<?php echo ASSET_URL; ?>/images/logo/Coffee_Logo.png" alt="logo">
             </div>
             <div class="mb-8 text-center">
                 <h1 class="font-black text-4xl text-custom-text/90">Hello Shopper!</h1>
                 <p class="text-xl font-extralight">Let's get you back to your cart.</p>
             </div>
-            <form action="./login.php" method="post" class="flex flex-col gap-4 justify-center items-center max-w-lg max-lg:w-3/4 lg:w-[80%]">
+            <form action="<?php echo BASE_URL; ?>/login" method="post" class="flex flex-col gap-4 justify-center items-center max-w-lg max-lg:w-3/4 lg:w-[80%]">
                 <label class="input validator input-lg rounded-full w-full floating-label bg-custom-background">
                     <span class="text-xl left-8 bg-custom-background">Username</span>
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -133,14 +132,14 @@ function userAndPassCorrect()
                 </label>
                 <input type="submit" class="btn rounded-full w-full bg-custom-accent btn-lg border text-xl" name="login" value="Login">
             </form>
-            <a href="./register.php" class="hover:underline text-sm">Don't Have an Account? Register</a>
+            <a href="<?php echo BASE_URL; ?>/register" class="hover:underline text-sm">Don't Have an Account? Register</a>
             <div class=" w-fit gap-2 flex-col flex min-h-30">
                 <?php
                 echo $alert_html_output;
                 ?>
             </div>
         </div>
-        <?php include './components/loginAnimation.html' ?>
+        <?php include VIEW_PATH . '/components/loginAnimation.php' ?>
     </div>
     </div>
 </body>

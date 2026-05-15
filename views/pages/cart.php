@@ -1,6 +1,5 @@
 <?php
-include("./db/sessionStart.php");
-include("./db/db.php");
+require_once __DIR__ . '/../../config/config.php';
 
 if (isset($_GET['update_cart_id']) && isset($_GET['new_qty'])) {
     $update_cart_id = filter_var($_GET['update_cart_id'], FILTER_VALIDATE_INT);
@@ -109,23 +108,23 @@ $_SESSION['total'] = $total;
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./image/logo.ico" type="image/x-icon">
+    <link rel="icon" href="<?php echo ASSET_URL; ?>/images/logo.ico" type="image/x-icon">
     <link
         href="https://cdn.jsdelivr.net/npm/daisyui@5"
         rel="stylesheet"
         type="text/css" />
     <title>HJJC Store|Cart</title>
-    <link rel="stylesheet" href="./style/output.css" />
+    <link rel="stylesheet" href="<?php echo ASSET_URL; ?>/css/output.css" />
 </head>
 
 <body class="w-screen overflow-x-hidden scroll-smooth">
     <div class="sticky top-0 z-50 ">
-        <?php include './components/header.php'; ?>
+        <?php include VIEW_PATH . '/components/header.php'; ?>
     </div>
     <section class="flex flex-col min-h-screen h-full w-full justify-start items-center lg:pt-20 max-lg:pt-10 bg-custom-background">
         <h1 class=" max-lg:text-3xl lg:text-5xl font-extrabold text-custom-text/80 w-full text-center max-lg:py-10 lg:py-15">CHECK OUT</h1>
         <div class="fixed max-lg:top-[6%] max-lg:left-[4%] lg:top-[10%] lg:left-[8%] z-40">
-            <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent/20 border-custom-accent border hover:bg-custom-accent duration-300">
+            <a href="/home" class="btn btn-circle shadow-none bg-custom-accent/20 border-custom-accent border hover:bg-custom-accent duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
                     <path d="m12 19-7-7 7-7" />
                     <path d="M19 12H5" />
@@ -157,7 +156,7 @@ $_SESSION['total'] = $total;
                         </div>
                     <?php else: ?>
                         <div>
-                            <a href="./addressForm.php" class="flex items-center">
+                            <a href="/address-form" class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus stroke-custom-text/75">
                                     <circle cx="12" cy="12" r="10" />
                                     <path d="M8 12h8" />
@@ -174,8 +173,8 @@ $_SESSION['total'] = $total;
                     <div class="flex p-2.5  size-full justify-between flex-1 rounded-2xl gap-4 ">
                         <div class="gap-2 flex ">
                             <div class="h-full max-w-[120px]">
-                                <a href="./productPage.php?id=<?= $row['product_id']; ?>" class="h-full">
-                                    <img src="image/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class=" w-full object-cover rounded-lg shadow group-hover:scale-110 transition-transform duration-700 ease-in-out">
+                                <a href="/product?id=<?= $row['product_id']; ?>" class="h-full">
+                                    <img src="assets/images/products/<?= htmlspecialchars($row['product_img']); ?>" alt="<?= htmlspecialchars($row['product_name']); ?>" class=" w-full object-cover rounded-lg shadow group-hover:scale-110 transition-transform duration-700 ease-in-out">
                                 </a>
                             </div>
                             <div class="flex flex-col justify-between">
@@ -248,7 +247,7 @@ $_SESSION['total'] = $total;
                                     </div>
 
                                     <div class="">
-                                        <form action="./functions/remove_item.php" method="post">
+                                        <form action="./handlers/remove_item.php" method="post">
                                             <input type="hidden" name="remove" value="<?= $row['cart_id']; ?>">
                                             <button type="submit" class=" btn-error text-custom-background float-right flex">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2 stroke-red-400">
@@ -272,7 +271,7 @@ $_SESSION['total'] = $total;
             <?php if (!empty($cart_items)): ?>
                 <div class="w-full rounded-2xl border-custom-accent border p-2.5 mb-40 shadow-md ">
                     <h1 class="pb-2.5">Paymenth Method</h1>
-                    <form action="./cart.php" class="grid grid-cols-2 place-items-center gap-2.5 h-[15vh]">
+                    <form action="/cart" class="grid grid-cols-2 place-items-center gap-2.5 h-[15vh]">
                         <div class="relative flex flex-col w-full h-full max-w-sm">
                             <input type="radio" name="paymentMethod" id="cod-radio" class="hidden peer" value="cod">
                             <label
@@ -323,7 +322,7 @@ $_SESSION['total'] = $total;
     </section>
     <section class="w-full  items-center justify-center flex fixed bottom-0 p-4 bg-custom-background shadow-2xl">
         <?php if (!empty($cart_items)): ?>
-            <form method="POST" action="./orders.php" class="flex gap-4 max-w-2xl grow w-full items-center justify-center">
+            <form method="POST" action="/orders" class="flex gap-4 max-w-2xl grow w-full items-center justify-center">
                 <input type="hidden" name="total_amount" value="<?= $total; ?>">
                 <input type="hidden" name="selected_address_id" value="<?= htmlspecialchars($selected_address_id ?? ''); ?>">
                 <input type="hidden" name="payment_method" id="hiddenPaymentMethod" value="">
@@ -350,4 +349,4 @@ $_SESSION['total'] = $total;
 
 </html>
 
-<script src="./script/quantity.js"></script>
+<script src="./assets/js/quantity.js"></script>

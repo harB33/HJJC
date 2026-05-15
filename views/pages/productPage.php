@@ -91,7 +91,7 @@ if ($id > 0 && $is_search_results === false) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./image/logo.ico" type="image/x-icon">
+    <link rel="icon" href="<?php echo ASSET_URL; ?>/images/logo.ico" type="image/x-icon">
     <link
         href="https://cdn.jsdelivr.net/npm/daisyui@5"
         rel="stylesheet"
@@ -103,19 +103,19 @@ if ($id > 0 && $is_search_results === false) {
             <?= htmlspecialchars($product['product_name'] ?? 'Product'); ?> - HJJC Store
         <?php endif; ?>
     </title>
-    <link rel="stylesheet" href="./style/output.css" />
+    <link rel="stylesheet" href="<?php echo ASSET_URL; ?>/css/output.css" />
 </head>
 
 <body class="font-poppins">
     <div class="sticky top-0 z-50 ">
-        <?php include './components/header.php'; ?>
+        <?php include VIEW_PATH . '/components/header.php'; ?>
     </div>
     
     <?php if ($is_search_results): ?>
     
     <section class="w-full min-h-screen justify-center  flex max-lg:pt-20 lg:pt-30 pb-40 bg-custom-background relative">
         <div class="fixed max-lg:top-[6%] max-lg:left-[4%] lg:top-[10%] lg:left-[8%] z-40 ">
-            <a href="./home.php" class="btn btn-circle shadow-none bg-custom-accent/20 border-custom-accent border hover:bg-custom-accent duration-300">
+            <a href="<?php echo BASE_URL; ?>/home" class="btn btn-circle shadow-none bg-custom-accent/20 border-custom-accent border hover:bg-custom-accent duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
                     <path d="m12 19-7-7 7-7" />
                     <path d="M19 12H5" />
@@ -139,7 +139,7 @@ if ($id > 0 && $is_search_results === false) {
                 <?php foreach ($search_results as $result_product): ?>
                     <a href="productPage.php?id=<?= $result_product['product_id']; ?>" 
                         class="flex gap-4 p-2 border-custom-accent border rounded-xl shadow-lg hover:bg-custom-accent/25 transition duration-300">
-                        <img src="image/products/<?= $result_product['product_img']; ?>" 
+                        <img src="<?php echo ASSET_URL; ?>/images/products/<?= $result_product['product_img']; ?>" 
                             class=" h-full max-w-[120px] object-cover rounded-lg" 
                             alt="<?= htmlspecialchars($result_product['product_name']); ?>" />
                         <div class="flex w-full flex-col">
@@ -172,7 +172,7 @@ if ($id > 0 && $is_search_results === false) {
         </div>
         <div class="flex flex-col gap-10 w-[90%] max-w-2xl justify-center items-center">
             <div class=" w-full justify-center flex gap-4 ">
-                <img src="image/products/<?= htmlspecialchars($product['product_img']); ?>" class="w-[50%] max-w-[300px] object-contain h-fit rounded-2xl skeleton " alt="<?= htmlspecialchars($product['product_name']); ?>" />
+                <img src="<?php echo ASSET_URL; ?>/images/products/<?= htmlspecialchars($product['product_img']); ?>" class="w-[50%] max-w-[300px] object-contain h-fit rounded-2xl skeleton " alt="<?= htmlspecialchars($product['product_name']); ?>" />
             </div>
             <div class="w-[90%]">
                 <div class=" w-full items-center flex flex-col text-center ">
@@ -181,7 +181,7 @@ if ($id > 0 && $is_search_results === false) {
                 </div>
             </div>
             <div class="w-[90%]">
-                <form id="addToCartForm" method="POST" action="./functions/addtocart.php" class="flex flex-col gap-6 w-full">
+                <form id="addToCartForm" method="POST" action="<?php echo BASE_URL; ?>/public/handlers/addtocart.php" class="flex flex-col gap-6 w-full">
                     <?php if ((int)$product['category_id'] < 5): ?>
                         <div class="border rounded-2xl shadow-lg p-5">
                             <h1 class=" font-bold mb-2 text-custom-text/80 ">Temperature</h1>
@@ -268,7 +268,7 @@ if ($id > 0 && $is_search_results === false) {
         </div>
         <div class="flex gap-4 w-[90%] max-w-2xl items-center justify-center">
             <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true): ?>
-                <form method="POST" action="./functions/buynow.php" class="grow w-1/2">
+                <form method="POST" action="<?php echo BASE_URL; ?>/public/handlers/buynow.php" class="grow w-1/2">
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                     <button type="submit" class="btn btn-lg border-custom-accent bg-custom-accent/20 text-custom-accent w-full rounded-full text-sm">Buy Now</button>
                 </form>
@@ -278,13 +278,13 @@ if ($id > 0 && $is_search_results === false) {
                     <button type="submit" form="addToCartForm" class="btn btn-lg bg-custom-accent border-custom-accent rounded-full w-full text-custom-background text-sm">Add To Cart</button>
                 </div>
             <?php else: ?>
-                <form method="POST" action="./functions/buynow.php" class="grow w-1/2">
+                <form method="POST" action="<?php echo BASE_URL; ?>/public/handlers/buynow.php" class="grow w-1/2">
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                     <button type="submit" class="btn btn-lg btn-disabled w-full rounded-full">
                         <p class=" text-xs">Log In To Buy Now</p>
                     </button>
                 </form>
-                <form method="POST" action="./functions/addtocart.php" class="grow w-1/2">
+                <form method="POST" action="<?php echo BASE_URL; ?>/public/handlers/addtocart.php" class="grow w-1/2">
                     <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                     <button type="submit" class="btn btn-lg btn-disabled w-full rounded-full">
                         <p class=" text-xs">Log In For Add To Cart</p>

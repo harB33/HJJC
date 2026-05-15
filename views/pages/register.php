@@ -1,7 +1,6 @@
 <?php
-include("./db/sessionStart.php");
-include("./db/db.php");
-include("./functions/email-verification.php");
+require_once __DIR__ . '/../../config/config.php';
+include __DIR__ . "/../../public/handlers/email-verification.php";
 
 date_default_timezone_set('Asia/Manila');
 
@@ -16,7 +15,7 @@ $alert_html_output = userAndEmailAlert();
 
 function userAndEmailAlert()
 {
-    include("./db/db.php");
+    // Connection is already available via config.php
     global $conn;
     $alertMsg = '';
 
@@ -189,25 +188,25 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./image/logo.ico" type="image/x-icon">
+    <link rel="icon" href="<?php echo ASSET_URL; ?>/images/logo.ico" type="image/x-icon">
     <title>HJJC. STORE|Register</title>
     <link
         href="https://cdn.jsdelivr.net/npm/daisyui@5"
         rel="stylesheet"
         type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="./style/output.css" />
-    <script src="./script/script.js" defer></script>
+    <link rel="stylesheet" href="<?php echo ASSET_URL; ?>/css/output.css" />
+    <script src="<?php echo ASSET_URL; ?>/js/script.js" defer></script>
 </head>
 
 <body>
     <div class="grid place-items-center bg-custom-background">
         <div class="flex flex-col gap-2 justify-center items-center h-screen w-full border-r-2 border-[#0A1829]">
             <div class="size-35 rounded-full  grid place-items-center ">
-                <img src="./image/logo/Coffee_Logo.png" alt="logo">
+                <img src="<?php echo ASSET_URL; ?>/images/logo/Coffee_Logo.png" alt="logo">
             </div>
             <h1 class="font-black text-3xl mb-4 text-custom-text/90">CREATE ACCOUNT</h1>
-            <form action="./register.php" method="post" class="flex flex-col gap-4 w-3/4 justify-center items-center max-w-xl max-lg:gap-4 max-lg:w-3/4 lg:w-[80%]">
+            <form action="<?php echo BASE_URL; ?>/register" method="post" class="flex flex-col gap-4 w-3/4 justify-center items-center max-w-xl max-lg:gap-4 max-lg:w-3/4 lg:w-[80%]">
                 <?php
                 if ($_SESSION['registration'] == true) {
                     echo '
@@ -437,7 +436,7 @@ $conn->close();
                 }
                 ?>
             </form>
-            <a href="./login.php" class="hover:underline text-sm">Already Have an Account? Login</a>
+            <a href="<?php echo BASE_URL; ?>/login" class="hover:underline text-sm">Already Have an Account? Login</a>
             <div class=" w-fit gap-2 flex-col flex min-h-30">
                 <?php
                 echo $alert_html_output;

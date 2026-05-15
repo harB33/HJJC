@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Redirect root requests to the public directory
+RewriteRule ^$ public/index.php [L]
+
+# Redirect all other requests that don't exist as files/folders to public/index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ public/index.php [L,QSA]
