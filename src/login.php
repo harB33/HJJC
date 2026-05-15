@@ -131,7 +131,7 @@ function userAndPassCorrect()
                     <input type="checkbox" checked="checked" class="checkbox" />
                     <h1 class="text-sm">Remember Me</h1>
                 </label>
-                <input type="submit" class="btn rounded-full w-full bg-custom-accent btn-lg border text-[20px]" name="login" value="LOGIN">
+                <input type="submit" class="btn rounded-full w-full bg-custom-accent btn-lg border text-xl" name="login" value="Login">
             </form>
             <a href="./register.php" class="hover:underline text-sm">Don't Have an Account? Register</a>
             <div class=" w-fit gap-2 flex-col flex min-h-30">

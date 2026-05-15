@@ -404,7 +404,7 @@ $conn->close();
                     </svg>
                     <input type="tel" name="phone" class=" text-sm bg-custom-background" placeholder="0900-000-0000" required />
                 </label>
-                <input type="submit" class="btn rounded-full bg-custom-accent w-full btn-lg  border text-[20px]" name="register" value="REGISTER">
+                <input type="submit" class="btn rounded-full bg-custom-accent w-full btn-lg  border text-xl" name="register" value="Register">
                 ';
                 } else {
                     echo '

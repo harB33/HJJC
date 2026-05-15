@@ -5,5 +5,8 @@
     },
     "devDependencies": {
         "daisyui": "^5.3.9"
+    },
+    "scripts": {
+        "dev": "tailwindcss -i ./src/style/input.css -o ./src/style/output.css --watch"
     }
 }

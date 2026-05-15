@@ -21,14 +21,14 @@ require_once './functions/searchbar.php'
             </a>
             <!-- <div class="flex items-center gap-2 w-full justify-end md:justify-center"> -->
                 <div class="grow items-center flex justify-center md:gap-4 lg:gap-12 max-md:hidden text-nowrap">
-                    <a href="./index.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Home</a>
-                    <a href="./home.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Place Order</a>
-                    <a href="./cart.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Cart</a>
-                    <a href="./orders.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105  duration-300">Orders</a>
+                    <a href="./index.php" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300">Home</a>
+                    <a href="./home.php" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300">Place Order</a>
+                    <a href="./cart.php" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300">Cart</a>
+                    <a href="./orders.php" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300">Orders</a>
                     <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === True): ?>
-                        <a href="./functions/logout.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105 duration-300">Logout</a>
+                        <a href="./functions/logout.php" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent duration-300">Logout</a>
                     <?php else: ?>
-                        <a href="./login.php" class=" text-2xl font-medium hover:text-custom-accent active:text-custom-accent hover:scale-105 duration-300">Login</a>
+                        <a href="./login.php" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent duration-300">Login</a>
                     <?php endif; ?>
                 </div>
                 <div class="h-full w-full flex items-center justify-end">
