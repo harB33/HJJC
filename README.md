@@ -88,8 +88,8 @@ HJJC is a premium, high-fidelity e-commerce platform dedicated to delivering an 
 
 Meet the minds behind HJJC Coffee Store:
 
-- **Harvy S. Bautista** - CTO / Lead Developer
-- **Jomari L. Wamil** - System Administrator
+- **[harB33](https://github.com/harB33)** - Lead Developer
+- **[jomariwamil1012-ai](https://github.com/jomariwamil1012-ai)** - Database Admin
 - **John Rommel T. Patriarca** - CMO
 - **Cyril Nero Maligaya** - Journalist / Content Lead
 
