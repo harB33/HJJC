@@ -1,15 +1,3 @@
-// Header scroll effect
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if (window.scrollY > 50) {
-        header.classList.add('bg-black/80', 'backdrop-blur-xl', 'py-2');
-        header.classList.remove('bg-black/10', 'backdrop-blur-md', 'py-4');
-    } else {
-        header.classList.add('bg-black/10', 'backdrop-blur-md', 'py-4');
-        header.classList.remove('bg-black/80', 'backdrop-blur-xl', 'py-2');
-    }
-});
-
 const passwordSets = [
     {
         input: document.getElementById("passwordInput"),
