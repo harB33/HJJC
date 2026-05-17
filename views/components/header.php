@@ -15,18 +15,16 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
 
 <body data-theme="light" class="">
     <header class="fixed top-0 w-screen flex justify-center z-50 items-center lg:px-5 lg:py-2 max-lg:px-2.5 max-lg:py-0.5  backdrop-blur-2xl">
-        <div class="grid md:grid-cols-3 max-lg:grid-cols-2 items-center w-full max-sm:pr-6">
-            <a href="<?php echo BASE_URL; ?>/" class="">
-                <img src="<?php echo ASSET_URL; ?>/images/logo/Coffee_Logo.png" alt="logo" class="max-lg:h-12 lg:h-16 object-contain" />
-            </a>
+        <div class="flex max-w-7xl w-full items-center justify-between">
+            <a href="<?php echo BASE_URL; ?>/" class="grow"><img src="<?php echo ASSET_URL; ?>/images/logo/Coffee_Logo.png" alt="logo" class="size-12" /></a>
             <!-- <div class="flex items-center gap-2 w-full justify-end md:justify-center"> -->
-            <div class="grow items-center flex justify-center md:gap-4 lg:gap-12 max-md:hidden text-nowrap">
-                <a href="<?php echo BASE_URL; ?>/" class="text-2xl font-urbanist italic font-medium text-zinc-100 border-b-2 border-transparent hover:border-custom-accent transition-all duration-300">Home</a>
-                <a href="<?php echo BASE_URL; ?>/home" class="text-2xl font-urbanist italic font-medium text-zinc-100 border-b-2 border-transparent hover:border-custom-accent transition-all duration-300">Products</a>
-                <a href="#" class="text-2xl font-urbanist italic font-medium text-zinc-100 border-b-2 border-transparent hover:border-custom-accent transition-all duration-300">About Us</a>
-                <a href="#" class="text-2xl font-urbanist italic font-medium text-zinc-100 border-b-2 border-transparent hover:border-custom-accent transition-all duration-300">Contact</a>
+            <div class="flex items-center justify-between grow-2">
+                <a href="<?php echo BASE_URL; ?>/" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b-2 border-transparent hover:border-custom-accent transition-all duration-300">Home</a>
+                <a href="<?php echo BASE_URL; ?>/home" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b-2 border-transparent hover:border-custom-accent transition-all duration-300">Menu</a>
+                <a href="#" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b-2 border-transparent hover:border-custom-accent transition-all duration-300">Contact</a>
+                <a href="#" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b-2 border-transparent hover:border-custom-accent transition-all duration-300">About Us</a>
             </div>
-            <div class="h-full w-full flex items-center justify-end">
+            <div class="flex items-center justify-end grow gap-2">
                 <!-- <form action="/product" method="get" class="h-[65%] w-full">
                     <label class="input rounded-full float-right h-full w-[50%] max-md:min-w-[200px] max-w-[250px] outline-0 border-2 border-custom-accent bg-zinc-100/10">
                         <svg
@@ -50,10 +48,10 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
                     <?php endif; ?>
                     </label>
                 </form> -->
-                <a href="<?php echo BASE_URL; ?>/cart" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6.5 stroke-zinc-100 hover:stroke-custom-accent"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg></a>
+                <a href="<?php echo BASE_URL; ?>/cart" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-8.5 stroke-zinc-100 hover:stroke-custom-accent"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg></a>
                 <div class="dropdown dropdown-hover dropdown-end group">
                     <div tabindex="0" role="button" class="group-hover:text-custom-accent hover:text-custom-accent active:text-custom-accent duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6.5 stroke-zinc-100 group-hover:stroke-custom-accent hover:stroke-custom-accent"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg></div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-8.5 stroke-zinc-100 group-hover:stroke-custom-accent hover:stroke-custom-accent"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg></div>
                     <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
                         <li><a href="<?php echo BASE_URL; ?>/orders" class="text-lg font-urbanist border-l-2 border-transparent hover:border-custom-accent transition-all duration-300">Orders</a></li>
                         <li>
@@ -66,7 +64,7 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
                     </ul>
                 </div>
 
-
+                <!-- mobile navbar -->
                 <div class="drawer drawer-end w-fit md:hidden">
                     <input id="my-drawer-5" type="checkbox" class="drawer-toggle" />
                     <div class="drawer-content">
