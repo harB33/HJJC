@@ -19,10 +19,10 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
             <a href="<?php echo BASE_URL; ?>/" class="grow"><img src="<?php echo ASSET_URL; ?>/images/logo/Coffee_Logo.png" alt="logo" class="size-12" /></a>
             <!-- <div class="flex items-center gap-2 w-full justify-end md:justify-center"> -->
             <div class="flex items-center justify-between grow-2">
-                <a href="<?php echo BASE_URL; ?>/" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b-2 border-transparent hover:border-custom-accent transition-all duration-300">Home</a>
-                <a href="<?php echo BASE_URL; ?>/home" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b-2 border-transparent hover:border-custom-accent transition-all duration-300">Menu</a>
-                <a href="#" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b-2 border-transparent hover:border-custom-accent transition-all duration-300">Contact</a>
-                <a href="#" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b-2 border-transparent hover:border-custom-accent transition-all duration-300">About Us</a>
+                <a href="<?php echo BASE_URL; ?>/" class="text-2xl font-urbanist italic font-light text-zinc-100 border border-transparent hover:border-custom-accent transition-all duration-300">Home</a>
+                <a href="<?php echo BASE_URL; ?>/home" class="text-2xl font-urbanist italic font-light text-zinc-100 border border-transparent hover:border-custom-accent transition-all duration-300">Menu</a>
+                <a href="#" class="text-2xl font-urbanist italic font-light text-zinc-100 border border-transparent hover:border-custom-accent transition-all duration-300">Contact</a>
+                <a href="#" class="text-2xl font-urbanist italic font-light text-zinc-100 border border-transparent hover:border-custom-accent transition-all duration-300">About Us</a>
             </div>
             <div class="flex items-center justify-end grow gap-2">
                 <!-- <form action="/product" method="get" class="h-[65%] w-full">

@@ -24,8 +24,8 @@
                 <source src="<?php echo ASSET_URL; ?>/images/1107.mp4">
             </video>
         </div>
-        <section id="title" class=" font-light h-screen w-full flex flex-col p-8 overflow-clip justify-center items-center absolute z-20">
-            <div class=" w-full flex flex-col items-center justify-center max-w-5xl z-10 mb-8 grow">
+        <section id="title" class=" font-light h-screen w-full flex flex-col overflow-clip justify-center items-center absolute z-20">
+            <div class=" w-full flex flex-col items-center justify-center max-w-7xl z-10 mb-8 grow">
                 <h1 class="font-giaza font-black max-lg:text-2xl z-1 text-custom-accent lg:text-5xl text-shadow-lg mb-6">Define Your Standard.</h1>
                 <h1 class=" font-light max-lg:text-md text-custom-background/90 lg:text-2xl text-shadow-lg">Relentless perfection. We transform the world's finest ingredients into exquisite beverages that redefine your standard.</h1>
             </div>
@@ -42,7 +42,7 @@
             </div>
         </section>
         <section class="flex flex-col h-lvh px-6 w-full max-lg:pt-20 bg-custom-secondary items-center lg:justify-center lg:pt-0 z-10">
-            <div class="flex flex-col items-center max-w-5xl my-moveDown">
+            <div class="flex flex-col items-center max-w-7xl my-moveDown">
                 <h1 class="font-giaza font-black max-lg:text-2xl lg:text-5xl mb-6">The <span class="">Standard</span> Has Arrived.</h1>
                 <p class=" font-light text-md mb-2 lg:text-2xl">HJJC is proud to introduce an unparalleled coffee experience to the Philippines. We are defined by a relentless pursuit of perfection. Our baristas transform the world's finest ingredients into exquisite beverages that stimulate the senses and redefine your expectations.</p>
                 <p class=" font-noarmal text-md lg:text-2xl ">Explore the new <span class="font-giaza capitalize font-black">pinnacle of taste.</span></p>
@@ -53,7 +53,7 @@
             <img src="<?php echo ASSET_URL; ?>/images/design.png" alt="" class=" my-moveTop lg:hidden">
         </section>
         <section class="flex flex-col h-lvh px-6 w-full justify-evenly bg-custom-secondary/20 items-center  z-10">
-            <div class="flex flex-col w-full justify-evenly h-fit items-center max-w-5xl">
+            <div class="flex flex-col w-full justify-evenly h-fit items-center max-w-7xl">
                 <div>
                     <h1 class="font-giaza font-black max-lg:text-2xl mb-6 lg:text-5xl">A Brew to Define Your Day.</h1>
                     <p class=" font-light text-md lg:text-2xl">Fuel your pursuit of perfection. From robust classics to nuanced single-origins, our menu offers an exquisite beverage to satisfy your distinct taste.</p>
