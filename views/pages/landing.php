@@ -29,23 +29,33 @@
             <h1 class="text-zinc-300 font-bold font-urbanist text-4xl">Relentless perfection. We transform the world's finest ingredients into exquisite beverages that redefine your standard.</h1>
             <button class="btn bg-custom-accent border-custom-accent hover:border-white/50 hover:duration-700 duration-700 shadow-custom-accent shadow-none hover:shadow-md  rounded-full text-2xl h-16 px-10 font-giaza inline-flex items-center justify-center leading-none w-max italic"><span class="-mt-2">Order Now</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-icon lucide-coffee translate-x-4"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg></button>
         </section>
-        <section class="col-start-2 col-end-12 h-auto py-32 w-full flex flex-col justify-center gap-8 z-20 select-none">
+        <section class="col-start-2 col-end-12 h-auto py-32 w-full flex flex-col justify-center gap-16 z-20 select-none">
             <div class="flex flex-col gap-8">
-                <h1 class="font-giaza font-black max-lg:text-2xl lg:text-5xl ">The <span class="">Standard</span> Has Arrived.</h1>
-                <p class=" font-light text-md lg:text-2xl">HJJC is proud to introduce an unparalleled coffee experience to the Philippines. We are defined by a relentless pursuit of perfection.<br>Our baristas transform the world's finest ingredients into exquisite beverages that stimulate the senses and redefine your expectations.</p>
-                <p class=" font-normal text-md lg:text-2xl -mt-10">Explore the new <span class="font-giaza capitalize font-black italic text-3xl text-custom-accent">pinnacle of taste.</span></p>
+                <div class="flex flex-col gap-8">
+                    <h1 class="font-giaza font-black max-lg:text-2xl lg:text-5xl ">The <span class="">Standard</span> Has Arrived.</h1>
+                    <p class=" font-light text-md lg:text-2xl">HJJC is proud to introduce an unparalleled coffee experience to the Philippines. We are defined by a relentless pursuit of perfection.<br>Our baristas transform the world's finest ingredients into exquisite beverages that stimulate the senses and redefine your expectations.</p>
+                    <p class=" font-normal text-md lg:text-2xl -mt-10">Explore the new <span class="font-giaza capitalize font-black italic text-3xl text-custom-accent">pinnacle of taste.</span></p>
+                </div>
+                <div class="w-full grid grid-cols-5 gap-8">
+                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Coffee</p></div>
+                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Milk Tea</p></div>
+                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Frappe</p></div>
+                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Shake</p></div>
+                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Pastries</p></div>
+                </div>
             </div>
-            <div class="w-full grid grid-cols-5 gap-8">
-                <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p></p></div>
-                <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p></p></div>
-                <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p></p></div>
-                <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p></p></div>
-                <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p></p></div>
+            <div class="flex flex-col gap-8">
+                <h1 class="font-giaza font-black max-lg:text-2xl lg:text-5xl ">Everyone's Favorite</h1>
+                <div class="w-full grid grid-cols-3 gap-8">
+                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Caramel Machiato</p></div>
+                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Matcha</p></div>
+                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Random</p></div>
+                </div>
             </div>
-            <div class="my-popUp z-20 lg:hidden">
+            <!-- <div class="my-popUp z-20 lg:hidden">
                 <div class="animate-bounce text-custom-accent -rotate-10 translate-y-40 -translate-x-20 text-xl font-black  bg-black/80 p-1.5 rounded-2xl">Caramel Machiato!</div>
             </div>
-            <img src="<?php echo ASSET_URL; ?>/images/design.png" alt="" class=" my-moveTop lg:hidden">
+            <img src="<?php echo ASSET_URL; ?>/images/design.png" alt="" class=" my-moveTop lg:hidden"> -->
         </section>
     </section>
     <!-- <section class="flex flex-col items-center text-center w-full overflow-clip ">
