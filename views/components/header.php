@@ -14,16 +14,15 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
 </head>
 
 <body data-theme="light" class="">
-    <header class="fixed top-0 w-screen flex justify-center z-50 items-center lg:px-5 lg:py-2 max-lg:px-2.5 max-lg:py-0.5 backdrop-blur-xl">
-        <div class="flex max-w-7xl w-full items-center justify-between">
-            <a href="<?php echo BASE_URL; ?>/" class="grow"><img src="<?php echo ASSET_URL; ?>/images/logo/Coffee_Logo.png" alt="logo" class="size-12" /></a>
-            <!-- <div class="flex items-center gap-2 w-full justify-end md:justify-center"> -->
-            <div class="flex items-center justify-between grow-2">
+    <header class="fixed top-0 grid grid-cols-12 gap-8 w-screen h-16 outline outline-green-300 z-50">
+        <div class="col-start-2 flex items-center"><a href="<?php echo BASE_URL; ?>/"><img src="<?php echo ASSET_URL; ?>/images/logo/Coffee_Logo.png" alt="logo" class="aspect-square h-14" /></a></div>
+        <div class="col-start-5 col-end-9 flex items-center justify-center gap-8">
                 <a href="<?php echo BASE_URL; ?>/" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b  border-transparent hover:border-custom-accent transition-all duration-300 text-shadow-lg">Home</a>
                 <a href="<?php echo BASE_URL; ?>/home" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b  border-transparent hover:border-custom-accent transition-all duration-300">Menu</a>
                 <a href="#" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b  border-transparent hover:border-custom-accent transition-all duration-300">Contact</a>
                 <a href="#" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b  border-transparent hover:border-custom-accent transition-all duration-300">About Us</a>
-            </div>
+        </div>
+        <div class="col-start-11 flex items-center">
             <div class="flex items-center justify-end grow gap-2">
                 <!-- <form action="/product" method="get" class="h-[65%] w-full">
                     <label class="input rounded-full float-right h-full w-[50%] max-md:min-w-[200px] max-w-[250px] outline-0 border-2 border-custom-accent bg-zinc-100/10">
@@ -154,6 +153,7 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
                 }
                 ?>
             <!-- </div> -->
+        </div>
         </div>
     </header>
 </body>
