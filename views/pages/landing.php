@@ -34,22 +34,24 @@
                 <div class="flex flex-col gap-8">
                     <h1 class="font-giaza font-black max-lg:text-2xl lg:text-5xl ">The <span class="">Standard</span> Has Arrived.</h1>
                     <p class=" font-light text-md lg:text-2xl">HJJC is proud to introduce an unparalleled coffee experience to the Philippines. We are defined by a relentless pursuit of perfection.<br>Our baristas transform the world's finest ingredients into exquisite beverages that stimulate the senses and redefine your expectations.</p>
-                    <p class=" font-normal text-md lg:text-2xl -mt-10">Explore the new <span class="font-giaza capitalize font-black italic text-3xl text-custom-accent">pinnacle of taste.</span></p>
+                    <p class=" font-light text-md lg:text-2xl -mt-10">Explore the new <span class="font-giaza  font-black italic text-3xl text-custom-accent">Pinnacle of Taste.</span></p>
                 </div>
+                <h1 class="font-giaza font-black max-lg:text-2xl lg:text-5xl flex justify-between items-center"><span>Our Menu</span><a href="/" class="flex items-center font-poppins font-light text-2xl gap-2 translate-y-2">See More<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></h1>
                 <div class="w-full grid grid-cols-5 gap-8">
-                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Coffee</p></div>
-                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Milk Tea</p></div>
-                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Frappe</p></div>
-                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Shake</p></div>
-                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Pastries</p></div>
+                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p class="text-2xl italic">Coffee</p></div>
+                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p class="text-2xl italic">Milk Tea</p></div>
+                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p class="text-2xl italic">Frappe</p></div>
+                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p class="text-2xl italic">Shake</p></div>
+                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p class="text-2xl italic">Pastries</p></div>
                 </div>
             </div>
             <div class="flex flex-col gap-8">
-                <h1 class="font-giaza font-black max-lg:text-2xl lg:text-5xl ">Everyone's Favorite</h1>
+                                <h1 class="font-giaza font-black max-lg:text-2xl lg:text-5xl flex justify-between items-center"><span>Everyone's Favorite</span><a href="/" class="flex items-center font-poppins font-light text-2xl gap-2 translate-y-2">See More<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></h1>
+
                 <div class="w-full grid grid-cols-3 gap-8">
-                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Caramel Machiato</p></div>
-                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Matcha</p></div>
-                    <div class=" w-full flex flex-col items-center"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p>Random</p></div>
+                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p class="text-2xl italic">Caramel Machiato</p></div>
+                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p class="text-2xl italic">Matcha</p></div>
+                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl"><p class="text-2xl italic">Random</p></div>
                 </div>
             </div>
             <!-- <div class="my-popUp z-20 lg:hidden">
