@@ -18,8 +18,8 @@
 
 <body class="w-screen overflow-x-clip min-h-screen">
     <?php include VIEW_PATH . '/components/header.php'; ?>
-    <section class="grid grid-cols-12 size-screen">
-        <section class="h-screen w-screen ">
+    <section class="grid grid-cols-12 size-screen relative overflow-hidden">
+        <section class="absolute inset-0 w-screen h-screen z-0 ">
             <video class="w-full h-full object-cover brightness-40" autoplay loop muted>
                 <source src="<?php echo ASSET_URL; ?>/images/1107.mp4">
             </video>
