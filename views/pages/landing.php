@@ -18,7 +18,19 @@
 
 <body class="w-screen overflow-x-clip min-h-screen">
     <?php include VIEW_PATH . '/components/header.php'; ?>
-    <section class="flex flex-col items-center text-center w-full overflow-clip ">
+    <section class="grid grid-cols-12 size-screen">
+        <div class="h-screen w-screen ">
+            <video class="w-full h-full object-cover brightness-40" autoplay loop muted>
+                <source src="<?php echo ASSET_URL; ?>/images/1107.mp4">
+            </video>
+        </div>
+        <section id="title" class="col-start-2 col-end-12 h-screen w-1/2 flex flex-col justify-center gap-8 z-20 select-none">
+            <h1 class="text-custom-accent font-giaza font-black text-9xl leading-[100%]">Define<br>Your<br>Standard.</h1>
+            <h1 class="text-zinc-300 font-bold font-urbanist text-4xl">Relentless perfection. We transform the world's finest ingredients into exquisite beverages that redefine your standard.</h1>
+            <button class="btn bg-custom-accent border-custom-accent hover:border-white/50 hover:duration-700 duration-700 shadow-custom-accent shadow-none hover:shadow-md  rounded-full text-2xl h-16 px-10 font-giaza inline-flex items-center justify-center leading-none w-max italic"><span class="-mt-2">Order Now</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-icon lucide-coffee translate-x-4"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg></button>
+        </section>
+    </section>
+    <!-- <section class="flex flex-col items-center text-center w-full overflow-clip ">
         <div class="h-screen w-screen ">
             <video class="w-full h-full object-cover brightness-50" autoplay loop muted>
                 <source src="<?php echo ASSET_URL; ?>/images/1107.mp4">
@@ -132,7 +144,7 @@
         <section class=" z-10">
             <?php include VIEW_PATH . '/components/footer.html'; ?>
         </section>
-    </section>
+    </section> -->
 </body>
 
 </html>

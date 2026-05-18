@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
 </head>
 
 <body data-theme="light" class="">
-    <header class="fixed top-0 grid grid-cols-12 gap-8 w-screen h-16 outline outline-green-300 z-50">
+    <header class="fixed top-0 grid grid-cols-12 gap-8 w-screen h-16 z-50">
         <div class="col-start-2 flex items-center"><a href="<?php echo BASE_URL; ?>/"><img src="<?php echo ASSET_URL; ?>/images/logo/Coffee_Logo.png" alt="logo" class="aspect-square h-14" /></a></div>
         <div class="col-start-5 col-end-9 flex items-center justify-center gap-8">
                 <a href="<?php echo BASE_URL; ?>/" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b  border-transparent hover:border-custom-accent transition-all duration-300 text-shadow-lg">Home</a>
@@ -48,7 +48,7 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
                     </label>
                 </form> -->
                 <a href="<?php echo BASE_URL; ?>/cart" class=" text-2xl font-urbanist italic font-medium hover:text-custom-accent active:text-custom-accent  duration-300"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-8.5 stroke-zinc-100 hover:stroke-custom-accent"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg></a>
-                <div class="dropdown dropdown-hover dropdown-end group">
+                <div class="dropdown dropdown-hover dropdown-center group">
                     <div tabindex="0" role="button" class="group-hover:text-custom-accent hover:text-custom-accent active:text-custom-accent duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-8.5 stroke-zinc-100 group-hover:stroke-custom-accent hover:stroke-custom-accent"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg></div>
                     <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
