@@ -34,6 +34,23 @@
                     <path d="M6 2v2" />
                 </svg></button>
         </section>
+        <section class="col-start-1 col-end-13 px-16 min-h-screen h-auto py-32 w-full flex flex-col justify-center gap-16 z-20 select-none bg-custom-primary">
+            <div class="grid grid-cols-12 h-full">
+                <div class="col-start-1 col-end-5 flex flex-col justify-evenly items-center h-full">
+                    <h1>Fresh</h1>
+                    <h1>Fresh</h1>
+                    <h1>Fresh</h1>
+                </div>
+                <div class="col-start-5 col-end-9 border h-full">
+                    <img src="" alt="">
+                </div>
+                <div class="col-start-9 col-end-13 flex flex-col justify-evenly items-center h-full">
+                    <h1>Fresh</h1>
+                    <h1>Fresh</h1>
+                    <h1>Fresh</h1>
+                </div>
+            </div>
+        </section>
         <section class="col-start-1 col-end-13 px-16 h-auto py-32 w-full flex flex-col justify-center gap-16 z-20 select-none">
             <div class="flex flex-col gap-8">
                 <div class="flex flex-col gap-8">

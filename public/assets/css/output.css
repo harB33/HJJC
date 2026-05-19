@@ -4897,6 +4897,12 @@
   .col-start-6 {
     grid-column-start: 6;
   }
+  .col-start-9 {
+    grid-column-start: 9;
+  }
+  .col-start-10 {
+    grid-column-start: 10;
+  }
   .col-start-11 {
     grid-column-start: 11;
   }
@@ -4908,6 +4914,9 @@
   }
   .col-end-1 {
     grid-column-end: 1;
+  }
+  .col-end-5 {
+    grid-column-end: 5;
   }
   .col-end-9 {
     grid-column-end: 9;
@@ -5952,6 +5961,9 @@
   }
   .min-h-\[50vh\] {
     min-height: 50vh;
+  }
+  .min-h-\[100vh\] {
+    min-height: 100vh;
   }
   .min-h-max {
     min-height: max-content;
