@@ -174,9 +174,9 @@
             </div>
         </section>
         <section class="col-span-full grid grid-cols-12 bg-custom-primary pt-32">
-            <h1 class="w-full text-9xl  font-giaza font-black text-nowrap uppercase tracking-tight text-white">Define Your Standard at HJJC.</h1>
+            <h1 class="w-full grid-span-full translate-y-8 text-[6.4cqi] font-giaza font-black text-nowrap uppercase tracking-tight text-white">Define Your Standard at HJJC.</h1>
         </section>
-        <section class=" col-start-1 col-end-13 px-16 py-32 min-h-[50vh] flex">
+        <section class=" col-start-1 col-end-13 p-16 min-h-[50vh] flex">
             <div class="w-1/2 h-full ">
                 <h1 class="max-w-xs">Our subscription service will keep you up to date on new roast, special offers, and brewing tips that have to offer.</h1>
                 <div class="border-b max-w-sm p-2 pt-8 flex justify-between">
