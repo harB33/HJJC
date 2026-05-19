@@ -27,7 +27,7 @@
         <section id="title" class="col-start-1 col-end-13 px-16 h-screen w-1/2 flex flex-col justify-center gap-8 z-20 select-none">
             <h1 class="text-custom-accent font-giaza font-black text-9xl leading-[100%]">Define<br>Your<br>Standard.</h1>
             <h1 class="text-zinc-300 font-bold font-urbanist text-4xl">Relentless perfection. We transform the world's finest ingredients into exquisite beverages that redefine your standard.</h1>
-            <button class="btn bg-custom-accent border-custom-accent hover:border-white/50 hover:duration-700 duration-700 shadow-custom-accent shadow-none hover:shadow-md  rounded-full text-2xl h-16 px-10 font-giaza inline-flex items-center justify-center leading-none w-max italic"><span class="-mt-2">Order Now</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-icon lucide-coffee translate-x-4">
+            <button class="btn border-0 bg-[linear-gradient(135deg,#e69c4d,#bf8343)] shadow-none hover:brightness-110 active:scale-98 shadow-custom-accent/30 hover:shadow-lg rounded-full text-2xl h-16 px-10 font-giaza inline-flex items-center justify-center leading-none w-max italic transition-all duration-300"><span class="-mt-2">Order Now</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-icon lucide-coffee translate-x-4">
                     <path d="M10 2v2" />
                     <path d="M14 2v2" />
                     <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" />
@@ -54,7 +54,7 @@
         <section class="col-start-1 col-end-13 px-16 h-auto py-32 w-full flex flex-col justify-center gap-16 z-20 select-none">
             <div class="flex flex-col gap-8">
                 <div class="flex flex-col gap-8">
-                    <h1 class="font-giaza font-black max-lg:text-2xl lg:text-5xl ">The <span class="">Standard</span> Has Arrived.</h1>
+                <h1 class="font-giaza font-black max-lg:text-2xl lg:text-5xl ">The <span class="">Standard</span> Has Arrived.</h1>
                     <p class=" font-light text-md lg:text-2xl">HJJC is proud to introduce an unparalleled coffee experience to the Philippines. We are defined by a relentless pursuit of perfection.<br>Our baristas transform the world's finest ingredients into exquisite beverages that stimulate the senses and redefine your expectations.</p>
                     <p class=" font-light text-md lg:text-2xl -mt-10">Explore the new <span class="font-giaza  font-black italic text-3xl text-custom-accent">Pinnacle of Taste.</span></p>
                 </div>
@@ -106,7 +106,7 @@
             <div class=" col-start-1 col-end-13 px-16 flex flex-col gap-32">
                 <h1 class="divider text-white font-giaza font-black text-5xl leading-[100%]"><span class="-mt-4">People's Comments</span></h1>
                 <div class="w-full grid grid-cols-3 gap-8">
-                    <div class="w-full h-auto aspect-video border rounded-2xl relative">
+                    <div class="w-full h-auto aspect-video border-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] backdrop-blur-md rounded-2xl relative shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
                         <div class="w-full p-4 flex items-center gap-4">
                             <img src="" alt="" class=" aspect-square size-16 rounded-full border">
                             <h1 class="text-2xl italic font-giaza font-black">harbe</h1>
@@ -133,7 +133,7 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="w-full h-auto aspect-video border rounded-2xl relative">
+                    <div class="w-full h-auto aspect-video border-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] backdrop-blur-md rounded-2xl relative shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
                         <div class="w-full p-4 flex items-center gap-4">
                             <img src="" alt="" class=" aspect-square size-16 rounded-full border">
                             <h1 class="text-2xl italic font-giaza font-black">harbe</h1>
@@ -160,7 +160,7 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="w-full h-auto aspect-video border rounded-2xl relative">
+                    <div class="w-full h-auto aspect-video border-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] backdrop-blur-md rounded-2xl relative shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
                         <div class="w-full p-4 flex items-center gap-4">
                             <img src="" alt="" class=" aspect-square size-16 rounded-full border">
                             <h1 class="text-2xl italic font-giaza font-black">harbe</h1>

@@ -9,7 +9,7 @@
 </head>
 <body data-theme="light">
     <section class="col-span-full w-screen grid grid-cols-12 bg-custom-primary pt-32">
-        <h1 class="w-full grid-span-full text-[8.7cqi] -ml-1 font-giaza font-black text-nowrap uppercase tracking-tight text-white leading-none">Define Your Standard</h1>
+        <h1 class="w-full grid-span-full text-[8.7cqi] -ml-1 font-giaza font-black text-nowrap uppercase tracking-tight text-white leading-none">Define Your Standard.</h1>
     </section>
     <section class=" col-start-1 col-end-13 p-16 min-h-[50vh] flex">
         <div class="w-1/2 h-full flex flex-col justify-between">
