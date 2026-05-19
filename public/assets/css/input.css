@@ -13,7 +13,7 @@
 @layer base {
     @font-face {
         font-family: "giaza";
-        src: url(../font/Giaza.otf) format("opentype");
+        src: url(../fonts/Giaza.otf) format("opentype");
     }
 }
 

@@ -24,7 +24,7 @@
                 <source src="<?php echo ASSET_URL; ?>/images/1107.mp4">
             </video>
         </section>
-        <section id="title" class="col-start-2 col-end-12 h-screen w-1/2 flex flex-col justify-center gap-8 z-20 select-none">
+        <section id="title" class="col-start-1 col-end-13 px-16 h-screen w-1/2 flex flex-col justify-center gap-8 z-20 select-none">
             <h1 class="text-custom-accent font-giaza font-black text-9xl leading-[100%]">Define<br>Your<br>Standard.</h1>
             <h1 class="text-zinc-300 font-bold font-urbanist text-4xl">Relentless perfection. We transform the world's finest ingredients into exquisite beverages that redefine your standard.</h1>
             <button class="btn bg-custom-accent border-custom-accent hover:border-white/50 hover:duration-700 duration-700 shadow-custom-accent shadow-none hover:shadow-md  rounded-full text-2xl h-16 px-10 font-giaza inline-flex items-center justify-center leading-none w-max italic"><span class="-mt-2">Order Now</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-icon lucide-coffee translate-x-4">
@@ -34,7 +34,7 @@
                     <path d="M6 2v2" />
                 </svg></button>
         </section>
-        <section class="col-start-2 col-end-12 h-auto py-32 w-full flex flex-col justify-center gap-16 z-20 select-none">
+        <section class="col-start-1 col-end-13 px-16 h-auto py-32 w-full flex flex-col justify-center gap-16 z-20 select-none">
             <div class="flex flex-col gap-8">
                 <div class="flex flex-col gap-8">
                     <h1 class="font-giaza font-black max-lg:text-2xl lg:text-5xl ">The <span class="">Standard</span> Has Arrived.</h1>
@@ -86,7 +86,7 @@
             <img src="<?php echo ASSET_URL; ?>/images/design.png" alt="" class=" my-moveTop lg:hidden"> -->
         </section>
         <section class=" col-span-full grid grid-cols-12 w-screen py-32 bg-custom-primary">
-            <div class=" col-start-2 col-end-12 flex flex-col gap-32">
+            <div class=" col-start-1 col-end-13 px-16 flex flex-col gap-32">
                 <h1 class="divider text-white font-giaza font-black text-5xl leading-[100%]"><span class="-mt-4">People's Comments</span></h1>
                 <div class="w-full grid grid-cols-3 gap-8">
                     <div class="w-full h-auto aspect-video border rounded-2xl relative">
@@ -176,7 +176,7 @@
         <section class="col-span-full grid grid-cols-12 bg-custom-primary pt-32">
             <h1 class="w-full text-9xl  font-giaza font-black text-nowrap uppercase tracking-tight text-white">Define Your Standard at HJJC.</h1>
         </section>
-        <section class=" col-start-2 col-end-12 py-32 min-h-[50vh] flex">
+        <section class=" col-start-1 col-end-13 px-16 py-32 min-h-[50vh] flex">
             <div class="w-1/2 h-full ">
                 <h1 class="max-w-xs">Our subscription service will keep you up to date on new roast, special offers, and brewing tips that have to offer.</h1>
                 <div class="border-b max-w-sm p-2 pt-8 flex justify-between">
