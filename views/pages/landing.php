@@ -174,29 +174,43 @@
             </div>
         </section>
         <section class="col-span-full grid grid-cols-12 bg-custom-primary pt-32">
-            <h1 class="w-full grid-span-full translate-y-8 text-[6.4cqi] font-giaza font-black text-nowrap uppercase tracking-tight text-white">Define Your Standard at HJJC.</h1>
+            <h1 class="w-full grid-span-full text-[8.7cqi] -ml-1 font-giaza font-black text-nowrap uppercase tracking-tight text-white leading-none">Define Your Standard</h1>
         </section>
         <section class=" col-start-1 col-end-13 p-16 min-h-[50vh] flex">
-            <div class="w-1/2 h-full ">
-                <h1 class="max-w-xs">Our subscription service will keep you up to date on new roast, special offers, and brewing tips that have to offer.</h1>
-                <div class="border-b max-w-sm p-2 pt-8 flex justify-between">
-                    <input type="text" placeholder="your email" class=" border-none outline-none">
-                    <button type="submit" class="flex items-center gap-2">Submit <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+            <div class="w-1/2 h-full flex flex-col justify-between">
+                <div>
+                    <h1 class="max-w-xs">Our subscription service will keep you up to date on new roast, special offers, and brewing tips that have to offer.</h1>
+                    <div class="border-b max-w-sm p-2 pt-8 flex justify-between">
+                        <input type="text" placeholder="your email" class=" border-none outline-none">
+                        <button type="submit" class="flex items-center gap-2">Submit <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <img src="path/to/your/image.jpg" alt="" class="aspect-square w-32 h-auto rounded-full border" >
+                    <p class="font-giaza text-9xl leading-none text-custom-accent font-black -mt-10">HJJC.</p>
                 </div>
             </div>
-            <div class="w-1/2 h-full flex flex-col items-end">
-                <div class="flex flex-col items-end w-max h-full">
-                    <a href="">Home</a>
-                    <a href="">Menu</a>
-                    <a href="">Contact</a>
-                    <a href="">About Us</a>
+            <div class="w-1/2 h-full flex gap-16 justify-end">
+                <div class="flex flex-col gap-4" >
+                    <div class="flex flex-col items-end" >
+                        <a href="mailto:hjjc.store@gmail.com">hjjc.store@gmail.com</a>
+                        <a href="">location:</a>
+                    </div>
                 </div>
-                <div class="flex flex-col items-end w-max h-full">
-                    <a href="">FaceBook</a>
-                    <a href="">YouTube</a>
-                    <a href="">X (Twitter)</a>
-                    <a href="">Instagram</a>
-                    <a href="">LinkedIn</a>
+                <div class="flex flex-col gap-4">
+                    <div class="flex flex-col items-end" >
+                        <a href="">Home</a>
+                        <a href="">Menu</a>
+                        <a href="">Contact</a>
+                        <a href="">About Us</a>
+                    </div>
+                    <div class="flex flex-col items-end" >
+                        <a href="">FaceBook</a>
+                        <a href="">YouTube</a>
+                        <a href="">X (Twitter)</a>
+                        <a href="">Instagram</a>
+                        <a href="">LinkedIn</a>
+                    </div>
                 </div>
             </div>
         </section>
