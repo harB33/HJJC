@@ -78,9 +78,6 @@
                     <div class=" w-full flex flex-col items-center gap-2  "><img src="<?php echo ASSET_URL; ?>/images/products/product_690feb6e39f743.74655640.png" alt="" class="w-full h-auto aspect-square rounded-2xl p-4">
                         <p class="text-2xl italic">Pastries</p>
                     </div>
-                    <div class="size-30  rounded-2xl">
-
-                    </div>
                 </div>
             </div>
             <div class="flex flex-col gap-8">
@@ -109,7 +106,7 @@
             <div class=" col-start-1 col-end-13 px-16 flex flex-col gap-32">
                 <h1 class="divider text-white font-giaza font-black text-5xl leading-[100%]"><span class="-mt-4">People's Comments</span></h1>
                 <div class="w-full grid grid-cols-3 gap-8">
-                    <div class="w-full h-auto aspect-video border-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] backdrop-blur-md rounded-2xl relative shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-full h-auto aspect-video border-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] rounded-2xl relative shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
                         <div class="w-full p-4 flex items-center gap-4">
                             <img src="" alt="" class=" aspect-square size-16 rounded-full border">
                             <h1 class="text-2xl italic font-giaza font-black">harbe</h1>
@@ -136,7 +133,7 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="w-full h-auto aspect-video border-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] backdrop-blur-md rounded-2xl relative shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-full h-auto aspect-video border-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] rounded-2xl relative shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
                         <div class="w-full p-4 flex items-center gap-4">
                             <img src="" alt="" class=" aspect-square size-16 rounded-full border">
                             <h1 class="text-2xl italic font-giaza font-black">harbe</h1>
@@ -163,7 +160,7 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="w-full h-auto aspect-video border-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] backdrop-blur-md rounded-2xl relative shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-full h-auto aspect-video border-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] rounded-2xl relative shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
                         <div class="w-full p-4 flex items-center gap-4">
                             <img src="" alt="" class=" aspect-square size-16 rounded-full border">
                             <h1 class="text-2xl italic font-giaza font-black">harbe</h1>
