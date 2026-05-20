@@ -276,7 +276,7 @@
                 </div>
             </div>
             <div>
-                <a href="<?php echo BASE_URL; ?>/home" class="underline flex gap-0.5 max-lg:text-xl">
+                <a href="<?php echo BASE_URL; ?>/menu" class="underline flex gap-0.5 max-lg:text-xl">
                     <svg ...>
                     Explore</a>
             </div>

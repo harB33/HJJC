@@ -1,9 +1,15 @@
 RewriteEngine On
 
+# Redirect requests that include /public/ in the URL to clean URLs
+
+RewriteRule ^public/(.\*)$ /$1 [R=301,L]
+
 # Redirect root requests to the public directory
+
 RewriteRule ^$ public/index.php [L]
 
 # Redirect all other requests that don't exist as files/folders to public/index.php
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ public/index.php [L,QSA]
+RewriteRule ^(.\*)$ public/index.php [L,QSA]

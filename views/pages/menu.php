@@ -58,7 +58,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         href="https://cdn.jsdelivr.net/npm/daisyui@5"
         rel="stylesheet"
         type="text/css" />
-    <title>HJJC. STORE|Home</title>
+    <title>HJJC. STORE|Menu</title>
     <link rel="stylesheet" href="<?php echo ASSET_URL; ?>/css/output.css" />
 </head>
 

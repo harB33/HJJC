@@ -38,7 +38,7 @@ if ($path === '') {
  */
 $routes = [
     'landing'      => 'landing.php',
-    'home'         => 'home.php',
+    'menu'         => 'menu.php',
     'about'        => 'about.php',
     'cart'         => 'cart.php',
     'orders'       => 'orders.php',

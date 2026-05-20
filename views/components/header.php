@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
         <div class="col-start-1 flex items-center"><a href="<?php echo BASE_URL; ?>/"><img src="<?php echo ASSET_URL; ?>/images/logo/Coffee_Logo.png" alt="logo" class="aspect-square h-14" /></a></div>
         <div class="col-start-5 col-end-10 flex items-center justify-center gap-8">
                 <a href="<?php echo BASE_URL; ?>/" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b  border-transparent hover:border-custom-accent transition-all duration-300 text-shadow-lg">Home</a>
-                <a href="<?php echo BASE_URL; ?>/home" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b  border-transparent hover:border-custom-accent transition-all duration-300">Menu</a>
+                <a href="<?php echo BASE_URL; ?>/menu" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b  border-transparent hover:border-custom-accent transition-all duration-300">Menu</a>
                 <a href="#" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b  border-transparent hover:border-custom-accent transition-all duration-300">Contact</a>
                 <a href="#" class="text-2xl font-urbanist italic font-light text-zinc-100 border-b  border-transparent hover:border-custom-accent transition-all duration-300">About Us</a>
         </div>
@@ -55,7 +55,7 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
                         <li><a href="<?php echo BASE_URL; ?>/orders" class="text-lg font-urbanist border-l-2 border-transparent hover:border-custom-accent transition-all duration-300">Orders</a></li>
                         <li>
                             <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === True): ?>
-                                <a href="<?php echo BASE_URL; ?>/handlers/logout.php" class="text-lg font-urbanist border-l-2 border-transparent hover:border-custom-accent transition-all duration-300">Logout</a>
+                                <a href="<?php echo BASE_URL; ?>/public/handlers/logout.php" class="text-lg font-urbanist border-l-2 border-transparent hover:border-custom-accent transition-all duration-300">Logout</a>
                             <?php else: ?>
                                 <a href="<?php echo BASE_URL; ?>/login" class="text-lg font-urbanist border-l-2 border-transparent hover:border-custom-accent transition-all duration-300">Login</a>
                             <?php endif; ?>
@@ -88,7 +88,7 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
                                     ?>
                                 </h2>
                                 <ul>
-                                    <li><a href="<?php echo BASE_URL; ?>/home"><svg ...>Place Order</a></li>
+                                    <li><a href="<?php echo BASE_URL; ?>/menu"><svg ...>Place Order</a></li>
                                     <li><a href="<?php echo BASE_URL; ?>/cart"><svg ...>Cart</a></li>
                                     <li><a href="<?php echo BASE_URL; ?>/orders"><svg ...>Orders</a></li>
                                 </ul>
@@ -97,7 +97,7 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
                             if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == True) {
                                 echo '
                                     <li class="p-2">
-                                        <a href="' . BASE_URL . '/handlers/logout.php" class=" shadow-custom-primary outline-none border-none flex items-center w-full p-2 m-2 bg-custom-accent">
+                                        <a href="' . BASE_URL . '/public/handlers/logout.php" class=" shadow-custom-primary outline-none border-none flex items-center w-full p-2 m-2 bg-custom-accent">
                                             <div class="opacity-65"><svg ...></div>
                                             <div class="font-bold text-lg opacity-65">LOGOUT</div>
                                         </a>
@@ -128,7 +128,7 @@ require_once __DIR__ . '/../../public/handlers/searchbar.php';
                                 <li><a>Orders</a></li>
                                 <hr>
                                 <li>
-                                    <a href="' . BASE_URL . '/handlers/logout.php" class="btn bg-red-400 flex justify-between w-full p-2">
+                                    <a href="' . BASE_URL . '/public/handlers/logout.php" class="btn bg-red-400 flex justify-between w-full p-2">
                                         <div class="w-fit"><svg ...></div>
                                         <div class="grow">Log Out</div>
                                     </a>
