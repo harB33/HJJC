@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HJJC - About Us</title>
 </head>
 <body class="w-screen overflow-x-clip min-h-screen bg-custom-background">
     <div class="sticky top-0 z-50 w-full backdrop-blur-sm ">

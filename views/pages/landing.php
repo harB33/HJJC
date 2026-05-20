@@ -41,8 +41,8 @@
                     <h1>Fresh</h1>
                     <h1>Fresh</h1>
                 </div>
-                <div class="col-start-5 col-end-9 border h-full">
-                    <img src="" alt="">
+                <div class="col-start-5 col-end-9 h-full">
+                    <img src="<?php echo ASSET_URL; ?>/images/products/product_690feb6e39f743.74655640.png" alt="" class="w-full h-full object-cover ">
                 </div>
                 <div class="col-start-9 col-end-13 flex flex-col justify-evenly items-center h-full">
                     <h1>Fresh</h1>
@@ -63,20 +63,23 @@
                             <path d="m12 5 7 7-7 7" />
                         </svg></a></h1>
                 <div class="w-full grid grid-cols-5 gap-8">
-                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl">
+                    <div class=" w-full flex flex-col items-center gap-2  "><img src="<?php echo ASSET_URL; ?>/images/products/product_690feb6e39f743.74655640.png" alt="" class="w-full h-auto aspect-square rounded-2xl p-4">
                         <p class="text-2xl italic">Coffee</p>
                     </div>
-                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl">
+                    <div class=" w-full flex flex-col items-center gap-2  "><img src="<?php echo ASSET_URL; ?>/images/products/product_690feb6e39f743.74655640.png" alt="" class="w-full h-auto aspect-square rounded-2xl p-4">
                         <p class="text-2xl italic">Milk Tea</p>
                     </div>
-                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl">
+                    <div class=" w-full flex flex-col items-center gap-2  "><img src="<?php echo ASSET_URL; ?>/images/products/product_690feb6e39f743.74655640.png" alt="" class="w-full h-auto aspect-square rounded-2xl p-4">
                         <p class="text-2xl italic">Frappe</p>
                     </div>
-                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl">
+                    <div class=" w-full flex flex-col items-center gap-2  "><img src="<?php echo ASSET_URL; ?>/images/products/product_690feb6e39f743.74655640.png" alt="" class="w-full h-auto aspect-square rounded-2xl p-4">
                         <p class="text-2xl italic">Shake</p>
                     </div>
-                    <div class=" w-full flex flex-col items-center gap-2"><img src="" alt="" class="w-full h-auto aspect-square border rounded-2xl">
+                    <div class=" w-full flex flex-col items-center gap-2  "><img src="<?php echo ASSET_URL; ?>/images/products/product_690feb6e39f743.74655640.png" alt="" class="w-full h-auto aspect-square rounded-2xl p-4">
                         <p class="text-2xl italic">Pastries</p>
+                    </div>
+                    <div class="size-30  rounded-2xl">
+
                     </div>
                 </div>
             </div>

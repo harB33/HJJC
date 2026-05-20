@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="flex items-center gap-4">
-                <img src="path/to/your/image.jpg" alt="" class="aspect-square w-32 h-auto rounded-full border" >
+                <img src="<?php echo ASSET_URL; ?>/images/logo/Coffee_Logo.png" alt="" class="aspect-square w-32 h-auto rounded-full border" >
                 <p class="font-giaza text-9xl leading-none text-custom-accent font-black -mt-10">HJJC.</p>
             </div>
         </div>
